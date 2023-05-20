@@ -156,7 +156,7 @@ public class Graphe {
 	 * @param sommet1
 	 * @param sommet2
 	 */
-	public void definitUneMarque(Sommet sommet1, Sommet sommet2) {
+	public void defenitUneMarque(Sommet sommet1, Sommet sommet2) {
 	    
 	    
 	    /* Dans le cas ou les marques des 2 sommets en question

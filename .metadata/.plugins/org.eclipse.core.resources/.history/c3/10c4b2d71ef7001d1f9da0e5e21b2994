@@ -123,17 +123,17 @@ public class Sommet /*implements Comparable*/ {
 		return this.coordonneeY;
 	}
 
-    /**
-     * Retourne la marque du sommet
-     * @return valeur de marque 
-     */
-    public int getMarque() {
-        return marque;
-    }
+        /**
+         * Retourne la marque du sommet
+         * @return valeur de marque 
+         */
+        public int getMarque() {
+            return marque;
+        }
 
-    /** @param marque nouvelle valeur de marque */
-    public void setMarque(int marque) {
-        this.marque = marque;
-    }
+        /** @param marque nouvelle valeur de marque */
+        public void setMarque(int marque) {
+            this.marque = marque;
+        }
 	
 }
