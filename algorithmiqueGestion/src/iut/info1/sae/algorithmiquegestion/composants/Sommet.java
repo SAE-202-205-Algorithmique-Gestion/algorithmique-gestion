@@ -24,6 +24,10 @@ public class Sommet /*implements Comparable*/ {
 	 */
 	private Sommet[] liaisons;
 	
+	/**
+	 * indice de Liaison du tableau liaisons
+	 * TODO : à vérifier
+	 */
 	private int indiceLiaison;
 
 	/**

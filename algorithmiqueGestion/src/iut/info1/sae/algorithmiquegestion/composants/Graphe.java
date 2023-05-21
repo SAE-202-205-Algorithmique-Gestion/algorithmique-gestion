@@ -44,8 +44,12 @@ public class Graphe {
 	 */
 	private int[] marquesExistante;
 	
-	
+	/**
+	 * Valeur de la marque Maximum, permet d'affecter
+	 * une marque non existante à un sommet.
+	 */
     private int valeurMarqueMaximum;
+	
 	/**
 	 * Constructeur de la classe.
 	 * Initialisation des attributs de la classe.
@@ -182,7 +186,10 @@ public class Graphe {
 	    		sommet1.setMarque(sommet2.getMarque());
 	    	} else if (sommet2.getMarque() < 0) {
 	    		sommet2.setMarque(sommet1.getMarque());
-	    	}else {
+	    		
+	    	/* Si les deux sommets ont déjà des marques (autre que -1), 
+             * les sommets de même chaîne que sommet2 prend la marque du sommet1 */	
+	    	} else {
 	    		Sommet[] sommetMarqueSommet2 = sommetsDeMemeMarque(sommet2.getMarque());
 	    		for (int i = 0; i < sommetMarqueSommet2.length; i++) {
 	    			sommetMarqueSommet2[i].setMarque(sommet1.getMarque());

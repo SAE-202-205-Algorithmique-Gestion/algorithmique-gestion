@@ -15,7 +15,7 @@ import iut.info1.sae.algorithmiquegestion.composants.*;
 
 /**
  * TODO : javadoc
- * @author Jonathan GUIL
+ * @author Jonathan GUIL, Samuel Lacam, Simon Guiraud, Loic Faugières, Tom Douaud
  */
 @TestInstance(Lifecycle.PER_CLASS)
 class TestGraphe {
@@ -46,6 +46,18 @@ class TestGraphe {
 		this.sommetsGraphe[12] = grapheTeste.creerSommet();		//  ( 2 ; 2 )
 		this.sommetsGraphe[13] = grapheTeste.creerSommet();		//  ( 3 ; 2 )		
 		this.sommetsGraphe[14] = grapheTeste.creerSommet();		//  ( 4 ; 2 )		
+		
+		this.sommetsGraphe[15] = grapheTeste.creerSommet();		//  ( 0 ; 3 )		
+		this.sommetsGraphe[16] = grapheTeste.creerSommet();		//  ( 1 ; 3 )		
+		this.sommetsGraphe[17] = grapheTeste.creerSommet();		//  ( 2 ; 3 )		
+		this.sommetsGraphe[18] = grapheTeste.creerSommet();		//  ( 3 ; 3 )		
+		this.sommetsGraphe[19] = grapheTeste.creerSommet();		//  ( 4 ; 3 )		
+		
+		this.sommetsGraphe[20] = grapheTeste.creerSommet();		//  ( 0 ; 4 )		
+		this.sommetsGraphe[21] = grapheTeste.creerSommet();		//  ( 1 ; 4 )		
+		this.sommetsGraphe[22] = grapheTeste.creerSommet();		//  ( 2 ; 4 )		
+		this.sommetsGraphe[23] = grapheTeste.creerSommet();		//  ( 3 ; 4 )		
+		this.sommetsGraphe[24] = grapheTeste.creerSommet();		//  ( 4 ; 4 )		
 	}
 
 	@Test
@@ -88,5 +100,11 @@ class TestGraphe {
 	}
 	
 	//TODO faire un test de la méthode definitUneMarque
-
+	@Test
+	void testDefinitUneMarque() {
+	    System.out.println("Test d'affectation de marque : ");
+	    
+	    
+	}
 }
+
