@@ -100,7 +100,7 @@ public class Graphe {
 	 */
 	public Sommet creerSommet() {
 		
-		int nombreLiaisonsMaximum,
+		int nombreLiaisonsMaximum, //TODO (à enlever je pense)
 			coordonneeX,
 			coordonneeY,
 			indiceCaseCourante;

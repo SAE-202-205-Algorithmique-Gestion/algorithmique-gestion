@@ -103,7 +103,28 @@ class TestGraphe {
 	@Test
 	void testDefinitUneMarque() {
 	    System.out.println("Test d'affectation de marque : ");
+	    grapheTeste.definitUneMarque(sommetsGraphe[0], sommetsGraphe[1]);
+//	    System.out.println(sommetsGraphe[0].getMarque());
+	    assertEquals(sommetsGraphe[0].getMarque(), 0);
+	    assertEquals(sommetsGraphe[1].getMarque(), 0);
 	    
+	    sommetsGraphe[6].setMarque(8);
+	    grapheTeste.definitUneMarque(sommetsGraphe[5], sommetsGraphe[6]);
+	    assertEquals(sommetsGraphe[5].getMarque(), 8);
+	    
+	    sommetsGraphe[15].setMarque(4);
+	    grapheTeste.definitUneMarque(sommetsGraphe[15], sommetsGraphe[16]);
+	    assertEquals(sommetsGraphe[16].getMarque(), 4);
+	    
+	    sommetsGraphe[22].setMarque(9);
+	    sommetsGraphe[17].setMarque(2);
+	    sommetsGraphe[18].setMarque(2);
+	    sommetsGraphe[19].setMarque(2);
+	    grapheTeste.definitUneMarque(sommetsGraphe[22], sommetsGraphe[17]); //renvoie une erreur
+	    
+//	    assertEquals(sommetsGraphe[17].getMarque(), 9);
+//	    assertEquals(sommetsGraphe[18].getMarque(), 9);
+//	    assertEquals(sommetsGraphe[19].getMarque(), 9);
 	    
 	}
 }
