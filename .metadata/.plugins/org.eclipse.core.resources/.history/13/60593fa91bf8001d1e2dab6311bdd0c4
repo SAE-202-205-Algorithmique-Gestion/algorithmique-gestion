@@ -105,11 +105,6 @@ class TestGraphe {
 	// TODO faire la javadoc
 	@Test
 	void testSommetsDeMemeMarque() {
-		System.out.println("Test de sommetsDeMemeMarque : ");
-		for (int i = 0; i < grapheTeste.getListeSommets().length; i++) {
-			System.out.println(i + " " + grapheTeste.getListeSommets()[i]);
-		} // listeSommets non initialisé dans le Constructeur de Graphe.
-		
 		for (int i = 0; i < grapheTeste.sommetsDeMemeMarque(sommetsGraphe[17].getMarque()).length; i++) {
 			System.out.println(grapheTeste.sommetsDeMemeMarque(sommetsGraphe[17].getMarque())[i]);
 		}

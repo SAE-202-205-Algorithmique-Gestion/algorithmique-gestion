@@ -69,12 +69,7 @@ public class Graphe {
 		                                                                // nombre de sommet. 
 		                                                                // Histoire d'être sur d'avoir
 		                                                                // la place, valeur temporaire.
-//		for (int i = 0; i < this.listeSommets.length; i++) {
-//			this.listeSommets[i] = new Sommet
-//		
-//			initialiser listeSommet pour éviter l'erreur
-//			à la méthode sommetDeMemeMarque.
-//		}
+//		this.listeSommets = a initialisé (j'pense)
 		this.valeurMarqueMaximum = 0;
 		
 	}
