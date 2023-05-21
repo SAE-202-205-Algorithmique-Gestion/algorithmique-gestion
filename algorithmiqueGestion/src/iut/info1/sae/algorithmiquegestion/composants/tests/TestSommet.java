@@ -18,7 +18,11 @@ import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
 /**
  * TODO : javadoc
- * @author Jonathan GUIL, Samuel Lacam, Simon Guiraud, Loic Faugières, Tom Douaud
+ * @author Jonathan GUIL
+ * @author Loïc FAUGIERES
+ * @author Simon GUIRAUD
+ * @author Samuel LACAM
+ * @author Tom DOUAUD
  */
 @TestInstance(Lifecycle.PER_CLASS)
 class TestSommet {

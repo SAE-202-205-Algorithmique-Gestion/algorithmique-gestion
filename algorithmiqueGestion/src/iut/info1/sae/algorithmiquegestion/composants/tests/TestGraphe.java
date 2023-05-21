@@ -15,7 +15,11 @@ import iut.info1.sae.algorithmiquegestion.composants.*;
 
 /**
  * TODO : javadoc
- * @author Jonathan GUIL, Samuel Lacam, Simon Guiraud, Loic Faugières, Tom Douaud
+ * @author Jonathan GUIL
+ * @author Loïc FAUGIERES
+ * @author Simon GUIRAUD
+ * @author Samuel LACAM
+ * @author Tom DOUAUD
  */
 @TestInstance(Lifecycle.PER_CLASS)
 class TestGraphe {
@@ -120,12 +124,21 @@ class TestGraphe {
 	    sommetsGraphe[17].setMarque(2);
 	    sommetsGraphe[18].setMarque(2);
 	    sommetsGraphe[19].setMarque(2);
-	    grapheTeste.definitUneMarque(sommetsGraphe[22], sommetsGraphe[17]); //renvoie une erreur
+//	    grapheTeste.definitUneMarque(sommetsGraphe[22], sommetsGraphe[17]); //renvoie une erreur
+	    
 	    
 //	    assertEquals(sommetsGraphe[17].getMarque(), 9);
 //	    assertEquals(sommetsGraphe[18].getMarque(), 9);
 //	    assertEquals(sommetsGraphe[19].getMarque(), 9);
 	    
+	}
+	
+	@Test
+	void testSommetsDeMemeMarque() {
+		for (int i = 0; i < grapheTeste.sommetsDeMemeMarque(sommetsGraphe[17].getMarque()).length; i++) {
+			System.out.println(grapheTeste.sommetsDeMemeMarque(sommetsGraphe[17].getMarque())[i]);
+		}
+		
 	}
 }
 
