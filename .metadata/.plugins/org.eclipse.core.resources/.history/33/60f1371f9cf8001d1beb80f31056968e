@@ -19,8 +19,14 @@ public class Graphe {
 	/**
 	 * Liste des sommets du graphe.
 	 */
-	private Sommet[] listeSommets = new Sommet[this.nombreColonnesLabyrinthe*this.nombreLignesLabyrinthe];
-		
+	private Sommet[] listeSommets = new Sommet[ 25 /* TODO: LONGUEUR * HAUTEUR */ ];
+	
+	/**
+	 * Indice courant dans la liste des sommets.
+	 * Utile pour la création de sommet.
+	 */
+	private int indiceCourantListeSommet;
+	
 	/**
 	 * Longueur du labyrinthe.
 	 * Donnée choisie par l'utilisateur.
@@ -63,12 +69,12 @@ public class Graphe {
 		                                                                // nombre de sommet. 
 		                                                                // Histoire d'être sur d'avoir
 		                                                                // la place, valeur temporaire.
-		for (int i = 0; i < getNombreSommets(); i++) {
-			this.listeSommets[i] = creerSommet(i);
-		
+//		for (int i = 0; i < this.listeSommets.length; i++) {
+//			this.listeSommets[i] = new Sommet
+//		
 //			initialiser listeSommet pour éviter l'erreur
 //			à la méthode sommetDeMemeMarque.
-		}
+//		}
 		this.valeurMarqueMaximum = 0;
 		
 	}
@@ -98,18 +104,18 @@ public class Graphe {
 	 * 
 	 * @return L'instance du sommet créé
 	 */
-	public Sommet creerSommet(int indiceCourantListeSommet) {
+	public Sommet creerSommet() {
 		
 		int nombreLiaisonsMaximum, //TODO (à enlever je pense)
 			coordonneeX,
 			coordonneeY,
 			indiceCaseCourante;
 		
-		coordonneeX = indiceCourantListeSommet 
+		coordonneeX = this.indiceCourantListeSommet 
 		              % this.nombreColonnesLabyrinthe;
 		
 		coordonneeY = 0;
-		indiceCaseCourante = indiceCourantListeSommet;
+		indiceCaseCourante = this.indiceCourantListeSommet;
 		
 		while (indiceCaseCourante >= this.nombreColonnesLabyrinthe) {
 			indiceCaseCourante -= this.nombreColonnesLabyrinthe;
@@ -120,6 +126,9 @@ public class Graphe {
 		
 		Sommet sommetCree = new Sommet(coordonneeX, coordonneeY);
 		System.out.printf("X = %d ; Y = %d\n", coordonneeX, coordonneeY);
+		
+		
+		this.indiceCourantListeSommet++;
 		
 		return sommetCree;
 		
@@ -198,7 +207,7 @@ public class Graphe {
 	/**
 	 * Renvoie la liste des sommets portant une certaine marque
 	 * @param marque
-	 * @return Sommet[] liste de sommets
+	 * @return liste de sommets
 	 */
 	public Sommet[] sommetsDeMemeMarque(int marque) {
 		Sommet[] listeSommetsMarque = new Sommet[getNombreSommets()-1];
