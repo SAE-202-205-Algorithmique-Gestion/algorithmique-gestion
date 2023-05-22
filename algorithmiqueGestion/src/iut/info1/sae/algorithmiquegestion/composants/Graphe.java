@@ -19,7 +19,7 @@ public class Graphe {
 	/**
 	 * Liste des sommets du graphe.
 	 */
-	private Sommet[] listeSommets = new Sommet[this.nombreColonnesLabyrinthe*this.nombreLignesLabyrinthe];
+	private Sommet[] listeSommets;
 		
 	/**
 	 * Longueur du labyrinthe.
@@ -50,19 +50,21 @@ public class Graphe {
 	 * 
 	 * @param listeSommets // TODO : javadoc
 	 */
-	public Graphe() {
+	public Graphe(int nombreColonnesLabyrinthe, int nombreLignesLabyrinthe) {
 		super();
 
-		this.indiceCourantListeSommet = 0;
+//		this.indiceCourantListeSommet = 0;
 		
 		// TODO: remplacer par JSON
-		this.nombreColonnesLabyrinthe = 5;
-		this.nombreLignesLabyrinthe = 5;
+		this.nombreColonnesLabyrinthe = nombreColonnesLabyrinthe;
+		this.nombreLignesLabyrinthe = nombreLignesLabyrinthe;
 		this.marquesExistante = new int[this.nombreColonnesLabyrinthe   // car le nombre de marques
 		                                * this.nombreLignesLabyrinthe]; // possible est < aux 
 		                                                                // nombre de sommet. 
 		                                                                // Histoire d'être sur d'avoir
 		                                                                // la place, valeur temporaire.
+		
+		this.listeSommets = new Sommet[this.nombreColonnesLabyrinthe * this.nombreLignesLabyrinthe];
 		for (int i = 0; i < getNombreSommets(); i++) {
 			this.listeSommets[i] = creerSommet(i);
 		
@@ -201,10 +203,19 @@ public class Graphe {
 	 * @return Sommet[] liste de sommets
 	 */
 	public Sommet[] sommetsDeMemeMarque(int marque) {
-		Sommet[] listeSommetsMarque = new Sommet[getNombreSommets()-1];
+		int tailleTableau = 0;
+		int rang = 0;
+//		Sommet[] listeSommetsMarque = new Sommet[getNombreSommets()-1];
 		for (int i = 0; i < getNombreSommets(); i++) {
 			if (getListeSommets()[i].getMarque() == marque) {
-				listeSommetsMarque[i] = getListeSommets()[i];
+				tailleTableau++;
+			}
+		}
+		Sommet[] listeSommetsMarque = new Sommet[tailleTableau];
+		for (int i = 0; i < getNombreSommets(); i++) {
+			if (getListeSommets()[i].getMarque() == marque) {
+				listeSommetsMarque[rang] = getListeSommets()[i];
+				rang++;
 			}
 		}
 		return listeSommetsMarque;
