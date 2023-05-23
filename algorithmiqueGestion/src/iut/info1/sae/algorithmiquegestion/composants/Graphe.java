@@ -253,10 +253,42 @@ public class Graphe {
 //	}
 	
 	public Sommet[] tousLesSommetsAdjacentsDuSommet(Sommet sommet) {
-		int nombreDeSommetsAdjacents;
-		Sommet listeSommet[] = new Sommet[4];
+		int tailleTableau = 0;
 		
-		for (int i = 0; i < 4)
+//		for (int i = 0; i < 4)
+		Sommet adjacent1 = new Sommet(sommet.getCoordonneeX(), sommet.getCoordonneeY() + 1);
+		Sommet adjacent2 = new Sommet(sommet.getCoordonneeX(), sommet.getCoordonneeY() - 1);
+		Sommet adjacent3 = new Sommet(sommet.getCoordonneeX() + 1, sommet.getCoordonneeY());
+		Sommet adjacent4 = new Sommet(sommet.getCoordonneeX() - 1, sommet.getCoordonneeY());
+		
+		if (estAdjacent(sommet, adjacent1)) {
+			tailleTableau++;
+		}
+		if (estAdjacent(sommet, adjacent2)) {
+			tailleTableau++;
+		}
+		if (estAdjacent(sommet, adjacent3)) {
+			tailleTableau++;
+		}
+		if (estAdjacent(sommet, adjacent4)) {
+			tailleTableau++;
+		}
+		Sommet listeSommet[] = new Sommet[tailleTableau];
+		
+		for (int i = 0; i < tailleTableau; i++) {
+			if (estAdjacent(sommet, adjacent1)) {
+				listeSommet[i] = adjacent1;
+			}
+			if (estAdjacent(sommet, adjacent2)) {
+				listeSommet[i] = adjacent2;
+			}
+			if (estAdjacent(sommet, adjacent3)) {
+				listeSommet[i] = adjacent3;
+			}
+			if (estAdjacent(sommet, adjacent4)) {
+				listeSommet[i] = adjacent4;
+			}
+		}
 		
 //		if (sommet.getCoordonneeX() - 1 >= 0) {
 //			
@@ -276,9 +308,9 @@ public class Graphe {
 
 		
 		
-		for
-		listeSommet[0].setCoordonneeX(sommet.getCoordonneeX());
-		listeSommet[0].setCoordonneeY(sommet.getCoordonneeY() + 1);
+//		for
+//		listeSommet[0].setCoordonneeX(sommet.getCoordonneeX());
+//		listeSommet[0].setCoordonneeY(sommet.getCoordonneeY() + 1);
 		
 		return listeSommet; // STUB
 		
