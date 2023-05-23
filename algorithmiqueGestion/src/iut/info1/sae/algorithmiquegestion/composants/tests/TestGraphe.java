@@ -33,35 +33,35 @@ class TestGraphe {
 	 */
 	@BeforeAll
 	void initialisationTest() throws Exception {
-//		this.sommetsGraphe[0] = grapheTeste.creerSommet(0);		//  ( 0 ; 0 )
-//		this.sommetsGraphe[1] = grapheTeste.creerSommet(1);		//  ( 1 ; 0 )
-//		this.sommetsGraphe[2] = grapheTeste.creerSommet(2);		//  ( 2 ; 0 )
-//		this.sommetsGraphe[3] = grapheTeste.creerSommet(3);		//  ( 3 ; 0 )
-//		this.sommetsGraphe[4] = grapheTeste.creerSommet(4);		//  ( 4 ; 0 )
+//		0	//  ( 0 ; 0 )
+//		1	//  ( 1 ; 0 )
+//		2	//  ( 2 ; 0 )
+//		3	//  ( 3 ; 0 )
+//		4	//  ( 4 ; 0 )
 //		
-//		this.sommetsGraphe[5] = grapheTeste.creerSommet(5);		//  ( 0 ; 1 )
-//		this.sommetsGraphe[6] = grapheTeste.creerSommet(6);		//  ( 1 ; 1 )
-//		this.sommetsGraphe[7] = grapheTeste.creerSommet(7);		//  ( 2 ; 1 )
-//		this.sommetsGraphe[8] = grapheTeste.creerSommet(8);		//  ( 3 ; 1 )
-//		this.sommetsGraphe[9] = grapheTeste.creerSommet(9);		//  ( 4 ; 1 )
+//		5	//  ( 0 ; 1 )
+//		6	//  ( 1 ; 1 )
+//		7	//  ( 2 ; 1 )
+//		8	//  ( 3 ; 1 )
+//		9	//  ( 4 ; 1 )
 //		
-//		this.sommetsGraphe[10] = grapheTeste.creerSommet(10);		//  ( 0 ; 2 )
-//		this.sommetsGraphe[11] = grapheTeste.creerSommet(11);		//  ( 1 ; 2 )
-//		this.sommetsGraphe[12] = grapheTeste.creerSommet(12);		//  ( 2 ; 2 )
-//		this.sommetsGraphe[13] = grapheTeste.creerSommet(13);		//  ( 3 ; 2 )		
-//		this.sommetsGraphe[14] = grapheTeste.creerSommet(14);		//  ( 4 ; 2 )		
+//		10	//  ( 0 ; 2 )
+//		11	//  ( 1 ; 2 )
+//		12	//  ( 2 ; 2 )
+//		13	//  ( 3 ; 2 )		
+//		14	//  ( 4 ; 2 )		
 //		
-//		this.sommetsGraphe[15] = grapheTeste.creerSommet(15);		//  ( 0 ; 3 )		
-//		this.sommetsGraphe[16] = grapheTeste.creerSommet(16);		//  ( 1 ; 3 )		
-//		this.sommetsGraphe[17] = grapheTeste.creerSommet(17);		//  ( 2 ; 3 )		
-//		this.sommetsGraphe[18] = grapheTeste.creerSommet(18);		//  ( 3 ; 3 )		
-//		this.sommetsGraphe[19] = grapheTeste.creerSommet(19);		//  ( 4 ; 3 )		
+//		15	//  ( 0 ; 3 )		
+//		16	//  ( 1 ; 3 )		
+//		17	//  ( 2 ; 3 )		
+//		18	//  ( 3 ; 3 )		
+//		19	//  ( 4 ; 3 )		
 //		
-//		this.sommetsGraphe[20] = grapheTeste.creerSommet(20);		//  ( 0 ; 4 )		
-//		this.sommetsGraphe[21] = grapheTeste.creerSommet(21);		//  ( 1 ; 4 )		
-//		this.sommetsGraphe[22] = grapheTeste.creerSommet(22);		//  ( 2 ; 4 )		
-//		this.sommetsGraphe[23] = grapheTeste.creerSommet(23);		//  ( 3 ; 4 )		
-//		this.sommetsGraphe[24] = grapheTeste.creerSommet(24);		//  ( 4 ; 4 )
+//		20	//  ( 0 ; 4 )		
+//		21	//  ( 1 ; 4 )		
+//		22	//  ( 2 ; 4 )		
+//		23	//  ( 3 ; 4 )		
+//		24	//  ( 4 ; 4 )
 		
 //		Graphe grapheTeste2 = new Graphe(5, 5);
 	}
@@ -163,24 +163,30 @@ class TestGraphe {
 	    	grapheTeste.getListeSommets()[i].setMarque(-1);
 	    }
 	    
+	    
 	    /* Test du 'if' */
 	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[0],
-	    		grapheTeste.getListeSommets()[1]);
+	    							 grapheTeste.getListeSommets()[1]);
 //	    System.out.println(grapheTeste.getListeSommets()[0].getMarque());
 	    assertEquals(grapheTeste.getListeSommets()[0].getMarque(), 0);
 	    assertEquals(grapheTeste.getListeSommets()[1].getMarque(), 0);
 	    
+	    
 	    /* Test du 'if' dans le 'else if' */
-	    grapheTeste.getListeSommets()[5].setMarque(8);
+	    grapheTeste.getListeSommets()[6].setMarque(8);
 	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[5],
-	    		grapheTeste.getListeSommets()[6]);
+	    						     grapheTeste.getListeSommets()[6]);
+	    
 	    assertEquals(grapheTeste.getListeSommets()[5].getMarque(), 8);
 	    
+	    
 	    /* Test du 'else if' dans le 'else if' */
-	    grapheTeste.getListeSommets()[16].setMarque(7);
+	    grapheTeste.getListeSommets()[15].setMarque(7);
 	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[15],
-	    		grapheTeste.getListeSommets()[16]);
+	    						     grapheTeste.getListeSommets()[16]);
+	    
 	    assertEquals(grapheTeste.getListeSommets()[16].getMarque(), 7);
+	    
 	    
 	    /* Test du else */
 	    grapheTeste.getListeSommets()[16].setMarque(9);
@@ -188,11 +194,21 @@ class TestGraphe {
 	    grapheTeste.getListeSommets()[18].setMarque(2);
 	    grapheTeste.getListeSommets()[19].setMarque(2);
 	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[16],
-	    		grapheTeste.getListeSommets()[17]); //renvoie une erreur
+	    							 grapheTeste.getListeSommets()[17]);
+	    
 	    assertEquals(grapheTeste.getListeSommets()[17].getMarque(), 9);
 	    assertEquals(grapheTeste.getListeSommets()[18].getMarque(), 9);
 	    assertEquals(grapheTeste.getListeSommets()[19].getMarque(), 9);
 	    
+	    
+	    /* Test du cas où les deux sommets on la meme marque déja définie */
+	    grapheTeste.getListeSommets()[15].setMarque(7);
+	    grapheTeste.getListeSommets()[16].setMarque(7);
+	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[15],
+			     					 grapheTeste.getListeSommets()[16]);
+	    
+	    assertEquals(grapheTeste.getListeSommets()[15].getMarque(), 7);
+	    assertEquals(grapheTeste.getListeSommets()[16].getMarque(), 7);
 	}
 	
 }

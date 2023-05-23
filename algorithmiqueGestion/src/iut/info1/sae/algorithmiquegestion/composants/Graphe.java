@@ -66,7 +66,7 @@ public class Graphe {
 		
 		this.listeSommets = new Sommet[this.nombreColonnesLabyrinthe * this.nombreLignesLabyrinthe];
 		for (int i = 0; i < getNombreSommets(); i++) {
-			this.listeSommets[i] = creerSommet(i);
+			this.listeSommets[i] = determinationCoordonnees(i);
 		
 //			initialiser listeSommet pour éviter l'erreur
 //			à la méthode sommetDeMemeMarque.
@@ -100,7 +100,7 @@ public class Graphe {
 	 * 
 	 * @return L'instance du sommet créé
 	 */
-	public Sommet creerSommet(int indiceCourantListeSommet) {
+	public Sommet determinationCoordonnees(int indiceCourantListeSommet) {
 		
 		int nombreLiaisonsMaximum, //TODO (à enlever je pense)
 			coordonneeX,
