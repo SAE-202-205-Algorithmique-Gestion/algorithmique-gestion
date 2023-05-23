@@ -261,76 +261,31 @@ public class Graphe {
 	 */
 	public Sommet[] tousLesSommetsAdjacentsDuSommet(Sommet sommet) { //TODO méthode a améliorer
 		int tailleTableau = 0;
-//		Sommet[]
-		
-//		for (int i = 0; i < 4)
+
 		Sommet adjacent1 = new Sommet(sommet.getCoordonneeX(), sommet.getCoordonneeY() + 1);
 		Sommet adjacent2 = new Sommet(sommet.getCoordonneeX(), sommet.getCoordonneeY() - 1);
 		Sommet adjacent3 = new Sommet(sommet.getCoordonneeX() + 1, sommet.getCoordonneeY());
 		Sommet adjacent4 = new Sommet(sommet.getCoordonneeX() - 1, sommet.getCoordonneeY());
 		
-		if (estAdjacent(sommet, adjacent1)) {
-			tailleTableau++;
-		}
-		if (estAdjacent(sommet, adjacent2)) {
-			tailleTableau++;
-		}
-		if (estAdjacent(sommet, adjacent3)) {
-			tailleTableau++;
-		}
-		if (estAdjacent(sommet, adjacent4)) {
-			tailleTableau++;
-		}
-		Sommet listeSommet[] = new Sommet[tailleTableau];
+		Sommet[] listeSommetAdjacentPossible = {adjacent1, adjacent2, adjacent3, adjacent4};
 		
-		for (int i = 0; i < tailleTableau; i++) {
-			if (estAdjacent(sommet, adjacent1)) {
-				listeSommet[i] = adjacent1;
-			}
-			if (estAdjacent(sommet, adjacent2)) {
-				listeSommet[i] = adjacent2;
-			}
-			if (estAdjacent(sommet, adjacent3)) {
-				listeSommet[i] = adjacent3;
-			}
-			if (estAdjacent(sommet, adjacent4)) {
-				listeSommet[i] = adjacent4;
+		for (int i = 0; i < listeSommetAdjacentPossible.length; i++) {
+			if (estAdjacent(sommet, listeSommetAdjacentPossible[i])) {
+				tailleTableau++;
 			}
 		}
 		
+		Sommet listeSommetAdjacent[] = new Sommet[tailleTableau];
+		int position = 0;
 		
-//		if (sommet.getCoordonneeX() - 1 >= 0) {
-//			
-//		}
-//		
-//		if (sommet.getCoordonneeX() + 1 < getNombreColonnesLabyrinthe()) {
-//			
-//		}
-//		
-//		if (sommet.getCoordonneeY() - 1 >= 0) {
-//			
-//		}
-//		
-//		if (sommet.getCoordonneeY() + 1 < getNombreLignesLabyrinthe()) {
-//			
-//		}
-
+		for (int i = 0; i < listeSommetAdjacentPossible.length; i++) {
+			if (estAdjacent(sommet, listeSommetAdjacentPossible[i])) {
+				listeSommetAdjacent[position] = listeSommetAdjacentPossible[i];
+				position++;
+			}
+		}
 		
-		
-//		for
-//		listeSommet[0].setCoordonneeX(sommet.getCoordonneeX());
-//		listeSommet[0].setCoordonneeY(sommet.getCoordonneeY() + 1);
-		
-		return listeSommet; // STUB
-		
-		
-//		return (sommet1.getCoordonneeX() == sommet2.getCoordonneeX()
-//				&& (sommet1.getCoordonneeY() == sommet2.getCoordonneeY() + 1
-//					|| sommet1.getCoordonneeY() == sommet2.getCoordonneeY() - 1))
-//					
-//			|| (sommet1.getCoordonneeY() == sommet2.getCoordonneeY()
-//				&& (sommet1.getCoordonneeX() == sommet2.getCoordonneeX() + 1
-//					|| sommet1.getCoordonneeX() == sommet2.getCoordonneeX() - 1));
+		return listeSommetAdjacent;
 	}
 	
 	/**

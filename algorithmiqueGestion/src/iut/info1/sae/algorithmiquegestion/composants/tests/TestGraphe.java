@@ -65,7 +65,10 @@ class TestGraphe {
 //		24	//  ( 4 ; 4 )
 		
 	}
-
+	/**
+	 * Méthode qui redéfinit les coordonnées et les marques
+	 * initiales de tout les sommets du graphe grapheTeste.
+	 */
 	@BeforeEach
 	void resetDeGrapheTeste() {
 		for (int i = 0; i < grapheTeste.getNombreSommets(); i++) {
@@ -138,13 +141,13 @@ class TestGraphe {
 		}
 		
 		assertArrayEquals(grapheTeste.sommetsDeMemeMarque(marque), sommetAttendus1);
-//		for (int i = 0; i < grapheTeste.sommetsDeMemeMarque(marque).length; i++) {
-//			
-//			System.out.println("Sommets : "
-//					+ "X : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getCoordonneeX()
-//					+ "  Y : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getCoordonneeY()
-//					+ "\tMarques : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getMarque());
-//		}
+		for (int i = 0; i < grapheTeste.sommetsDeMemeMarque(marque).length; i++) {
+			
+			System.out.println("Sommets : "
+					+ "X : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getCoordonneeX()
+					+ "  Y : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getCoordonneeY()
+					+ "\tMarques : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getMarque());
+		}
 		
 		grapheTeste.getListeSommets()[8].setMarque(4);
 		grapheTeste.getListeSommets()[12].setMarque(4);
@@ -258,8 +261,55 @@ class TestGraphe {
 	
 	@Test
 	void testTousLesSommetsAdjacentsDuSommet() {
-		//TODO faire les test
+		System.out.println("Test récuperation des sommets adjacent d'un sommet donné : ");
+		
+		for (int i = 0;
+			 i < grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6]).length;
+			 i++) {
+			
+			System.out.println("Sommet adjacent : X = "
+					+ grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6])[i].getCoordonneeX()
+					+ " ; Y = "
+					+ grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6])[i].getCoordonneeY());
+		}
+		//Premier Test
+		Sommet[] listeAttendu = {
+				grapheTeste.getListeSommets()[11],
+				grapheTeste.getListeSommets()[1],
+				grapheTeste.getListeSommets()[7],
+				grapheTeste.getListeSommets()[5]
+			};
+		
+		assertEquals(listeAttendu[0].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6])[0].getCoordonneeX());
+		assertEquals(listeAttendu[0].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6])[0].getCoordonneeY());
+		assertEquals(listeAttendu.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6]).length);
+		
+		//Second Test
+		Sommet[] listeAttendu2 = {
+				grapheTeste.getListeSommets()[19],
+				grapheTeste.getListeSommets()[23]
+			};
+		
+		assertEquals(listeAttendu2[0].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[24])[0].getCoordonneeX());
+		assertEquals(listeAttendu2[0].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[24])[0].getCoordonneeY());
+		assertEquals(listeAttendu2.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[24]).length);
+
+		//Troisième Test
+		Sommet[] listeAttendu3 = {
+			grapheTeste.getListeSommets()[6],
+			grapheTeste.getListeSommets()[2],
+			grapheTeste.getListeSommets()[0]
+		};
+		
+		assertEquals(listeAttendu3[2].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[1])[2].getCoordonneeX());
+		assertEquals(listeAttendu3[2].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[1])[2].getCoordonneeY());
+		assertEquals(listeAttendu3.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[1]).length);
+		
+		/* l'assertArrayEquals fonctionne seulement si on ne met pas en commentaire l'Owerride de equals dans la classe Sommet */
+//		assertArrayEquals(listeAttendu, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6]));
+//		assertArrayEquals(listeAttendu2, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[24]));
+//		assertArrayEquals(listeAttendu3, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[1]));
+
 	}
-	
 }
 

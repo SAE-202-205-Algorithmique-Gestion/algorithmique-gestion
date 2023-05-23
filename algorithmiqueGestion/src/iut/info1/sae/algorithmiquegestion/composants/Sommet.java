@@ -4,6 +4,8 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
+import java.util.Objects;
+
 /**
  * Classe de modélisation d'un sommet du graphe du labyrinthe.
  * En lien direct avec la classe Graphe.
@@ -149,5 +151,23 @@ public class Sommet /*implements Comparable*/ {
     public void setMarque(int marque) {
         this.marque = marque;
     }
+    
+//    /* C'est pour que la méthode assertArrayEquals de Junit
+//     * compare les valeurs des tableau et non leur référence*/
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj)
+//            return true;
+//        if (obj == null || getClass() != obj.getClass())
+//            return false;
+//        Sommet other = (Sommet) obj;
+//        // Comparez les valeurs des propriétés des objets Sommet
+//        return this.coordonneeX == other.coordonneeX && this.coordonneeY == other.coordonneeY;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(coordonneeX, coordonneeY);
+//    }
 	
 }
