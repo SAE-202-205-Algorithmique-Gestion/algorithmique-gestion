@@ -15,9 +15,7 @@ package iut.info1.sae.algorithmiquegestion.composants;
  * @author Tom DOUAUD
  */
 public class Sommet /*implements Comparable*/ {
-	
-	//private String nomSommet;
-	
+		
 	/**
 	 * Liste des sommets qui sont directement liés à
 	 * celui-ci.
@@ -25,21 +23,21 @@ public class Sommet /*implements Comparable*/ {
 	private Sommet[] liaisons;
 	
 	/**
-	 * indice de Liaison du tableau liaisons
-	 * Pour se repérer en ajoutant / supprimant / éditant
-	 * dans la liste des liaison
+	 * Indice de liaison du tableau liaisons
+	 * pour se repérer en ajoutant / supprimant / éditant
+	 * dans la liste des liaisons
 	 */
 	private int indiceLiaison;
 
 	/**
-	 * Valeur X des coordonnées du sommet dans le 
-	 * labyrinthe (graphe).
+	 * Valeur X (horizontale) des coordonnées du sommet dans le 
+	 * labyrinthe (graphe)
 	 */
 	private int coordonneeX;
 	
 	/**
-	 * Valeur Y des coordonnées du sommet dans le 
-	 * labyrinthe (graphe).
+	 * Valeur Y (verticale) des coordonnées du sommet dans le 
+	 * labyrinthe (graphe)
 	 */
 	private int coordonneeY;
 	
@@ -66,53 +64,69 @@ public class Sommet /*implements Comparable*/ {
 		this.coordonneeY = coordonneeY;
 		
 		this.marque = -1; // marque par défaut
-		
 	}
 	
 	/**
-	 * Retourne la liste des liaisons du sommet.
+	 * Vérifie si deux sommets sont adjacents à l'aide de 
+	 * leurs coordonnées.
 	 * 
-	 * @return La liste des liaisons du sommet
+	 * @param sommet1 Instance du premier sommet
+	 * @param sommet2 Instance du second sommet
+	 * @return Si les deux sommets sont adjacents
 	 */
-	public Sommet[] getLiaisons() {
-		return this.liaisons;
+	public static boolean sontAdjacents(Sommet sommet1, Sommet sommet2) {
+		return (sommet1.getCoordonneeX() == sommet2.getCoordonneeX()
+				&& (sommet1.getCoordonneeY() == sommet2.getCoordonneeY() + 1
+					|| sommet1.getCoordonneeY() == sommet2.getCoordonneeY() - 1))
+					
+			|| (sommet1.getCoordonneeY() == sommet2.getCoordonneeY()
+				&& (sommet1.getCoordonneeX() == sommet2.getCoordonneeX() + 1
+					|| sommet1.getCoordonneeX() == sommet2.getCoordonneeX() - 1));
 	}
 	
 	/**
 	 * Création d'une liaison entre le sommet de l'instance 
-	 * et celui en paramètre.
-	 * 
-	 * @param sommetDeLiaison
+	 * et celui en paramètre
+	 * @param sommetALier Le sommet à lier au sommet d'instance
 	 */
-	public void creerLiaison(Sommet sommetDeLiaison) {
-		if (!this.liaisonExiste(sommetDeLiaison)) {
-			this.liaisons[this.indiceLiaison] = sommetDeLiaison;
+	public void creerLiaison(Sommet sommetALier) {
+		if (!this.liaisonExiste(sommetALier)) {
+			this.liaisons[this.indiceLiaison] = sommetALier;
 		}
 		
-		if (!sommetDeLiaison.liaisonExiste(this)) {
-			sommetDeLiaison.creerLiaison(this);
+		if (!sommetALier.liaisonExiste(this)) {
+			sommetALier.creerLiaison(this);
 		}
 		
 		this.indiceLiaison++;
 	}
 	
 	/**
-	 * Retourne si la liaison entre le sommet de l'instance 
-	 * et celui en paramètre existe.
-	 * 
-	 * @param autreSommet
-	 * @return L'état de la liaison
+	 * Vérifie si le sommet en paramètre se trouve dans la
+	 * liste de liaisons du sommet appelant.
+	 * @param sommetTeste Sommet dont il faut vérifier la présence
+	 * 					  dans la liste de liaisons de l'appelant
+	 * @return Un booléen informant si la liaison existe ou non
 	 */
-	public boolean liaisonExiste(Sommet autreSommet) {
-		for (Sommet rechercheSommet : this.getLiaisons()) {
-			if (rechercheSommet == autreSommet)	{
-				return true;
+	public boolean liaisonExiste(Sommet sommetTeste) {
+		boolean resultat = false;
+		
+		for (Sommet sommetLie : this.getLiaisons()) {
+			if (sommetLie == sommetTeste)	{
+				resultat = true;
 			}
 		}
-		
-		return false;
+		return resultat;
 	}
 
+	/**
+	 * Retourne la liste des liaisons du sommet.
+	 * @return La liste des liaisons du sommet
+	 */
+	public Sommet[] getLiaisons() {
+		return this.liaisons;
+	}
+	
 	/**
 	 * Retourne la coordonnée X du sommet de l'instance
 	 * @return X

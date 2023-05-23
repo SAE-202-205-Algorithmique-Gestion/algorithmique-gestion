@@ -138,25 +138,6 @@ public class Graphe {
 		
 	}
 	
-	/**
-	 * Vérifie si deux sommets sont adjacents à l'aide de 
-	 * leurs coordonnées.
-	 * 
-	 * @param sommet1 Instance du premier sommet
-	 * @param sommet2 Instance du second sommet
-	 * @return Si les deux sommets sont adjacents
-	 */
-	public boolean estAdjacent(Sommet sommet1, Sommet sommet2) {
-		return (sommet1.getCoordonneeX() == sommet2.getCoordonneeX()
-				&& (sommet1.getCoordonneeY() == sommet2.getCoordonneeY() + 1
-					|| sommet1.getCoordonneeY() == sommet2.getCoordonneeY() - 1))
-					
-			|| (sommet1.getCoordonneeY() == sommet2.getCoordonneeY()
-				&& (sommet1.getCoordonneeX() == sommet2.getCoordonneeX() + 1
-					|| sommet1.getCoordonneeX() == sommet2.getCoordonneeX() - 1));
-	}
-	
-	
 	/** 
 	 * @param sommet1
 	 * @param sommet2
@@ -173,7 +154,7 @@ public class Graphe {
 	 */
 	public void definitUneMarque(Sommet sommet1, Sommet sommet2) {
 		
-	    if (estAdjacent(sommet1, sommet2)) {
+	    if (Sommet.sontAdjacents(sommet1, sommet2)) {
 	    	
 	    	/* Dans le cas ou les marques des 2 sommets en question
 	    	 * ne sont pas initialisées. */
@@ -261,31 +242,31 @@ public class Graphe {
 		Sommet adjacent3 = new Sommet(sommet.getCoordonneeX() + 1, sommet.getCoordonneeY());
 		Sommet adjacent4 = new Sommet(sommet.getCoordonneeX() - 1, sommet.getCoordonneeY());
 		
-		if (estAdjacent(sommet, adjacent1)) {
+		if (Sommet.sontAdjacents(sommet, adjacent1)) {
 			tailleTableau++;
 		}
-		if (estAdjacent(sommet, adjacent2)) {
+		if (Sommet.sontAdjacents(sommet, adjacent2)) {
 			tailleTableau++;
 		}
-		if (estAdjacent(sommet, adjacent3)) {
+		if (Sommet.sontAdjacents(sommet, adjacent3)) {
 			tailleTableau++;
 		}
-		if (estAdjacent(sommet, adjacent4)) {
+		if (Sommet.sontAdjacents(sommet, adjacent4)) {
 			tailleTableau++;
 		}
 		Sommet listeSommet[] = new Sommet[tailleTableau];
 		
 		for (int i = 0; i < tailleTableau; i++) {
-			if (estAdjacent(sommet, adjacent1)) {
+			if (Sommet.sontAdjacents(sommet, adjacent1)) {
 				listeSommet[i] = adjacent1;
 			}
-			if (estAdjacent(sommet, adjacent2)) {
+			if (Sommet.sontAdjacents(sommet, adjacent2)) {
 				listeSommet[i] = adjacent2;
 			}
-			if (estAdjacent(sommet, adjacent3)) {
+			if (Sommet.sontAdjacents(sommet, adjacent3)) {
 				listeSommet[i] = adjacent3;
 			}
-			if (estAdjacent(sommet, adjacent4)) {
+			if (Sommet.sontAdjacents(sommet, adjacent4)) {
 				listeSommet[i] = adjacent4;
 			}
 		}

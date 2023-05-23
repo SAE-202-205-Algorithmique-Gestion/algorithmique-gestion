@@ -6,14 +6,14 @@ package iut.info1.sae.algorithmiquegestion.composants.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.TestInstance;
 
+import iut.info1.sae.algorithmiquegestion.composants.Graphe;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
 /**
@@ -27,81 +27,163 @@ import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 @TestInstance(Lifecycle.PER_CLASS)
 class TestSommet {
 	
-	/**  */
-	private Sommet[] listeSommetsATester = {
-		/*
-		new Sommet("x1"),  // x1
-		new Sommet("x2"),  // x2
-		new Sommet("x3"),  // x3
-		new Sommet("x4"),  // x4
-		new Sommet("x5"),  // x5
-		*/
-	};
-	
-	void ajoutLiaisons() {
-		//  x1  --  x2
-		this.listeSommetsATester[0].creerLiaison(this.listeSommetsATester[1]);
-	}
-	
-	
+	/**
+	 * TODO : faire la javadoc
+	 */
 	@BeforeAll
-	void debutTest() throws Exception {
-		System.out.println("---  DÉBUT TEST UNITAIRE DES SOMMETS ---\n");
-		
-		this.ajoutLiaisons();
+	void debutTest() {
+     	System.out.println("---  DÉBUT TESTS UNITAIRES DES SOMMETS ---\n");
 	}
-
 	
 	/**
-	 * @throws java.lang.Exception
+	 * TODO : faire la javadoc
 	 */
-	@BeforeEach
-	void setUp() throws Exception {
-		//
-	}
-
-	
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-	
-	
 	@AfterAll
 	void finTest() {
-		System.out.println("---  FIN TEST UNITAIRE DES SOMMETS ---\n");
-	}
-	
-	
-
-	@Test
-	void test() {
-		/*
-		assertEquals(this.listeSommetsATester[0].getLiaisons(), new Sommet[] { this.listeSommetsATester[1] });
-		assertEquals(this.listeSommetsATester[1].getLiaisons(), new Sommet[] { this.listeSommetsATester[0] });
-		*/
-		
-		assertTrue(this.listeSommetsATester[0].liaisonExiste(this.listeSommetsATester[1]));
-		assertTrue(this.listeSommetsATester[1].liaisonExiste(this.listeSommetsATester[0]));
-	}
-	
-	// PROPRE
+		System.out.println("\n---  FIN TESTS UNITAIRES DES SOMMETS ---\n");
+    } 
 	
 	/**
-	 * Méthode de test de la méthode creerLiaison
+	 * Méthode de test de la méthode sontAdjacents(Sommet, Sommet)
 	 */
 	@Test
-	void testCreerLiaison() {
+	void testSontAdjacents() {
+		System.out.println("Test adjacence pour un labyrinthe/graphe 5*5 :");
 		
-	   Sommet sommet1 = new Sommet(0, 0);
-	   Sommet sommet2 = new Sommet(0, 1);
-	   Sommet sommetNonRelie = new Sommet(3, 3);
-	   
-	   sommet1.creerLiaison(sommet2);
-	  // jeanne au secours assertTrue(sommet1.getLiaisons().contains(sommet2));
+		Graphe grapheDeTest = new Graphe(5, 5);
 		
+		Sommet[] listeSommets = grapheDeTest.getListeSommets();
+		                                                               // sommet 2 par rapport au sommet 1
+		assertTrue(Sommet.sontAdjacents(listeSommets[0], listeSommets[1])); // x + 1 et y similaire
+		assertTrue(Sommet.sontAdjacents(listeSommets[4], listeSommets[3])); // x - 1 et y similaire
+		assertTrue(Sommet.sontAdjacents(listeSommets[0], listeSommets[5])); // x similaire et y + 1
+		assertTrue(Sommet.sontAdjacents(listeSommets[7], listeSommets[2])); // x similaire et y - 1
+		
+		assertFalse(Sommet.sontAdjacents(listeSommets[2], listeSommets[4])); // x + 2 et y similaire
+		assertFalse(Sommet.sontAdjacents(listeSommets[3], listeSommets[0])); // x - 3 et y similaire
+		assertFalse(Sommet.sontAdjacents(listeSommets[1], listeSommets[11])); // x similaire et y + 2
+		assertFalse(Sommet.sontAdjacents(listeSommets[14], listeSommets[4])); // x similaire et y - 2
+		
+		// Test de la méthode pour des sommets placés en diagonales d'un autre sommet
+		assertFalse(Sommet.sontAdjacents(listeSommets[7], listeSommets[1])); // x - 1 et y - 1 
+		assertFalse(Sommet.sontAdjacents(listeSommets[7], listeSommets[3])); // x + 1 et y - 1
+		assertFalse(Sommet.sontAdjacents(listeSommets[7], listeSommets[11])); // x - 1 et y + 1
+		assertFalse(Sommet.sontAdjacents(listeSommets[7], listeSommets[13])); // x + 1 et y + 1
 	}
+	
+	/**
+	 * Méthode de test de la méthode creerLiaison(Sommet)
+	 */
+	@Test
+	@DisplayName("Test de la méthode creerLiaison(Sommet)")
+    void testCreerLiaison() {
+		Sommet[][] ensembleSommetsALier = {
+		    {new Sommet(0, 0), new Sommet(0, 1)},
+		    {new Sommet(2, 0), new Sommet(3, 0)},
+		    {new Sommet(0, 3), new Sommet(0, 4)},
+	        {new Sommet(3, 0), new Sommet(4, 0)},
+	        {new Sommet(2, 2), new Sommet(2, 3)}
+		};
+		
+		for (Sommet[] listeSommets : ensembleSommetsALier) {
+			Sommet sommet1 = listeSommets[0];
+	        Sommet sommet2 = listeSommets[1];
+	        
+	        /* Création de la liaison entre les sommets */
+	        sommet1.creerLiaison(sommet2);
+	        
+	        assertTrue(sommet1.liaisonExiste(sommet2));
+		}
+    }
+	
+	/**
+	 * Méthode de test de la méthode liaisonExiste(Sommet)
+	 */
+	@Test
+	@DisplayName("Test de la méthode liaisonExiste(Sommet)")
+    void testLiaisonExiste() {
+		Sommet[][] ensembleSommetsALier = {
+		    {new Sommet(5, 5), new Sommet(5, 6)},
+		    {new Sommet(6, 0), new Sommet(7, 0)},
+		    {new Sommet(10, 3), new Sommet(10, 4)},
+	        {new Sommet(3, 5), new Sommet(4, 5)},
+	        {new Sommet(2, 2), new Sommet(2, 3)}
+		};
+		
+		for (Sommet[] listeSommets : ensembleSommetsALier) {
+			Sommet sommet1 = listeSommets[0];
+	        Sommet sommet2 = listeSommets[1];
+	        
+	        assertFalse(sommet1.liaisonExiste(sommet2));
+	        
+	        /* Création de la liaison entre les sommets */
+	        sommet1.creerLiaison(sommet2);
+	        
+	        assertTrue(sommet1.liaisonExiste(sommet2));
+		}
+    }
+	
+	/**
+	 * Méthode de test de la méthode getLiaisons()
+	 */
+	@Test
+	@DisplayName("Test de la méthode getLiaisons()")
+    void testGetLiaisons() {
+		// TODO : faire le test
+    }
+	
+	/**
+	 * Méthode de test de la méthode getCoordonneeX()
+	 */
+	@Test
+	@DisplayName("Test de la méthode getCoordonneeX()")
+    void testGetCoordonneeX() {
+		// TODO : faire le test
+    }
+	
+	/**
+	 * Méthode de test de la méthode getCoordonneeY()
+	 */
+	@Test
+	@DisplayName("Test de la méthode getCoordonneeY()")
+    void testGetCoordonneeY() {
+		// TODO : faire le test
+    }
+	
+	/**
+	 * Méthode de test de la méthode setCoordonneeX()
+	 */
+	@Test
+	@DisplayName("Test de la méthode setCoordonneeX()")
+    void testSetCoordonneeX() {
+		// TODO : faire le test
+    }
+	
+	/**
+	 * Méthode de test de la méthode setCoordonneeY()
+	 */
+	@Test
+	@DisplayName("Test de la méthode setCoordonneeY()")
+    void testSetCoordonneeY() {
+		// TODO : faire le test
+    }
+	
+	/**
+	 * Méthode de test de la méthode getMarque()
+	 */
+	@Test
+	@DisplayName("Test de la méthode getMarque()")
+    void testGetMarque() {
+		// TODO : faire le test
+    }
+	
+	/**
+	 * Méthode de test de la méthode setMarque()
+	 */
+	@Test
+	@DisplayName("Test de la méthode setMarque()")
+    void testSetMarque() {
+		// TODO : faire le test
+    }
 
 }

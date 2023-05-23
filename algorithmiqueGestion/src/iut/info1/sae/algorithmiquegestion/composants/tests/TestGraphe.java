@@ -93,27 +93,6 @@ class TestGraphe {
 		assertEquals(grapheTeste.getListeSommets()[22].getCoordonneeY(), 4);
 	}
 	
-	@Test
-	void testEstAdjacent() {
-		System.out.println("Test adjacence pour un labyrinthe/graphe 5*5 :");
-		                                                                                   						 // sommet 2 par rapport au sommet 1
-		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[0], grapheTeste.getListeSommets()[1])); // x + 1 et y similaire
-		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[4], grapheTeste.getListeSommets()[3])); // x - 1 et y similaire
-		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[0], grapheTeste.getListeSommets()[5])); // x similaire et y + 1
-		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[2])); // x similaire et y - 1
-		
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[2], grapheTeste.getListeSommets()[4])); // x + 2 et y similaire
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[3], grapheTeste.getListeSommets()[0])); // x - 3 et y similaire
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[1], grapheTeste.getListeSommets()[11])); // x similaire et y + 2
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[14], grapheTeste.getListeSommets()[4])); // x similaire et y - 2
-		
-		//test de la méthode pour des sommets placer en diagonales d'un autre sommet
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[1])); // x - 1 et y - 1 
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[3])); // x + 1 et y - 1
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[11])); // x - 1 et y + 1
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[13])); // x + 1 et y + 1
-		
-	}
 	// TODO faire la javadoc
 	@Test
 	void testSommetsDeMemeMarque() {
