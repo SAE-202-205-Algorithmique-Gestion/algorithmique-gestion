@@ -97,6 +97,14 @@ public class Graphe {
 		return this.listeSommets;
 	}
 	
+	public int getNombreColonnesLabyrinthe() {
+		return nombreColonnesLabyrinthe;
+	}
+
+	public int getNombreLignesLabyrinthe() {
+		return nombreLignesLabyrinthe;
+	}
+
 	/**
 	 * Création d'un sommet rattaché au graphe de 
 	 * l'instance.
@@ -219,22 +227,25 @@ public class Graphe {
 	}
 	
 	/**
-	 * 
-	 * @return 
+	 * méthode utilisant Random pour choisir un sommet de façon
+	 * aléatoire ainsi qu'un deuxième sommet, restreint
+	 *  à ceux adjacents au premier
+	 * @return couple de sommets adjacents
 	 */
-	public Sommet[] sommetAleatoire() {
+	public Sommet[] sommetsAleatoires() {
 		/**
 		* entiers aléatoires correspondant à un indice dans la liste des sommets
 		*/
-		int x, 
-		    y;
+		int sommet,
+			sommetAdjacent;
 		
-		do {
-    		x = new Random(this.getNombreSommets()).nextInt();//x = Math.random() * this.getNombreSommets();
-    		y = new Random(this.getNombreSommets()).nextInt();
-		} while (x != y);
+			sommet = new Random(this.getNombreSommets()).nextInt();//x = Math.random() * this.getNombreSommets();
 		
-		
+		 Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(this.getListeSommets()[sommet]);
+		 sommetAdjacent = new Random(listeDesSommetsAdjacents.length).nextInt();
+		 
+		 Sommet[] sommetsAleatiores = {this.getListeSommets()[sommet], listeDesSommetsAdjacents[sommetAdjacent]};
+		 return sommetsAleatiores;
 	}
 
 //	public void creationAscendanteChaine(){
@@ -242,8 +253,30 @@ public class Graphe {
 //	}
 	
 	public Sommet[] tousLesSommetsAdjacentsDuSommet(Sommet sommet) {
+		int nombreDeSommetsAdjacents;
 		Sommet listeSommet[] = new Sommet[4];
 		
+		for (int i = 0; i < 4)
+		
+//		if (sommet.getCoordonneeX() - 1 >= 0) {
+//			
+//		}
+//		
+//		if (sommet.getCoordonneeX() + 1 < getNombreColonnesLabyrinthe()) {
+//			
+//		}
+//		
+//		if (sommet.getCoordonneeY() - 1 >= 0) {
+//			
+//		}
+//		
+//		if (sommet.getCoordonneeY() + 1 < getNombreLignesLabyrinthe()) {
+//			
+//		}
+
+		
+		
+		for
 		listeSommet[0].setCoordonneeX(sommet.getCoordonneeX());
 		listeSommet[0].setCoordonneeY(sommet.getCoordonneeY() + 1);
 		
@@ -258,4 +291,6 @@ public class Graphe {
 //				&& (sommet1.getCoordonneeX() == sommet2.getCoordonneeX() + 1
 //					|| sommet1.getCoordonneeX() == sommet2.getCoordonneeX() - 1));
 	}
+	
+
 }
