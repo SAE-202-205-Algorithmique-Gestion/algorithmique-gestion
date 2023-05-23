@@ -26,7 +26,8 @@ public class Sommet /*implements Comparable*/ {
 	
 	/**
 	 * indice de Liaison du tableau liaisons
-	 * TODO : à vérifier
+	 * Pour se repérer en ajoutant / supprimant / éditant
+	 * dans la liste des liaison
 	 */
 	private int indiceLiaison;
 
@@ -63,7 +64,7 @@ public class Sommet /*implements Comparable*/ {
 		this.coordonneeX = coordonneeX;
 		this.coordonneeY = coordonneeY;
 		
-		this.marque = -1; // marque non définit
+		this.marque = -1; // marque par défaut
 		
 	}
 	

@@ -24,7 +24,7 @@ import iut.info1.sae.algorithmiquegestion.composants.*;
 @TestInstance(Lifecycle.PER_CLASS)
 class TestGraphe {
 	
-	Graphe grapheTeste = new Graphe();
+	Graphe grapheTeste = new Graphe(5, 5);
 	
 	Sommet[] sommetsGraphe = new Sommet[25];
 
@@ -33,35 +33,37 @@ class TestGraphe {
 	 */
 	@BeforeAll
 	void initialisationTest() throws Exception {
-		this.sommetsGraphe[0] = grapheTeste.creerSommet();		//  ( 0 ; 0 )
-		this.sommetsGraphe[1] = grapheTeste.creerSommet();		//  ( 1 ; 0 )
-		this.sommetsGraphe[2] = grapheTeste.creerSommet();		//  ( 2 ; 0 )
-		this.sommetsGraphe[3] = grapheTeste.creerSommet();		//  ( 3 ; 0 )
-		this.sommetsGraphe[4] = grapheTeste.creerSommet();		//  ( 4 ; 0 )
+//		0	//  ( 0 ; 0 )
+//		1	//  ( 1 ; 0 )
+//		2	//  ( 2 ; 0 )
+//		3	//  ( 3 ; 0 )
+//		4	//  ( 4 ; 0 )
+//		
+//		5	//  ( 0 ; 1 )
+//		6	//  ( 1 ; 1 )
+//		7	//  ( 2 ; 1 )
+//		8	//  ( 3 ; 1 )
+//		9	//  ( 4 ; 1 )
+//		
+//		10	//  ( 0 ; 2 )
+//		11	//  ( 1 ; 2 )
+//		12	//  ( 2 ; 2 )
+//		13	//  ( 3 ; 2 )		
+//		14	//  ( 4 ; 2 )		
+//		
+//		15	//  ( 0 ; 3 )		
+//		16	//  ( 1 ; 3 )		
+//		17	//  ( 2 ; 3 )		
+//		18	//  ( 3 ; 3 )		
+//		19	//  ( 4 ; 3 )		
+//		
+//		20	//  ( 0 ; 4 )		
+//		21	//  ( 1 ; 4 )		
+//		22	//  ( 2 ; 4 )		
+//		23	//  ( 3 ; 4 )		
+//		24	//  ( 4 ; 4 )
 		
-		this.sommetsGraphe[5] = grapheTeste.creerSommet();		//  ( 0 ; 1 )
-		this.sommetsGraphe[6] = grapheTeste.creerSommet();		//  ( 1 ; 1 )
-		this.sommetsGraphe[7] = grapheTeste.creerSommet();		//  ( 2 ; 1 )
-		this.sommetsGraphe[8] = grapheTeste.creerSommet();		//  ( 3 ; 1 )
-		this.sommetsGraphe[9] = grapheTeste.creerSommet();		//  ( 4 ; 1 )
-		
-		this.sommetsGraphe[10] = grapheTeste.creerSommet();		//  ( 0 ; 2 )
-		this.sommetsGraphe[11] = grapheTeste.creerSommet();		//  ( 1 ; 2 )
-		this.sommetsGraphe[12] = grapheTeste.creerSommet();		//  ( 2 ; 2 )
-		this.sommetsGraphe[13] = grapheTeste.creerSommet();		//  ( 3 ; 2 )		
-		this.sommetsGraphe[14] = grapheTeste.creerSommet();		//  ( 4 ; 2 )		
-		
-		this.sommetsGraphe[15] = grapheTeste.creerSommet();		//  ( 0 ; 3 )		
-		this.sommetsGraphe[16] = grapheTeste.creerSommet();		//  ( 1 ; 3 )		
-		this.sommetsGraphe[17] = grapheTeste.creerSommet();		//  ( 2 ; 3 )		
-		this.sommetsGraphe[18] = grapheTeste.creerSommet();		//  ( 3 ; 3 )		
-		this.sommetsGraphe[19] = grapheTeste.creerSommet();		//  ( 4 ; 3 )		
-		
-		this.sommetsGraphe[20] = grapheTeste.creerSommet();		//  ( 0 ; 4 )		
-		this.sommetsGraphe[21] = grapheTeste.creerSommet();		//  ( 1 ; 4 )		
-		this.sommetsGraphe[22] = grapheTeste.creerSommet();		//  ( 2 ; 4 )		
-		this.sommetsGraphe[23] = grapheTeste.creerSommet();		//  ( 3 ; 4 )		
-		this.sommetsGraphe[24] = grapheTeste.creerSommet();		//  ( 4 ; 4 )		
+//		Graphe grapheTeste2 = new Graphe(5, 5);
 	}
 
 	@Test
@@ -78,67 +80,136 @@ class TestGraphe {
 //			//assertEquals(this.sommetsGraphe[x].getCoordonneeX(), x);
 //			
 //		}
-		assertEquals(this.sommetsGraphe[5].getCoordonneeX(), 0);
+		assertEquals(grapheTeste.getListeSommets()[5].getCoordonneeX(), 0);
+		assertEquals(grapheTeste.getListeSommets()[5].getCoordonneeY(), 1);
+		
+		assertEquals(grapheTeste.getListeSommets()[3].getCoordonneeX(), 3);
+		assertEquals(grapheTeste.getListeSommets()[3].getCoordonneeY(), 0);
+		
+		assertEquals(grapheTeste.getListeSommets()[10].getCoordonneeX(), 0);
+		assertEquals(grapheTeste.getListeSommets()[10].getCoordonneeY(), 2);
+		
+		assertEquals(grapheTeste.getListeSommets()[22].getCoordonneeX(), 2);
+		assertEquals(grapheTeste.getListeSommets()[22].getCoordonneeY(), 4);
 	}
 	
 	@Test
 	void testEstAdjacent() {
 		System.out.println("Test adjacence pour un labyrinthe/graphe 5*5 :");
-		                                                                                   // sommet 2 par rapport au sommet 1
-		assertTrue(grapheTeste.estAdjacent(this.sommetsGraphe[0], this.sommetsGraphe[1])); // x + 1 et y similaire
-		assertTrue(grapheTeste.estAdjacent(this.sommetsGraphe[4], this.sommetsGraphe[3])); // x - 1 et y similaire
-		assertTrue(grapheTeste.estAdjacent(this.sommetsGraphe[0], this.sommetsGraphe[5])); // x similaire et y + 1
-		assertTrue(grapheTeste.estAdjacent(this.sommetsGraphe[7], this.sommetsGraphe[2])); // x similaire et y - 1
+		                                                                                   						 // sommet 2 par rapport au sommet 1
+		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[0], grapheTeste.getListeSommets()[1])); // x + 1 et y similaire
+		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[4], grapheTeste.getListeSommets()[3])); // x - 1 et y similaire
+		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[0], grapheTeste.getListeSommets()[5])); // x similaire et y + 1
+		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[2])); // x similaire et y - 1
 		
-		assertFalse(grapheTeste.estAdjacent(this.sommetsGraphe[2], this.sommetsGraphe[4])); // x + 2 et y similaire
-		assertFalse(grapheTeste.estAdjacent(this.sommetsGraphe[3], this.sommetsGraphe[0])); // x - 3 et y similaire
-		assertFalse(grapheTeste.estAdjacent(this.sommetsGraphe[1], this.sommetsGraphe[11])); // x similaire et y + 2
-		assertFalse(grapheTeste.estAdjacent(this.sommetsGraphe[14], this.sommetsGraphe[4])); // x similaire et y - 2
+		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[2], grapheTeste.getListeSommets()[4])); // x + 2 et y similaire
+		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[3], grapheTeste.getListeSommets()[0])); // x - 3 et y similaire
+		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[1], grapheTeste.getListeSommets()[11])); // x similaire et y + 2
+		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[14], grapheTeste.getListeSommets()[4])); // x similaire et y - 2
 		
 		//test de la méthode pour des sommets placer en diagonales d'un autre sommet
-		assertFalse(grapheTeste.estAdjacent(this.sommetsGraphe[7], this.sommetsGraphe[1])); // x - 1 et y - 1 
-		assertFalse(grapheTeste.estAdjacent(this.sommetsGraphe[7], this.sommetsGraphe[3])); // x + 1 et y - 1
-		assertFalse(grapheTeste.estAdjacent(this.sommetsGraphe[7], this.sommetsGraphe[11])); // x - 1 et y + 1
-		assertFalse(grapheTeste.estAdjacent(this.sommetsGraphe[7], this.sommetsGraphe[13])); // x + 1 et y + 1
+		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[1])); // x - 1 et y - 1 
+		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[3])); // x + 1 et y - 1
+		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[11])); // x - 1 et y + 1
+		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[13])); // x + 1 et y + 1
 		
+	}
+	// TODO faire la javadoc
+	@Test
+	void testSommetsDeMemeMarque() {
+		System.out.println("Test de sommetsDeMemeMarque : ");
+		
+		final int premierIndex = 2;
+		final int dernierIndex = 8;
+		final int marque = 3;
+		int rang = 0;
+		Sommet[] sommetAttendus1 = new Sommet[dernierIndex - premierIndex + 1];
+		for (int i = premierIndex; i <= dernierIndex; i++) {
+			grapheTeste.getListeSommets()[i].setMarque(marque);
+			sommetAttendus1[rang] = grapheTeste.getListeSommets()[i];
+			rang++;
+		}
+		
+		assertArrayEquals(grapheTeste.sommetsDeMemeMarque(marque), sommetAttendus1);
+//		for (int i = 0; i < grapheTeste.sommetsDeMemeMarque(marque).length; i++) {
+//			
+//			System.out.println("Sommets : "
+//					+ "X : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getCoordonneeX()
+//					+ "  Y : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getCoordonneeY()
+//					+ "\tMarques : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getMarque());
+//		}
+		
+		grapheTeste.getListeSommets()[8].setMarque(4);
+		grapheTeste.getListeSommets()[12].setMarque(4);
+		grapheTeste.getListeSommets()[19].setMarque(4);
+		
+		Sommet[] sommetsAttendus2 = {
+			    grapheTeste.getListeSommets()[8],
+			    grapheTeste.getListeSommets()[12],
+			    grapheTeste.getListeSommets()[19]
+			};
+		
+		assertArrayEquals(grapheTeste.sommetsDeMemeMarque(4), sommetsAttendus2);
 	}
 	
 	//TODO faire un test de la méthode definitUneMarque
+	//TODO faire la javadoc
 	@Test
 	void testDefinitUneMarque() {
-	    System.out.println("Test d'affectation de marque : ");
-	    grapheTeste.definitUneMarque(sommetsGraphe[0], sommetsGraphe[1]);
-//	    System.out.println(sommetsGraphe[0].getMarque());
-	    assertEquals(sommetsGraphe[0].getMarque(), 0);
-	    assertEquals(sommetsGraphe[1].getMarque(), 0);
-	    
-	    sommetsGraphe[6].setMarque(8);
-	    grapheTeste.definitUneMarque(sommetsGraphe[5], sommetsGraphe[6]);
-	    assertEquals(sommetsGraphe[5].getMarque(), 8);
-	    
-	    sommetsGraphe[15].setMarque(4);
-	    grapheTeste.definitUneMarque(sommetsGraphe[15], sommetsGraphe[16]);
-	    assertEquals(sommetsGraphe[16].getMarque(), 4);
-	    
-	    sommetsGraphe[22].setMarque(9);
-	    sommetsGraphe[17].setMarque(2);
-	    sommetsGraphe[18].setMarque(2);
-	    sommetsGraphe[19].setMarque(2);
-//	    grapheTeste.definitUneMarque(sommetsGraphe[22], sommetsGraphe[17]); //renvoie une erreur
+	    System.out.println("Test d'affectation de marque :"
+	    		+ "Attention au setMarque de la méthode précédente");
+	    /* Réinitialisation des marques */
+	    for (int i = 0; i < grapheTeste.getListeSommets().length; i++) {
+	    	grapheTeste.getListeSommets()[i].setMarque(-1);
+	    }
 	    
 	    
-//	    assertEquals(sommetsGraphe[17].getMarque(), 9);
-//	    assertEquals(sommetsGraphe[18].getMarque(), 9);
-//	    assertEquals(sommetsGraphe[19].getMarque(), 9);
+	    /* Test du 'if' */
+	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[0],
+	    							 grapheTeste.getListeSommets()[1]);
+//	    System.out.println(grapheTeste.getListeSommets()[0].getMarque());
+	    assertEquals(grapheTeste.getListeSommets()[0].getMarque(), 0);
+	    assertEquals(grapheTeste.getListeSommets()[1].getMarque(), 0);
 	    
+	    
+	    /* Test du 'if' dans le 'else if' */
+	    grapheTeste.getListeSommets()[6].setMarque(8);
+	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[5],
+	    						     grapheTeste.getListeSommets()[6]);
+	    
+	    assertEquals(grapheTeste.getListeSommets()[5].getMarque(), 8);
+	    
+	    
+	    /* Test du 'else if' dans le 'else if' */
+	    grapheTeste.getListeSommets()[15].setMarque(7);
+	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[15],
+	    						     grapheTeste.getListeSommets()[16]);
+	    
+	    assertEquals(grapheTeste.getListeSommets()[16].getMarque(), 7);
+	    
+	    
+	    /* Test du else */
+	    grapheTeste.getListeSommets()[16].setMarque(9);
+	    grapheTeste.getListeSommets()[17].setMarque(2);
+	    grapheTeste.getListeSommets()[18].setMarque(2);
+	    grapheTeste.getListeSommets()[19].setMarque(2);
+	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[16],
+	    							 grapheTeste.getListeSommets()[17]);
+	    
+	    assertEquals(grapheTeste.getListeSommets()[17].getMarque(), 9);
+	    assertEquals(grapheTeste.getListeSommets()[18].getMarque(), 9);
+	    assertEquals(grapheTeste.getListeSommets()[19].getMarque(), 9);
+	    
+	    
+	    /* Test du cas où les deux sommets on la meme marque déja définie */
+	    grapheTeste.getListeSommets()[15].setMarque(7);
+	    grapheTeste.getListeSommets()[16].setMarque(7);
+	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[15],
+			     					 grapheTeste.getListeSommets()[16]);
+	    
+	    assertEquals(grapheTeste.getListeSommets()[15].getMarque(), 7);
+	    assertEquals(grapheTeste.getListeSommets()[16].getMarque(), 7);
 	}
 	
-	@Test
-	void testSommetsDeMemeMarque() {
-		for (int i = 0; i < grapheTeste.sommetsDeMemeMarque(sommetsGraphe[17].getMarque()).length; i++) {
-			System.out.println(grapheTeste.sommetsDeMemeMarque(sommetsGraphe[17].getMarque())[i]);
-		}
-		
-	}
 }
 

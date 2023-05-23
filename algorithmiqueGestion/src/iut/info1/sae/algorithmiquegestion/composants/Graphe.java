@@ -19,14 +19,8 @@ public class Graphe {
 	/**
 	 * Liste des sommets du graphe.
 	 */
-	private Sommet[] listeSommets = new Sommet[ 25 /* TODO: LONGUEUR * HAUTEUR */ ];
-	
-	/**
-	 * Indice courant dans la liste des sommets.
-	 * Utile pour la création de sommet.
-	 */
-	private int indiceCourantListeSommet;
-	
+	private Sommet[] listeSommets;
+		
 	/**
 	 * Longueur du labyrinthe.
 	 * Donnée choisie par l'utilisateur.
@@ -56,19 +50,27 @@ public class Graphe {
 	 * 
 	 * @param listeSommets // TODO : javadoc
 	 */
-	public Graphe() {
+	public Graphe(int nombreColonnesLabyrinthe, int nombreLignesLabyrinthe) {
 		super();
 
-		this.indiceCourantListeSommet = 0;
+//		this.indiceCourantListeSommet = 0;
 		
 		// TODO: remplacer par JSON
-		this.nombreColonnesLabyrinthe = 5;
-		this.nombreLignesLabyrinthe = 5;
+		this.nombreColonnesLabyrinthe = nombreColonnesLabyrinthe;
+		this.nombreLignesLabyrinthe = nombreLignesLabyrinthe;
 		this.marquesExistante = new int[this.nombreColonnesLabyrinthe   // car le nombre de marques
 		                                * this.nombreLignesLabyrinthe]; // possible est < aux 
 		                                                                // nombre de sommet. 
 		                                                                // Histoire d'être sur d'avoir
 		                                                                // la place, valeur temporaire.
+		
+		this.listeSommets = new Sommet[this.nombreColonnesLabyrinthe * this.nombreLignesLabyrinthe];
+		for (int i = 0; i < getNombreSommets(); i++) {
+			this.listeSommets[i] = determinationCoordonnees(i);
+		
+//			initialiser listeSommet pour éviter l'erreur
+//			à la méthode sommetDeMemeMarque.
+		}
 		this.valeurMarqueMaximum = 0;
 		
 	}
@@ -98,18 +100,18 @@ public class Graphe {
 	 * 
 	 * @return L'instance du sommet créé
 	 */
-	public Sommet creerSommet() {
+	public Sommet determinationCoordonnees(int indiceCourantListeSommet) {
 		
 		int nombreLiaisonsMaximum, //TODO (à enlever je pense)
 			coordonneeX,
 			coordonneeY,
 			indiceCaseCourante;
 		
-		coordonneeX = this.indiceCourantListeSommet 
+		coordonneeX = indiceCourantListeSommet 
 		              % this.nombreColonnesLabyrinthe;
 		
 		coordonneeY = 0;
-		indiceCaseCourante = this.indiceCourantListeSommet;
+		indiceCaseCourante = indiceCourantListeSommet;
 		
 		while (indiceCaseCourante >= this.nombreColonnesLabyrinthe) {
 			indiceCaseCourante -= this.nombreColonnesLabyrinthe;
@@ -120,9 +122,6 @@ public class Graphe {
 		
 		Sommet sommetCree = new Sommet(coordonneeX, coordonneeY);
 		System.out.printf("X = %d ; Y = %d\n", coordonneeX, coordonneeY);
-		
-		
-		this.indiceCourantListeSommet++;
 		
 		return sommetCree;
 		
@@ -201,13 +200,22 @@ public class Graphe {
 	/**
 	 * Renvoie la liste des sommets portant une certaine marque
 	 * @param marque
-	 * @return liste de sommets
+	 * @return Sommet[] liste de sommets
 	 */
 	public Sommet[] sommetsDeMemeMarque(int marque) {
-		Sommet[] listeSommetsMarque = new Sommet[getNombreSommets()-1];
+		int tailleTableau = 0;
+		int rang = 0;
+//		Sommet[] listeSommetsMarque = new Sommet[getNombreSommets()-1];
 		for (int i = 0; i < getNombreSommets(); i++) {
 			if (getListeSommets()[i].getMarque() == marque) {
-				listeSommetsMarque[i] = getListeSommets()[i];
+				tailleTableau++;
+			}
+		}
+		Sommet[] listeSommetsMarque = new Sommet[tailleTableau];
+		for (int i = 0; i < getNombreSommets(); i++) {
+			if (getListeSommets()[i].getMarque() == marque) {
+				listeSommetsMarque[rang] = getListeSommets()[i];
+				rang++;
 			}
 		}
 		return listeSommetsMarque;
