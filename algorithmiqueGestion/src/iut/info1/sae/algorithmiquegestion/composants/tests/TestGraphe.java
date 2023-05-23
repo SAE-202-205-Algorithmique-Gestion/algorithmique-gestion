@@ -201,7 +201,7 @@ class TestGraphe {
 	    assertEquals(grapheTeste.getListeSommets()[19].getMarque(), 9);
 	    
 	    
-	    /* Test du cas où les deux sommets on la meme marque déja définie */
+	    /* Test du cas où les deux sommets on la meme marque déjà définie */
 	    grapheTeste.getListeSommets()[15].setMarque(7);
 	    grapheTeste.getListeSommets()[16].setMarque(7);
 	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[15],

@@ -53,7 +53,8 @@ public class Sommet /*implements Comparable*/ {
 	 * Constructeur de la classe.
 	 * Initialisation des attributs de la classe.
 	 * 
-	 * @param liaisons
+	 * @param coordonneeX Entier de la coordonnée X du sommet créé
+	 * @param coordonneeY Entier de la coordonnée Y du sommet créé
 	 */
 	public Sommet(int coordonneeX, int coordonneeY) {
 		super();
@@ -128,7 +129,15 @@ public class Sommet /*implements Comparable*/ {
 		return this.coordonneeY;
 	}
 
-    /**
+    public void setCoordonneeX(int coordonneeX) {
+		this.coordonneeX = coordonneeX;
+	}
+
+	public void setCoordonneeY(int coordonneeY) {
+		this.coordonneeY = coordonneeY;
+	}
+
+	/**
      * Retourne la marque du sommet
      * @return valeur de marque 
      */

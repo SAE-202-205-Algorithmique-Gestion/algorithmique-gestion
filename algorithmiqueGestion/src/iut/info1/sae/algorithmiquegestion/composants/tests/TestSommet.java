@@ -17,7 +17,7 @@ import org.junit.jupiter.api.TestInstance;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
 /**
- * TODO : javadoc
+ * Classe de tests de la classe Sommet
  * @author Jonathan GUIL
  * @author Loïc FAUGIERES
  * @author Simon GUIRAUD
@@ -27,6 +27,7 @@ import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 @TestInstance(Lifecycle.PER_CLASS)
 class TestSommet {
 	
+	/**  */
 	private Sommet[] listeSommetsATester = {
 		/*
 		new Sommet("x1"),  // x1
@@ -84,6 +85,23 @@ class TestSommet {
 		
 		assertTrue(this.listeSommetsATester[0].liaisonExiste(this.listeSommetsATester[1]));
 		assertTrue(this.listeSommetsATester[1].liaisonExiste(this.listeSommetsATester[0]));
+	}
+	
+	// PROPRE
+	
+	/**
+	 * Méthode de test de la méthode creerLiaison
+	 */
+	@Test
+	void testCreerLiaison() {
+		
+	   Sommet sommet1 = new Sommet(0, 0);
+	   Sommet sommet2 = new Sommet(0, 1);
+	   Sommet sommetNonRelie = new Sommet(3, 3);
+	   
+	   sommet1.creerLiaison(sommet2);
+	  // jeanne au secours assertTrue(sommet1.getLiaisons().contains(sommet2));
+		
 	}
 
 }
