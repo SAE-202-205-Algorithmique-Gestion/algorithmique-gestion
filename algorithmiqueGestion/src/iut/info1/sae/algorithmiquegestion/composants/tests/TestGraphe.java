@@ -7,6 +7,7 @@ package iut.info1.sae.algorithmiquegestion.composants.tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -63,9 +64,15 @@ class TestGraphe {
 //		23	//  ( 3 ; 4 )		
 //		24	//  ( 4 ; 4 )
 		
-//		Graphe grapheTeste2 = new Graphe(5, 5);
 	}
 
+	@BeforeEach
+	void resetDeGrapheTeste() {
+		for (int i = 0; i < grapheTeste.getNombreSommets(); i++) {
+			grapheTeste.getListeSommets()[i] = grapheTeste.determinationCoordonnees(i);
+		}
+	}
+	
 	@Test
 	void testRecuperationCoordonnees() {
 		System.out.println("Test récupération coordonnées"
@@ -209,6 +216,49 @@ class TestGraphe {
 	    
 	    assertEquals(grapheTeste.getListeSommets()[15].getMarque(), 7);
 	    assertEquals(grapheTeste.getListeSommets()[16].getMarque(), 7);
+	}
+	/**
+	 * test de la classe sommetExiste
+	 */
+	@Test
+	void testSommetExiste() {
+//		Graphe grapheTeste2 = new Graphe(5, 5);
+		
+		//AssertFalse
+		grapheTeste.getListeSommets()[0].setCoordonneeX(-1);
+		assertFalse(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[0]));
+		
+		grapheTeste.getListeSommets()[1].setCoordonneeY(-1);
+		assertFalse(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[1]));
+		
+		grapheTeste.getListeSommets()[2].setCoordonneeX(grapheTeste.getNombreColonnesLabyrinthe());
+		assertFalse(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[2]));
+		
+		grapheTeste.getListeSommets()[3].setCoordonneeY(grapheTeste.getNombreLignesLabyrinthe());
+		assertFalse(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[3]));
+		
+		//AssertTrue
+		grapheTeste.getListeSommets()[4].setCoordonneeX(0);
+		assertTrue(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[4]));
+		
+		grapheTeste.getListeSommets()[5].setCoordonneeY(0);
+		assertTrue(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[5]));
+		
+		grapheTeste.getListeSommets()[6].setCoordonneeX(grapheTeste.getNombreColonnesLabyrinthe() - 1);
+		assertTrue(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[6]));
+		
+		grapheTeste.getListeSommets()[7].setCoordonneeY(grapheTeste.getNombreLignesLabyrinthe() - 1);
+		assertTrue(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[7]));
+		
+		
+		grapheTeste.getListeSommets()[8].setCoordonneeY(3);
+		assertTrue(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[8]));
+		
+	}
+	
+	@Test
+	void testTousLesSommetsAdjacentsDuSommet() {
+		//TODO faire les test
 	}
 	
 }

@@ -147,6 +147,12 @@ public class Graphe {
 	 * @return Si les deux sommets sont adjacents
 	 */
 	public boolean estAdjacent(Sommet sommet1, Sommet sommet2) {
+		if (!this.sommetExiste(sommet1)
+			|| !this.sommetExiste(sommet2)) {
+			
+			return false;
+		}
+		
 		return (sommet1.getCoordonneeX() == sommet2.getCoordonneeX()
 				&& (sommet1.getCoordonneeY() == sommet2.getCoordonneeY() + 1
 					|| sommet1.getCoordonneeY() == sommet2.getCoordonneeY() - 1))
@@ -248,12 +254,14 @@ public class Graphe {
 		 return sommetsAleatiores;
 	}
 
-//	public void creationAscendanteChaine(){
-//		
-//	}
-	
-	public Sommet[] tousLesSommetsAdjacentsDuSommet(Sommet sommet) {
+	/**
+	 * Permet de déterminer les sommets adjacent 
+	 * @param sommet du graphe
+	 * @return la liste des sommet adjacents mis en paramètre
+	 */
+	public Sommet[] tousLesSommetsAdjacentsDuSommet(Sommet sommet) { //TODO méthode a améliorer
 		int tailleTableau = 0;
+//		Sommet[]
 		
 //		for (int i = 0; i < 4)
 		Sommet adjacent1 = new Sommet(sommet.getCoordonneeX(), sommet.getCoordonneeY() + 1);
@@ -290,6 +298,7 @@ public class Graphe {
 			}
 		}
 		
+		
 //		if (sommet.getCoordonneeX() - 1 >= 0) {
 //			
 //		}
@@ -322,6 +331,17 @@ public class Graphe {
 //			|| (sommet1.getCoordonneeY() == sommet2.getCoordonneeY()
 //				&& (sommet1.getCoordonneeX() == sommet2.getCoordonneeX() + 1
 //					|| sommet1.getCoordonneeX() == sommet2.getCoordonneeX() - 1));
+	}
+	
+	/**
+	 * Permet de vérifier l'existance d'un sommet dans le graphe
+	 * à partir de ses coordonnées.
+	 * @param sommet
+	 * @return si le sommet fais bien parti du graphe ou pas
+	 */
+	public boolean sommetExiste(Sommet sommet) {
+		return sommet.getCoordonneeX() >= 0 && sommet.getCoordonneeX() < this.getNombreColonnesLabyrinthe()
+			&& sommet.getCoordonneeY() >= 0 && sommet.getCoordonneeY() < this.getNombreLignesLabyrinthe();
 	}
 	
 
