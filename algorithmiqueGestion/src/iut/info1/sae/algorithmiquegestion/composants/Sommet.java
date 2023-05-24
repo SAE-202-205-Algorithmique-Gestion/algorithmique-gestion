@@ -18,8 +18,6 @@ import java.util.Objects;
  */
 public class Sommet /*implements Comparable*/ {
 	
-	//private String nomSommet;
-	
 	/**
 	 * Liste des sommets qui sont directement liés à
 	 * celui-ci.
@@ -27,21 +25,21 @@ public class Sommet /*implements Comparable*/ {
 	private Sommet[] liaisons;
 	
 	/**
-	 * indice de Liaison du tableau liaisons
-	 * Pour se repérer en ajoutant / supprimant / éditant
-	 * dans la liste des liaison
+	 * Indice de liaison du tableau liaisons
+	 * pour se repérer en ajoutant / supprimant / éditant
+	 * dans la liste des liaisons
 	 */
 	private int indiceLiaison;
 
 	/**
-	 * Valeur X des coordonnées du sommet dans le 
-	 * labyrinthe (graphe).
+	 * Valeur X (horizontale) des coordonnées du sommet dans le 
+	 * labyrinthe (graphe)
 	 */
 	private int coordonneeX;
 	
 	/**
-	 * Valeur Y des coordonnées du sommet dans le 
-	 * labyrinthe (graphe).
+	 * Valeur Y (verticale) des coordonnées du sommet dans le 
+	 * labyrinthe (graphe)
 	 */
 	private int coordonneeY;
 	
@@ -82,37 +80,38 @@ public class Sommet /*implements Comparable*/ {
 	
 	/**
 	 * Création d'une liaison entre le sommet de l'instance 
-	 * et celui en paramètre.
+	 * et celui en paramètre
 	 * 
-	 * @param sommetDeLiaison
+	 * @param sommetALier Le sommet à lier au sommet d'instance
 	 */
-	public void creerLiaison(Sommet sommetDeLiaison) {
-		if (!this.liaisonExiste(sommetDeLiaison)) {
-			this.liaisons[this.indiceLiaison] = sommetDeLiaison;
+	public void creerLiaison(Sommet sommetALier) {
+		if (!this.liaisonExiste(sommetALier)) {
+			this.liaisons[this.indiceLiaison] = sommetALier;
 		}
 		
-		if (!sommetDeLiaison.liaisonExiste(this)) {
-			sommetDeLiaison.creerLiaison(this);
+		if (!sommetALier.liaisonExiste(this)) {
+			sommetALier.creerLiaison(this);
 		}
 		
 		this.indiceLiaison++;
 	}
 	
 	/**
-	 * Retourne si la liaison entre le sommet de l'instance 
-	 * et celui en paramètre existe.
-	 * 
-	 * @param autreSommet
-	 * @return L'état de la liaison
+	 * Vérifie si le sommet en paramètre se trouve dans la
+	 * liste de liaisons du sommet appelant.
+	 * @param sommetTeste Sommet dont il faut vérifier la présence
+	 * 					  dans la liste de liaisons de l'appelant
+	 * @return Un booléen informant si la liaison existe ou non
 	 */
-	public boolean liaisonExiste(Sommet autreSommet) {
-		for (Sommet rechercheSommet : this.getLiaisons()) {
-			if (rechercheSommet == autreSommet)	{
-				return true;
+	public boolean liaisonExiste(Sommet sommetTeste) {
+		boolean resultat = false;
+
+		for (Sommet sommetLie : this.getLiaisons()) {
+			if (sommetLie == sommetTeste)	{
+				resultat = true;
 			}
 		}
-		
-		return false;
+		return resultat;
 	}
 
 	/**
