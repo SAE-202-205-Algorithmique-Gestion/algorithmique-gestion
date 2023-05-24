@@ -166,7 +166,7 @@ class TestGraphe {
 	//TODO faire la javadoc
 	@Test
 	void testDefinitUneMarque() {
-	    System.out.println("Test d'affectation de marque :"
+	    System.out.println("Test d'affectation de marque : "
 	    		+ "Attention au setMarque de la méthode précédente");
 	    /* Réinitialisation des marques */
 	    for (int i = 0; i < grapheTeste.getListeSommets().length; i++) {
@@ -310,6 +310,26 @@ class TestGraphe {
 //		assertArrayEquals(listeAttendu2, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[24]));
 //		assertArrayEquals(listeAttendu3, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[1]));
 
+	}
+	
+	@Test
+	void testSommetAleatoires() {
+		System.out.println("Test de renvoie tableau contenant un sommet aléatoire " 
+				+ "ainsi qu'un de ses sommets adjacent : ");
+//		for (int i = 0; i < grapheTeste.sommetsAleatoires().length; i++) {
+		Sommet[] lesSommets= new Sommet[2];
+		lesSommets = grapheTeste.sommetsAleatoires();
+		
+		System.out.println("Sommet choisi au hasard : X = "
+				+ lesSommets[0].getCoordonneeX()
+				+ " ; Y = "
+				+ lesSommets[0].getCoordonneeY()
+				+ "\nl'un de ses sommet adjacent : X = "
+				+ lesSommets[1].getCoordonneeX()
+				+ " ; Y = "
+				+ lesSommets[1].getCoordonneeY());
+			
+//		}
 	}
 }
 

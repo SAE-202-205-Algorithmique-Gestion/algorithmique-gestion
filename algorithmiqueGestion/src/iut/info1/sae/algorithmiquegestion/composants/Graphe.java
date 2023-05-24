@@ -179,7 +179,7 @@ public class Graphe {
 	 */
 	public void definitUneMarque(Sommet sommet1, Sommet sommet2) {
 		
-	    if (estAdjacent(sommet1, sommet2)) {
+//	    if (estAdjacent(sommet1, sommet2)) { //plus besoin
 	    	
 	    	/* Dans le cas ou les marques des 2 sommets en question
 	    	 * ne sont pas initialisées. */
@@ -204,7 +204,7 @@ public class Graphe {
 	    			}
 	    		}
 	    	}
-	    }
+//	    }
 	}
 	
 	/**
@@ -245,13 +245,14 @@ public class Graphe {
 		int sommet,
 			sommetAdjacent;
 		
-			sommet = new Random(this.getNombreSommets()).nextInt();//x = Math.random() * this.getNombreSommets();
+		sommet = new Random().nextInt(this.getNombreSommets());//x = Math.random() * this.getNombreSommets();
+		System.out.println("sommet random tiré : " + sommet);
+			
+		Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(this.getListeSommets()[sommet]);
+		sommetAdjacent = new Random().nextInt(listeDesSommetsAdjacents.length);
 		
-		 Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(this.getListeSommets()[sommet]);
-		 sommetAdjacent = new Random(listeDesSommetsAdjacents.length).nextInt();
-		 
-		 Sommet[] sommetsAleatiores = {this.getListeSommets()[sommet], listeDesSommetsAdjacents[sommetAdjacent]};
-		 return sommetsAleatiores;
+		Sommet[] sommetsAleatiores = {this.getListeSommets()[sommet], listeDesSommetsAdjacents[sommetAdjacent]};
+		return sommetsAleatiores;
 	}
 
 	/**
@@ -299,5 +300,19 @@ public class Graphe {
 			&& sommet.getCoordonneeY() >= 0 && sommet.getCoordonneeY() < this.getNombreLignesLabyrinthe();
 	}
 	
-
+	public void creationDuGraphe() {
+		int nombreDeLiaison = 0;
+		
+		while (nombreDeLiaison < getNombreSommets()) {
+			Sommet[] sommetsChoisi = new Sommet[2];
+			
+			sommetsChoisi = this.sommetsAleatoires();
+			if (marqueDifferente(sommetsChoisi[0], sommetsChoisi[1])) {
+				
+				definitUneMarque(sommetsChoisi[0], sommetsChoisi[1]);
+				sommetsChoisi[0].creerLiaison(sommetsChoisi[1]);
+				
+			}
+		}
+	}
 }
