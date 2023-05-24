@@ -5,8 +5,6 @@
 
 package iut.info1.sae.algorithmiquegestion.piles;
 
-import java.util.ArrayList;
-
 /**
  * Classe de fabrication et de gestion de piles
  * Une pile fonctionne de la façon suivante : LIFO.
@@ -62,7 +60,7 @@ public class Pile {
 	 */
 	public Pile empiler(Object element) {
 		Pile pileEmpile = new Pile();
-		
+		return pileEmpile;
 	}
 	
 	/**
@@ -70,6 +68,6 @@ public class Pile {
 	 */
 	public Pile depiler(Object element) {
 		Pile pileDepile = new Pile();
-		
+		return pileDepile;
 	}
 }
