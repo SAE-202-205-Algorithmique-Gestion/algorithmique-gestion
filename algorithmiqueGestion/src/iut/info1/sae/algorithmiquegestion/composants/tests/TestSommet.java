@@ -29,13 +29,13 @@ class TestSommet {
 	
 	/**  */
 	private Sommet[] listeSommetsATester = {
-		/*
-		new Sommet("x1"),  // x1
-		new Sommet("x2"),  // x2
-		new Sommet("x3"),  // x3
-		new Sommet("x4"),  // x4
-		new Sommet("x5"),  // x5
-		*/
+		
+		new Sommet(0, 0),  // x1
+		new Sommet(1, 0),  // x2
+		new Sommet(2, 0),  // x3
+		new Sommet(3, 0),  // x4
+		new Sommet(4, 0),  // x5
+		
 	};
 	
 	void ajoutLiaisons() {
@@ -96,12 +96,19 @@ class TestSommet {
 	void testCreerLiaison() {
 		
 	   Sommet sommet1 = new Sommet(0, 0);
-	   Sommet sommet2 = new Sommet(0, 1);
+	   Sommet sommet2 = new Sommet(1, 0);
 	   Sommet sommetNonRelie = new Sommet(3, 3);
 	   
 	   sommet1.creerLiaison(sommet2);
-	  // jeanne au secours assertTrue(sommet1.getLiaisons().contains(sommet2));
-		
+	   assertEquals(sommet1.getLiaisons()[0].getCoordonneeX(), 1);
+	   assertEquals(sommet1.getLiaisons()[0].getCoordonneeY(), 0);
+	   
+	   assertEquals(sommet2.getLiaisons()[0].getCoordonneeX(), 0);
+	   assertEquals(sommet2.getLiaisons()[0].getCoordonneeY(), 0);
+	   
+	   /* Il n'y pas de liaison existante donc le tableau renvoie null,
+	    * donc pas possible de connaître les coordonnée d'un élément null*/
+	   assertEquals(sommetNonRelie.getLiaisons()[0], (Integer) null);
 	}
 
 }

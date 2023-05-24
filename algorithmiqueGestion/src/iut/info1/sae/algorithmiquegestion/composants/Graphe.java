@@ -70,11 +70,10 @@ public class Graphe {
 		this.listeSommets = new Sommet[this.nombreColonnesLabyrinthe * this.nombreLignesLabyrinthe];
 		for (int i = 0; i < getNombreSommets(); i++) {
 			this.listeSommets[i] = determinationCoordonnees(i);
-		
-//			initialiser listeSommet pour éviter l'erreur
-//			à la méthode sommetDeMemeMarque.
 		}
+		
 		this.valeurMarqueCourante = 0;
+		this.creationDuGraphe();
 		
 	}
 	
@@ -168,7 +167,7 @@ public class Graphe {
 	 * @param sommet2
 	 * @return si les 2 sommets ont des marques différentes.
 	 */
-	public static boolean marqueDifferente(Sommet sommet1, Sommet sommet2) {
+	public boolean marqueDifferente(Sommet sommet1, Sommet sommet2) {
 	    return sommet1.getMarque() != sommet2.getMarque();
 	}
 	
@@ -246,7 +245,7 @@ public class Graphe {
 			sommetAdjacent;
 		
 		sommet = new Random().nextInt(this.getNombreSommets());//x = Math.random() * this.getNombreSommets();
-		System.out.println("sommet random tiré : " + sommet);
+//		System.out.println("sommet random tiré : " + sommet);
 			
 		Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(this.getListeSommets()[sommet]);
 		sommetAdjacent = new Random().nextInt(listeDesSommetsAdjacents.length);
@@ -301,18 +300,20 @@ public class Graphe {
 	}
 	
 	public void creationDuGraphe() {
-		int nombreDeLiaison = 0;
+		int nombreDeLiaison = 1;
 		
 		while (nombreDeLiaison < getNombreSommets()) {
+			System.out.println("Nombre de laison : " + nombreDeLiaison);
 			Sommet[] sommetsChoisi = new Sommet[2];
 			
 			sommetsChoisi = this.sommetsAleatoires();
-			if (marqueDifferente(sommetsChoisi[0], sommetsChoisi[1])) {
+//			if (marqueDifferente(sommetsChoisi[0], sommetsChoisi[1])) {
 				
 				definitUneMarque(sommetsChoisi[0], sommetsChoisi[1]);
 				sommetsChoisi[0].creerLiaison(sommetsChoisi[1]);
+				nombreDeLiaison++;
 				
-			}
+//			}
 		}
 	}
 }

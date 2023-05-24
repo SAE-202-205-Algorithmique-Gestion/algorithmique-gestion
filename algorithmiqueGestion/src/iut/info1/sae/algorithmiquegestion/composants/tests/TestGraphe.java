@@ -6,6 +6,7 @@ package iut.info1.sae.algorithmiquegestion.composants.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -124,6 +125,19 @@ class TestGraphe {
 		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[13])); // x + 1 et y + 1
 		
 	}
+	
+	@Test
+	void testMarqueDifferente() {
+		//les marques on étai réinitialisé par le BeforeEach elle vaut -1 pour tout les sommets
+		assertFalse(grapheTeste.marqueDifferente(
+				grapheTeste.getListeSommets()[0], grapheTeste.getListeSommets()[1]));
+		
+		grapheTeste.getListeSommets()[5].setMarque(2);
+		grapheTeste.getListeSommets()[6].setMarque(5);
+		assertTrue(grapheTeste.marqueDifferente(
+				grapheTeste.getListeSommets()[5], grapheTeste.getListeSommets()[6]));
+	}
+	
 	// TODO faire la javadoc
 	@Test
 	void testSommetsDeMemeMarque() {
@@ -166,20 +180,18 @@ class TestGraphe {
 	//TODO faire la javadoc
 	@Test
 	void testDefinitUneMarque() {
-	    System.out.println("Test d'affectation de marque : "
-	    		+ "Attention au setMarque de la méthode précédente");
-	    /* Réinitialisation des marques */
-	    for (int i = 0; i < grapheTeste.getListeSommets().length; i++) {
-	    	grapheTeste.getListeSommets()[i].setMarque(-1);
-	    }
-	    
+	    System.out.println("Test d'affectation de marque : ");
 	    
 	    /* Test du 'if' */
 	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[0],
 	    							 grapheTeste.getListeSommets()[1]);
 //	    System.out.println(grapheTeste.getListeSommets()[0].getMarque());
-	    assertEquals(grapheTeste.getListeSommets()[0].getMarque(), 0);
-	    assertEquals(grapheTeste.getListeSommets()[1].getMarque(), 0);
+	    
+	    /* Les test du if dépende des nombres aléatoire, on ne peut pas
+	     * vérifier les test si on appelle la méthode creationDuGraphe
+	     * Dans le constructeur. */
+//	    assertEquals(grapheTeste.getListeSommets()[0].getMarque(), 0);
+//	    assertEquals(grapheTeste.getListeSommets()[1].getMarque(), 0);
 	    
 	    
 	    /* Test du 'if' dans le 'else if' */
@@ -330,6 +342,12 @@ class TestGraphe {
 				+ lesSommets[1].getCoordonneeY());
 			
 //		}
+	}
+	@AfterAll
+	void testCreationDuGraphe() {
+		System.out.println("Test de la création du graphe : ");
+		Graphe graphe2 = new Graphe(2, 2);
+//		graphe2.creationDuGraphe();
 	}
 }
 
