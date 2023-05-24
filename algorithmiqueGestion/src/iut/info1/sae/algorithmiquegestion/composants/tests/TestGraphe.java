@@ -348,6 +348,17 @@ class TestGraphe {
 		System.out.println("Test de la création du graphe : ");
 		Graphe graphe2 = new Graphe(2, 2);
 //		graphe2.creationDuGraphe();
+		graphe2.getListeSommets()[0].creerLiaison(graphe2.getListeSommets()[1]);
+		graphe2.getListeSommets()[1].creerLiaison(graphe2.getListeSommets()[3]);
+		graphe2.getListeSommets()[3].creerLiaison(graphe2.getListeSommets()[2]);
+		
+		for (int indexSommet = 0; indexSommet < graphe2.getNombreSommets(); indexSommet++) {
+			System.out.println("Sommet : " + graphe2.getListeSommets()[indexSommet]);
+			for (int i = 0; i < graphe2.getListeSommets()[indexSommet].getLiaisons().length; i++) {
+				System.out.println("Sommet liai : " + graphe2.getListeSommets()[indexSommet].getLiaisons()[i]);
+			}
+			
+		}
 	}
 }
 

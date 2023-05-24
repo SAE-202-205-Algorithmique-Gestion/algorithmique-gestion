@@ -23,6 +23,18 @@ public class AffichageLiaison {
 		for (ligne = 0; ligne < testTom.getNombreLignesLabyrinthe(); ligne++) {
 			for (colonne = 0; colonne < testTom.getNombreColonnesLabyrinthe(); colonne++) {
 			
+//				for (int i = 0; i < testTom.getNombreSommets(); i++) {
+//					for (int index = 0; index < testTom.getListeSommets()[i].getLiaisons().length; index++) {
+//						
+//					}
+//				}
+//				
+//				testTom.getListeSommets()[4].getCoordonneeX();
+//				testTom.getListeSommets()[4].getCoordonneeY();
+//				testTom.getListeSommets()[0].liaisonExiste(testTom.getListeSommets()[1]);
+//				
+				
+				
 				System.out.print(colonne + "," + ligne);
 				
 				if (testTom.sommetExiste(new Sommet(colonne + 1, ligne)) 

@@ -73,7 +73,7 @@ public class Graphe {
 		}
 		
 		this.valeurMarqueCourante = 0;
-		this.creationDuGraphe();
+//		this.creationDuGraphe();
 		
 	}
 	
@@ -315,5 +315,6 @@ public class Graphe {
 				
 //			}
 		}
+		
 	}
 }

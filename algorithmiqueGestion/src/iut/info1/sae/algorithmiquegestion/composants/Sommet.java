@@ -168,5 +168,10 @@ public class Sommet /*implements Comparable*/ {
 //    public int hashCode() {
 //        return Objects.hash(coordonneeX, coordonneeY);
 //    }
+    
+    @Override
+    public String toString() {
+        return "(" + this.getCoordonneeX() + " ; " + this.getCoordonneeY() + ")";
+    }
 	
 }
