@@ -16,7 +16,8 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import iut.info1.sae.algorithmiquegestion.composants.*;
 
 /**
- * TODO : javadoc
+ * Classe de tests JUnit des méthodes de la classe Graphe.
+ * 
  * @author Jonathan GUIL
  * @author Loïc FAUGIERES
  * @author Simon GUIRAUD

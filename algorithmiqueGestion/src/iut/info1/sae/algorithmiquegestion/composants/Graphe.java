@@ -7,7 +7,7 @@ package iut.info1.sae.algorithmiquegestion.composants;
 import java.util.Random;
 
 /**
- * Classe de modélisation du graphe du labyrinthe.
+ * Classe de modélisation du graphe d'un labyrinthe.
  * En lien direct avec la classe Sommet.
  * 
  * @author Jonathan GUIL
@@ -22,18 +22,18 @@ public class Graphe {
 	private Sommet[] listeSommets;
 		
 	/**
-	 * Longueur du labyrinthe
+	 * Longueur (horizontale) du labyrinthe.
 	 * <p>
 	 * Cette donnée est choisie par l'utilisateur
-	 * au lancement du jeu de labyrinthe</p>
+	 * au lancement du jeu de labyrinthe.</p>
 	 */
 	private int nombreColonnesLabyrinthe;
 	
 	/**
-     * Hauteur du labyrinthe.
+     * Largeur (verticale) du labyrinthe.
      * <p>
      * Cette donnée est choisie par l'utilisateur
-     * au lancement du jeu de labyrinthe</p>
+     * au lancement du jeu de labyrinthe.</p>
      */
 	private int nombreLignesLabyrinthe;
 	
@@ -259,7 +259,7 @@ public class Graphe {
 	 * @param sommet du graphe
 	 * @return la liste des sommet adjacents mis en paramÃ¨tre
 	 */
-	public Sommet[] tousLesSommetsAdjacentsDuSommet(Sommet sommet) { //TODO mÃ©thode a amÃ©liorer
+	public Sommet[] tousLesSommetsAdjacentsDuSommet(Sommet sommet) { //TODO méthode à améliorer
 		int tailleTableau = 0;
 
 		Sommet adjacent1 = new Sommet(sommet.getCoordonneeX(), sommet.getCoordonneeY() + 1);

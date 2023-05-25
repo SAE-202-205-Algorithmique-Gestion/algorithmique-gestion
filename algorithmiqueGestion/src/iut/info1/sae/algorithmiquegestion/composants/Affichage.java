@@ -5,7 +5,7 @@ import iut.info1.sae.algorithmiquegestion.composants.Graphe;
 // TODO el ravadocumentacion
 public class Affichage {
 	
-	public final static String LIAISON_HORIZONTALE = "----";
+	public final static String LIAISON_HORIZONTALE = "+--+";
 	
 	public final static String VIDE_HORIZONTAL = "\t";
 	
@@ -22,6 +22,12 @@ public class Affichage {
 		Graphe testTom = new Graphe(5, 5);
 		
 		for (ligne = 0; ligne < testTom.getNombreLignesLabyrinthe(); ligne++) {
+			for (colonne = 0; colonne < testTom.getNombreColonnesLabyrinthe(); colonne++) {
+				    
+				}
+		}
+		
+	/*	for (ligne = 0; ligne < testTom.getNombreLignesLabyrinthe(); ligne++) {
 			for (colonne = 0; colonne < testTom.getNombreColonnesLabyrinthe(); colonne++) {
 			
 				System.out.print(colonne + "," + ligne);
@@ -54,8 +60,8 @@ public class Affichage {
 				}
 			}
 			
-			System.out.println();
+			System.out.println();*/
 
 		}
 	}
-}
+//}
