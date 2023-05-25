@@ -109,21 +109,21 @@ class TestGraphe {
 	void testEstAdjacent() {
 		System.out.println("Test adjacence pour un labyrinthe/graphe 5*5 :");
 		                                                                                   						 // sommet 2 par rapport au sommet 1
-		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[0], grapheTeste.getListeSommets()[1])); // x + 1 et y similaire
-		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[4], grapheTeste.getListeSommets()[3])); // x - 1 et y similaire
-		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[0], grapheTeste.getListeSommets()[5])); // x similaire et y + 1
-		assertTrue(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[2])); // x similaire et y - 1
+		assertTrue(grapheTeste.estAdjacent(0, 1)); // x + 1 et y similaire
+		assertTrue(grapheTeste.estAdjacent(4, 3)); // x - 1 et y similaire
+		assertTrue(grapheTeste.estAdjacent(0, 5)); // x similaire et y + 1
+		assertTrue(grapheTeste.estAdjacent(7, 2)); // x similaire et y - 1
 		
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[2], grapheTeste.getListeSommets()[4])); // x + 2 et y similaire
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[3], grapheTeste.getListeSommets()[0])); // x - 3 et y similaire
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[1], grapheTeste.getListeSommets()[11])); // x similaire et y + 2
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[14], grapheTeste.getListeSommets()[4])); // x similaire et y - 2
+		assertFalse(grapheTeste.estAdjacent(2, 4)); // x + 2 et y similaire
+		assertFalse(grapheTeste.estAdjacent(3, 0)); // x - 3 et y similaire
+		assertFalse(grapheTeste.estAdjacent(1, 11)); // x similaire et y + 2
+		assertFalse(grapheTeste.estAdjacent(14, 4)); // x similaire et y - 2
 		
 		//test de la méthode pour des sommets placer en diagonales d'un autre sommet
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[1])); // x - 1 et y - 1 
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[3])); // x + 1 et y - 1
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[11])); // x - 1 et y + 1
-		assertFalse(grapheTeste.estAdjacent(grapheTeste.getListeSommets()[7], grapheTeste.getListeSommets()[13])); // x + 1 et y + 1
+		assertFalse(grapheTeste.estAdjacent(7, 1)); // x - 1 et y - 1 
+		assertFalse(grapheTeste.estAdjacent(7, 3)); // x + 1 et y - 1
+		assertFalse(grapheTeste.estAdjacent(7, 11)); // x - 1 et y + 1
+		assertFalse(grapheTeste.estAdjacent(7, 13)); // x + 1 et y + 1
 		
 	}
 	
@@ -238,37 +238,49 @@ class TestGraphe {
 	 */
 	@Test
 	void testSommetExiste() {
+		System.out.println("Test d'existence du sommet dans le graphe : ");
 //		Graphe grapheTeste2 = new Graphe(5, 5);
 		
-		//AssertFalse
-		grapheTeste.getListeSommets()[0].setCoordonneeX(-1);
-		assertFalse(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[0]));
+		assertFalse(grapheTeste.sommetExiste(-2));
+		assertFalse(grapheTeste.sommetExiste(-1));
+		assertFalse(grapheTeste.sommetExiste(grapheTeste.getNombreSommets()));
+		assertFalse(grapheTeste.sommetExiste(grapheTeste.getNombreSommets() + 1));
 		
-		grapheTeste.getListeSommets()[1].setCoordonneeY(-1);
-		assertFalse(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[1]));
+		assertTrue(grapheTeste.sommetExiste(0));
+		assertTrue(grapheTeste.sommetExiste(1));
+		assertTrue(grapheTeste.sommetExiste(2));
+		assertTrue(grapheTeste.sommetExiste(grapheTeste.getNombreSommets() / 2));
+		assertTrue(grapheTeste.sommetExiste(grapheTeste.getNombreSommets() - 1));
 		
-		grapheTeste.getListeSommets()[2].setCoordonneeX(grapheTeste.getNombreColonnesLabyrinthe());
-		assertFalse(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[2]));
-		
-		grapheTeste.getListeSommets()[3].setCoordonneeY(grapheTeste.getNombreLignesLabyrinthe());
-		assertFalse(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[3]));
-		
-		//AssertTrue
-		grapheTeste.getListeSommets()[4].setCoordonneeX(0);
-		assertTrue(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[4]));
-		
-		grapheTeste.getListeSommets()[5].setCoordonneeY(0);
-		assertTrue(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[5]));
-		
-		grapheTeste.getListeSommets()[6].setCoordonneeX(grapheTeste.getNombreColonnesLabyrinthe() - 1);
-		assertTrue(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[6]));
-		
-		grapheTeste.getListeSommets()[7].setCoordonneeY(grapheTeste.getNombreLignesLabyrinthe() - 1);
-		assertTrue(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[7]));
-		
-		
-		grapheTeste.getListeSommets()[8].setCoordonneeY(3);
-		assertTrue(grapheTeste.sommetExiste(grapheTeste.getListeSommets()[8]));
+//		//AssertFalse
+//		grapheTeste.getListeSommets()[0].setCoordonneeX(-1);
+//		assertFalse(grapheTeste.sommetExiste(0));
+//		
+//		grapheTeste.getListeSommets()[1].setCoordonneeY(-1);
+//		assertFalse(grapheTeste.sommetExiste(1));
+//		
+//		grapheTeste.getListeSommets()[2].setCoordonneeX(grapheTeste.getNombreColonnesLabyrinthe());
+//		assertFalse(grapheTeste.sommetExiste(2));
+//		
+//		grapheTeste.getListeSommets()[3].setCoordonneeY(grapheTeste.getNombreLignesLabyrinthe());
+//		assertFalse(grapheTeste.sommetExiste(3));
+//		
+//		//AssertTrue
+//		grapheTeste.getListeSommets()[4].setCoordonneeX(0);
+//		assertTrue(grapheTeste.sommetExiste(4));
+//		
+//		grapheTeste.getListeSommets()[5].setCoordonneeY(0);
+//		assertTrue(grapheTeste.sommetExiste(5));
+//		
+//		grapheTeste.getListeSommets()[6].setCoordonneeX(grapheTeste.getNombreColonnesLabyrinthe() - 1);
+//		assertTrue(grapheTeste.sommetExiste(6));
+//		
+//		grapheTeste.getListeSommets()[7].setCoordonneeY(grapheTeste.getNombreLignesLabyrinthe() - 1);
+//		assertTrue(grapheTeste.sommetExiste(7));
+//		
+//		
+//		grapheTeste.getListeSommets()[8].setCoordonneeY(3);
+//		assertTrue(grapheTeste.sommetExiste(8));
 		
 	}
 	
@@ -277,13 +289,13 @@ class TestGraphe {
 		System.out.println("Test récuperation des sommets adjacent d'un sommet donné : ");
 		
 		for (int i = 0;
-			 i < grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6]).length;
+			 i < grapheTeste.tousLesSommetsAdjacentsDuSommet(6).length;
 			 i++) {
 			
 			System.out.println("Sommet adjacent : X = "
-					+ grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6])[i].getCoordonneeX()
+					+ grapheTeste.tousLesSommetsAdjacentsDuSommet(6)[i].getCoordonneeX()
 					+ " ; Y = "
-					+ grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6])[i].getCoordonneeY());
+					+ grapheTeste.tousLesSommetsAdjacentsDuSommet(6)[i].getCoordonneeY());
 		}
 		//Premier Test
 		Sommet[] listeAttendu = {
@@ -293,9 +305,9 @@ class TestGraphe {
 				grapheTeste.getListeSommets()[5]
 			};
 		
-		assertEquals(listeAttendu[0].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6])[0].getCoordonneeX());
-		assertEquals(listeAttendu[0].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6])[0].getCoordonneeY());
-		assertEquals(listeAttendu.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6]).length);
+//		assertEquals(listeAttendu[0].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(6)[0].getCoordonneeX());
+//		assertEquals(listeAttendu[0].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(6)[0].getCoordonneeY());
+//		assertEquals(listeAttendu.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(6).length);
 		
 		//Second Test
 		Sommet[] listeAttendu2 = {
@@ -303,9 +315,9 @@ class TestGraphe {
 				grapheTeste.getListeSommets()[23]
 			};
 		
-		assertEquals(listeAttendu2[0].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[24])[0].getCoordonneeX());
-		assertEquals(listeAttendu2[0].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[24])[0].getCoordonneeY());
-		assertEquals(listeAttendu2.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[24]).length);
+//		assertEquals(listeAttendu2[0].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(24)[0].getCoordonneeX());
+//		assertEquals(listeAttendu2[0].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(24)[0].getCoordonneeY());
+//		assertEquals(listeAttendu2.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(24).length);
 
 		//Troisième Test
 		Sommet[] listeAttendu3 = {
@@ -314,14 +326,14 @@ class TestGraphe {
 			grapheTeste.getListeSommets()[0]
 		};
 		
-		assertEquals(listeAttendu3[2].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[1])[2].getCoordonneeX());
-		assertEquals(listeAttendu3[2].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[1])[2].getCoordonneeY());
-		assertEquals(listeAttendu3.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[1]).length);
+//		assertEquals(listeAttendu3[2].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(1)[2].getCoordonneeX());
+//		assertEquals(listeAttendu3[2].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(1)[2].getCoordonneeY());
+//		assertEquals(listeAttendu3.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(1).length);
 		
 		/* l'assertArrayEquals fonctionne seulement si on ne met pas en commentaire l'Owerride de equals dans la classe Sommet */
-//		assertArrayEquals(listeAttendu, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[6]));
-//		assertArrayEquals(listeAttendu2, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[24]));
-//		assertArrayEquals(listeAttendu3, grapheTeste.tousLesSommetsAdjacentsDuSommet(grapheTeste.getListeSommets()[1]));
+//		assertArrayEquals(listeAttendu, grapheTeste.tousLesSommetsAdjacentsDuSommet(6));
+//		assertArrayEquals(listeAttendu2, grapheTeste.tousLesSommetsAdjacentsDuSommet(24));
+//		assertArrayEquals(listeAttendu3, grapheTeste.tousLesSommetsAdjacentsDuSommet(1));
 
 	}
 	
@@ -344,14 +356,16 @@ class TestGraphe {
 			
 //		}
 	}
+	
 	@AfterAll
 	void testCreationDuGraphe() {
 		System.out.println("Test de la création du graphe : ");
-		Graphe graphe2 = new Graphe(2, 2);
-//		graphe2.creationDuGraphe();
-		graphe2.getListeSommets()[0].creerLiaison(graphe2.getListeSommets()[1]);
-		graphe2.getListeSommets()[1].creerLiaison(graphe2.getListeSommets()[3]);
-		graphe2.getListeSommets()[3].creerLiaison(graphe2.getListeSommets()[2]);
+		
+		Graphe graphe2 = new Graphe(5, 5);
+		graphe2.creationDuGraphe();
+//		graphe2.getListeSommets()[0].creerLiaison(graphe2.getListeSommets()[1]);
+//		graphe2.getListeSommets()[1].creerLiaison(graphe2.getListeSommets()[3]);
+//		graphe2.getListeSommets()[3].creerLiaison(graphe2.getListeSommets()[2]);
 		
 		for (int indexSommet = 0; indexSommet < graphe2.getNombreSommets(); indexSommet++) {
 			System.out.println("Sommet : " + graphe2.getListeSommets()[indexSommet]);

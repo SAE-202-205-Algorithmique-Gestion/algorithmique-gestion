@@ -129,8 +129,8 @@ public class Graphe {
 		}
 		
 		
-		Sommet sommetCree = new Sommet(coordonneeX, coordonneeY);
-		System.out.printf("X = %d ; Y = %d\n", coordonneeX, coordonneeY);
+		Sommet sommetCree = new Sommet(coordonneeX, coordonneeY/*, indiceCourantListeSommet*/);
+//		System.out.printf("X = %d ; Y = %d\n", coordonneeX, coordonneeY);
 		
 		return sommetCree;
 		
@@ -144,26 +144,26 @@ public class Graphe {
 	 * @param sommet2 Instance du second sommet
 	 * @return Si les deux sommets sont adjacents
 	 */
-	public boolean estAdjacent(Sommet sommet1, Sommet sommet2) {
+	public boolean estAdjacent(int sommet1, int sommet2) {
 		if (!this.sommetExiste(sommet1)
 			|| !this.sommetExiste(sommet2)) {
 			
 			return false;
 		}
 		
-		return (sommet1.getCoordonneeX() == sommet2.getCoordonneeX()
-				&& (sommet1.getCoordonneeY() == sommet2.getCoordonneeY() + 1
-					|| sommet1.getCoordonneeY() == sommet2.getCoordonneeY() - 1))
+		return (this.getListeSommets()[sommet1].getCoordonneeX() == this.getListeSommets()[sommet2].getCoordonneeX()
+				&& (this.getListeSommets()[sommet1].getCoordonneeY() == this.getListeSommets()[sommet2].getCoordonneeY() + 1
+					|| this.getListeSommets()[sommet1].getCoordonneeY() == this.getListeSommets()[sommet2].getCoordonneeY() - 1))
 					
-			|| (sommet1.getCoordonneeY() == sommet2.getCoordonneeY()
-				&& (sommet1.getCoordonneeX() == sommet2.getCoordonneeX() + 1
-					|| sommet1.getCoordonneeX() == sommet2.getCoordonneeX() - 1));
+			|| (this.getListeSommets()[sommet1].getCoordonneeY() == this.getListeSommets()[sommet2].getCoordonneeY()
+				&& (this.getListeSommets()[sommet1].getCoordonneeX() == this.getListeSommets()[sommet2].getCoordonneeX() + 1
+					|| this.getListeSommets()[sommet1].getCoordonneeX() == this.getListeSommets()[sommet2].getCoordonneeX() - 1));
 	}
 	
 	
 	/** 
 	 * @param sommet1
-	 * @param sommet2
+	 * @param this.getListeSommet()[sommet2]
 	 * @return si les 2 sommets ont des marques diffÃ©rentes.
 	 */
 	public boolean marqueDifferente(Sommet sommet1, Sommet sommet2) {
@@ -175,25 +175,49 @@ public class Graphe {
 	 * @param sommet1
 	 * @param sommet2
 	 */
-	public void definitUneMarque(Sommet sommet1, Sommet sommet2) {
+public boolean definitUneMarque(Sommet sommet1, Sommet sommet2) {
 		
 //	    if (estAdjacent(sommet1, sommet2)) { //plus besoin
 	    	
 	    	/* Dans le cas ou les marques des 2 sommets en question
 	    	 * ne sont pas initialisÃ©es. */
 	    	if (sommet1.getMarque() < 0 && sommet2.getMarque() < 0) {
+	    		System.out.println("Marque sommet1 : " + sommet1.getMarque());
+    			System.out.println("Marque sommet2 : " + sommet2.getMarque());
 	    		sommet1.setMarque(valeurMarqueCourante);
 	    		sommet2.setMarque(valeurMarqueCourante);
 	    		valeurMarqueCourante++;
+	    		System.out.println("Marque sommet 1 boucleA : "
+	    				+ sommet1.getMarque()
+	    				+ " Marque sommet 2 : "
+	    				+ sommet2.getMarque());
+	    		System.out.println("true");
+	    		return true;
 	    	}
 	    	
 	    	else if (marqueDifferente(sommet1, sommet2)){
 	    		if (sommet1.getMarque() < 0) {
+	    			System.out.println("Marque sommet1 : " + sommet1.getMarque());
+	    			System.out.println("Marque sommet2 : " + sommet2.getMarque());
 	    			sommet1.setMarque(sommet2.getMarque());
+	    			System.out.println("Marque sommet 1 boucleB : "
+		    				+ sommet1.getMarque()
+		    				+ " Marque sommet 2 : "
+		    				+ sommet2.getMarque());
+	    			System.out.println("true");
+	    			return true;
 	    		} else if (sommet2.getMarque() < 0) {
+	    			System.out.println("Marque sommet1 : " + sommet1.getMarque());
+	    			System.out.println("Marque sommet2 : " + sommet2.getMarque());
 	    			sommet2.setMarque(sommet1.getMarque());
+	    			System.out.println("Marque sommet 1 boucleC : "
+		    				+ sommet1.getMarque()
+		    				+ " Marque sommet 2 : "
+		    				+ sommet2.getMarque());
+	    			System.out.println("true");
+	    			return true;
 	    			
-	    			/* Si les deux sommets ont dÃ©jÃ  des marques (autre que -1), 
+	    			/* Si les deux sommets ont dÃ©jÃ  des marques (autre que -1), 
 	    			 * les sommets de mÃªme chaÃ®ne que sommet2 prend la marque du sommet1 
 	    			 */	
 	    		} else {
@@ -201,8 +225,12 @@ public class Graphe {
 	    			for (int i = 0; i < sommetMarqueSommet2.length; i++) {
 	    				sommetMarqueSommet2[i].setMarque(sommet1.getMarque());
 	    			}
+	    			System.out.println("true");
+	    			return true;
 	    		}
 	    	}
+	    	System.out.println("false");
+	    	return false;
 //	    }
 	}
 	
@@ -245,12 +273,16 @@ public class Graphe {
 			sommetAdjacent;
 		
 		sommet = new Random().nextInt(this.getNombreSommets());//x = Math.random() * this.getNombreSommets();
-//		System.out.println("sommet random tirÃ© : " + sommet);
+		System.out.println("sommet random tirÃ© : " + sommet);
 			
-		Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(this.getListeSommets()[sommet]);
+		Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(sommet);
 		sommetAdjacent = new Random().nextInt(listeDesSommetsAdjacents.length);
 		
 		Sommet[] sommetsAleatiores = {this.getListeSommets()[sommet], listeDesSommetsAdjacents[sommetAdjacent]};
+		System.out.println("*Sommet aléatoire choisi "
+				+ sommetsAleatiores[0]
+				+ "\n*et l'un de ses adjacent "
+				+ sommetsAleatiores[1]);
 		return sommetsAleatiores;
 	}
 
@@ -259,20 +291,24 @@ public class Graphe {
 	 * @param sommet du graphe
 	 * @return la liste des sommet adjacents mis en paramÃ¨tre
 	 */
-	public Sommet[] tousLesSommetsAdjacentsDuSommet(Sommet sommet) { //TODO méthode à améliorer
+	public Sommet[] tousLesSommetsAdjacentsDuSommet(int sommet) { //TODO méthode à améliorer
 		int tailleTableau = 0;
 
-		Sommet adjacent1 = new Sommet(sommet.getCoordonneeX(), sommet.getCoordonneeY() + 1);
-		Sommet adjacent2 = new Sommet(sommet.getCoordonneeX(), sommet.getCoordonneeY() - 1);
-		Sommet adjacent3 = new Sommet(sommet.getCoordonneeX() + 1, sommet.getCoordonneeY());
-		Sommet adjacent4 = new Sommet(sommet.getCoordonneeX() - 1, sommet.getCoordonneeY());
-		
-		Sommet[] listeSommetAdjacentPossible = {adjacent1, adjacent2, adjacent3, adjacent4};
+		int[] listeSommetAdjacentPossible = {
+						sommet + this.getNombreColonnesLabyrinthe(),
+						sommet - this.getNombreColonnesLabyrinthe(),
+						sommet + 1, 
+						sommet - 1 
+					};	
+						// Attention dans le cas où par exemple 4 est à la fin									
+						// d'une  ligne , 5 ne doit pas être un sommet adjacent.
+						// Normalement y'a pas de problème avec la méthode estAdjacent
 		
 		for (int i = 0; i < listeSommetAdjacentPossible.length; i++) {
 			if (estAdjacent(sommet, listeSommetAdjacentPossible[i])) {
 				tailleTableau++;
 			}
+			
 		}
 		
 		Sommet listeSommetAdjacent[] = new Sommet[tailleTableau];
@@ -280,23 +316,27 @@ public class Graphe {
 		
 		for (int i = 0; i < listeSommetAdjacentPossible.length; i++) {
 			if (estAdjacent(sommet, listeSommetAdjacentPossible[i])) {
-				listeSommetAdjacent[position] = listeSommetAdjacentPossible[i];
+				listeSommetAdjacent[position] = getListeSommets()[listeSommetAdjacentPossible[i]];
 				position++;
 			}
 		}
 		
 		return listeSommetAdjacent;
+		
 	}
 	
 	/**
 	 * Permet de vérifier l'existance d'un sommet dans le graphe
-	 * A partir de ses coordonnées.
+	 * a partir de ses coordonnées.
 	 * @param sommet
 	 * @return si le sommet fais bien parti du graphe ou pas
 	 */
-	public boolean sommetExiste(Sommet sommet) {
-		return sommet.getCoordonneeX() >= 0 && sommet.getCoordonneeX() < this.getNombreColonnesLabyrinthe()
-			&& sommet.getCoordonneeY() >= 0 && sommet.getCoordonneeY() < this.getNombreLignesLabyrinthe();
+	public boolean sommetExiste(int sommet) {
+		return sommet >= 0 && sommet < this.getNombreSommets();
+//			&& getListeSommets()[sommet].getCoordonneeX() >= 0
+//			&& getListeSommets()[sommet].getCoordonneeX() < this.getNombreColonnesLabyrinthe()
+//			&& getListeSommets()[sommet].getCoordonneeY() >= 0
+//			&& getListeSommets()[sommet].getCoordonneeY() < this.getNombreLignesLabyrinthe();
 	}
 	
 	/**
@@ -312,9 +352,11 @@ public class Graphe {
 			sommetsChoisi = this.sommetsAleatoires();
 //			if (marqueDifferente(sommetsChoisi[0], sommetsChoisi[1])) {
 				
-				definitUneMarque(sommetsChoisi[0], sommetsChoisi[1]);
+			if (definitUneMarque(sommetsChoisi[0], sommetsChoisi[1])) {
+				
 				sommetsChoisi[0].creerLiaison(sommetsChoisi[1]);
 				nombreDeLiaison++;
+			}
 				
 //			}
 		}

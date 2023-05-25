@@ -4,6 +4,8 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
+import java.util.Objects;
+
 //import java.util.Objects;
 
 /**
@@ -33,6 +35,9 @@ public class Sommet {
 	/** Valeur Y (verticale) des coordonnées du sommet dans le graphe. */
 	private int coordonneeY;
 	
+	/** indice de la liste de sommet dans la classe Graphe */
+//	private int indiceSommet;
+	
 	/**
 	 * Permet d'identifier la chaîne auquel le sommet appartient.
 	 * Par défaut, la marque est initialisée à -1.
@@ -45,12 +50,12 @@ public class Sommet {
 	 * @param coordonneeX Entier de la coordonnée X du sommet créé.
 	 * @param coordonneeY Entier de la coordonnée Y du sommet créé.
 	 */
-	public Sommet(int coordonneeX, int coordonneeY) {
+	public Sommet(int coordonneeX, int coordonneeY/*, int indiceSommet*/) {
 		super();
 		
 		this.indiceLiaison = 0;
 		this.liaisons = new Sommet[4];
-		
+//		this.indiceSommet = indiceSommet;
 		this.coordonneeX = coordonneeX;
 		this.coordonneeY = coordonneeY;
 		
@@ -66,7 +71,7 @@ public class Sommet {
 	public Sommet[] getLiaisons() {
 		return this.liaisons;
 	}
-
+	
 	/**
 	 * Accesseur de l'attribut coordonneeX, contenant la
 	 * coordonnée horizontale du sommet instancié.
@@ -98,6 +103,15 @@ public class Sommet {
     }
     
     /**
+     * Acesseur de l'attribut indiceSommet.
+     * 
+     * @return Entier correspondant à l'indice du sommet.
+     */
+//    public int getIndiceSommet() {
+//		return indiceSommet;
+//	}
+    
+    /**
      * Modifieur de l'attribut coordonneeX du sommet instancié.
      * 
      * @param coordonneeX Nouvelle coordonnée horizontale du sommet instancié.
@@ -123,8 +137,8 @@ public class Sommet {
     public void setMarque(int marque) {
         this.marque = marque;
     }
-    
-    /**
+
+	/**
 	 * Création d'une liaison entre le sommet instancié et celui en paramètre.
 	 * Cette liaison est ajoutée à l'attribut liaisons.
 	 * 
@@ -183,22 +197,22 @@ public class Sommet {
         return "(" + this.getCoordonneeX() + " ; " + this.getCoordonneeY() + ")";
     }
     
-//    /* C'est pour que la méthode assertArrayEquals de Junit
-//     * compare les valeurs des tableau et non leur référence */
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj)
-//            return true;
-//        if (obj == null || getClass() != obj.getClass())
-//            return false;
-//        Sommet other = (Sommet) obj;
-//        // Comparez les valeurs des propriétés des objets Sommet
-//        return this.coordonneeX == other.coordonneeX && this.coordonneeY == other.coordonneeY;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(coordonneeX, coordonneeY);
-//    }
+    /* C'est pour que la méthode assertArrayEquals de Junit
+     * compare les valeurs des tableau et non leur référence */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Sommet other = (Sommet) obj;
+        // Comparez les valeurs des propriétés des objets Sommet
+        return this.coordonneeX == other.coordonneeX && this.coordonneeY == other.coordonneeY;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(coordonneeX, coordonneeY);
+    }
 	
 }
