@@ -37,13 +37,13 @@ public class Graphe {
      */
 	private int nombreLignesLabyrinthe;
 	
-	/** Liste des marques des sommets déjà existantes */
+	/** Liste des marques des sommets déja  existantes */
 	private int[] marquesExistante;
 	
 	/**
 	 * Valeur maximale des valeurs des marques
 	 * <p>
-	 * Permet d'affecter une marque non existante à un sommet</p>
+	 * Permet d'affecter une marque non existante Ã  un sommet</p>
 	 */
     private int valeurMarqueCourante;
 	
@@ -51,17 +51,18 @@ public class Graphe {
 	 * Constructeur de la classe Graphe.
 	 * Initialisation des attributs de la classe.
 	 * 
-	 * @param listeSommets // TODO : javadoc
+	 * @param nombreColonnesLabyrinthe un entier du nombre de Colonnes du Labyrinthe
+	 * @param nombreLignesLabyrinthe un entier du nombre de Lignes du Labyrinthe
 	 */
 	public Graphe(int nombreColonnesLabyrinthe, int nombreLignesLabyrinthe) {
 		super();
 
-//		this.indiceCourantListeSommet = 0;
+        //		this.indiceCourantListeSommet = 0;
 		
 		// TODO: remplacer par JSON
 		this.nombreColonnesLabyrinthe = nombreColonnesLabyrinthe;
 		this.nombreLignesLabyrinthe = nombreLignesLabyrinthe;
-		this.marquesExistante = new int[this.nombreColonnesLabyrinthe   // car le nombre de marques
+		this.marquesExistante = new int[this.nombreColonnesLabyrinthe   // Car le nombre de marques
 		                                * this.nombreLignesLabyrinthe]; // possible est < aux 
 		                                                                // nombre de sommet. 
 		                                                                // Histoire d'être sur d'avoir
@@ -79,9 +80,7 @@ public class Graphe {
 	
 	/**
 	 * Retourne le nombre de sommets du graphe.
-	 * 
-	 * @return La longueur de la liste des sommets du 
-	 * 		   graphe
+	 * @return un entier du nombre de sommet du graphe TODO verfifier que je dise pas de la merde
 	 */
 	public int getNombreSommets() {
 		return this.listeSommets.length;
@@ -105,14 +104,14 @@ public class Graphe {
 	}
 
 	/**
-	 * Création d'un sommet rattaché au graphe de 
+	 * CrÃ©ation d'un sommet rattachÃ© au graphe de 
 	 * l'instance.
 	 * 
-	 * @return L'instance du sommet créé
+	 * @return L'instance du sommet crÃ©Ã©
 	 */
 	public Sommet determinationCoordonnees(int indiceCourantListeSommet) {
 		
-		int nombreLiaisonsMaximum, //TODO (à enlever je pense)
+		int nombreLiaisonsMaximum, //TODO (Ã  enlever je pense)
 			coordonneeX,
 			coordonneeY,
 			indiceCaseCourante;
@@ -138,8 +137,8 @@ public class Graphe {
 	}
 	
 	/**
-	 * Vérifie si deux sommets sont adjacents à l'aide de 
-	 * leurs coordonnées.
+	 * VÃ©rifie si deux sommets sont adjacents Ã  l'aide de 
+	 * leurs coordonnÃ©es.
 	 * 
 	 * @param sommet1 Instance du premier sommet
 	 * @param sommet2 Instance du second sommet
@@ -165,14 +164,14 @@ public class Graphe {
 	/** 
 	 * @param sommet1
 	 * @param sommet2
-	 * @return si les 2 sommets ont des marques différentes.
+	 * @return si les 2 sommets ont des marques diffÃ©rentes.
 	 */
 	public boolean marqueDifferente(Sommet sommet1, Sommet sommet2) {
 	    return sommet1.getMarque() != sommet2.getMarque();
 	}
 	
 	/**
-	 * Définit une marque pour le ou les sommets
+	 * DÃ©finit une marque pour le ou les sommets
 	 * @param sommet1
 	 * @param sommet2
 	 */
@@ -181,7 +180,7 @@ public class Graphe {
 //	    if (estAdjacent(sommet1, sommet2)) { //plus besoin
 	    	
 	    	/* Dans le cas ou les marques des 2 sommets en question
-	    	 * ne sont pas initialisées. */
+	    	 * ne sont pas initialisÃ©es. */
 	    	if (sommet1.getMarque() < 0 && sommet2.getMarque() < 0) {
 	    		sommet1.setMarque(valeurMarqueCourante);
 	    		sommet2.setMarque(valeurMarqueCourante);
@@ -194,8 +193,9 @@ public class Graphe {
 	    		} else if (sommet2.getMarque() < 0) {
 	    			sommet2.setMarque(sommet1.getMarque());
 	    			
-	    			/* Si les deux sommets ont déjà des marques (autre que -1), 
-	    			 * les sommets de même chaîne que sommet2 prend la marque du sommet1 */	
+	    			/* Si les deux sommets ont dÃ©jÃ  des marques (autre que -1), 
+	    			 * les sommets de mÃªme chaÃ®ne que sommet2 prend la marque du sommet1 
+	    			 */	
 	    		} else {
 	    			Sommet[] sommetMarqueSommet2 = sommetsDeMemeMarque(sommet2.getMarque());
 	    			for (int i = 0; i < sommetMarqueSommet2.length; i++) {
@@ -208,8 +208,8 @@ public class Graphe {
 	
 	/**
 	 * Renvoie la liste des sommets portant une certaine marque.
-	 * @param marque La marque que les sommets doivent posséder.
-	 * @return La liste des sommets possédant la marque
+	 * @param marque La marque que les sommets doivent possÃ©der.
+	 * @return La liste des sommets possÃ©dant la marque
 	 */
 	public Sommet[] sommetsDeMemeMarque(int marque) {
 		int tailleTableau = 0;
@@ -232,20 +232,20 @@ public class Graphe {
 	}
 	
 	/**
-	 * méthode utilisant Random pour choisir un sommet de façon
-	 * aléatoire ainsi qu'un deuxième sommet, restreint
-	 *  à ceux adjacents au premier
+	 * mÃ©thode utilisant Random pour choisir un sommet de faÃ§on
+	 * alÃ©atoire ainsi qu'un deuxiÃ¨me sommet, restreint
+	 *  Ã  ceux adjacents au premier
 	 * @return couple de sommets adjacents
 	 */
 	public Sommet[] sommetsAleatoires() {
 		/**
-		* entiers aléatoires correspondant à un indice dans la liste des sommets
+		* entiers alÃ©atoires correspondant Ã  un indice dans la liste des sommets
 		*/
 		int sommet,
 			sommetAdjacent;
 		
 		sommet = new Random().nextInt(this.getNombreSommets());//x = Math.random() * this.getNombreSommets();
-//		System.out.println("sommet random tiré : " + sommet);
+//		System.out.println("sommet random tirÃ© : " + sommet);
 			
 		Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(this.getListeSommets()[sommet]);
 		sommetAdjacent = new Random().nextInt(listeDesSommetsAdjacents.length);
@@ -255,11 +255,11 @@ public class Graphe {
 	}
 
 	/**
-	 * Permet de déterminer les sommets adjacent 
+	 * Permet de dÃ©terminer les sommets adjacent 
 	 * @param sommet du graphe
-	 * @return la liste des sommet adjacents mis en paramètre
+	 * @return la liste des sommet adjacents mis en paramÃ¨tre
 	 */
-	public Sommet[] tousLesSommetsAdjacentsDuSommet(Sommet sommet) { //TODO méthode a améliorer
+	public Sommet[] tousLesSommetsAdjacentsDuSommet(Sommet sommet) { //TODO mÃ©thode a amÃ©liorer
 		int tailleTableau = 0;
 
 		Sommet adjacent1 = new Sommet(sommet.getCoordonneeX(), sommet.getCoordonneeY() + 1);
@@ -289,8 +289,8 @@ public class Graphe {
 	}
 	
 	/**
-	 * Permet de vérifier l'existance d'un sommet dans le graphe
-	 * à partir de ses coordonnées.
+	 * Permet de vÃ©rifier l'existance d'un sommet dans le graphe
+	 * Ã  partir de ses coordonnÃ©es.
 	 * @param sommet
 	 * @return si le sommet fais bien parti du graphe ou pas
 	 */

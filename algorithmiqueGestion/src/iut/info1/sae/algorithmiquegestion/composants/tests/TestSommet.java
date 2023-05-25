@@ -86,11 +86,13 @@ class TestSommet {
             Sommet sommet2 = listeSommets[1];
             
             assertFalse(sommet1.liaisonExiste(sommet2));
+            assertFalse(sommet2.liaisonExiste(sommet1));
             
             /* Création de la liaison entre les sommets */
             sommet1.creerLiaison(sommet2);
             
             assertTrue(sommet1.liaisonExiste(sommet2));
+            assertTrue(sommet2.liaisonExiste(sommet1));
 		}
     }
 	
