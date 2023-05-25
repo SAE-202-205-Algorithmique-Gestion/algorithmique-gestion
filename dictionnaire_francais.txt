@@ -336591,3 +336591,8 @@ vérifier
 présence
 booléen
 méthode
+annonçant
+début
+mêmes
+créer
+nécessaires

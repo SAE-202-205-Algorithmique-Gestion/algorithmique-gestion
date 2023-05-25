@@ -161,6 +161,22 @@ public class Sommet {
 		return resultat;
 	}
 	
+	/**
+	 * Vérifie si le sommet en paramètre a les mêmes coordonnées
+	 * que le sommet instancié.
+	 * 
+	 * @param sommetATester Sommet dont il faut vérifier l'égalité des
+	 * 						coordonnées avec le sommet instancié.
+	 * @return Un booléen informant si les coordonnées des sommets sont les mêmes.
+	 */
+	public boolean sommetEgal(Sommet sommetATester) {
+		if (this.getCoordonneeX() == sommetATester.getCoordonneeX()
+			&& this.getCoordonneeY() == sommetATester.getCoordonneeY()) {
+			return true;
+		}
+		return false;
+	}
+	
 	/** non javadoc - @see java.util.Objects#toString() */
 	@Override
     public String toString() {

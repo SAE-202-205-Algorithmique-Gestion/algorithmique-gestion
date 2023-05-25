@@ -355,7 +355,7 @@ class TestGraphe {
 		for (int indexSommet = 0; indexSommet < graphe2.getNombreSommets(); indexSommet++) {
 			System.out.println("Sommet : " + graphe2.getListeSommets()[indexSommet]);
 			for (int i = 0; i < graphe2.getListeSommets()[indexSommet].getLiaisons().length; i++) {
-				System.out.println("Sommet liai : " + graphe2.getListeSommets()[indexSommet].getLiaisons()[i]);
+				System.out.println("Sommet lie : " + graphe2.getListeSommets()[indexSommet].getLiaisons()[i]);
 			}
 			
 		}

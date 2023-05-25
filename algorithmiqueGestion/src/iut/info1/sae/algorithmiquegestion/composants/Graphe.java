@@ -289,8 +289,8 @@ public class Graphe {
 	}
 	
 	/**
-	 * Permet de vÃ©rifier l'existance d'un sommet dans le graphe
-	 * Ã  partir de ses coordonnÃ©es.
+	 * Permet de vérifier l'existance d'un sommet dans le graphe
+	 * A partir de ses coordonnées.
 	 * @param sommet
 	 * @return si le sommet fais bien parti du graphe ou pas
 	 */
@@ -299,6 +299,9 @@ public class Graphe {
 			&& sommet.getCoordonneeY() >= 0 && sommet.getCoordonneeY() < this.getNombreLignesLabyrinthe();
 	}
 	
+	/**
+	 * Algorithme faisant les appels nécessaires pour créer les graphes
+	 */
 	public void creationDuGraphe() {
 		int nombreDeLiaison = 1;
 		
