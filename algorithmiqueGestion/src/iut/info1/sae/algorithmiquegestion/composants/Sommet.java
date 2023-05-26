@@ -4,6 +4,7 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 //import java.util.Objects;
@@ -21,7 +22,7 @@ import java.util.Objects;
 public class Sommet {
 	
 	/** Liste des sommets qui sont voisins dans le graphe au sommet instancié. */
-	private Sommet[] liaisons;
+	private ArrayList<Sommet> liaisons = new ArrayList<>();
 	
 	/**
 	 * Indice de liaison du tableau liaisons
@@ -54,7 +55,7 @@ public class Sommet {
 		super();
 		
 		this.indiceLiaison = 0;
-		this.liaisons = new Sommet[4];
+//		this.liaisons = new Sommet[4];
 //		this.indiceSommet = indiceSommet;
 		this.coordonneeX = coordonneeX;
 		this.coordonneeY = coordonneeY;
@@ -68,7 +69,7 @@ public class Sommet {
 	 * 
 	 * @return La liste des liaisons du sommet instancié.
 	 */
-	public Sommet[] getLiaisons() {
+	public ArrayList<Sommet> getLiaisons() {
 		return this.liaisons;
 	}
 	
@@ -146,7 +147,7 @@ public class Sommet {
 	 */
 	public void creerLiaison(Sommet sommetALier) {
 		if (!this.liaisonExiste(sommetALier)) {
-			this.liaisons[this.indiceLiaison] = sommetALier;
+			this.liaisons.add(sommetALier);
 		}
 		
 		if (!sommetALier.liaisonExiste(this)) {
@@ -174,6 +175,17 @@ public class Sommet {
 		}
 		return resultat;
 	}
+	
+//	public boolean liaisonExiste(Sommet sommetATester) {
+//		boolean resultat = false;
+//
+//		for (int i = 0; i < this.getLiaisons().length; i++) {
+//			if (this.getLiaisons()[i] == sommetATester)	{
+//				resultat = true;
+//			}
+//		}
+//		return resultat;
+//	}
 	
 	/**
 	 * Vérifie si le sommet en paramètre a les mêmes coordonnées

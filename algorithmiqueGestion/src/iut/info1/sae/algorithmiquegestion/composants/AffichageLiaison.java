@@ -21,8 +21,8 @@ public class AffichageLiaison {
 		Graphe testSam = new Graphe(5, 5);
 		for (int indexSommet = 0; indexSommet < testSam.getNombreSommets(); indexSommet++) {
 			System.out.println("Sommet : " + testSam.getListeSommets()[indexSommet]);
-			for (int i = 0; i < testSam.getListeSommets()[indexSommet].getLiaisons().length; i++) {
-				System.out.println("Sommet lie : " + testSam.getListeSommets()[indexSommet].getLiaisons()[i]);
+			for (int i = 0; i < testSam.getListeSommets()[indexSommet].getLiaisons().size(); i++) {
+				System.out.println("Sommet lie : " + testSam.getListeSommets()[indexSommet].getLiaisons().get(i));
 			}
 			
 		}
@@ -55,7 +55,7 @@ public class AffichageLiaison {
 			
 			if (testSam.getListeSommets()[i].getCoordonneeY() == testSam.getListeSommets()[i + 1].getCoordonneeY()) {
 				if (testSam.getListeSommets()[i].liaisonExiste(testSam.getListeSommets()[i + 1])) {
-				System.out.print(LIAISON_HORIZONTALE);
+					System.out.print(LIAISON_HORIZONTALE);
 				} else {
 					System.out.print("    ");
 				}

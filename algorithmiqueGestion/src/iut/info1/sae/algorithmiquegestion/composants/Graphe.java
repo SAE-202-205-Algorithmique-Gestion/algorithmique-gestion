@@ -4,6 +4,7 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -182,54 +183,60 @@ public boolean definitUneMarque(Sommet sommet1, Sommet sommet2) {
 	    	/* Dans le cas ou les marques des 2 sommets en question
 	    	 * ne sont pas initialisÃ©es. */
 	    	if (sommet1.getMarque() < 0 && sommet2.getMarque() < 0) {
-	    		System.out.println("Marque sommet1 : " + sommet1.getMarque());
-    			System.out.println("Marque sommet2 : " + sommet2.getMarque());
+//	    		System.out.println("Marque sommet1 : " + sommet1.getMarque());
+//    			System.out.println("Marque sommet2 : " + sommet2.getMarque());
 	    		sommet1.setMarque(valeurMarqueCourante);
 	    		sommet2.setMarque(valeurMarqueCourante);
 	    		valeurMarqueCourante++;
-	    		System.out.println("Marque sommet 1 boucleA : "
-	    				+ sommet1.getMarque()
-	    				+ " Marque sommet 2 : "
-	    				+ sommet2.getMarque());
-	    		System.out.println("true");
+//	    		System.out.println("Marque sommet 1 boucleA : "
+//	    				+ sommet1.getMarque()
+//	    				+ " Marque sommet 2 : "
+//	    				+ sommet2.getMarque());
+//	    		System.out.println("true");
 	    		return true;
 	    	}
 	    	
 	    	else if (marqueDifferente(sommet1, sommet2)){
 	    		if (sommet1.getMarque() < 0) {
-	    			System.out.println("Marque sommet1 : " + sommet1.getMarque());
-	    			System.out.println("Marque sommet2 : " + sommet2.getMarque());
+//	    			System.out.println("Marque sommet1 : " + sommet1.getMarque());
+//	    			System.out.println("Marque sommet2 : " + sommet2.getMarque());
 	    			sommet1.setMarque(sommet2.getMarque());
-	    			System.out.println("Marque sommet 1 boucleB : "
-		    				+ sommet1.getMarque()
-		    				+ " Marque sommet 2 : "
-		    				+ sommet2.getMarque());
-	    			System.out.println("true");
+//	    			System.out.println("Marque sommet 1 boucleB : "
+//		    				+ sommet1.getMarque()
+//		    				+ " Marque sommet 2 : "
+//		    				+ sommet2.getMarque());
+//	    			System.out.println("true");
 	    			return true;
 	    		} else if (sommet2.getMarque() < 0) {
-	    			System.out.println("Marque sommet1 : " + sommet1.getMarque());
-	    			System.out.println("Marque sommet2 : " + sommet2.getMarque());
+//	    			System.out.println("Marque sommet1 : " + sommet1.getMarque());
+//	    			System.out.println("Marque sommet2 : " + sommet2.getMarque());
 	    			sommet2.setMarque(sommet1.getMarque());
-	    			System.out.println("Marque sommet 1 boucleC : "
-		    				+ sommet1.getMarque()
-		    				+ " Marque sommet 2 : "
-		    				+ sommet2.getMarque());
-	    			System.out.println("true");
+//	    			System.out.println("Marque sommet 1 boucleC : "
+//		    				+ sommet1.getMarque()
+//		    				+ " Marque sommet 2 : "
+//		    				+ sommet2.getMarque());
+//	    			System.out.println("true");
 	    			return true;
 	    			
 	    			/* Si les deux sommets ont dÃ©jÃ  des marques (autre que -1), 
 	    			 * les sommets de mÃªme chaÃ®ne que sommet2 prend la marque du sommet1 
 	    			 */	
 	    		} else {
-	    			Sommet[] sommetMarqueSommet2 = sommetsDeMemeMarque(sommet2.getMarque());
-	    			for (int i = 0; i < sommetMarqueSommet2.length; i++) {
-	    				sommetMarqueSommet2[i].setMarque(sommet1.getMarque());
+//	    			Sommet[] sommetMarqueSommet2 = sommetsDeMemeMarque(sommet2.getMarque());
+//	    			for (int i = 0; i < sommetMarqueSommet2.length; i++) {
+//	    				sommetMarqueSommet2[i].setMarque(sommet1.getMarque());
+//	    			}
+////	    			System.out.println("true");
+//	    			return true;
+	    			ArrayList<Sommet> sommetMarqueSommet2 = sommetsDeMemeMarque(sommet2.getMarque());
+	    			for (int i = 0; i < sommetMarqueSommet2.size(); i++) {
+	    				sommetMarqueSommet2.get(i).setMarque(sommet1.getMarque());
 	    			}
-	    			System.out.println("true");
+//	    			System.out.println("true");
 	    			return true;
 	    		}
 	    	}
-	    	System.out.println("false");
+//	    	System.out.println("false");
 	    	return false;
 //	    }
 	}
@@ -239,24 +246,30 @@ public boolean definitUneMarque(Sommet sommet1, Sommet sommet2) {
 	 * @param marque La marque que les sommets doivent possÃ©der.
 	 * @return La liste des sommets possÃ©dant la marque
 	 */
-	public Sommet[] sommetsDeMemeMarque(int marque) {
+	public ArrayList<Sommet> sommetsDeMemeMarque(int marque) {
 		int tailleTableau = 0;
 		int rang = 0;
 		
 //		Sommet[] listeSommetsMarque = new Sommet[getNombreSommets()-1];
-		for (int i = 0; i < getNombreSommets(); i++) {
-			if (getListeSommets()[i].getMarque() == marque) {
-				tailleTableau++;
+		ArrayList<Sommet> laListeSommetsMarque = new ArrayList<>();
+		for (Sommet sommetATester : getListeSommets() ) {
+			if (sommetATester.getMarque() == marque) {
+				laListeSommetsMarque.add(sommetATester);
 			}
 		}
-		Sommet[] listeSommetsMarque = new Sommet[tailleTableau];
-		for (int i = 0; i < getNombreSommets(); i++) {
-			if (getListeSommets()[i].getMarque() == marque) {
-				listeSommetsMarque[rang] = getListeSommets()[i];
-				rang++;
-			}
-		}
-		return listeSommetsMarque;
+//		for (int i = 0; i < getNombreSommets(); i++) {
+//			if (getListeSommets()[i].getMarque() == marque) {
+//				tailleTableau++;
+//			}
+//		}
+//		Sommet[] listeSommetsMarque = new Sommet[tailleTableau];
+//		for (int i = 0; i < getNombreSommets(); i++) {
+//			if (getListeSommets()[i].getMarque() == marque) {
+//				listeSommetsMarque[rang] = getListeSommets()[i];
+//				rang++;
+//			}
+//		}
+		return laListeSommetsMarque;
 	}
 	
 	/**
@@ -273,16 +286,16 @@ public boolean definitUneMarque(Sommet sommet1, Sommet sommet2) {
 			sommetAdjacent;
 		
 		sommet = new Random().nextInt(this.getNombreSommets());//x = Math.random() * this.getNombreSommets();
-		System.out.println("sommet random tirÃ© : " + sommet);
+//		System.out.println("sommet random tirÃ© : " + sommet);
 			
 		Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(sommet);
 		sommetAdjacent = new Random().nextInt(listeDesSommetsAdjacents.length);
 		
 		Sommet[] sommetsAleatiores = {this.getListeSommets()[sommet], listeDesSommetsAdjacents[sommetAdjacent]};
-		System.out.println("*Sommet aléatoire choisi "
-				+ sommetsAleatiores[0]
-				+ "\n*et l'un de ses adjacent "
-				+ sommetsAleatiores[1]);
+//		System.out.println("*Sommet aléatoire choisi "
+//				+ sommetsAleatiores[0]
+//				+ "\n*et l'un de ses adjacent "
+//				+ sommetsAleatiores[1]);
 		return sommetsAleatiores;
 	}
 
