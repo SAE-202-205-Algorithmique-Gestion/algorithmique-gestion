@@ -2,44 +2,78 @@ package iut.info1.sae.algorithmiquegestion.composants;
 
 import iut.info1.sae.algorithmiquegestion.composants.Graphe;
 
+// TODO el ravadocumentacion
 public class AffichageLiaison {
 	
 	public final static String LIAISON_HORIZONTALE = "----";
-		
+	
 	public final static String VIDE_HORIZONTAL = "\t";
 	
 	public final static String LIAISON_VERTICALE = " |     ";
 	
-	public final static String VIDE_VERTICAL = "   \u0000   ";
+//	public final static String VIDE_VERTICAL = "   \u0000   ";
+	public final static String VIDE_VERTICAL = "       ";
 	
 	// TODO el ravadocumentacion
 	public static void main(String[] args) {
-				
-		int ligne;
-		int colonne;
+		int ligne = 0;
 		
-		Graphe testTom = new Graphe(5, 5);
+		Graphe testSam = new Graphe(5, 5);
+		for (int indexSommet = 0; indexSommet < testSam.getNombreSommets(); indexSommet++) {
+			System.out.println("Sommet : " + testSam.getListeSommets()[indexSommet]);
+			for (int i = 0; i < testSam.getListeSommets()[indexSommet].getLiaisons().length; i++) {
+				System.out.println("Sommet lie : " + testSam.getListeSommets()[indexSommet].getLiaisons()[i]);
+			}
+			
+		}
 		
-		for (ligne = 0; ligne < testTom.getNombreLignesLabyrinthe(); ligne++) {
-			for (colonne = 0; colonne < testTom.getNombreColonnesLabyrinthe(); colonne++) {
-			 
-//				for (int i = 0; i < testTom.getNombreSommets(); i++) {
-//					for (int index = 0; index < testTom.getListeSommets()[i].getLiaisons().length; index++) {
-//						
-//					}
+//		for (ligne = 0; ligne < testSam.getNombreLignesLabyrinthe(); ligne++) {
+//			for (colonne = 0; colonne < testSam.getNombreColonnesLabyrinthe(); colonne++) {
+//				    
 //				}
-//				
-//				testTom.getListeSommets()[4].getCoordonneeX();
-//				testTom.getListeSommets()[4].getCoordonneeY();
-//				testTom.getListeSommets()[0].liaisonExiste(testTom.getListeSommets()[1]);
-//				
+//		}
+		
+		for (int i = 0; i < testSam.getNombreSommets(); i++) {
+			
+			if (testSam.getListeSommets()[i].getCoordonneeY() == ligne + 1) {
+				System.out.println("");
+				ligne++;
+				
+				for (int rang = 0; rang < testSam.getNombreColonnesLabyrinthe(); rang++) {
+					if (testSam.getListeSommets()[i + rang].liaisonExiste(testSam.getListeSommets()[i + rang - testSam.getNombreColonnesLabyrinthe()])) {
+						System.out.print(LIAISON_VERTICALE);
+					} else {
+						System.out.print (VIDE_VERTICAL);
+					}
+				}
+				System.out.println("");
+				
+			}
+			
+			System.out.print(testSam.getListeSommets()[i].getCoordonneeX()
+					+ "," + testSam.getListeSommets()[i].getCoordonneeY());
+			
+			if (testSam.getListeSommets()[i].getCoordonneeY() == testSam.getListeSommets()[i + 1].getCoordonneeY()) {
+				if (testSam.getListeSommets()[i].liaisonExiste(testSam.getListeSommets()[i + 1])) {
+				System.out.print(LIAISON_HORIZONTALE);
+				} else {
+					System.out.print("    ");
+				}
+			}
+			
+			
+			
+
+//				if (testSam.getListeSommets()[i].getLiaisons()[rang] != (Sommet) null) {
+//					if (testSam.getListeSommets()[i].getLiaisons()[rang].getCoordonneeX() == testSam.getListeSommets()[i + 1].getCoordonneeX()) {
+//						System.out.print(LIAISON_HORIZONTALE);
+//					} 
+//				} 
 				
 				
-				System.out.print(colonne + "," + ligne);
-				
-//				if (testTom.sommetExiste(new Sommet(colonne + 1, ligne)) 
-//					&& testTom.estAdjacent(testTom.getListeSommets()[colonne], 
-//						                   testTom.getListeSommets()[colonne + 1])) {
+//				if (testSam.sommetExiste() 
+//					&& testSam.estAdjacent(testSam.getListeSommets()[colonne], 
+//						                   testSam.getListeSommets()[colonne + 1])) {
 //					
 //					System.out.print(LIAISON_HORIZONTALE);
 //				} else {
@@ -51,11 +85,11 @@ public class AffichageLiaison {
 //			
 //			System.out.println();
 //			
-//			if (ligne != testTom.getNombreLignesLabyrinthe() - 1) {
-//				for (colonne = 0; colonne < testTom.getNombreColonnesLabyrinthe(); colonne++) {
-//					if (testTom.sommetExiste(new Sommet(colonne, ligne + 1)) 
-//						&& testTom.estAdjacent(testTom.getListeSommets()[ligne], 
-//						   testTom.getListeSommets()[ligne + 1])) {
+//			if (ligne != testSam.getNombreLignesLabyrinthe() - 1) {
+//				for (colonne = 0; colonne < testSam.getNombreColonnesLabyrinthe(); colonne++) {
+//					if (testSam.sommetExiste(new Sommet(colonne, ligne + 1)) 
+//						&& testSam.estAdjacent(testSam.getListeSommets()[ligne], 
+//						   testSam.getListeSommets()[ligne + 1])) {
 //						
 //						System.out.print(LIAISON_VERTICALE);
 //					} else {
@@ -63,11 +97,7 @@ public class AffichageLiaison {
 //							
 //					}
 //				}
-			}
-			
-			System.out.println();
 
 		}
 	}
 }
-

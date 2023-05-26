@@ -2,16 +2,15 @@ package iut.info1.sae.algorithmiquegestion.composants;
 
 import iut.info1.sae.algorithmiquegestion.composants.Graphe;
 
-// TODO el ravadocumentacion
 public class Affichage {
 	
-	public final static String LIAISON_HORIZONTALE = "+--+";
-	
+	public final static String LIAISON_HORIZONTALE = "----";
+		
 	public final static String VIDE_HORIZONTAL = "\t";
 	
 	public final static String LIAISON_VERTICALE = " |     ";
 	
-	public final static String VIDE_VERTICAL = "   \u0000   ";
+	public final static String VIDE_VERTICAL = "       ";
 	
 	// TODO el ravadocumentacion
 	public static void main(String[] args) {
@@ -23,45 +22,52 @@ public class Affichage {
 		
 		for (ligne = 0; ligne < testTom.getNombreLignesLabyrinthe(); ligne++) {
 			for (colonne = 0; colonne < testTom.getNombreColonnesLabyrinthe(); colonne++) {
-				    
-				}
-		}
-		
-	/*	for (ligne = 0; ligne < testTom.getNombreLignesLabyrinthe(); ligne++) {
-			for (colonne = 0; colonne < testTom.getNombreColonnesLabyrinthe(); colonne++) {
-			
+			 
+//				for (int i = 0; i < testTom.getNombreSommets(); i++) {
+//					for (int index = 0; index < testTom.getListeSommets()[i].getLiaisons().length; index++) {
+//						
+//					}
+//				}
+//				
+//				testTom.getListeSommets()[4].getCoordonneeX();
+//				testTom.getListeSommets()[4].getCoordonneeY();
+//				testTom.getListeSommets()[0].liaisonExiste(testTom.getListeSommets()[1]);
+//				
+				
+				
 				System.out.print(colonne + "," + ligne);
 				
-				if (testTom.sommetExiste(new Sommet(colonne + 1, ligne)) 
-					&& testTom.estAdjacent(testTom.getListeSommets()[colonne], 
-						                   testTom.getListeSommets()[colonne + 1])) {
-					
-					System.out.print(LIAISON_HORIZONTALE);
-				} else {
-					System.out.print(VIDE_HORIZONTAL);
-						
-				}
-					
+//				if (testTom.sommetExiste(new Sommet(colonne + 1, ligne)) 
+//					&& testTom.estAdjacent(testTom.getListeSommets()[colonne], 
+//						                   testTom.getListeSommets()[colonne + 1])) {
+//					
+//					System.out.print(LIAISON_HORIZONTALE);
+//				} else {
+//					System.out.print(VIDE_HORIZONTAL);
+//						
+//				}
+//					
+//			}
+//			
+//			System.out.println();
+//			
+//			if (ligne != testTom.getNombreLignesLabyrinthe() - 1) {
+//				for (colonne = 0; colonne < testTom.getNombreColonnesLabyrinthe(); colonne++) {
+//					if (testTom.sommetExiste(new Sommet(colonne, ligne + 1)) 
+//						&& testTom.estAdjacent(testTom.getListeSommets()[ligne], 
+//						   testTom.getListeSommets()[ligne + 1])) {
+//						
+//						System.out.print(LIAISON_VERTICALE);
+//					} else {
+//						System.out.print(VIDE_VERTICAL);
+//							
+//					}
+//				}
 			}
 			
 			System.out.println();
-			
-			if (ligne != testTom.getNombreLignesLabyrinthe() - 1) {
-				for (colonne = 0; colonne < testTom.getNombreColonnesLabyrinthe(); colonne++) {
-					if (testTom.sommetExiste(new Sommet(colonne, ligne + 1)) 
-						&& testTom.estAdjacent(testTom.getListeSommets()[ligne], 
-						   testTom.getListeSommets()[ligne + 1])) {
-						
-						System.out.print(LIAISON_VERTICALE);
-					} else {
-						System.out.print(VIDE_VERTICAL);
-							
-					}
-				}
-			}
-			
-			System.out.println();*/
 
 		}
 	}
-//}
+}
+

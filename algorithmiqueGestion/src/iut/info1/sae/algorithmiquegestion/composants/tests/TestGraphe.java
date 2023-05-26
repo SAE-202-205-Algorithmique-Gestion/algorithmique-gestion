@@ -305,9 +305,9 @@ class TestGraphe {
 				grapheTeste.getListeSommets()[5]
 			};
 		
-//		assertEquals(listeAttendu[0].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(6)[0].getCoordonneeX());
-//		assertEquals(listeAttendu[0].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(6)[0].getCoordonneeY());
-//		assertEquals(listeAttendu.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(6).length);
+		assertEquals(listeAttendu[0].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(6)[0].getCoordonneeX());
+		assertEquals(listeAttendu[0].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(6)[0].getCoordonneeY());
+		assertEquals(listeAttendu.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(6).length);
 		
 		//Second Test
 		Sommet[] listeAttendu2 = {
@@ -315,9 +315,9 @@ class TestGraphe {
 				grapheTeste.getListeSommets()[23]
 			};
 		
-//		assertEquals(listeAttendu2[0].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(24)[0].getCoordonneeX());
-//		assertEquals(listeAttendu2[0].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(24)[0].getCoordonneeY());
-//		assertEquals(listeAttendu2.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(24).length);
+		assertEquals(listeAttendu2[0].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(24)[0].getCoordonneeX());
+		assertEquals(listeAttendu2[0].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(24)[0].getCoordonneeY());
+		assertEquals(listeAttendu2.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(24).length);
 
 		//Troisième Test
 		Sommet[] listeAttendu3 = {
@@ -326,14 +326,14 @@ class TestGraphe {
 			grapheTeste.getListeSommets()[0]
 		};
 		
-//		assertEquals(listeAttendu3[2].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(1)[2].getCoordonneeX());
-//		assertEquals(listeAttendu3[2].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(1)[2].getCoordonneeY());
-//		assertEquals(listeAttendu3.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(1).length);
+		assertEquals(listeAttendu3[2].getCoordonneeX(), grapheTeste.tousLesSommetsAdjacentsDuSommet(1)[2].getCoordonneeX());
+		assertEquals(listeAttendu3[2].getCoordonneeY(), grapheTeste.tousLesSommetsAdjacentsDuSommet(1)[2].getCoordonneeY());
+		assertEquals(listeAttendu3.length, grapheTeste.tousLesSommetsAdjacentsDuSommet(1).length);
 		
 		/* l'assertArrayEquals fonctionne seulement si on ne met pas en commentaire l'Owerride de equals dans la classe Sommet */
-//		assertArrayEquals(listeAttendu, grapheTeste.tousLesSommetsAdjacentsDuSommet(6));
-//		assertArrayEquals(listeAttendu2, grapheTeste.tousLesSommetsAdjacentsDuSommet(24));
-//		assertArrayEquals(listeAttendu3, grapheTeste.tousLesSommetsAdjacentsDuSommet(1));
+		assertArrayEquals(listeAttendu, grapheTeste.tousLesSommetsAdjacentsDuSommet(6));
+		assertArrayEquals(listeAttendu2, grapheTeste.tousLesSommetsAdjacentsDuSommet(24));
+		assertArrayEquals(listeAttendu3, grapheTeste.tousLesSommetsAdjacentsDuSommet(1));
 
 	}
 	
@@ -361,8 +361,8 @@ class TestGraphe {
 	void testCreationDuGraphe() {
 		System.out.println("Test de la création du graphe : ");
 		
-		Graphe graphe2 = new Graphe(5, 5);
-		graphe2.creationDuGraphe();
+		Graphe graphe2 = new Graphe(2, 2);
+//		graphe2.creationDuGraphe();
 //		graphe2.getListeSommets()[0].creerLiaison(graphe2.getListeSommets()[1]);
 //		graphe2.getListeSommets()[1].creerLiaison(graphe2.getListeSommets()[3]);
 //		graphe2.getListeSommets()[3].creerLiaison(graphe2.getListeSommets()[2]);
