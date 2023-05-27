@@ -28,6 +28,7 @@ public class AffichageLabyrinthe {
 		
 		int ligne;
 		do {
+			System.out.println("");
 			ligne = 0;
 			for (int i = 0; i < testSam.getGraphe().getNombreSommets(); i++) {
 				

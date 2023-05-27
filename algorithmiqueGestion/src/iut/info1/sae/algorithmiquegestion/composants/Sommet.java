@@ -166,14 +166,12 @@ public class Sommet {
 	 * @return Un booléen informant si la liaison existe ou non.
 	 */
 	public boolean liaisonExiste(Sommet sommetATester) {
-		boolean resultat = false;
-
 		for (Sommet sommetLie : this.getLiaisons()) {
 			if (sommetLie == sommetATester)	{
-				resultat = true;
+				return true;
 			}
 		}
-		return resultat;
+		return false;
 	}
 	
 //	public boolean liaisonExiste(Sommet sommetATester) {

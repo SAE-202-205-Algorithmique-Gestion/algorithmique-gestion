@@ -47,6 +47,8 @@ public class Labyrinthe {
 
 	private int nombreDeLigne;
 	
+	private int indiceSommetActuelle;
+	
 	private Graphe graphe;
 	
 	public Labyrinthe(int nombreDeLigne, int nombreDeColonne) {
@@ -61,14 +63,8 @@ public class Labyrinthe {
 		this.graphe = new Graphe(nombreDeColonne, nombreDeLigne);
 		this.entreeDeplacement = new Scanner(System.in);
 		this.definirEntree();
-		System.out.println("Entrée : " + this.getEntree().getCoordonneeX()
-				+ " ; " + this.getEntree().getCoordonneeY());
 		this.definirSortie();
-		System.out.println("Sortie : " + this.getSortie().getCoordonneeX()
-				+ " ; " + this.getSortie().getCoordonneeY());
-		
 		this.positionActuelle = this.getEntree();
-		System.out.println("Position actuelle : " + this.positionActuelle);
 	}
 	
 	public String getMessageGagner() {
@@ -94,7 +90,7 @@ public class Labyrinthe {
 	public Sommet getPositionActuelle() {
 		return positionActuelle;
 	}
-
+	
 	public Graphe getGraphe() {
 		return graphe;
 	}
@@ -131,24 +127,24 @@ public class Labyrinthe {
 		}
 	}
 	
-	public boolean gestionErreurSaisie(String entreeScanner) {
-		if (entreeScanner.length() != 1
-			|| entreeScanner.toLowerCase().charAt(0) != this.HAUT
-			|| entreeScanner.toLowerCase().charAt(0) != this.BAS
-			|| entreeScanner.toLowerCase().charAt(0) != this.DROITE
-			|| entreeScanner.toLowerCase().charAt(0) != this.GAUCHE) {
-			
-			System.out.println(MESSAGE_ERREUR_SAISIE);
-			return false;
-		}
-		return true;
-	}
+//	public boolean gestionErreurSaisie(String entreeScanner) {
+//		if (entreeScanner.length() != 1
+//			|| entreeScanner.toLowerCase().charAt(0) != this.HAUT
+//			|| entreeScanner.toLowerCase().charAt(0) != this.BAS
+//			|| entreeScanner.toLowerCase().charAt(0) != this.DROITE
+//			|| entreeScanner.toLowerCase().charAt(0) != this.GAUCHE) {
+//			
+//			System.out.println(MESSAGE_ERREUR_SAISIE);
+//			return false;
+//		}
+//		return true;
+//	}
 	
 	public void demandeDeplacement() {
 		boolean saisieBonne = false;
 		while (!saisieBonne) {
 			System.out.println("\nCommande : ");
-			String saisieDeplacement = this.entreeDeplacement.nextLine();
+			String saisieDeplacement = this.entreeDeplacement.next();
 //			System.out.println(saisieDeplacement);
 			switch (saisieDeplacement.toLowerCase().charAt(0)) {
 			case 'z':
@@ -157,11 +153,12 @@ public class Labyrinthe {
 						== this.getPositionActuelle().getCoordonneeY() - 1) {
 						
 						this.positionActuelle = liaisons;
+						saisieBonne = true;
 					} else {
 						System.out.println(MESSAGE_ERREUR_SAISIE);
+						this.entreeDeplacement.nextLine(); //vider le cache
 					}
 				}
-				saisieBonne = true;
 				break;
 				
 			case 's':
@@ -170,11 +167,12 @@ public class Labyrinthe {
 						== this.getPositionActuelle().getCoordonneeY() + 1) {
 						
 						this.positionActuelle = liaisons;
+						saisieBonne = true;
 					} else {
 						System.out.println(MESSAGE_ERREUR_SAISIE);
+						this.entreeDeplacement.nextLine(); //vider le cache
 					}
 				}
-				saisieBonne = true;
 				break;
 				
 			case 'd':
@@ -183,11 +181,12 @@ public class Labyrinthe {
 						== this.getPositionActuelle().getCoordonneeX() + 1) {
 						
 						this.positionActuelle = liaisons;
+						saisieBonne = true;
 					} else {
 						System.out.println(MESSAGE_ERREUR_SAISIE);
+						this.entreeDeplacement.nextLine(); //vider le cache
 					}
 				}
-				saisieBonne = true;
 				break;
 				
 			case 'q':
@@ -196,14 +195,16 @@ public class Labyrinthe {
 						== this.getPositionActuelle().getCoordonneeX() - 1) {
 						
 						this.positionActuelle = liaisons;
+						saisieBonne = true;
 					} else {
 						System.out.println(MESSAGE_ERREUR_SAISIE);
+						this.entreeDeplacement.nextLine(); //vider le cache
 					}
 				}
-				saisieBonne = true;
 				break;
 				
 			default:
+				this.entreeDeplacement.nextLine(); //vider le cache
 				System.out.println(MESSAGE_ERREUR_SAISIE);
 				break;
 			}
