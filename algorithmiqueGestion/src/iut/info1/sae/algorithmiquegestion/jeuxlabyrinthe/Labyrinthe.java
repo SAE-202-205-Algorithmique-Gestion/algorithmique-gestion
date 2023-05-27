@@ -147,8 +147,9 @@ public class Labyrinthe {
 	public void demandeDeplacement() {
 		boolean saisieBonne = false;
 		while (!saisieBonne) {
+			System.out.println("\nCommande : ");
 			String saisieDeplacement = this.entreeDeplacement.nextLine();
-			System.out.println(saisieDeplacement);
+//			System.out.println(saisieDeplacement);
 			switch (saisieDeplacement.toLowerCase().charAt(0)) {
 			case 'z':
 				for (Sommet liaisons : this.getPositionActuelle().getLiaisons()) {
