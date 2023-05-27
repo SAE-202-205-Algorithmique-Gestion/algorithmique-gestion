@@ -18,8 +18,8 @@ public class Labyrinthe {
 											   + "\nsoit 's' pour aller en bas"
 											   + "\nsoit 'd' pour aller à droite"
 											   + "\nsoit 'q' pour aller à gauche."
-											   + "Pour se déplacer à un sommet adjacent,"
-											   + " il doit y avoir une liaison.";
+											   + "\nPour se déplacer sur un sommet adjacent,"
+											   + " il doit y avoir une liaison.\n";
 	
 	private final char HAUT = 'z';
 	
@@ -37,7 +37,7 @@ public class Labyrinthe {
 	
 	private Scanner entreeDeplacement;
 	
-	private Sommet nouvellePosition;
+	private Sommet positionActuelle;
 	
 	private Sommet entree;
 
@@ -66,6 +66,13 @@ public class Labyrinthe {
 		this.definirSortie();
 		System.out.println("Sortie : " + this.getSortie().getCoordonneeX()
 				+ " ; " + this.getSortie().getCoordonneeY());
+		
+		this.positionActuelle = this.getEntree();
+		System.out.println("Position actuelle : " + this.positionActuelle);
+	}
+	
+	public String getMessageGagner() {
+		return MESSAGE_GAGNER;
 	}
 	
 	public Sommet getEntree() {
@@ -84,6 +91,10 @@ public class Labyrinthe {
 		this.sortie = sortie;
 	}
 	
+	public Sommet getPositionActuelle() {
+		return positionActuelle;
+	}
+
 	public Graphe getGraphe() {
 		return graphe;
 	}
@@ -121,7 +132,7 @@ public class Labyrinthe {
 	}
 	
 	public boolean gestionErreurSaisie(String entreeScanner) {
-		if (entreeScanner.length() > 1
+		if (entreeScanner.length() != 1
 			|| entreeScanner.toLowerCase().charAt(0) != this.HAUT
 			|| entreeScanner.toLowerCase().charAt(0) != this.BAS
 			|| entreeScanner.toLowerCase().charAt(0) != this.DROITE
@@ -133,40 +144,68 @@ public class Labyrinthe {
 		return true;
 	}
 	
-	public boolean deplacementPossible(Sommet nouvellePositionDemande) {
-		
-		return true;
-	}
-	
-	public Sommet positionActuelle() {
-		return 
-	}
-	
-	public void deplacement() {
-		if (gestionErreurSaisie(entreeDeplacement.next())) {
-			switch (entreeDeplacement.next().toLowerCase().charAt(0)) {
+	public void demandeDeplacement() {
+		boolean saisieBonne = false;
+		while (!saisieBonne) {
+			String saisieDeplacement = this.entreeDeplacement.nextLine();
+			System.out.println(saisieDeplacement);
+			switch (saisieDeplacement.toLowerCase().charAt(0)) {
 			case 'z':
-				
+				for (Sommet liaisons : this.getPositionActuelle().getLiaisons()) {
+					if (liaisons.getCoordonneeY()
+						== this.getPositionActuelle().getCoordonneeY() - 1) {
+						
+						this.positionActuelle = liaisons;
+					} else {
+						System.out.println(MESSAGE_ERREUR_SAISIE);
+					}
+				}
+				saisieBonne = true;
 				break;
 				
 			case 's':
-			
+				for (Sommet liaisons : this.getPositionActuelle().getLiaisons()) {
+					if (liaisons.getCoordonneeY()
+						== this.getPositionActuelle().getCoordonneeY() + 1) {
+						
+						this.positionActuelle = liaisons;
+					} else {
+						System.out.println(MESSAGE_ERREUR_SAISIE);
+					}
+				}
+				saisieBonne = true;
 				break;
 				
 			case 'd':
-				
+				for (Sommet liaisons : this.getPositionActuelle().getLiaisons()) {
+					if (liaisons.getCoordonneeX()
+						== this.getPositionActuelle().getCoordonneeX() + 1) {
+						
+						this.positionActuelle = liaisons;
+					} else {
+						System.out.println(MESSAGE_ERREUR_SAISIE);
+					}
+				}
+				saisieBonne = true;
 				break;
 				
 			case 'q':
-				
+				for (Sommet liaisons : this.getPositionActuelle().getLiaisons()) {
+					if (liaisons.getCoordonneeX()
+						== this.getPositionActuelle().getCoordonneeX() - 1) {
+						
+						this.positionActuelle = liaisons;
+					} else {
+						System.out.println(MESSAGE_ERREUR_SAISIE);
+					}
+				}
+				saisieBonne = true;
 				break;
 				
 			default:
+				System.out.println(MESSAGE_ERREUR_SAISIE);
 				break;
 			}
-			this.nouvellePosition = 
 		}
 	}
-	
-	
 }

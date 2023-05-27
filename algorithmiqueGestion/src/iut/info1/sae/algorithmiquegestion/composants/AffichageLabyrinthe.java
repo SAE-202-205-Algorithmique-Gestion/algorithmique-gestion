@@ -16,7 +16,6 @@ public class AffichageLabyrinthe {
 	
 	// TODO el ravadocumentacion
 	public static void main(String[] args) {
-		int ligne = 0;
 		
 		Labyrinthe testSam = new Labyrinthe(5, 5);
 		for (int indexSommet = 0; indexSommet < testSam.getGraphe().getNombreSommets(); indexSommet++) {
@@ -27,55 +26,62 @@ public class AffichageLabyrinthe {
 			
 		}
 		
-
-		for (int i = 0; i < testSam.getGraphe().getNombreSommets(); i++) {
-			
-			if (testSam.getGraphe().getListeSommets()[i].getCoordonneeY() == ligne + 1) {
-				System.out.println("");
-				ligne++;
+		int ligne;
+		do {
+			ligne = 0;
+			for (int i = 0; i < testSam.getGraphe().getNombreSommets(); i++) {
 				
-				for (int rang = 0; rang < testSam.getGraphe().getNombreColonnesLabyrinthe(); rang++) {
-					if (testSam.getGraphe().getListeSommets()[i + rang]
-						.liaisonExiste
-						(testSam.getGraphe().getListeSommets()[i + rang - testSam.getGraphe()
-															.getNombreColonnesLabyrinthe()])) {
-						
-						System.out.print(LIAISON_VERTICALE);
-					} else {
-						System.out.print (VIDE_VERTICAL);
+				if (testSam.getGraphe().getListeSommets()[i].getCoordonneeY() == ligne + 1) {
+					System.out.println("");
+					ligne++;
+					
+					for (int rang = 0; rang < testSam.getGraphe().getNombreColonnesLabyrinthe(); rang++) {
+						if (testSam.getGraphe().getListeSommets()[i + rang]
+							.liaisonExiste
+							(testSam.getGraphe().getListeSommets()[i + rang - testSam.getGraphe()
+																.getNombreColonnesLabyrinthe()])) {
+							
+							System.out.print(LIAISON_VERTICALE);
+						} else {
+							System.out.print (VIDE_VERTICAL);
+						}
+					}
+					System.out.println("");
+					
+				}
+				/* Affichage des sommets :
+				 * Entrée */
+				if (testSam.getEntree() == testSam.getGraphe().getListeSommets()[i]) {
+					System.out.print(testSam.getEntreeSymbole());
+					
+				/* Sortie */
+				} else if (testSam.getSortie() == testSam.getGraphe().getListeSommets()[i]) {
+					System.out.print(testSam.getSortieSymbole());
+					
+				/* Position actuelle */
+				} else if (testSam.getPositionActuelle() != testSam.getEntree()
+						   && testSam.getPositionActuelle() == testSam.getGraphe().getListeSommets()[i]) {
+					System.out.print(testSam.getSommetActuelleSymbole());
+				
+				/* les autres sommets */
+				} else {
+					System.out.print("#");
+				}
+					
+				if (i < testSam.getGraphe().getNombreSommets() - 1) {
+					if (testSam.getGraphe().getListeSommets()[i].getCoordonneeY() == testSam.getGraphe().getListeSommets()[i + 1].getCoordonneeY()) {
+						if (testSam.getGraphe().getListeSommets()[i].liaisonExiste(testSam.getGraphe().getListeSommets()[i + 1])) {
+							System.out.print(LIAISON_HORIZONTALE);
+						} else {
+							System.out.print("    ");
+						}
 					}
 				}
-				System.out.println("");
 				
 			}
-			/* Affichage des sommets :
-			 * Entrée */
-			if (testSam.getEntree().getCoordonneeX() == testSam.getGraphe().getListeSommets()[i].getCoordonneeX()
-				&& testSam.getEntree().getCoordonneeY() == testSam.getGraphe().getListeSommets()[i].getCoordonneeY()) {
-				System.out.print(testSam.getEntreeSymbole());
-				
-			/* Sortie */
-			} else if (testSam.getSortie().getCoordonneeX() == testSam.getGraphe().getListeSommets()[i].getCoordonneeX()
-				&& testSam.getSortie().getCoordonneeY() == testSam.getGraphe().getListeSommets()[i].getCoordonneeY()) {
-				System.out.print(testSam.getSortieSymbole());
-			} else if (testSam.positionActuelle()) {
-				System.out.print(testSam.getSommetActuelleSymbole());
+			testSam.demandeDeplacement();
 			
-			/* les autres sommets */
-			} else {
-				System.out.print("#");
-			}
-				
-			
-			if (testSam.getGraphe().getListeSommets()[i].getCoordonneeY() == testSam.getGraphe().getListeSommets()[i + 1].getCoordonneeY()) {
-				if (testSam.getGraphe().getListeSommets()[i].liaisonExiste(testSam.getGraphe().getListeSommets()[i + 1])) {
-					System.out.print(LIAISON_HORIZONTALE);
-				} else {
-					System.out.print("    ");
-				}
-			}
-			
-			testSam.
-		}
+		} while (testSam.getPositionActuelle() != testSam.getSortie());
+		System.out.println(testSam.getMessageGagner());
 	}
 }
