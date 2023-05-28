@@ -359,7 +359,7 @@ public boolean definitUneMarque(Sommet sommet1, Sommet sommet2) {
 		int nombreDeLiaison = 1;
 		
 		while (nombreDeLiaison < getNombreSommets()) {
-			System.out.println("Nombre de laison : " + nombreDeLiaison);
+//			System.out.println("Nombre de laison : " + nombreDeLiaison);
 			Sommet[] sommetsChoisi = new Sommet[2];
 			
 			sommetsChoisi = this.sommetsAleatoires();

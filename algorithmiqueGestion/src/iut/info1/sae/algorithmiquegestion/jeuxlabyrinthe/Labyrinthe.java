@@ -156,94 +156,64 @@ public class Labyrinthe {
 //		
 //	}
 	
+	public boolean verificationDeplacement(int indiceSommetDeplacement) {
+		
+		if (graphe.sommetExiste(indiceSommetActuelle + indiceSommetDeplacement)
+			&& graphe.getListeSommets()[indiceSommetActuelle]
+				.liaisonExiste
+				(graphe.getListeSommets()[indiceSommetActuelle +
+				                          indiceSommetDeplacement])) {
+			this.setIndiceSommetActuelle(indiceSommetActuelle + indiceSommetDeplacement);
+			this.setPositionActuelle(graphe.getListeSommets()[indiceSommetActuelle]);
+			return true;
+		} else {
+			System.out.println(MESSAGE_ERREUR_SAISIE);
+			return false;
+		}
+	}
+	
 	public void demandeDeplacement() {
 		boolean saisieBonne = true;
 		int indiceSaisieDeplacement;
+		
 		System.out.println("\nCommande : ");
 		String saisieDeplacement = this.entreeDeplacement.nextLine();
-//		if (gestionErreurSaisie(saisieDeplacement)) {
-			for (indiceSaisieDeplacement = 0;
-				 indiceSaisieDeplacement < saisieDeplacement.length()
-				 && saisieBonne;
-				 indiceSaisieDeplacement++) {
-				
+		
+		for (indiceSaisieDeplacement = 0;
+			 indiceSaisieDeplacement < saisieDeplacement.length()
+			 && saisieBonne;
+			 indiceSaisieDeplacement++) {
+			
 //				System.out.println(saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)
 //						+ " " + indiceSaisieDeplacement);
-				switch (saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)) {
-				case 'z':
-					if (graphe.sommetExiste(indiceSommetActuelle - nombreDeColonne)
-						&& graphe.getListeSommets()[indiceSommetActuelle]
-						   .liaisonExiste(graphe.getListeSommets()[indiceSommetActuelle - nombreDeColonne])) {
-						
-						this.setIndiceSommetActuelle(indiceSommetActuelle - nombreDeColonne);
-						this.setPositionActuelle
-						(graphe.getListeSommets()[indiceSommetActuelle]);
-						
-					} else {
-						System.out.println(MESSAGE_ERREUR_SAISIE);
-						saisieBonne = false;
-//						this.entreeDeplacement.nextLine(); //vider le cache
-					}
-					break;
-					
-				case 's':
-					if (graphe.sommetExiste(indiceSommetActuelle + nombreDeColonne)
-						&& graphe.getListeSommets()[indiceSommetActuelle]
-						   .liaisonExiste(graphe.getListeSommets()[indiceSommetActuelle + nombreDeColonne])) {
-						
-						this.setIndiceSommetActuelle(indiceSommetActuelle + nombreDeColonne);
-						this.setPositionActuelle
-						(graphe.getListeSommets()[indiceSommetActuelle]);
-						
-					} else {
-						System.out.println(MESSAGE_ERREUR_SAISIE);
-						saisieBonne = false;
-//						this.entreeDeplacement.nextLine(); //vider le cache
-					}
-					break;
-					
-				case 'd':
-					if (graphe.sommetExiste(indiceSommetActuelle + 1)
-						&& graphe.getListeSommets()[indiceSommetActuelle]
-						   .liaisonExiste(graphe.getListeSommets()[indiceSommetActuelle + 1])) {
-						
-						this.setIndiceSommetActuelle(indiceSommetActuelle + 1);
-						this.setPositionActuelle
-						(graphe.getListeSommets()[indiceSommetActuelle]);
-							
-					} else {
-						System.out.println(MESSAGE_ERREUR_SAISIE);
-						saisieBonne = false;
-//						this.entreeDeplacement.nextLine(); //vider le cache
-					}
-					break;
-					
-				case 'q':
-					if (graphe.sommetExiste(indiceSommetActuelle - 1)
-						&& graphe.getListeSommets()[indiceSommetActuelle]
-						   .liaisonExiste(graphe.getListeSommets()[indiceSommetActuelle - 1])) {
-						
-						this.setIndiceSommetActuelle(indiceSommetActuelle - 1);
-						this.setPositionActuelle
-						(graphe.getListeSommets()[indiceSommetActuelle]);
-						
-					} else {
-						System.out.println(MESSAGE_ERREUR_SAISIE);
-						saisieBonne = false;
-//						this.entreeDeplacement.nextLine(); //vider le cache
-					}
-					break;
-					
-				case ' ':
-					break;
-				default:
-//					this.entreeDeplacement.nextLine(); //vider le cache
+			switch (saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)) {
+			case 'z':
+				if (!verificationDeplacement(-this.nombreDeColonne))
 					saisieBonne = false;
-					System.out.println(MESSAGE_ERREUR_SAISIE);
-					break;
-				}
+				break;
+				
+			case 's':
+				if (!verificationDeplacement(this.nombreDeColonne))
+					saisieBonne = false;
+				break;
+				
+			case 'd':
+				if (!verificationDeplacement(1))
+					saisieBonne = false;
+				break;
+				
+			case 'q':
+				if (!verificationDeplacement(-1))
+					saisieBonne = false;
+				break;
+				
+			case ' ':
+				break;
+			default:
+				saisieBonne = false;
+				System.out.println(MESSAGE_ERREUR_SAISIE);
+				break;
 			}
-//			this.entreeDeplacement.next();
-//		}
+		}
 	}
 }

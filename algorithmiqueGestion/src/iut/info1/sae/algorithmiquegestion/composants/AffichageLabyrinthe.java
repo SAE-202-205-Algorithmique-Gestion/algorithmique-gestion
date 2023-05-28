@@ -18,17 +18,17 @@ public class AffichageLabyrinthe {
 	public static void main(String[] args) {
 		
 		Labyrinthe testSam = new Labyrinthe(5, 5);
-		for (int indexSommet = 0; indexSommet < testSam.getGraphe().getNombreSommets(); indexSommet++) {
-			System.out.println("Sommet : " + testSam.getGraphe().getListeSommets()[indexSommet]);
-			for (int i = 0; i < testSam.getGraphe().getListeSommets()[indexSommet].getLiaisons().size(); i++) {
-				System.out.println("Sommet lie : " + testSam.getGraphe().getListeSommets()[indexSommet].getLiaisons().get(i));
-			}
-			
-		}
+		
+//		for (int indexSommet = 0; indexSommet < testSam.getGraphe().getNombreSommets(); indexSommet++) {
+//			System.out.println("Sommet : " + testSam.getGraphe().getListeSommets()[indexSommet]);
+//			for (int i = 0; i < testSam.getGraphe().getListeSommets()[indexSommet].getLiaisons().size(); i++) {
+//				System.out.println("Sommet lie : " + testSam.getGraphe().getListeSommets()[indexSommet].getLiaisons().get(i));
+//			}
+//			
+//		}
 		
 		int ligne;
 		do {
-			System.out.println("");
 			ligne = 0;
 			for (int i = 0; i < testSam.getGraphe().getNombreSommets(); i++) {
 				
@@ -81,6 +81,7 @@ public class AffichageLabyrinthe {
 				
 			}
 			testSam.demandeDeplacement();
+			System.out.println("");
 			
 		} while (testSam.getPositionActuelle() != testSam.getSortie());
 		System.out.println(testSam.getMessageGagner());
