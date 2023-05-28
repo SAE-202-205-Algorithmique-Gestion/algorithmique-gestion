@@ -64,7 +64,7 @@ public class Labyrinthe {
 		this.entreeDeplacement = new Scanner(System.in);
 		this.definirEntree();
 		this.definirSortie();
-		this.positionActuelle = this.getEntree();
+//		this.positionActuelle = this.getEntree();
 	}
 	
 	public String getMessageGagner() {
@@ -87,8 +87,20 @@ public class Labyrinthe {
 		this.sortie = sortie;
 	}
 	
+	public int getIndiceSommetActuelle() {
+		return indiceSommetActuelle;
+	}
+	
+	public void setIndiceSommetActuelle(int indiceSommetActuelle) {
+		this.indiceSommetActuelle = indiceSommetActuelle;
+	}
+	
 	public Sommet getPositionActuelle() {
 		return positionActuelle;
+	}
+	
+	public void setPositionActuelle(Sommet positionActuelle) {
+		this.positionActuelle = positionActuelle;
 	}
 	
 	public Graphe getGraphe() {
@@ -112,6 +124,7 @@ public class Labyrinthe {
 		for (int i = 0; i < graphe.getListeSommets().length && !entreeTrouvee; i++) {
 			if (graphe.getListeSommets()[i].getLiaisons().size() == 1) {
 				this.setEntree(graphe.getListeSommets()[i]);
+				this.indiceSommetActuelle = i;
 				entreeTrouvee = true;
 			}
 		}
@@ -127,87 +140,110 @@ public class Labyrinthe {
 		}
 	}
 	
-//	public boolean gestionErreurSaisie(String entreeScanner) {
-//		if (entreeScanner.length() != 1
-//			|| entreeScanner.toLowerCase().charAt(0) != this.HAUT
-//			|| entreeScanner.toLowerCase().charAt(0) != this.BAS
-//			|| entreeScanner.toLowerCase().charAt(0) != this.DROITE
-//			|| entreeScanner.toLowerCase().charAt(0) != this.GAUCHE) {
-//			
-//			System.out.println(MESSAGE_ERREUR_SAISIE);
-//			return false;
+//	public boolean gestionErreurSaisie(char entreeScanner) {
+//		for (int indiceChaine = 0; indiceChaine < entreeScanner.length(); indiceChaine++) {
+//				if (entreeScanner.toLowerCase().charAt(indiceChaine) != 'z'
+//					&& entreeScanner.toLowerCase().charAt(indiceChaine) != 's'
+//					&& entreeScanner.toLowerCase().charAt(indiceChaine) != 'd'
+//					&& entreeScanner.toLowerCase().charAt(indiceChaine) != 'q'
+//					&& entreeScanner.toLowerCase().charAt(indiceChaine) != ' ') {
+//					
+//					System.out.println(MESSAGE_ERREUR_SAISIE + " eeedd");
+//					return false;
+//			}
 //		}
 //		return true;
+//		
 //	}
 	
 	public void demandeDeplacement() {
-		boolean saisieBonne = false;
-		while (!saisieBonne) {
-			System.out.println("\nCommande : ");
-			String saisieDeplacement = this.entreeDeplacement.next();
-//			System.out.println(saisieDeplacement);
-			switch (saisieDeplacement.toLowerCase().charAt(0)) {
-			case 'z':
-				for (Sommet liaisons : this.getPositionActuelle().getLiaisons()) {
-					if (liaisons.getCoordonneeY()
-						== this.getPositionActuelle().getCoordonneeY() - 1) {
+		boolean saisieBonne = true;
+		int indiceSaisieDeplacement;
+		System.out.println("\nCommande : ");
+		String saisieDeplacement = this.entreeDeplacement.nextLine();
+//		if (gestionErreurSaisie(saisieDeplacement)) {
+			for (indiceSaisieDeplacement = 0;
+				 indiceSaisieDeplacement < saisieDeplacement.length()
+				 && saisieBonne;
+				 indiceSaisieDeplacement++) {
+				
+//				System.out.println(saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)
+//						+ " " + indiceSaisieDeplacement);
+				switch (saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)) {
+				case 'z':
+					if (graphe.sommetExiste(indiceSommetActuelle - nombreDeColonne)
+						&& graphe.getListeSommets()[indiceSommetActuelle]
+						   .liaisonExiste(graphe.getListeSommets()[indiceSommetActuelle - nombreDeColonne])) {
 						
-						this.positionActuelle = liaisons;
-						saisieBonne = true;
+						this.setIndiceSommetActuelle(indiceSommetActuelle - nombreDeColonne);
+						this.setPositionActuelle
+						(graphe.getListeSommets()[indiceSommetActuelle]);
+						
 					} else {
 						System.out.println(MESSAGE_ERREUR_SAISIE);
-						this.entreeDeplacement.nextLine(); //vider le cache
+						saisieBonne = false;
+//						this.entreeDeplacement.nextLine(); //vider le cache
 					}
-				}
-				break;
-				
-			case 's':
-				for (Sommet liaisons : this.getPositionActuelle().getLiaisons()) {
-					if (liaisons.getCoordonneeY()
-						== this.getPositionActuelle().getCoordonneeY() + 1) {
+					break;
+					
+				case 's':
+					if (graphe.sommetExiste(indiceSommetActuelle + nombreDeColonne)
+						&& graphe.getListeSommets()[indiceSommetActuelle]
+						   .liaisonExiste(graphe.getListeSommets()[indiceSommetActuelle + nombreDeColonne])) {
 						
-						this.positionActuelle = liaisons;
-						saisieBonne = true;
+						this.setIndiceSommetActuelle(indiceSommetActuelle + nombreDeColonne);
+						this.setPositionActuelle
+						(graphe.getListeSommets()[indiceSommetActuelle]);
+						
 					} else {
 						System.out.println(MESSAGE_ERREUR_SAISIE);
-						this.entreeDeplacement.nextLine(); //vider le cache
+						saisieBonne = false;
+//						this.entreeDeplacement.nextLine(); //vider le cache
 					}
-				}
-				break;
-				
-			case 'd':
-				for (Sommet liaisons : this.getPositionActuelle().getLiaisons()) {
-					if (liaisons.getCoordonneeX()
-						== this.getPositionActuelle().getCoordonneeX() + 1) {
+					break;
+					
+				case 'd':
+					if (graphe.sommetExiste(indiceSommetActuelle + 1)
+						&& graphe.getListeSommets()[indiceSommetActuelle]
+						   .liaisonExiste(graphe.getListeSommets()[indiceSommetActuelle + 1])) {
 						
-						this.positionActuelle = liaisons;
-						saisieBonne = true;
+						this.setIndiceSommetActuelle(indiceSommetActuelle + 1);
+						this.setPositionActuelle
+						(graphe.getListeSommets()[indiceSommetActuelle]);
+							
 					} else {
 						System.out.println(MESSAGE_ERREUR_SAISIE);
-						this.entreeDeplacement.nextLine(); //vider le cache
+						saisieBonne = false;
+//						this.entreeDeplacement.nextLine(); //vider le cache
 					}
-				}
-				break;
-				
-			case 'q':
-				for (Sommet liaisons : this.getPositionActuelle().getLiaisons()) {
-					if (liaisons.getCoordonneeX()
-						== this.getPositionActuelle().getCoordonneeX() - 1) {
+					break;
+					
+				case 'q':
+					if (graphe.sommetExiste(indiceSommetActuelle - 1)
+						&& graphe.getListeSommets()[indiceSommetActuelle]
+						   .liaisonExiste(graphe.getListeSommets()[indiceSommetActuelle - 1])) {
 						
-						this.positionActuelle = liaisons;
-						saisieBonne = true;
+						this.setIndiceSommetActuelle(indiceSommetActuelle - 1);
+						this.setPositionActuelle
+						(graphe.getListeSommets()[indiceSommetActuelle]);
+						
 					} else {
 						System.out.println(MESSAGE_ERREUR_SAISIE);
-						this.entreeDeplacement.nextLine(); //vider le cache
+						saisieBonne = false;
+//						this.entreeDeplacement.nextLine(); //vider le cache
 					}
+					break;
+					
+				case ' ':
+					break;
+				default:
+//					this.entreeDeplacement.nextLine(); //vider le cache
+					saisieBonne = false;
+					System.out.println(MESSAGE_ERREUR_SAISIE);
+					break;
 				}
-				break;
-				
-			default:
-				this.entreeDeplacement.nextLine(); //vider le cache
-				System.out.println(MESSAGE_ERREUR_SAISIE);
-				break;
 			}
-		}
+//			this.entreeDeplacement.next();
+//		}
 	}
 }
