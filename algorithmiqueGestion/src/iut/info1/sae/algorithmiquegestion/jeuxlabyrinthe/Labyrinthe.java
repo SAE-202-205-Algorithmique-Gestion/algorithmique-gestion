@@ -1,3 +1,6 @@
+/*
+ * TODO : javadoc
+ */
 package iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe;
 
 import java.util.Scanner;

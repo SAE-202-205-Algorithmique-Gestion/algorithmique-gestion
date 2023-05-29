@@ -1,4 +1,4 @@
-/**
+/*
  * SauvegardeParametres.java										 16 mai 2023
  * IUT de Rodez, pas de copyright, ni de "copyleft".
  */

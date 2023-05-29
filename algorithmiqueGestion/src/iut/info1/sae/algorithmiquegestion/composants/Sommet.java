@@ -1,4 +1,4 @@
-/**
+/*
  * Sommet.java														 16 mai 2023
  * IUT de Rodez, pas de copyright, ni de "copyleft".
  */
@@ -104,7 +104,7 @@ public class Sommet {
     }
     
     /**
-     * Acesseur de l'attribut indiceSommet.
+     * Accesseur de l'attribut indiceSommet.
      * 
      * @return Entier correspondant à l'indice du sommet.
      */
@@ -134,7 +134,7 @@ public class Sommet {
      * Modifieur de l'attribut marque du sommet instancié.
      * 
      * @param marque Nouvelle valeur de marque du sommet instancié.
-     * */
+     */
     public void setMarque(int marque) {
         this.marque = marque;
     }
@@ -207,8 +207,9 @@ public class Sommet {
         return "(" + this.getCoordonneeX() + " ; " + this.getCoordonneeY() + ")";
     }
     
-    /* C'est pour que la méthode assertArrayEquals de Junit
+    /* C'est pour que la méthode assertArrayEquals de JUnit
      * compare les valeurs des tableau et non leur référence */
+	/** non javadoc - @see java.util.Objects#equals(Object) */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -220,6 +221,7 @@ public class Sommet {
         return this.coordonneeX == other.coordonneeX && this.coordonneeY == other.coordonneeY;
     }
 
+    /** non javadoc - @see java.util.Objects#hashCode() */
     @Override
     public int hashCode() {
         return Objects.hash(coordonneeX, coordonneeY);

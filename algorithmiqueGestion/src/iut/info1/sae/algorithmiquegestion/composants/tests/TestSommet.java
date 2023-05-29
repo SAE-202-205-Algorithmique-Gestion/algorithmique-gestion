@@ -1,4 +1,4 @@
-/**
+/*
  * TestSommet.java													 16 mai 2023
  * IUT de Rodez, pas de copyright, ni de "copyleft".
  */
@@ -16,7 +16,8 @@ import org.junit.jupiter.api.TestInstance;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
 /**
- * Classe de tests JUnit de la classe Sommet.
+ * Classe de tests unitaires JUnit de la classe Sommet.
+ * 
  * @author Jonathan GUIL
  * @author Loïc FAUGIERES
  * @author Simon GUIRAUD

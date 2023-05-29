@@ -1,8 +1,13 @@
+/*
+ * TODO : javadoc
+ */
 package iut.info1.sae.algorithmiquegestion.composants;
 
 import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
 
-// TODO el ravadocumentacion
+/**
+ * TODO : javadoc
+ */
 public class AffichageLabyrinthe {
 	
 	public final static String LIAISON_HORIZONTALE = "----";
@@ -14,7 +19,9 @@ public class AffichageLabyrinthe {
 //	public final static String VIDE_VERTICAL = "   \u0000   ";
 	public final static String VIDE_VERTICAL = "     ";
 	
-	// TODO el ravadocumentacion
+	/**
+	 * TODO : javadoc
+	 */
 	public static void main(String[] args) {
 		
 		Labyrinthe testSam = new Labyrinthe(5, 5);
