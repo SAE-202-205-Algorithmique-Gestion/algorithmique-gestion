@@ -30,45 +30,9 @@ class TestGraphe {
 	Graphe grapheTeste = new Graphe(5, 5);
 	
 	Sommet[] sommetsGraphe = new Sommet[25];
-
+	
 	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeAll
-	void initialisationTest() throws Exception {
-//		0	//  ( 0 ; 0 )
-//		1	//  ( 1 ; 0 )
-//		2	//  ( 2 ; 0 )
-//		3	//  ( 3 ; 0 )
-//		4	//  ( 4 ; 0 )
-//		
-//		5	//  ( 0 ; 1 )
-//		6	//  ( 1 ; 1 )
-//		7	//  ( 2 ; 1 )
-//		8	//  ( 3 ; 1 )
-//		9	//  ( 4 ; 1 )
-//		
-//		10	//  ( 0 ; 2 )
-//		11	//  ( 1 ; 2 )
-//		12	//  ( 2 ; 2 )
-//		13	//  ( 3 ; 2 )		
-//		14	//  ( 4 ; 2 )		
-//		
-//		15	//  ( 0 ; 3 )		
-//		16	//  ( 1 ; 3 )		
-//		17	//  ( 2 ; 3 )		
-//		18	//  ( 3 ; 3 )		
-//		19	//  ( 4 ; 3 )		
-//		
-//		20	//  ( 0 ; 4 )		
-//		21	//  ( 1 ; 4 )		
-//		22	//  ( 2 ; 4 )		
-//		23	//  ( 3 ; 4 )		
-//		24	//  ( 4 ; 4 )
-		
-	}
-	/**
-	 * Méthode qui redéfinit les coordonnées et les marques
+	 * Méthode de test qui redéfinit les coordonnées et les marques
 	 * initiales de tout les sommets du graphe grapheTeste.
 	 */
 	@BeforeEach
@@ -78,6 +42,11 @@ class TestGraphe {
 		}
 	}
 	
+	
+	/**
+     * Méthode de test qui recupère les coordonnées  X et Y
+     * de différents sommets
+     */
 	@Test
 	void testRecuperationCoordonnees() {
 		System.out.println("Test récupération coordonnées"
@@ -85,6 +54,7 @@ class TestGraphe {
 		
 		// la boucle ne fonctionne pas car pour les this.sommetsGraphe[5] et supérieur,
 		// leur coordonnée x ne sera pas 6, 7, 8 etc.. car c'est un labyrinthe/graphe 5*5
+		// TODO on en fait quoi
 //		for (int x = 0; 
 //			 x < this.sommetsGraphe.length; 
 //			 x++) {
@@ -105,6 +75,9 @@ class TestGraphe {
 		assertEquals(grapheTeste.getListeSommets()[22].getCoordonneeY(), 4);
 	}
 	
+   /**
+     * Méthode de test qui r
+     */
 	@Test
 	void testEstAdjacent() {
 		System.out.println("Test adjacence pour un labyrinthe/graphe 5*5 :");
