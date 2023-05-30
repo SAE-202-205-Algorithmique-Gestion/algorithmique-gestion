@@ -14,15 +14,6 @@ import iut.info1.sae.algorithmiquegestion.composants.Sommet;
  * 
  */
 public class Labyrinthe {
-	private final String MESSAGE_GAGNER = "\nBravo, vous avez réussi !";
-	
-	private final String MESSAGE_ERREUR_SAISIE = "\nVous avez fait une erreur de saisie."
-											   + "\nTapez 'z' pour allez en haut"
-											   + "\nsoit 's' pour aller en bas"
-											   + "\nsoit 'd' pour aller à droite"
-											   + "\nsoit 'q' pour aller à gauche."
-											   + "\nPour se déplacer sur un sommet adjacent,"
-											   + " il doit y avoir une liaison.\n";
 	
 	private final char HAUT = 'z';
 	
@@ -68,10 +59,6 @@ public class Labyrinthe {
 		this.definirEntree();
 		this.definirSortie();
 //		this.positionActuelle = this.getEntree();
-	}
-	
-	public String getMessageGagner() {
-		return MESSAGE_GAGNER;
 	}
 	
 	public Sommet getEntree() {
@@ -169,18 +156,19 @@ public class Labyrinthe {
 			this.setIndiceSommetActuelle(indiceSommetActuelle + indiceSommetDeplacement);
 			this.setPositionActuelle(graphe.getListeSommets()[indiceSommetActuelle]);
 			return true;
-		} else {
-			System.out.println(MESSAGE_ERREUR_SAISIE);
-			return false;
 		}
+		return false;
 	}
 	
-	public void demandeDeplacement() {
+	public boolean demandeDeplacement() {
 		boolean saisieBonne = true;
+		// TODO : Loïc trouve un meilleur nom ci-dessous
+		boolean saisieCorrecte = true;
+		
 		int indiceSaisieDeplacement;
 		
-		System.out.println("\nCommande : ");
-		String saisieDeplacement = this.entreeDeplacement.nextLine();
+		String saisieDeplacement = this.entreeDeplacement.next();
+		this.entreeDeplacement.nextLine();
 		
 		for (indiceSaisieDeplacement = 0;
 			 indiceSaisieDeplacement < saisieDeplacement.length()
@@ -214,9 +202,10 @@ public class Labyrinthe {
 				break;
 			default:
 				saisieBonne = false;
-				System.out.println(MESSAGE_ERREUR_SAISIE);
+				saisieCorrecte = false;
 				break;
 			}
 		}
+		return saisieCorrecte;
 	}
 }
