@@ -336563,3 +336563,5 @@ javadoccopyleft
 instancié
 accesseur
 modifieur
+copyleft
+javadoc

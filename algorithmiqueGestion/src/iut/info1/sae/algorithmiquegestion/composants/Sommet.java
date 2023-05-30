@@ -7,11 +7,8 @@ package iut.info1.sae.algorithmiquegestion.composants;
 import java.util.ArrayList;
 import java.util.Objects;
 
-//import java.util.Objects;
-
 /**
- * Classe de modélisation d'un sommet du graphe du labyrinthe.
- * En lien direct avec la classe Graphe.
+ * Modélisation d'un sommet d'un graphe.
  * 
  * @author Jonathan GUIL
  * @author Loïc FAUGIERES
@@ -21,23 +18,20 @@ import java.util.Objects;
  */
 public class Sommet {
 	
-	/** Liste des sommets qui sont voisins dans le graphe au sommet instancié. */
-	private ArrayList<Sommet> liaisons = new ArrayList<>();
+	/** Sommets voisins à this dans le graphe. */
+	private ArrayList<Sommet> liaisons;
 	
 	/**
 	 * Indice de liaison du tableau liaisons
 	 * pour se repérer dans la liste des liaisons.
 	 */
-	private int indiceLiaison;
-
-	/** Valeur X (horizontale) des coordonnées du sommet dans le graphe. */
+	// private int indiceLiaison;
+	
+	/** Valeur X (horizontale) des coordonnées de this dans le graphe. */
 	private int coordonneeX;
 	
-	/** Valeur Y (verticale) des coordonnées du sommet dans le graphe. */
+	/** Valeur Y (verticale) des coordonnées de this dans le graphe. */
 	private int coordonneeY;
-	
-	/** indice de la liste de sommet dans la classe Graphe */
-//	private int indiceSommet;
 	
 	/**
 	 * Permet d'identifier la chaîne auquel le sommet appartient.
@@ -46,123 +40,79 @@ public class Sommet {
 	private int marque;
 	
 	/**
-	 * Initialisation d'un sommet du graphe.
+	 * Sommet d'un graphe avec ses coordonnées X et Y.
 	 * 
-	 * @param coordonneeX Entier de la coordonnée X du sommet créé.
-	 * @param coordonneeY Entier de la coordonnée Y du sommet créé.
+	 * @param coordonneeX Entier correspondant à la coordonnée X de this.
+	 * @param coordonneeY Entier correspondant à la coordonnée Y de this.
 	 */
-	public Sommet(int coordonneeX, int coordonneeY/*, int indiceSommet*/) {
+	public Sommet(int coordonneeX, int coordonneeY) {
 		super();
 		
-		this.indiceLiaison = 0;
-//		this.liaisons = new Sommet[4];
-//		this.indiceSommet = indiceSommet;
+		// this.indiceLiaison = 0;
 		this.coordonneeX = coordonneeX;
 		this.coordonneeY = coordonneeY;
 		
 		this.marque = -1; // marque par défaut
+		this.liaisons = new ArrayList<>();
 	}
 	
-	/**
-	 * Accesseur de l'attribut liaisons contenant la liste
-	 * des sommets voisins du sommet instancié.
-	 * 
-	 * @return La liste des liaisons du sommet instancié.
-	 */
+	/** @return La liste des liaisons de this. */
 	public ArrayList<Sommet> getLiaisons() {
 		return this.liaisons;
 	}
 	
-	/**
-	 * Accesseur de l'attribut coordonneeX, contenant la
-	 * coordonnée horizontale du sommet instancié.
-	 * 
-	 * @return Entier correspondant à la coordonnée X du sommet instancié.
-	 */
+	/** @return Entier correspondant à la coordonnée X de this. */
 	public int getCoordonneeX() {
 		return this.coordonneeX;
 	}
 	
-	/**
-	 * Accesseur de l'attribut coordonneeY, contenant la
-     * coordonnée verticale du sommet instancié.
-     * 
-	 * @return Entier correspondant à la coordonnée Y du sommet instancié.
-	 */
+	/** @return Entier correspondant à la coordonnée Y de this. */
 	public int getCoordonneeY() {
 		return this.coordonneeY;
 	}
 
-    /**
-     * Accesseur de l'attribut marque identifiant la chaîne auquel
-     * le sommet instancié appartient.
-     * 
-     * @return Entier correspondant à l'attribut marque du sommet instancié.
-     */
+    /** @return Entier correspondant à la marque de this. */
     public int getMarque() {
         return marque;
     }
     
-    /**
-     * Accesseur de l'attribut indiceSommet.
-     * 
-     * @return Entier correspondant à l'indice du sommet.
-     */
-//    public int getIndiceSommet() {
-//		return indiceSommet;
-//	}
-    
-    /**
-     * Modifieur de l'attribut coordonneeX du sommet instancié.
-     * 
-     * @param coordonneeX Nouvelle coordonnée horizontale du sommet instancié.
-     */
+    /** @param coordonneeX Nouvelle coordonnée horizontale de this. */
     public void setCoordonneeX(int coordonneeX) {
         this.coordonneeX = coordonneeX;
     }
 
-    /**
-     * Modifieur de l'attribut coordonneeY du sommet instancié.
-     * 
-     * @param coordonneeY Nouvelle coordonnée verticale du sommet instancié.
-     */
+    /** @param coordonneeY Nouvelle coordonnée verticale de this. */
     public void setCoordonneeY(int coordonneeY) {
         this.coordonneeY = coordonneeY;
     }
     
-    /**
-     * Modifieur de l'attribut marque du sommet instancié.
-     * 
-     * @param marque Nouvelle valeur de marque du sommet instancié.
-     */
+    /** @param marque Nouvelle valeur de marque de this. */
     public void setMarque(int marque) {
         this.marque = marque;
     }
 
 	/**
-	 * Création d'une liaison entre le sommet instancié et celui en paramètre.
+	 * Création d'une liaison entre this et le sommet en paramètre.
 	 * Cette liaison est ajoutée à l'attribut liaisons.
 	 * 
-	 * @param sommetALier Le sommet à lier au sommet instancié.
+	 * @param sommetALier Le sommet à lier à this.
 	 */
 	public void creerLiaison(Sommet sommetALier) {
 		if (!this.liaisonExiste(sommetALier)) {
 			this.liaisons.add(sommetALier);
 		}
-		
 		if (!sommetALier.liaisonExiste(this)) {
 			sommetALier.creerLiaison(this);
 		}
-		
-		this.indiceLiaison++;
+		// this.indiceLiaison++;
 	}
 	
 	/**
 	 * Vérifie si le sommet en paramètre se trouve dans la
-	 * liste de liaisons du sommet instancié.
+	 * liste de liaisons de this.
 	 * 
 	 * @param sommetATester Sommet dont il faut vérifier la présence
-	 * 					    dans la liste de liaisons de l'appelant.
+	 * 					    dans la liste de liaisons de this.
 	 * @return Un booléen informant si la liaison existe ou non.
 	 */
 	public boolean liaisonExiste(Sommet sommetATester) {
@@ -174,23 +124,12 @@ public class Sommet {
 		return false;
 	}
 	
-//	public boolean liaisonExiste(Sommet sommetATester) {
-//		boolean resultat = false;
-//
-//		for (int i = 0; i < this.getLiaisons().length; i++) {
-//			if (this.getLiaisons()[i] == sommetATester)	{
-//				resultat = true;
-//			}
-//		}
-//		return resultat;
-//	}
 	
 	/**
-	 * Vérifie si le sommet en paramètre a les mêmes coordonnées
-	 * que le sommet instancié.
+	 * Vérifie si le sommet en paramètre a les mêmes coordonnées que this.
 	 * 
 	 * @param sommetATester Sommet dont il faut vérifier l'égalité des
-	 * 						coordonnées avec le sommet instancié.
+	 * 						coordonnées avec this.
 	 * @return Un booléen informant si les coordonnées des sommets sont les mêmes.
 	 */
 	public boolean sommetEgal(Sommet sommetATester) {
@@ -206,19 +145,19 @@ public class Sommet {
     public String toString() {
         return "(" + this.getCoordonneeX() + " ; " + this.getCoordonneeY() + ")";
     }
-    
-    /* C'est pour que la méthode assertArrayEquals de JUnit
-     * compare les valeurs des tableau et non leur référence */
+       
 	/** non javadoc - @see java.util.Objects#equals(Object) */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+    	Sommet autreSommet = (Sommet) obj;
+    	
+    	if (this == obj)
             return true;
         if (obj == null || getClass() != obj.getClass())
             return false;
-        Sommet other = (Sommet) obj;
-        // Comparez les valeurs des propriétés des objets Sommet
-        return this.coordonneeX == other.coordonneeX && this.coordonneeY == other.coordonneeY;
+        
+        return this.coordonneeX == autreSommet.coordonneeX
+            && this.coordonneeY == autreSommet.coordonneeY;
     }
 
     /** non javadoc - @see java.util.Objects#hashCode() */
