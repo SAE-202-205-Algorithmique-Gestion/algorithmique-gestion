@@ -6,6 +6,8 @@ package iut.info1.sae.algorithmiquegestion.composants.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -68,13 +70,13 @@ class TestSommet {
             /* Création des liaisons entre les sommets */
             sommet1.creerLiaison(sommet2);
             
-            Sommet[] liaisonsSommet1 = sommet1.getLiaisons();
-            Sommet[] liaisonsSommet2 = sommet2.getLiaisons();
+            ArrayList<Sommet> liaisonsSommet1 = sommet1.getLiaisons();
+            ArrayList<Sommet> liaisonsSommet2 = sommet2.getLiaisons();
             
             assertTrue(ensembleSommetsALier[indice][1]
-            		   .sommetEgal(liaisonsSommet1[0]));
+            		   .sommetEgal(liaisonsSommet1.get(0)));
 		
-            assertTrue(sommet1.sommetEgal(liaisonsSommet2[0]));
+            assertTrue(sommet1.sommetEgal(liaisonsSommet2.get(0)));
             
             indice++;
 		}

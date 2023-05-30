@@ -4,6 +4,7 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants.tests;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
@@ -128,13 +129,17 @@ class TestGraphe {
 			rang++;
 		}
 		
-		assertArrayEquals(grapheTeste.sommetsDeMemeMarque(marque), sommetAttendus1);
-		for (int i = 0; i < grapheTeste.sommetsDeMemeMarque(marque).length; i++) {
+		Sommet[] sommetRetourneMethode = grapheTeste.sommetsDeMemeMarque(marque)
+				.toArray(new Sommet[grapheTeste.sommetsDeMemeMarque(marque).size()]);
+		
+		assertArrayEquals(sommetRetourneMethode, sommetAttendus1);
+		
+		for (int i = 0; i < grapheTeste.sommetsDeMemeMarque(marque).size(); i++) {
 			
 			System.out.println("Sommets : "
-					+ "X : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getCoordonneeX()
-					+ "  Y : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getCoordonneeY()
-					+ "\tMarques : " + grapheTeste.sommetsDeMemeMarque(marque)[i].getMarque());
+					+ "X : " + grapheTeste.sommetsDeMemeMarque(marque).get(i).getCoordonneeX()
+					+ "  Y : " + grapheTeste.sommetsDeMemeMarque(marque).get(i).getCoordonneeY()
+					+ "\tMarques : " + grapheTeste.sommetsDeMemeMarque(marque).get(i).getMarque());
 		}
 		
 		grapheTeste.getListeSommets()[8].setMarque(4);
@@ -147,7 +152,10 @@ class TestGraphe {
 			    grapheTeste.getListeSommets()[19]
 			};
 		
-		assertArrayEquals(grapheTeste.sommetsDeMemeMarque(4), sommetsAttendus2);
+		Sommet[] sommetRetourneMethode2 = grapheTeste.sommetsDeMemeMarque(4)
+				.toArray(new Sommet[grapheTeste.sommetsDeMemeMarque(4).size()]);
+		
+		assertArrayEquals(sommetRetourneMethode2, sommetsAttendus2);
 	}
 	
 	//TODO faire un test de la méthode definitUneMarque
@@ -342,8 +350,8 @@ class TestGraphe {
 		
 		for (int indexSommet = 0; indexSommet < graphe2.getNombreSommets(); indexSommet++) {
 			System.out.println("Sommet : " + graphe2.getListeSommets()[indexSommet]);
-			for (int i = 0; i < graphe2.getListeSommets()[indexSommet].getLiaisons().length; i++) {
-				System.out.println("Sommet lie : " + graphe2.getListeSommets()[indexSommet].getLiaisons()[i]);
+			for (int i = 0; i < graphe2.getListeSommets()[indexSommet].getLiaisons().size(); i++) {
+				System.out.println("Sommet lie : " + graphe2.getListeSommets()[indexSommet].getLiaisons().get(i));
 			}
 			
 		}
