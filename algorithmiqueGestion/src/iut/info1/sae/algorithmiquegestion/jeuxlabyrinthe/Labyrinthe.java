@@ -219,4 +219,12 @@ public class Labyrinthe {
 			}
 		}
 	}
+	
+	public int getNombreDeColonne() {
+		return this.nombreDeColonne;
+	}
+	
+	public int getNombreDeLigne() {
+		return this.nombreDeLigne;
+	}
 }

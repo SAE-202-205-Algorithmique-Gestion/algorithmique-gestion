@@ -4,6 +4,8 @@
  */
 package iut.info1.sae.algorithmiquegestion.parametres;
 
+import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
+
 /**
  * Classe de paramétrage du labyrinthe par l'utilisateur.
  * 
@@ -11,31 +13,42 @@ package iut.info1.sae.algorithmiquegestion.parametres;
  */
 public class ParametresLabyrinthe {
 	
-	private int longueurLabyrinthe;
+	private String nomLabyrinthe;
 	
-	private int hauteurLabyrinthe;
+	private Labyrinthe labyrintheASauvegarder;
 	
-	public ParametresLabyrinthe() {
+	public ParametresLabyrinthe(String nomLabyrinthe, 
+								Labyrinthe labyrintheASauvegarder) {
+		
 		super();
 		
-		this.longueurLabyrinthe = 5;
-		this.hauteurLabyrinthe = 5;
+		this.nomLabyrinthe = nomLabyrinthe;
+		this.labyrintheASauvegarder = labyrintheASauvegarder;
+		
 	}
 	
 	public int getLongueurLabyrinthe() {
-		return this.longueurLabyrinthe;
+		return this.labyrintheASauvegarder.getNombreDeColonne();
 	}
 	
+	/*
 	public void setLongueurLabyrinthe(int nouvelleLongueur) {
 		this.longueurLabyrinthe = nouvelleLongueur;
 	}
+	*/
 	
 	public int getHauteurLabyrinthe() {
-		return this.hauteurLabyrinthe;
+		return this.labyrintheASauvegarder.getNombreDeLigne();
 	}
 	
+	/*
 	public void setHauteurLabyrinthe(int nouvelleHauteur) {
 		this.hauteurLabyrinthe = nouvelleHauteur;
+	}
+	*/
+	
+	public String getNomLabyrinthe() {
+		return this.nomLabyrinthe;
 	}
 
 }

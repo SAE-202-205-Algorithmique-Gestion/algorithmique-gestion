@@ -6,6 +6,12 @@ package iut.info1.sae.algorithmiquegestion.sauvegardes;
 
 import iut.info1.sae.algorithmiquegestion.parametres.ParametresLabyrinthe;
 
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.IOException;
+import com.google.gson.Gson;
+
+
 /*  TODO!
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -20,6 +26,10 @@ import org.json.simple.parser.ParseException;
  * @author Jonathan GUIL
  */
 public class SauvegardeParametres {
+	
+	private final String CHEMIN_JSON_PARAMETRES 
+		= "src/iut/info1/sae/algorithmiquegestion/donnees/configurations_"
+		+ "labyrinthes.json";
 	
 	private String cheminSauvegardeParametres;
 	
@@ -36,7 +46,19 @@ public class SauvegardeParametres {
 	}
 	
 	public void sauvegarderParametres() {
-		// TODO: faire la méthode de sauvegarde des paramètres.
+		FileReader lectureSauvegarde;
+		
+		FileWriter ecritureSauvegarde;
+		
+		String donneesCourantes,
+			   nouvellesDonnees;
+		
+		try {
+			lectureSauvegarde = new FileReader(this.CHEMIN_JSON_PARAMETRES);
+			//donneesCourantes = lectureSauvegarde.;  // TODO!!
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }
