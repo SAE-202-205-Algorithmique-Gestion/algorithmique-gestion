@@ -1,4 +1,4 @@
-/*
+/*i
  * TODO : javadoc
  */
 package iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe;
@@ -161,48 +161,52 @@ public class Labyrinthe {
 	}
 	
 	public boolean demandeDeplacement() {
-		boolean saisieBonne = true;
+		boolean conditionArret = false;
 		// TODO : Loïc trouve un meilleur nom ci-dessous
 		boolean saisieCorrecte = true;
 		
 		int indiceSaisieDeplacement;
 		
-		String saisieDeplacement = this.entreeDeplacement.next();
-		this.entreeDeplacement.nextLine();
+		String saisieDeplacement = this.entreeDeplacement.next()
+								   + this.entreeDeplacement.nextLine();
 		
+		saisieDeplacement = saisieDeplacement.replaceAll("z", "t");
+
 		for (indiceSaisieDeplacement = 0;
 			 indiceSaisieDeplacement < saisieDeplacement.length()
-			 && saisieBonne;
+			 && !conditionArret;
 			 indiceSaisieDeplacement++) {
 			
 //				System.out.println(saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)
 //						+ " " + indiceSaisieDeplacement);
 			switch (saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)) {
 			case 'z':
-				if (!verificationDeplacement(-this.nombreDeColonne))
-					saisieBonne = false;
+				if (!verificationDeplacement(-this.nombreDeColonne)) {
+					conditionArret = true;					
+				}
 				break;
 				
 			case 's':
-				if (!verificationDeplacement(this.nombreDeColonne))
-					saisieBonne = false;
+				if (!verificationDeplacement(this.nombreDeColonne)) {
+					conditionArret = true;					
+				}
 				break;
 				
 			case 'd':
-				if (!verificationDeplacement(1))
-					saisieBonne = false;
+				if (!verificationDeplacement(1)) {
+					conditionArret = true;					
+				}
 				break;
 				
 			case 'q':
-				if (!verificationDeplacement(-1))
-					saisieBonne = false;
+				if (!verificationDeplacement(-1)) {
+					conditionArret = true;					
+				}
 				break;
-				
-			case ' ':
-				break;
+
 			default:
-				saisieBonne = false;
 				saisieCorrecte = false;
+				conditionArret = true;
 				break;
 			}
 		}

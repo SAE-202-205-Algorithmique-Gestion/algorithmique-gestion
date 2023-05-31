@@ -6,6 +6,7 @@ package iut.info1.sae.algorithmiquegestion.composants;
 
 import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
 
+
 /**
  * Affichage sur console texte d'un jeu de labyrinthe représenté
  * sous forme de Graphe avec un point de départ (l'entrée) E, un point
@@ -40,6 +41,7 @@ public class AffichageLabyrinthe {
 	"""
 	Bienvenue sur ce jeu de Labyrinthe !
 	
+	Veuillez d'abord renseigner la longueur et la largeur'
 	Voici la liste des commandes utilisables dans la console texte :
 	"""
 	+ COMMANDES +
@@ -69,13 +71,16 @@ public class AffichageLabyrinthe {
 	= "\n\nEntrez votre/vos commande(s) : ";
 	
 	/**
-	 * TODO : javadoc
+	 * 
 	 */
 	public static void main(String[] args) {
 		
-		System.out.println(LANCEMENT_JEU);
+        int nombreLignes = 5;
+	    int nombreColonnes = 5 ;
+
+	    System.out.println(LANCEMENT_JEU);
 		
-		Labyrinthe testSam = new Labyrinthe(5, 5);
+		Labyrinthe labyrinthe = new Labyrinthe(nombreLignes, nombreColonnes);
 		
 //		for (int indexSommet = 0; indexSommet < testSam.getGraphe().getNombreSommets(); indexSommet++) {
 //			System.out.println("Sommet : " + testSam.getGraphe().getListeSommets()[indexSommet]);
@@ -88,16 +93,16 @@ public class AffichageLabyrinthe {
 		int ligne;
 		do {
 			ligne = 0;
-			for (int i = 0; i < testSam.getGraphe().getNombreSommets(); i++) {
+			for (int i = 0; i < labyrinthe.getGraphe().getNombreSommets(); i++) {
 				
-				if (testSam.getGraphe().getListeSommets()[i].getCoordonneeY() == ligne + 1) {
+				if (labyrinthe.getGraphe().getListeSommets()[i].getCoordonneeY() == ligne + 1) {
 					System.out.println("");
 					ligne++;
 					
-					for (int rang = 0; rang < testSam.getGraphe().getNombreColonnesLabyrinthe(); rang++) {
-						if (testSam.getGraphe().getListeSommets()[i + rang]
+					for (int rang = 0; rang < labyrinthe.getGraphe().getNombreColonnesLabyrinthe(); rang++) {
+						if (labyrinthe.getGraphe().getListeSommets()[i + rang]
 							.liaisonExiste
-							(testSam.getGraphe().getListeSommets()[i + rang - testSam.getGraphe()
+							(labyrinthe.getGraphe().getListeSommets()[i + rang - labyrinthe.getGraphe()
 																.getNombreColonnesLabyrinthe()])) {
 							
 							System.out.print(LIAISON_VERTICALE);
@@ -110,26 +115,26 @@ public class AffichageLabyrinthe {
 				}
 				/* Affichage des sommets :
 				 * Entrée */
-				if (testSam.getEntree() == testSam.getGraphe().getListeSommets()[i]) {
-					System.out.print(testSam.getEntreeSymbole());
+				if (labyrinthe.getEntree() == labyrinthe.getGraphe().getListeSommets()[i]) {
+					System.out.print(labyrinthe.getEntreeSymbole());
 					
 				/* Sortie */
-				} else if (testSam.getSortie() == testSam.getGraphe().getListeSommets()[i]) {
-					System.out.print(testSam.getSortieSymbole());
+				} else if (labyrinthe.getSortie() == labyrinthe.getGraphe().getListeSommets()[i]) {
+					System.out.print(labyrinthe.getSortieSymbole());
 					
 				/* Position actuelle */
-				} else if (testSam.getPositionActuelle() != testSam.getEntree()
-						   && testSam.getPositionActuelle() == testSam.getGraphe().getListeSommets()[i]) {
-					System.out.print(testSam.getSommetActuelleSymbole());
+				} else if (labyrinthe.getPositionActuelle() != labyrinthe.getEntree()
+						   && labyrinthe.getPositionActuelle() == labyrinthe.getGraphe().getListeSommets()[i]) {
+					System.out.print(labyrinthe.getSommetActuelleSymbole());
 				
 				/* les autres sommets */
 				} else {
 					System.out.print(CASE);
 				}
 					
-				if (i < testSam.getGraphe().getNombreSommets() - 1) {
-					if (testSam.getGraphe().getListeSommets()[i].getCoordonneeY() == testSam.getGraphe().getListeSommets()[i + 1].getCoordonneeY()) {
-						if (testSam.getGraphe().getListeSommets()[i].liaisonExiste(testSam.getGraphe().getListeSommets()[i + 1])) {
+				if (i < labyrinthe.getGraphe().getNombreSommets() - 1) {
+					if (labyrinthe.getGraphe().getListeSommets()[i].getCoordonneeY() == labyrinthe.getGraphe().getListeSommets()[i + 1].getCoordonneeY()) {
+						if (labyrinthe.getGraphe().getListeSommets()[i].liaisonExiste(labyrinthe.getGraphe().getListeSommets()[i + 1])) {
 							System.out.print(LIAISON_HORIZONTALE);
 						} else {
 							System.out.print("    ");
@@ -140,12 +145,12 @@ public class AffichageLabyrinthe {
 			}
 			
 			System.out.println(DEMANDE_COMMANDE);
-			if (!testSam.demandeDeplacement()) {
+			if (!labyrinthe.demandeDeplacement()) {
 				System.out.print(ERREUR_SAISIE);
 			}
 			System.out.println();
 			
-		} while (testSam.getPositionActuelle() != testSam.getSortie());
+		} while (labyrinthe.getPositionActuelle() != labyrinthe.getSortie());
 		System.out.println(PARTIE_GAGNEE);
 	}
 }
