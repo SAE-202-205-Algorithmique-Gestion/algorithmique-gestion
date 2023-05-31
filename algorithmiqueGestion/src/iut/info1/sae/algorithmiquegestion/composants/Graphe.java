@@ -7,6 +7,7 @@ package iut.info1.sae.algorithmiquegestion.composants;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 /**
  * Modélisation du graphe sans circuit et n'ayant qu'une seule chaîne.
  * Utilisation de la classe Sommet dans la création du graphe.
@@ -139,24 +140,26 @@ public class Graphe {
 	 * @param sommet2 Instance du second sommet
 	 * @return Si les deux sommets sont adjacents
 	 */
-	/*public boolean estAdjacent(int indiceSommet1, int indiceSommet2) {
-		
-		final Sommet[] listeSommet = this.getListeSommets();
-		
-		final Sommet sommet1 = listeSommet[indiceSommet1];
-		final Sommet sommet2 = listeSommet[indiceSommet2-1];  
+	public boolean estAdjacent(int indiceSommet1, int indiceSommet2) {
 		
 		if (!this.sommetExiste(indiceSommet1)
 			|| !this.sommetExiste(indiceSommet2)) {
 			return false;
 		}
-		return (      sommet1.getCoordonneeX() == sommet2.getCoordonneeX()
-				  && (  sommet1.getCoordonneeY() == sommet2.getCoordonneeY() + 1
-				     || sommet1.getCoordonneeY() == sommet2.getCoordonneeY() - 1))
-			   || (   sommet1.getCoordonneeY() == sommet2.getCoordonneeY()
-				  && (  sommet1.getCoordonneeX() == sommet2.getCoordonneeX() + 1
-				     || sommet1.getCoordonneeX() == sommet2.getCoordonneeX() - 1));
-	}*/
+		
+		final Sommet[] listeSommet = this.getListeSommets();
+		
+		final Sommet sommet1 = listeSommet[indiceSommet1];
+		final Sommet sommet2 = listeSommet[indiceSommet2];
+		
+		return (sommet1.getCoordonneeX() == sommet2.getCoordonneeX()
+				&& (    sommet1.getCoordonneeY() == sommet2.getCoordonneeY() + 1
+				    ||  sommet1.getCoordonneeY() == sommet2.getCoordonneeY() - 1))
+			    || (    sommet1.getCoordonneeY() == sommet2.getCoordonneeY()
+				    && (sommet1.getCoordonneeX() == sommet2.getCoordonneeX() + 1
+				        || sommet1.getCoordonneeX() == sommet2.getCoordonneeX() - 1));
+		
+	}
 	
 	/**
      * Vérifie si deux sommets sont adjacents à l'aide de 
@@ -166,7 +169,7 @@ public class Graphe {
      * @param sommet2 Instance du second sommet
      * @return Si les deux sommets sont adjacents
      */
-    public boolean estAdjacent(int sommet1, int sommet2) {
+    /*public boolean estAdjacent(int sommet1, int sommet2) {
         if (!this.sommetExiste(sommet1)
             || !this.sommetExiste(sommet2)) {
             
@@ -180,7 +183,7 @@ public class Graphe {
             || (this.getListeSommets()[sommet1].getCoordonneeY() == this.getListeSommets()[sommet2].getCoordonneeY()
                 && (this.getListeSommets()[sommet1].getCoordonneeX() == this.getListeSommets()[sommet2].getCoordonneeX() + 1
                     || this.getListeSommets()[sommet1].getCoordonneeX() == this.getListeSommets()[sommet2].getCoordonneeX() - 1));
-    }
+    }*/
 	
 	/** 
 	 * @param sommet1
@@ -316,7 +319,7 @@ public class Graphe {
 	 * Permet de vérifier l'existance d'un sommet dans le graphe
 	 * à partir de ses coordonnées.
 	 * @param sommet
-	 * @return si le sommet fais bien parti du graphe ou pas
+	 * @return si le sommet fais bien partie du graphe ou pas
 	 */
 	public boolean sommetExiste(int sommet) {
 		return sommet >= 0 && sommet < this.getNombreSommets();

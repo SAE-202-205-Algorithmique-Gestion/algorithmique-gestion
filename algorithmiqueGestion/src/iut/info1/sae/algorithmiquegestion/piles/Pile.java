@@ -74,6 +74,7 @@ public class Pile {
 	public Pile depiler() {
 		preConditionPileNonVide();
 		taille--;
+		verifierTailleElements();
 		return this;
 	}
 	
