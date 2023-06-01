@@ -41,8 +41,7 @@ public class AffichageLabyrinthe {
 	"""
 	Bienvenue sur ce jeu de Labyrinthe !
 	
-	Veuillez d'abord renseigner la longueur et la largeur // TODO Tom ?
-	
+	Veuillez d'abord renseigner la longueur et la largeur'
 	Voici la liste des commandes utilisables dans la console texte :
 	"""
 	+ COMMANDES +

@@ -7,23 +7,17 @@ package iut.info1.sae.algorithmiquegestion.sauvegardes;
 import iut.info1.sae.algorithmiquegestion.parametres.ParametresLabyrinthe;
 
 import java.io.FileWriter;
-import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import com.google.gson.Gson;
 
-/*
+
+/*  TODO!
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 */
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonParseException;
-
-import java.util.Scanner;
 
 /**
  * Classe de gestion de la sauvegarde des paramètres 
@@ -52,21 +46,16 @@ public class SauvegardeParametres {
 	}
 	
 	public void sauvegarderParametres() {
-		File lectureSauvegarde;
+		FileReader lectureSauvegarde;
 		
 		FileWriter ecritureSauvegarde;
 		
-		Scanner donneesCourantes;
-		
-		String nouvellesDonnees;
+		String donneesCourantes,
+			   nouvellesDonnees;
 		
 		try {
-			lectureSauvegarde = new File(this.CHEMIN_JSON_PARAMETRES);
-			donneesCourantes = new Scanner(lectureSauvegarde);
-			
-			System.out.println(donneesCourantes.next());
-			
-			donneesCourantes.close();
+			lectureSauvegarde = new FileReader(this.CHEMIN_JSON_PARAMETRES);
+			//donneesCourantes = lectureSauvegarde.;  // TODO!!
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}

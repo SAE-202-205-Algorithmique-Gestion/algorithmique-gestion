@@ -177,6 +177,8 @@ public class Labyrinthe {
 			 && !conditionArret;
 			 indiceSaisieDeplacement++) {
 			
+//				System.out.println(saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)
+//						+ " " + indiceSaisieDeplacement);
 			switch (saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)) {
 			case 'z':
 				if (!verificationDeplacement(-this.nombreDeColonne)) {
