@@ -21,12 +21,6 @@ public class Sommet {
 	/** Sommets voisins à this dans le graphe. */
 	private ArrayList<Sommet> liaisons;
 	
-	/**
-	 * Indice de liaison du tableau liaisons
-	 * pour se repérer dans la liste des liaisons.
-	 */
-	// private int indiceLiaison;
-	
 	/** Valeur X (horizontale) des coordonnées de this dans le graphe. */
 	private int coordonneeX;
 	
@@ -48,7 +42,6 @@ public class Sommet {
 	public Sommet(int coordonneeX, int coordonneeY) {
 		super();
 		
-		// this.indiceLiaison = 0;
 		this.coordonneeX = coordonneeX;
 		this.coordonneeY = coordonneeY;
 		
@@ -104,7 +97,6 @@ public class Sommet {
 		if (!sommetALier.liaisonExiste(this)) {
 			sommetALier.creerLiaison(this);
 		}
-		// this.indiceLiaison++;
 	}
 	
 	/**
@@ -116,12 +108,14 @@ public class Sommet {
 	 * @return Un booléen informant si la liaison existe ou non.
 	 */
 	public boolean liaisonExiste(Sommet sommetATester) {
+		boolean resultat = false;
+		
 		for (Sommet sommetLie : this.getLiaisons()) {
 			if (sommetLie == sommetATester)	{
-				return true;
+				resultat = true;
 			}
 		}
-		return false;
+		return resultat;
 	}
 	
 	

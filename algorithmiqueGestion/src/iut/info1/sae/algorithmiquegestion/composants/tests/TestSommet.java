@@ -18,7 +18,7 @@ import org.junit.jupiter.api.TestInstance;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
 /**
- * Classe de tests unitaires JUnit de la classe Sommet.
+ * Tests unitaires avec JUnit de la classe Sommet.
  * 
  * @author Jonathan GUIL
  * @author Loïc FAUGIERES
@@ -31,7 +31,7 @@ class TestSommet {
 	
 	/**
 	 * Affichage d'un message dans la console texte annonçant
-	 * le début de tous les tests JUnit.
+	 * le début de tous les tests unitaires.
 	 */
 	@BeforeAll
 	void debutTest() {
