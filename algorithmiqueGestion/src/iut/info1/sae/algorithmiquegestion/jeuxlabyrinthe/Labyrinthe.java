@@ -170,7 +170,7 @@ public class Labyrinthe {
 		String saisieDeplacement = this.entreeDeplacement.next()
 								   + this.entreeDeplacement.nextLine();
 		
-		saisieDeplacement = saisieDeplacement.replaceAll(" ", "");
+		saisieDeplacement = saisieDeplacement.replaceAll("z", "t");
 
 		for (indiceSaisieDeplacement = 0;
 			 indiceSaisieDeplacement < saisieDeplacement.length()

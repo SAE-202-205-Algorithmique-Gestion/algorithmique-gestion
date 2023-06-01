@@ -6,28 +6,21 @@ import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
 public class AffichageLabyrintheTom {
 	
 	public final static String MUR_VERTICALE = "---+";
-
-	public final static String MUR_VERTICALE_FIN_DE_LIGNE = "---";
 	
 	public final static String LIAISON_HORIZONTALE = "   ";
 	
 	public final static String MUR_HORIZONTALE = " | ";
 	
 //	public final static String VIDE_VERTICAL = "   \u0000   ";
-	public final static String LIAISON_VERTICALE = "   +";
+	public final static String LIAISON_VERTICALE = "    ";
 	
 	private final static String PARTIE_GAGNEE = "\nBravo !\nVous avez gagné, la"
 			+ " partie est terminée !";
-
-	private static final String LIAISON_VERTICALE_FIN_DE_LIGNE = "   ";
-
-	private static final String MUR_BORDURE = "----";
-
-	private static Labyrinthe testSam = new Labyrinthe(10, 10);
 	
 	// TODO el ravadocumentacion
 	public static void main(String[] args) {
 		
+		Labyrinthe testSam = new Labyrinthe(5, 5);
 		
 //		for (int indexSommet = 0; indexSommet < testSam.getGraphe().getNombreSommets(); indexSommet++) {
 //			System.out.println("Sommet : " + testSam.getGraphe().getListeSommets()[indexSommet]);
@@ -41,43 +34,35 @@ public class AffichageLabyrintheTom {
 		do {
 			ligne = 0;
 			System.out.print("+");
-			for (int j = 0; j < testSam.getGraphe().getNombreColonnesLabyrinthe() - 1; j++) {
-				System.out.print(MUR_BORDURE);
+			for (int j = 0; j < testSam.getGraphe().getNombreColonnesLabyrinthe(); j++) {
+				System.out.print(MUR_VERTICALE);
 			}
-			System.out.print("---+");
-			System.out.print("\n| ");
 
-//			System.out.println();
+			System.out.println();
 			
 			for (int i = 0; i < testSam.getGraphe().getNombreSommets(); i++) {
 				
-				if (testSam.getGraphe().getListeSommets()[i].getCoordonneeX() == 0
-					&& testSam.getGraphe().getListeSommets()[i].getCoordonneeY() != 0) {
-					System.out.print(" |");
+				if (testSam.getGraphe().getListeSommets()[i].getCoordonneeX() == 0) {
+					System.out.print("| ");
 				}
 				
 				if (testSam.getGraphe().getListeSommets()[i].getCoordonneeY() == ligne + 1) {
-//					System.out.println("");
-					System.out.print("\n|");
+					System.out.print("|");
+					System.out.println("");
 					ligne++;
 					
 					for (int rangLigne = 0; rangLigne < testSam.getGraphe().getNombreColonnesLabyrinthe(); rangLigne++) {
-						if (affichageLiaisonVertical(i, rangLigne)) {
-							if (finDeLigne(rangLigne)) {
-								System.out.print(LIAISON_VERTICALE_FIN_DE_LIGNE);
-							} else {
-								System.out.print(LIAISON_VERTICALE);
-							}
+						if (testSam.getGraphe().getListeSommets()[i + rangLigne]
+							.liaisonExiste
+							(testSam.getGraphe().getListeSommets()[i + rangLigne - testSam.getGraphe()
+																.getNombreColonnesLabyrinthe()])) {
 							
+							System.out.print (LIAISON_VERTICALE);
 						} else {
-							if (finDeLigne(rangLigne)) {
-								System.out.print(MUR_VERTICALE_FIN_DE_LIGNE);
-							} else {
-								System.out.print(MUR_VERTICALE);
-							}
+							System.out.print(MUR_VERTICALE);
 						}
 					}
-					System.out.print("|" + "\n| ");
+					System.out.println("");
 					
 				}
 				/* Affichage des sommets :
@@ -96,7 +81,7 @@ public class AffichageLabyrintheTom {
 				
 				/* les autres sommets */
 				} else {
-					System.out.print(" ");
+					System.out.print("#");
 				}
 					
 				if (i < testSam.getGraphe().getNombreSommets() - 1) {
@@ -110,32 +95,17 @@ public class AffichageLabyrintheTom {
 				}
 				
 			}
-			System.out.print(" |");
-			System.out.print("\n+");
+			
+			System.out.println();
 
-			for (int j = 0; j < testSam.getGraphe().getNombreColonnesLabyrinthe() - 1; j++) {
-                System.out.print(MUR_BORDURE);
+			for (int j = 0; j < testSam.getGraphe().getNombreColonnesLabyrinthe(); j++) {
+                System.out.print(MUR_VERTICALE);
             }
-			System.out.print("---+");
 
 			testSam.demandeDeplacement();
 			System.out.println("");
 			
 		} while (testSam.getPositionActuelle() != testSam.getSortie());
 		System.out.println(PARTIE_GAGNEE);
-	}
-	
-	private static boolean affichageLiaisonVertical(int i, int rangLigne) {
-		if (testSam.getGraphe().getListeSommets()[i + rangLigne]
-			.liaisonExiste
-			(testSam.getGraphe().getListeSommets()[i + rangLigne - testSam.getGraphe()
-												.getNombreColonnesLabyrinthe()])) {
-			return true;
-		}
-		return false;
-	}
-	
-	private static boolean finDeLigne(int rangLigne) {
-		return rangLigne == testSam.getGraphe().getNombreColonnesLabyrinthe() - 1;
 	}
 }
