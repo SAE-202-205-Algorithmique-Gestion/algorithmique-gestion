@@ -17,7 +17,7 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import iut.info1.sae.algorithmiquegestion.composants.*;
 
 /**
- * Classe de tests JUnit des méthodes de la classe Graphe.
+ * Tests unitaires avec JUnit de la classe Graphe.
  * 
  * @author Jonathan GUIL
  * @author Loïc FAUGIERES
