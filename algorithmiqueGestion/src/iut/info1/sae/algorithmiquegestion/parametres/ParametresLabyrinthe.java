@@ -50,5 +50,37 @@ public class ParametresLabyrinthe {
 	public String getNomLabyrinthe() {
 		return this.nomLabyrinthe;
 	}
+	
+	public int getPointEntreeX() {
+		return this.labyrintheASauvegarder.getEntree().getCoordonneeX();
+	}
+	
+	public int getPointEntreeY() {
+		return this.labyrintheASauvegarder.getEntree().getCoordonneeY();
+	}
+	
+	public int getPointSortieX() {
+		return this.labyrintheASauvegarder.getSortie().getCoordonneeX();
+	}
+	
+	public int getPointSortieY() {
+		return this.labyrintheASauvegarder.getSortie().getCoordonneeY();
+	}
+	
+	public int getPointActuelX() {
+		return this.labyrintheASauvegarder
+			   	   .getPositionActuelle()
+			   	   .getCoordonneeX();
+	}
+	
+	public int getPointActuelY() {
+		return this.labyrintheASauvegarder
+				   .getPositionActuelle()
+				   .getCoordonneeY();
+	}
+	
+	public boolean pointActuelExistant() {
+		return this.labyrintheASauvegarder.getPositionActuelle() != null;
+	}
 
 }

@@ -1,54 +1,30 @@
-/*
- * SauvegardeParametres.java										 16 mai 2023
- * IUT de Rodez, pas de copyright, ni de "copyleft".
+/**
+ * SauvegardeLabyrinthe.java
+ * Aucun droit d'auteur.
  */
 package iut.info1.sae.algorithmiquegestion.sauvegardes;
 
-import iut.info1.sae.algorithmiquegestion.parametres.ParametresLabyrinthe;
-import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
-
-import java.io.FileWriter;
-import java.io.File;
-import java.io.IOException;
 import java.io.BufferedWriter;
-
-/*
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-*/
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonParseException;
-import com.google.gson.Gson;
-
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 
-/**
- * Classe de gestion de la sauvegarde des paramètres 
- * sélectionnés par l'utilisateur.
- * 
- * @author Jonathan GUIL
- */
-public class SauvegardeTest {
-	
-	private final String CHEMIN_JSON_PARAMETRES 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import iut.info1.sae.algorithmiquegestion.parametres.ParametresLabyrinthe;
+
+public class SauvegardeLabyrinthe {
+	private final String CHEMIN_JSON_LABYRINTHES 
 		= "src/iut/info1/sae/algorithmiquegestion/donnees/labyrinthes.json";
-	
-	private String cheminSauvegardeParametres;
 	
 	private ParametresLabyrinthe parametresLabyrinthe;
 	
-	public SauvegardeTest(ParametresLabyrinthe parametresLabyrinthe) {
-		
+	public SauvegardeLabyrinthe(ParametresLabyrinthe parametresLabyrinthe) {
 		super();
 		
 		this.parametresLabyrinthe = parametresLabyrinthe;
-		
 	}
 	
 	public void sauvegarderParametres() {
@@ -71,10 +47,10 @@ public class SauvegardeTest {
 		
 		try {
 			recuperationSauvegardeCourante 
-				= new File(this.CHEMIN_JSON_PARAMETRES);
+				= new File(this.CHEMIN_JSON_LABYRINTHES);
 			lectureFichierSauvegarde 
 				= new Scanner(recuperationSauvegardeCourante);
-
+	
 			while (lectureFichierSauvegarde.hasNextLine()) {
 				donneesCourantes += lectureFichierSauvegarde.nextLine();
 			}
@@ -102,7 +78,7 @@ public class SauvegardeTest {
 			objetNouvelleSauvegarde
 				.addProperty("point_entree_x",
 							 this.parametresLabyrinthe.getPointEntreeX());
-
+	
 			objetNouvelleSauvegarde
 				.addProperty("point_entree_y",
 							 this.parametresLabyrinthe.getPointEntreeY());
@@ -110,7 +86,7 @@ public class SauvegardeTest {
 			objetNouvelleSauvegarde
 				.addProperty("point_sortie_x",
 						 	 this.parametresLabyrinthe.getPointSortieX());
-
+	
 			objetNouvelleSauvegarde
 				.addProperty("point_sortie_y",
 						 	 this.parametresLabyrinthe.getPointSortieY());
@@ -127,7 +103,7 @@ public class SauvegardeTest {
 			
 			objetSauvegarde.add(objetNouvelleSauvegarde);
 			
-			ecritureSauvegarde = new FileWriter(this.CHEMIN_JSON_PARAMETRES);
+			ecritureSauvegarde = new FileWriter(this.CHEMIN_JSON_LABYRINTHES);
 			
 			ecritureDansFichier = new BufferedWriter(ecritureSauvegarde);
 			ecritureDansFichier.write(objetSauvegarde.toString());
@@ -136,15 +112,4 @@ public class SauvegardeTest {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	public static void main(String[] args) {
-		SauvegardeTest test 
-			= new SauvegardeTest(
-					new ParametresLabyrinthe(
-							"test1", 
-							new Labyrinthe(5, 5)));
-		
-		test.sauvegarderParametres();
-	}
-
 }

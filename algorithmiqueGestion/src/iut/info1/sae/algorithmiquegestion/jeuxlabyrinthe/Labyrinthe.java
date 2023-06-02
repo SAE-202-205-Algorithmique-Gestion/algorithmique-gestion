@@ -15,19 +15,19 @@ import iut.info1.sae.algorithmiquegestion.composants.Sommet;
  */
 public class Labyrinthe {
 	
-	private final char HAUT = 'z';
+	private static final char HAUT = 'z';
 	
-	private final char BAS = 's';
+	private static final char BAS = 's';
 	
-	private final char DROITE = 'd';
+	private static final char DROITE = 'd';
 	
-	private final char GAUCHE = 'q';
+	private static final char GAUCHE = 'q';
 	
-	private final char SOMMET_ACTUEL_SYMBOLE = 'X';
+	private static final char SOMMET_ACTUEL_SYMBOLE = 'X';
 	
-	private final char ENTREE_SYMBOLE = 'E';
+	private static final char ENTREE_SYMBOLE = 'E';
 	
-	private final char SORTIE_SYMBOLE = 'S';
+	private static final char SORTIE_SYMBOLE = 'S';
 	
 	private Scanner entreeDeplacement;
 	
