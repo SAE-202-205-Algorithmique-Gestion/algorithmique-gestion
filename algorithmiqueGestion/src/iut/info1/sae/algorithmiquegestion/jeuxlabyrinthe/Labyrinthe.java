@@ -220,4 +220,6 @@ public class Labyrinthe {
 	public int getNombreDeLigne() {
 		return this.nombreDeLigne;
 	}
+	
+	
 }

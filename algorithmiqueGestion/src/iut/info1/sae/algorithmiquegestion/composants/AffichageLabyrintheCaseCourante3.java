@@ -4,8 +4,8 @@ import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
 
 public class AffichageLabyrintheCaseCourante3 {
 	
-	public final static String MUR_VERTICALE = "---";
-	public final static String MUR_HORIZONTALE = " | ";
+	public final static String MUR_VERTICAL = "---";
+	public final static String MUR_HORIZONTAL = " | ";
 
 	public final static String LIAISON = "   ";
 	
@@ -98,7 +98,7 @@ public class AffichageLabyrintheCaseCourante3 {
 							if (affichageMursVertical(i, rangLigne)) {
 								System.out.print(LIAISON);
 							} else {
-								System.out.print(MUR_VERTICALE);
+								System.out.print(MUR_VERTICAL);
 							}
 						
 						} else {
@@ -169,7 +169,7 @@ public class AffichageLabyrintheCaseCourante3 {
 			if (listeSommets[i].liaisonExiste(listeSommets[i + 1])) {
 				System.out.print(LIAISON);
 			} else {
-				System.out.print(MUR_HORIZONTALE);
+				System.out.print(MUR_HORIZONTAL);
 			}
 		}
 	}
@@ -240,7 +240,7 @@ public class AffichageLabyrintheCaseCourante3 {
 			if (listeSommets[i].liaisonExiste(listeSommets[i + 1])) {
 				System.out.print(LIAISON);
 			} else {
-				System.out.print(MUR_HORIZONTALE);
+				System.out.print(MUR_HORIZONTAL);
 			}
 		}
 		
@@ -270,7 +270,7 @@ public class AffichageLabyrintheCaseCourante3 {
 					if (affichageMursVertical(i, rangLigne)) {
 						System.out.print(LIAISON);
 					} else {
-						System.out.print(MUR_VERTICALE);
+						System.out.print(MUR_VERTICAL);
 					}
 					
 					if (rangLigne < labyrinthe.getNombreDeColonne() - 1) {

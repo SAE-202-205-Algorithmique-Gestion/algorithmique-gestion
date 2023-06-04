@@ -34,6 +34,13 @@ public class Sommet {
 	private int marque;
 	
 	/**
+	 * Permet de savoir si un sommet a déjà été parcoru lors
+	 * d'une recherche de solution. 
+	 * Par défaut, est initialisé à false.
+	 */ 
+	private boolean parcouru;
+	
+	/**
 	 * Sommet d'un graphe avec ses coordonnées X et Y.
 	 * 
 	 * @param coordonneeX Entier correspondant à la coordonnée X de this.
@@ -46,6 +53,8 @@ public class Sommet {
 		this.coordonneeY = coordonneeY;
 		
 		this.marque = -1; // marque par défaut
+		this.parcouru = false;
+		
 		this.liaisons = new ArrayList<>();
 	}
 	
@@ -69,7 +78,12 @@ public class Sommet {
         return marque;
     }
     
-    /** @param coordonneeX Nouvelle coordonnée horizontale de this. */
+    /** @return si le sommet a été parcouru */
+    public boolean isParcouru() {
+		return parcouru;
+	}
+
+	/** @param coordonneeX Nouvelle coordonnée horizontale de this. */
     public void setCoordonneeX(int coordonneeX) {
         this.coordonneeX = coordonneeX;
     }
@@ -84,6 +98,12 @@ public class Sommet {
         this.marque = marque;
     }
 
+    /** @param parcouru, true si le sommet a été parcouru, false sinon */
+    public void setParcouru(boolean parcouru) {
+        this.parcouru = parcouru;
+    }
+
+    
 	/**
 	 * Création d'une liaison entre this et le sommet en paramètre.
 	 * Cette liaison est ajoutée à l'attribut liaisons.
