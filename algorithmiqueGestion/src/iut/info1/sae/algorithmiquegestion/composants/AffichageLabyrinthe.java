@@ -5,6 +5,7 @@
 package iut.info1.sae.algorithmiquegestion.composants;
 
 import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 
 /**
  * Affichage sur console texte d'un jeu de labyrinthe représenté
@@ -75,12 +76,16 @@ public class AffichageLabyrinthe {
     private final static String DEMANDE_COMMANDE
 	= "\n\nEntrez votre/vos commande(s) : ";
 
-    private static final int NOMBRE_LIGNES = 10;
-    private static final int NOMBRE_COLONNES = 10;
+    private static final int NOMBRE_LIGNES = 5;
+    private static final int NOMBRE_COLONNES = 5;
 
 	private static Labyrinthe labyrinthe = new Labyrinthe(NOMBRE_LIGNES,
 														  NOMBRE_COLONNES);
 	
+	public static Labyrinthe getLabyrinthe() {
+		return labyrinthe;
+	}
+
 	private static Sommet[] listeSommets = labyrinthe.getGraphe()
 										   .getListeSommets();
 	
@@ -100,7 +105,7 @@ public class AffichageLabyrinthe {
 //			}
 //			
 //		}
-		
+//		ParcoursProfondeur.algorithmeParcours();
 		System.out.println(LANCEMENT_JEU);
 		
 		int ligneCourante;
@@ -144,6 +149,7 @@ public class AffichageLabyrinthe {
 			System.out.println(" " + BORDURE_DROITE);
 			
 			bordureHauteEtBasse();
+			ParcoursProfondeur.algorithmeParcours();
 
 			System.out.println(DEMANDE_COMMANDE);
 			if (!labyrinthe.demandeDeplacement()) {
@@ -151,8 +157,10 @@ public class AffichageLabyrinthe {
 			}
 			System.out.println();
 			
+
 		} while (labyrinthe.getPositionActuelle() != labyrinthe.getSortie());
 		System.out.println(PARTIE_GAGNEE);
+		
 	}
 	
 	/**

@@ -22,7 +22,7 @@ public class Pile {
 
 	/** Representation contigue = bloc de références des objets empilés */
 	private Object[] contenu;
-	
+
 	/** Nombre effectif d'objets empilés */
 	private int taille;
 	

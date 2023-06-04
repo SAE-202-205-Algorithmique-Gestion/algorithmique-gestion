@@ -99,8 +99,8 @@ public class Sommet {
     }
 
     /** @param parcouru, true si le sommet a été parcouru, false sinon */
-    public void setParcouru(boolean parcouru) {
-        this.parcouru = parcouru;
+    public void setParcouru(boolean estParcouru) {
+        this.parcouru = estParcouru;
     }
 
     
