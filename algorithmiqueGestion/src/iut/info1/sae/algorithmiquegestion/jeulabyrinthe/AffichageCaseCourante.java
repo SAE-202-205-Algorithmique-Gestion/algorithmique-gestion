@@ -1,5 +1,5 @@
 /*
- * AffichageLabyrinthe.java											 2 juin 2023
+ * AffichageCaseCourante.java							     		 2 juin 2023
  * IUT de Rodez, pas de copyright ni de "copyleft".
  */
 package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
@@ -21,7 +21,7 @@ import iut.info1.sae.algorithmiquegestion.composants.Sommet;
  * @author Samuel LACAM
  * @author Tom DOUAUD
  */
-public class AffichageLabyrinthe {
+public class AffichageCaseCourante {
 	
 	public final static String MUR_VERTICALE = "---";
 	public final static String MUR_HORIZONTALE = " | ";
@@ -37,9 +37,6 @@ public class AffichageLabyrinthe {
 
 	private static final char CASE = ' ';
 	
-	private final static String DEMANDE_COMMANDE
-    = "\n\nEntrez votre/vos commande(s) : ";
-	
 	public final static String COMMANDES =
 	"""
 	- H : déplacement vers le haut
@@ -48,20 +45,11 @@ public class AffichageLabyrinthe {
 	- D : déplacement vers la droite
 	""";
 	
-	public final static String COMMANDES_MENU_PRINCIPAL =
-	"________ COMMANDES MENU PRINCIPAL ________"
-	+ "\n\n- N : création d'un nouveau labyrinthe"
-    //+ "\n- O : ouverture d'un labyrinthe sauvegardé"
-    + "\n__________________________________________"
-    + DEMANDE_COMMANDE;
-    
-    public final static String BIENVENUE
-    = "Bienvenue sur ce jeu de Labyrinthe !\n";
-	
 	public final static String LANCEMENT_JEU =
-	BIENVENUE +
 	"""
-	Veuillez renseigner la longueur et la largeur du labyrinthe.
+	Bienvenue sur ce jeu de Labyrinthe !
+	
+	Veuillez renseigner la longueur et la largeur du labyrinthe. // TODO
 	
 	Voici la liste des commandes utilisables dans la console texte :
 	"""
@@ -90,6 +78,9 @@ public class AffichageLabyrinthe {
     Voici la liste des commandes utilisables dans la console texte :
     """
     + COMMANDES;
+    
+    private final static String DEMANDE_COMMANDE
+	= "\n\nEntrez votre/vos commande(s) : ";
 
 //    private static int nombreLignes;
 //    
@@ -132,6 +123,7 @@ public class AffichageLabyrinthe {
 //			
 //		}
 //		ParcoursProfondeur.algorithmeParcours();
+		System.out.println(LANCEMENT_JEU);
 		
 		int ligneCourante,
 		    longueurTemporaire,
@@ -151,23 +143,22 @@ public class AffichageLabyrinthe {
 		
 		analyseurSaisie = new Scanner(System.in);
 		
-		System.out.println(BIENVENUE);
-		
         do {
-			System.out.println(COMMANDES_MENU_PRINCIPAL);
+			System.out.println("MENU PRINCIPAL :\n"
+			                 + "n -> nouveau labyrinthe\n"
+			                 + "o -> ouvrir un labyrinthe sauvegardé");
 			                 
-			saisieMenuPrincipal = analyseurSaisie.next();
-			analyseurSaisie.nextLine();
+			saisieMenuPrincipal = analyseurSaisie.nextLine();
 			
-			switch (saisieMenuPrincipal.toLowerCase()) {
+			switch (saisieMenuPrincipal) {
 			case "n":
-                System.out.println("\n\n>> NOUVEAU LABYRINTHE");
+                System.out.println("NOUVEAU LABYRINTHE :");
 
                 while (!saisieLongueurLabyrintheTermine) {
 					if (saisirLongueurLabyrinthe(analyseurSaisie)) {
 						saisieLongueurLabyrintheTermine = true;
                     } else {
-						System.out.println("\nErreur : longueur invalide.");
+						System.out.println("Erreur : longueur invalide.");
 					}
 				}
 				
@@ -175,11 +166,9 @@ public class AffichageLabyrinthe {
                     if (saisirHauteurLabyrinthe(analyseurSaisie)) {
                         saisieHauteurLabyrintheTermine = true;
                     } else {
-                        System.out.println("\nErreur : hauteur invalide.");
+                        System.out.println("Erreur : hauteur invalide.");
                     }
                 }
-                
-                System.out.println("\n");
                 
                 labyrinthe = new Labyrinthe(hauteurLabyrinthe,
                                             longueurLabyrinthe);
@@ -191,11 +180,11 @@ public class AffichageLabyrinthe {
 			    break;
 			    
 			case "o":
-                // TODO : Ouvrir le labyrinthe sauvegardé
+                // TODO : ouvrir laby !!!
 			    break;
 			    
 			default:
-                System.out.println("\nErreur : commande inexistante !\n");
+                System.out.println("Erreur : commande inexistante !");
 			    break;
 			}
 		} while (!menuPrincipalPasse);
@@ -233,7 +222,7 @@ public class AffichageLabyrinthe {
 					System.out.print(BORDURE_DROITE + BORDURE_GAUCHE + " "); 
 				}
  				affichageSommets(i);
- 				affichageMurHorizontal(i);
+ 				affichageMursHorizontaux(i);
 			}
 			
 			// Dernière bordure latérale droite
@@ -256,50 +245,36 @@ public class AffichageLabyrinthe {
 		
 	}
 	
-	/**
-     * Vérification de la validité de la longueur saisie.
-     *
-     * @return true si la longueur saisie est correcte.
-     */
 	private static boolean saisirLongueurLabyrinthe(Scanner analyseurEntree) {
 		boolean longueurValide;
 		
 		longueurValide = true;
 		
-		System.out.print("\nEntrez la longueur (horizontale) du labyrinthe : ");
+		System.out.print("Longueur du labyrinthe ? ");
 		
 		if (analyseurEntree.hasNextInt()) {
 			longueurLabyrinthe = analyseurEntree.nextInt();
 		} else {
-			analyseurEntree.nextLine();
 			longueurValide = false;
 		}
-		System.out.println();
 		
 		return longueurValide
 		       && longueurLabyrinthe > LONGUEUR_MINIMALE_LABYRINTHE
                && longueurLabyrinthe <= LONGUEUR_MAXIMALE_LABYRINTHE;
 	}
 	
-	/**
-	 * Vérification de la validité de la hauteur saisie.
-	 *
-	 * @return true si la hauteur saisie est correcte.
-	 */
 	private static boolean saisirHauteurLabyrinthe(Scanner analyseurEntree) {
         boolean hauteurValide;
         
         hauteurValide = true;
         
-        System.out.print("\n\nEntrez la hauteur (verticale) du labyrinthe : ");
+        System.out.print("Hauteur du labyrinthe ? ");
         
         if (analyseurEntree.hasNextInt()) {
             hauteurLabyrinthe = analyseurEntree.nextInt();
         } else {
-			analyseurEntree.nextLine();
             hauteurValide = false;
         }
-        System.out.println();
         
         return hauteurValide
                && hauteurLabyrinthe > HAUTEUR_MINIMALE_LABYRINTHE
@@ -307,20 +282,19 @@ public class AffichageLabyrinthe {
     }
 	
 	/**
-	 * Vérification des liaisons afin d'afficher ou non les murs verticaux.
-	 *
-	 * @param indiceSommet Indice du sommet pour lequel vérifier la liaison.
-	 * @param rangLigne Le rang de la ligne permettant la vérification.
-	 * @return true si l'affichage est possible.
+	 * TODO javadoc samuel
+	 * @param i
+	 * @param rangLigne
+	 * @return Si l'affichage est possible
 	 */
-	private static boolean affichageMursVertical(int indiceSommet, int rangLigne) {
-		return listeSommets[indiceSommet + rangLigne]
-			   .liaisonExiste(listeSommets[indiceSommet + rangLigne
+	private static boolean affichageMursVertical(int i, int rangLigne) {
+		return listeSommets[i + rangLigne]
+			   .liaisonExiste(listeSommets[i + rangLigne
 			                               - labyrinthe.getNombreDeColonne()]);
 	}
 	
 	/**
-	 * Affichage console texte des bordures du haut et du bas du labyrinthe.
+	 * TODO : javadoc samuel
 	 */
 	private static void bordureHauteEtBasse() {
 		System.out.print(COIN_DE_MUR);
@@ -330,47 +304,45 @@ public class AffichageLabyrinthe {
 		System.out.print("---+");
 	}
 	
-    /**
-     * Affichage console texte des sommets du labyrinthe.
-     *
-     * @param indiceSommet Indice du sommet courant.
-     */
-	private static void affichageSommets(int indiceSommet) {
+	/**
+	 * TODO javadoc samuel
+	 * @param i
+	 */
+	private static void affichageSommets(int i) {
 		/* Entrée */
-		if (labyrinthe.getEntree() == listeSommets[indiceSommet]) {
+		if (labyrinthe.getEntree() == listeSommets[i]) {
 			System.out.print(labyrinthe.getEntreeSymbole());
 			
 		/* Sortie */
-		} else if (labyrinthe.getSortie() == listeSommets[indiceSommet]) {
+		} else if (labyrinthe.getSortie() == listeSommets[i]) {
 			System.out.print(labyrinthe.getSortieSymbole());
 			
 		/* Position actuelle */
 		} else if (labyrinthe.getPositionActuelle() != labyrinthe.getEntree()
-				   && labyrinthe.getPositionActuelle()
-				      == listeSommets[indiceSommet]) {
+				   && labyrinthe.getPositionActuelle() == listeSommets[i]) {
 			System.out.print(labyrinthe.getSommetActuelleSymbole());
 		
-		/* Les autres sommets */
+		/* les autres sommets */
 		} else {
 			System.out.print(CASE);
 		}
 	}
 	
 	/**
-	 * Affichage console texte de tous les murs horizontaux du labyrinthe.
-	 *
-	 * @param indiceSommet Indice du sommet courant à côté du mur à afficher.
+	 * TODO : javadoc Samuel
+	 * @param i
 	 */
-	private static void affichageMurHorizontal(int indiceSommet) {
-		if (indiceSommet < labyrinthe.getGraphe().getNombreSommets() - 1
-			&& listeSommets[indiceSommet].getCoordonneeY()
-			   == listeSommets[indiceSommet + 1].getCoordonneeY()) {
+	private static void affichageMursHorizontaux(int i) {
+		if (i < labyrinthe.getGraphe().getNombreSommets() - 1
+			&& listeSommets[i].getCoordonneeY()
+			   == listeSommets[i + 1].getCoordonneeY()) {
 			
-			if (listeSommets[indiceSommet].liaisonExiste(listeSommets[indiceSommet + 1])) {
+			if (listeSommets[i].liaisonExiste(listeSommets[i + 1])) {
 				System.out.print(LIAISON);
 			} else {
 				System.out.print(MUR_HORIZONTALE);
 			}
 		}
+		
 	}
 }

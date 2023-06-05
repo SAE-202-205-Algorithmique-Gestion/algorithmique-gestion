@@ -76,8 +76,8 @@ public class ParcoursProfondeur {
 		
 		indiceSommetAleatoire = new Random().nextInt(listeSommets.size());
 		
-		Sommet sommetsAleatiores = listeSommets.get(indiceSommetAleatoire);
-		return sommetsAleatiores;
+		Sommet sommetAleatiore = listeSommets.get(indiceSommetAleatoire);
+		return sommetAleatiore;
     }
     
     /**

@@ -16,7 +16,8 @@ public class AffichageLabyrintheTom {
 
     public final static String MUR_BORDURE_VIDE = "                                      ";
     
-    private static final String MUR_BORDURE = "--------------------------------------";
+    private static final String MUR_BORDURE
+    = "--------------------------------------";
     
     private static final String BORDURE_DROITE = "|";
     private static final String BORDURE_GAUCHE = "\n|";
