@@ -55,7 +55,7 @@ public class Labyrinthe {
 	
 	private int indiceSommetActuelle;
 	
-	private ChainesAscendantes graphe;
+	private ConstructionBacktracking graphe;
 	
 	/**
 	 * Labyrinthe avec son nombre de lignes et de colonnes.
@@ -71,11 +71,11 @@ public class Labyrinthe {
 		this.nombreDeColonne = nombreDeColonnes;
 		
 		/* Le nombre de colonnes et de lignes sont inversés dans l'appel, c'est normal */
-		this.graphe = new ChainesAscendantes(nombreDeColonnes, nombreDeLignes);
+		this.graphe = new ConstructionBacktracking(nombreDeColonnes, nombreDeLignes);
 		this.entreeDeplacement = new Scanner(System.in);
 		this.definirEntree();
 		this.definirSortie();
-//		this.positionActuelle = this.getEntree();
+		this.positionActuelle = this.getEntree();
 	}
 	
 	/** @return Le sommet contenant l'entrée de this. */

@@ -20,18 +20,12 @@ import iut.info1.sae.algorithmiquegestion.composants.Sommet;
  * @author Samuel LACAM
  * @author Tom DOUAUD
  */
-public class AffichageCaseCourante {
+public class AffichageCaseCouranteNonFonctionnel {
     
-    public final static String MUR_VERTICALE = "---";
-    public final static String MUR_HORIZONTALE = " | ";
-
-    public final static String LIAISON = "   ";
+    public final static String MUR_VERTICAL = " | ";
     
-    private static final String MUR_BORDURE = "----";
+    public final static String MUR_HORIZONTAL = "----";
     
-    private static final String BORDURE_DROITE = "|";
-    private static final String BORDURE_GAUCHE = "\n|";
-
     private static final String COIN_DE_MUR = "+";
 
     private static final char CASE = ' ';
@@ -283,45 +277,17 @@ public class AffichageCaseCourante {
      */
     private static void gestionDeplacementsLabyrinthe() {
         
-        int ligneCourante = 0;
-        
-        int indiceSommetCourant = 0;
-        
-        bordureHauteEtBasse();
-        
-        System.out.print(BORDURE_GAUCHE + " ");
-        
-        if (listeSommets[indiceSommetCourant].getCoordonneeX() == 0
-            && listeSommets[indiceSommetCourant].getCoordonneeY() != 0) {
-            // Bordure latérale droite
-            System.out.print(" " + BORDURE_DROITE);      
-        }
-        
-        if (listeSommets[indiceSommetCourant].getCoordonneeY()
-            == ligneCourante + 1) {
-                
-            System.out.print(BORDURE_GAUCHE);
-        
-            ligneCourante++;
-            
-            System.out.print(affichageMursVertical(indiceSommetCourant,
-                                                   ligneCourante)
-                             ? LIAISON
-                             : MUR_VERTICALE);
-            
-            if (ligneCourante < labyrinthe.getNombreDeColonne() - 1) {
-                System.out.print(COIN_DE_MUR);
-            }
-            System.out.print(BORDURE_DROITE + BORDURE_GAUCHE + " "); 
-        }
-        
-        affichageSommets(indiceSommetCourant);
-        affichageMurHorizontal(indiceSommetCourant);
-        
-        // Dernière bordure latérale droite
-        System.out.println(" " + BORDURE_DROITE);
-        
-        bordureHauteEtBasse();
+    	int indiceActuel = labyrinthe.getIndiceSommetActuelle();
+    	
+    	Sommet sommetActuel = labyrinthe.getPositionActuelle();
+    	
+    	System.out.println("\n-- Position actuelle = " + sommetActuel);
+    	
+    	//affichageMurHaut(indiceActuel, sommetActuel);
+        //affichageMurGauche(indiceActuel, sommetActuel);
+        affichageSommet(sommetActuel);
+        //affichageMurDroit(indiceActuel, sommetActuel);
+        //affichageMurBas(indiceActuel, sommetActuel);
         
         System.out.println(DEMANDE_COMMANDE);
         
@@ -332,68 +298,76 @@ public class AffichageCaseCourante {
     }
     
     /**
-     * Vérification des liaisons afin d'afficher ou non les murs verticaux.
-     *
-     * @param indiceSommet Indice du sommet pour lequel vérifier la liaison.
-     * @param rangLigne Le rang de la ligne permettant la vérification.
-     * @return true si l'affichage est possible.
+     * Affichage console texte du sommet actuel du labyrinthe.
      */
-    private static boolean affichageMursVertical(int indiceSommet, int rangLigne) {
-        return listeSommets[indiceSommet + rangLigne]
-               .liaisonExiste(listeSommets[indiceSommet + rangLigne
-                                           - labyrinthe.getNombreDeColonne()]);
-    }
-    
-    /**
-     * Affichage console texte des bordures du haut et du bas du labyrinthe.
-     */
-    private static void bordureHauteEtBasse() {
-        System.out.print(COIN_DE_MUR);
-        System.out.print(MUR_BORDURE /*+ MUR_BORDURE*/);
-        System.out.print(COIN_DE_MUR);
-    }
-    
-    /**
-     * Affichage console texte des sommets du labyrinthe.
-     *
-     * @param indiceSommet Indice du sommet courant.
-     */
-    private static void affichageSommets(int indiceSommet) {
+    private static void affichageSommet(Sommet sommetActuel) {
         /* Entrée */
-        if (labyrinthe.getEntree() == listeSommets[indiceSommet]) {
+        if (labyrinthe.getEntree() == sommetActuel) {
             System.out.print(labyrinthe.getEntreeSymbole());
             
         /* Sortie */
-        } else if (labyrinthe.getSortie() == listeSommets[indiceSommet]) {
+        } else if (labyrinthe.getSortie() == sommetActuel) {
             System.out.print(labyrinthe.getSortieSymbole());
             
         /* Position actuelle */
-        } else if (labyrinthe.getPositionActuelle() != labyrinthe.getEntree()
-                   && labyrinthe.getPositionActuelle()
-                      == listeSommets[indiceSommet]) {
-            System.out.print(labyrinthe.getSommetActuelleSymbole());
-        
-        /* Les autres sommets */
         } else {
-            System.out.print(CASE);
+        	System.out.print(labyrinthe.getSommetActuelleSymbole());
         }
     }
     
     /**
-     * Affichage console texte de tous les murs horizontaux du labyrinthe.
-     *
-     * @param indiceSommet Indice du sommet courant à côté du mur à afficher.
+     * Affichage console texte du mur haut du sommet courant s'il existe.
      */
-    private static void affichageMurHorizontal(int indiceSommet) {
-        if (indiceSommet < labyrinthe.getGraphe().getNombreSommets() - 1
-            && listeSommets[indiceSommet].getCoordonneeY()
-               == listeSommets[indiceSommet + 1].getCoordonneeY()) {
-            
-            if (listeSommets[indiceSommet].liaisonExiste(listeSommets[indiceSommet + 1])) {
-                System.out.print(LIAISON);
-            } else {
-                System.out.print(MUR_HORIZONTALE);
-            }
+    private static void affichageMurHaut(int indiceActuel, Sommet sommetActuel) {
+    	
+        if (indiceActuel > 0
+            && listeSommets[indiceActuel].getCoordonneeX()
+               == listeSommets[indiceActuel + 1].getCoordonneeX()
+            && sommetActuel.liaisonExiste(listeSommets[indiceActuel + 1])) {
+        	
+        	System.out.println(MUR_HORIZONTAL);
+        }
+    }
+    
+    /**
+     * Affichage console texte du mur bas du sommet courant s'il existe.
+     */
+    private static void affichageMurBas(int indiceActuel, Sommet sommetActuel) {
+    	
+        if (indiceActuel > 0
+            && listeSommets[indiceActuel].getCoordonneeX()
+               == listeSommets[indiceActuel - 1].getCoordonneeX()
+            && sommetActuel.liaisonExiste(listeSommets[indiceActuel - 1])) {
+        	
+        	System.out.print(MUR_HORIZONTAL);
+        }
+    }
+    
+    /**
+     * Affichage console texte du mur gauche du sommet courant s'il existe.
+     */
+    private static void affichageMurGauche(int indiceActuel, Sommet sommetActuel) {
+    	
+        if (indiceActuel > 0
+            && listeSommets[indiceActuel].getCoordonneeY()
+               == listeSommets[indiceActuel - 1].getCoordonneeY()
+            && sommetActuel.liaisonExiste(listeSommets[indiceActuel - 1])) {
+        	
+        	System.out.print(MUR_VERTICAL);
+        }
+    }
+    
+    /**
+     * Affichage console texte du mur droit du sommet courant s'il existe.
+     */
+    private static void affichageMurDroit(int indiceActuel, Sommet sommetActuel) {
+    	
+        if (indiceActuel < labyrinthe.getGraphe().getNombreSommets() - 1
+            && listeSommets[indiceActuel].getCoordonneeY()
+               == listeSommets[indiceActuel + 1].getCoordonneeY()
+            && sommetActuel.liaisonExiste(listeSommets[indiceActuel + 1])) {
+        	
+        	System.out.print(MUR_HORIZONTAL);
         }
     }
 }
