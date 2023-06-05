@@ -141,18 +141,21 @@ public class Graphe {
 	 */
 	public Sommet[] sommetsAleatoires() {
 		/**
-		* entiers aléatoires correspondant à un indice dans la liste des sommets
-		*/
+		 * entiers aléatoires correspondant à un indice dans la liste des sommets
+		 */
 		int sommet,
 			sommetAdjacent;
 		
-		sommet = new Random().nextInt(this.getNombreSommets()); 
-		//x = Math.random() * this.getNombreSommets();
+		sommet = new Random().nextInt(this.getNombreSommets());
 			
 		Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(sommet);
 		sommetAdjacent = new Random().nextInt(listeDesSommetsAdjacents.length);
 		
-		Sommet[] sommetsAleatiores = {this.getListeSommets()[sommet], listeDesSommetsAdjacents[sommetAdjacent]};
+		Sommet[] sommetsAleatiores = {
+				this.getListeSommets()[sommet],
+				listeDesSommetsAdjacents[sommetAdjacent]
+		};
+		
 		return sommetsAleatiores;
 	}
 
@@ -190,7 +193,8 @@ public class Graphe {
 		
 		for (int i = 0; i < listeSommetAdjacentPossible.length; i++) {
 			if (estAdjacent(indiceSommet, listeSommetAdjacentPossible[i])) {
-				listeSommetAdjacent[position] = getListeSommets()[listeSommetAdjacentPossible[i]];
+				listeSommetAdjacent[position]
+				= getListeSommets()[listeSommetAdjacentPossible[i]];
 				position++;
 			}
 		}
