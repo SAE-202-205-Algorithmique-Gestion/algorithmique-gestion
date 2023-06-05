@@ -30,7 +30,7 @@ public class Labyrinthe {
 	private static final char GAUCHE = 'g';
 	
 	/**
-	 * Touche permettant de déclancher le processus de 
+	 * Touche permettant de déclencher le processus de 
 	 * sauvegarde du labyrinthe.
 	 */
 	private static final char SAUVER = 's';
@@ -64,14 +64,13 @@ public class Labyrinthe {
 	 * @param nombreDeColonnes Le nombre de colonnes (X) du labyrinthe.
 	 */
 	public Labyrinthe(int nombreDeLignes, int nombreDeColonnes) {
-
 		super();
 		
 		this.nombreDeLigne = nombreDeLignes;
 		
 		this.nombreDeColonne = nombreDeColonnes;
 		
-		/* C'est normal que le nombre de colonnes et de lignes soit inversées dans l'appel*/
+		/* Le nombre de colonnes et de lignes sont inversés dans l'appel, c'est normal */
 		this.graphe = new ChainesAscendantes(nombreDeColonnes, nombreDeLignes);
 		this.entreeDeplacement = new Scanner(System.in);
 		this.definirEntree();
@@ -79,54 +78,80 @@ public class Labyrinthe {
 //		this.positionActuelle = this.getEntree();
 	}
 	
+	/** @return Le sommet contenant l'entrée de this. */
 	public Sommet getEntree() {
 		return entree;
 	}
 
-	public void setEntree(Sommet entree) {
-		this.entree = entree;
-	}
-
+    /** @return Le sommet contenant la sortie de this. */
 	public Sommet getSortie() {
 		return sortie;
 	}
-
-	public void setSortie(Sommet sortie) {
-		this.sortie = sortie;
-	}
 	
+	/** @return L'indice du sommet sur lequel est placé le joueur. */
 	public int getIndiceSommetActuelle() {
 		return indiceSommetActuelle;
 	}
 	
-	public void setIndiceSommetActuelle(int indiceSommetActuelle) {
-		this.indiceSommetActuelle = indiceSommetActuelle;
-	}
-	
+	/** @return Le sommet sur lequel est placé le joueur. */
 	public Sommet getPositionActuelle() {
 		return positionActuelle;
 	}
 	
-	public void setPositionActuelle(Sommet positionActuelle) {
-		this.positionActuelle = positionActuelle;
-	}
-	
+	/** @return Le graphe de this. */
 	public Graphe getGraphe() {
 		return graphe;
 	}
 	
+	/** @return Le symbole d'entrée de this. */
 	public char getEntreeSymbole() {
 		return ENTREE_SYMBOLE;
 	}
 
+    /** @return Le symbole de sortie de this. */
 	public char getSortieSymbole() {
 		return SORTIE_SYMBOLE;
 	}
 	
+	/** @return Le symbole du sommet actuel de this. */
 	public char getSommetActuelleSymbole() {
 		return SOMMET_ACTUEL_SYMBOLE;
 	}
+	
+	/** @return Le nombre de colonnes du labyrinthe. */
+    public int getNombreDeColonne() {
+        return this.nombreDeColonne;
+    }
+    
+    /** @return Le nombre de lignes du labyrinthe. */
+    public int getNombreDeLigne() {
+        return this.nombreDeLigne;
+    }
+    
+    /** @param entree Le sommet correspondant à l'entrée du labyrinthe. */
+    public void setEntree(Sommet entree) {
+        this.entree = entree;
+    }
+    
+    /** @param sortie Le sommet correspondant à la sortie du labyrinthe. */
+    public void setSortie(Sommet sortie) {
+        this.sortie = sortie;
+    }
+    
+    /** @param indiceSommetActuelle L'indice du sommet à set. */
+    public void setIndiceSommetActuelle(int indiceSommetActuelle) {
+        this.indiceSommetActuelle = indiceSommetActuelle;
+    }
+    
+    /** @param positionActuelle Le sommet correspondant à la position actuelle. */
+    public void setPositionActuelle(Sommet positionActuelle) {
+        this.positionActuelle = positionActuelle;
+    }
 
+    /**
+     * Définition de l'entrée du labyrinthe en prenant le premier
+     * sommet ayant une seule liaison.
+     */
 	public void definirEntree() {
 		boolean entreeTrouvee = false;
 		for (int i = 0; i < graphe.getListeSommets().length && !entreeTrouvee; i++) {
@@ -138,6 +163,10 @@ public class Labyrinthe {
 		}
 	}
 	
+	/**
+     * Définition de la sortie du labyrinthe en prenant le dernier
+     * sommet ayant une seule liaison.
+     */
 	public void definirSortie() {
 		boolean sortieTrouvee = false;
 		for (int i = graphe.getListeSommets().length - 1; i >= 0 && !sortieTrouvee; i--) {
@@ -164,6 +193,12 @@ public class Labyrinthe {
 //		
 //	}
 	
+	/**
+	 * Vérification du déplacement que le joueur essaie d'effectuer.
+	 *
+	 * @param indiceSommetDeplacement Indice du sommet sur lequel le joueur
+	 *                                s'est déplacé.
+	 */
 	public boolean verificationDeplacement(int indiceSommetDeplacement) {
 		
 		if (graphe.sommetExiste(indiceSommetActuelle + indiceSommetDeplacement)
@@ -178,8 +213,12 @@ public class Labyrinthe {
 		return false;
 	}
 	
+	/**
+	 * Gestion de la saisie sur console texte de l'utilisateur lorsqu'il
+	 * se déplace sur le labyrinthe.
+	 */
 	public boolean demandeDeplacement() {
-		boolean conditionArret = false;
+		
 		boolean saisieCorrecte = true;
 		
 		int indiceSaisieDeplacement;
@@ -191,7 +230,7 @@ public class Labyrinthe {
 
 		for (indiceSaisieDeplacement = 0;
 			 indiceSaisieDeplacement < saisieDeplacement.length()
-			 && !conditionArret;
+			 && saisieCorrecte;
 			 indiceSaisieDeplacement++) {
 			
 //				System.out.println(saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)
@@ -199,25 +238,25 @@ public class Labyrinthe {
 			switch (saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)) {
 			case HAUT:
 				if (!verificationDeplacement(-this.nombreDeColonne)) {
-					conditionArret = true;					
+					saisieCorrecte = false;
 				}
 				break;
 				
 			case BAS:
 				if (!verificationDeplacement(this.nombreDeColonne)) {
-					conditionArret = true;					
+					saisieCorrecte = false;
 				}
 				break;
 				
 			case DROITE:
 				if (!verificationDeplacement(1)) {
-					conditionArret = true;					
+					saisieCorrecte = false;
 				}
 				break;
 				
 			case GAUCHE:
 				if (!verificationDeplacement(-1)) {
-					conditionArret = true;					
+					saisieCorrecte = false;
 				}
 				break;
 				
@@ -232,20 +271,10 @@ public class Labyrinthe {
 
 			default:
 				saisieCorrecte = false;
-				conditionArret = true;
 				break;
 			}
 		}
 		return saisieCorrecte;
 	}
-	
-	public int getNombreDeColonne() {
-		return this.nombreDeColonne;
-	}
-	
-	public int getNombreDeLigne() {
-		return this.nombreDeLigne;
-	}
-	
 	
 }

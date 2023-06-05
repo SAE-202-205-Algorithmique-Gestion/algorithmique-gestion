@@ -37,7 +37,8 @@ public class SauvegardeLabyrinthe {
 		
 		FileWriter ecritureSauvegarde;
 		
-		JsonArray objetSauvegarde;
+		JsonArray objetSauvegarde,
+		          structureLabyrinthe;
 		
 		JsonObject objetNouvelleSauvegarde;
 		
@@ -103,6 +104,8 @@ public class SauvegardeLabyrinthe {
 					.addProperty("point_actuel_y",
 						 	 	 this.parametresLabyrinthe.getPointActuelY());
 			}
+			
+            //for (Sommet sommetCourant: )
 			
 			objetSauvegarde.add(objetNouvelleSauvegarde);
 			

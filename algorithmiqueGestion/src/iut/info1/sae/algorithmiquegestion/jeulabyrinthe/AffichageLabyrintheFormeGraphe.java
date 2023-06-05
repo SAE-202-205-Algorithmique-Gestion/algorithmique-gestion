@@ -4,7 +4,7 @@
  */
 package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
 
-import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 
 /**
  * Affichage sur console texte d'un jeu de labyrinthe représenté

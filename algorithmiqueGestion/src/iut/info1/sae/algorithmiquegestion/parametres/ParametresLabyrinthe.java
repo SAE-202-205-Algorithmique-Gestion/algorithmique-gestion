@@ -5,6 +5,7 @@
 package iut.info1.sae.algorithmiquegestion.parametres;
 
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
 /**
  * Classe de paramétrage du labyrinthe par l'utilisateur.
@@ -14,6 +15,8 @@ import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 public class ParametresLabyrinthe {
 	
 	private String nomLabyrinthe;
+	
+	private Sommet[] listeSommetsLabyrinthe;
 	
 	private Labyrinthe labyrintheASauvegarder;
 	
@@ -82,5 +85,11 @@ public class ParametresLabyrinthe {
 	public boolean pointActuelExistant() {
 		return this.labyrintheASauvegarder.getPositionActuelle() != null;
 	}
+	
+	public Sommet getListeSommetsLabyrinthe() {
+		return this.getListeSommetsLabyrinthe();
+	}
+	
+	// [{x1, [x2, x3]}, {x2, {x1, x6}}]
 
 }

@@ -1,12 +1,25 @@
+/*
+ * ChainesAscendantes.java                                           5 juin 2023
+ * IUT de Rodez, pas de copyright, ni de "copyleft".
+ */
 package iut.info1.sae.algorithmiquegestion.composants;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ChainesAscendantes extends Graphe{
+/**
+ * Création d'un graphe en utilisant la méthode de création
+ * par chaînes ascendantes.
+ * 
+ * @author Jonathan GUIL
+ * @author Loïc FAUGIERES
+ * @author Simon GUIRAUD
+ * @author Samuel LACAM
+ * @author Tom DOUAUD
+ */
+public class ChainesAscendantes extends Graphe {
 
-
-	/** Liste des marques des sommets déjà existantes */
+	/** Liste des marques des sommets déjà existantes. */
 	private int[] marquesExistante;
 	
 	/**
@@ -16,6 +29,13 @@ public class ChainesAscendantes extends Graphe{
 	 */
     private int valeurMarqueCourante;
 	
+	/**
+	 * Création d'un graphe par chaînes ascendantes avec les nombres de colonnes
+	 * et de lignes du labyrinthe lié.
+	 *
+	 * @param nombreColonnesLabyrinthe Nombre de colonnes du graphe hérité.
+	 * @param nombreLignesLabyrinthe Nombre de lignes du graphe hérité.
+	 */
 	public ChainesAscendantes(int nombreColonnesLabyrinthe, int nombreLignesLabyrinthe) {
 		super(nombreColonnesLabyrinthe, nombreLignesLabyrinthe);
 		
@@ -61,11 +81,14 @@ public class ChainesAscendantes extends Graphe{
     		} else if (sommet2.getMarque() < 0) {
     			sommet2.setMarque(sommet1.getMarque());
     			
-    			/* Si les deux sommets ont déjà  des marques (autre que -1), 
-    			 * les sommets de même chaîne que sommet2 prend la marque du sommet1 
-    			 */	
+    		/*
+    		 * Si les deux sommets ont déjà des marques (autre que -1), les
+    		 * sommets de même chaîne que sommet2 prennent la marque du sommet1. 
+    		 */	
     		} else {
-    			ArrayList<Sommet> sommetMarqueSommet2 = sommetsDeMemeMarque(sommet2.getMarque());
+    			ArrayList<Sommet> sommetMarqueSommet2
+    			= sommetsDeMemeMarque(sommet2.getMarque());
+    			
     			for (int i = 0; i < sommetMarqueSommet2.size(); i++) {
     				sommetMarqueSommet2.get(i).setMarque(sommet1.getMarque());
     			}
@@ -95,25 +118,31 @@ public class ChainesAscendantes extends Graphe{
 		return laListeSommetsMarque;
 	}
 	
+	/** @return Une liste de sommets aléatoirement choisis parmi le liste des sommets
+	            et la liste des sommets adjacents. */
 	public Sommet[] sommetsAleatoires() {
 		/**
-		* entiers aléatoires correspondant à un indice dans la liste des sommets
-		*/
+		 * Entiers aléatoires correspondant à un indice dans la liste des sommets
+		 */
 		int sommet,
 			sommetAdjacent;
 		
 		sommet = new Random().nextInt(this.getNombreSommets()); 
-		//x = Math.random() * this.getNombreSommets();
 			
 		Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(sommet);
 		sommetAdjacent = new Random().nextInt(listeDesSommetsAdjacents.length);
 		
-		Sommet[] sommetsAleatiores = {this.getListeSommets()[sommet], listeDesSommetsAdjacents[sommetAdjacent]};
+		Sommet[] sommetsAleatiores = {
+			this.getListeSommets()[sommet],
+		    listeDesSommetsAdjacents[sommetAdjacent]
+		};
+		
 		return sommetsAleatiores;
 	}
 	
 	/**
-	 * Algorithme faisant les appels nécessaires pour créer les graphes
+	 * Création d'un graphe avec des sommets choisis aléatoirement et définition
+	 * des marques nécessaires entre les sommets.
 	 */
 	public void creationDuGraphe() {
 		int nombreDeLiaison = 1;

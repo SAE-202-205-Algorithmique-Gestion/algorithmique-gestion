@@ -4,6 +4,8 @@
  */
 package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
 
+import java.util.Scanner;
+
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
@@ -37,9 +39,9 @@ public class AffichageLabyrinthe {
 	
 	public final static String COMMANDES =
 	"""
-	- Z : déplacement vers le haut
-	- S : déplacement vers le bas
-	- Q : déplacement vers la gauche
+	- H : déplacement vers le haut
+	- B : déplacement vers le bas
+	- G : déplacement vers la gauche
 	- D : déplacement vers la droite
 	""";
 	
@@ -71,7 +73,7 @@ public class AffichageLabyrinthe {
 
     private final static String ERREUR_SAISIE =
     """
-    \nVous avez entré une commande inconnue !
+    \nVous avez entré une commande invalide ou un déplacement impossible !
     
     Voici la liste des commandes utilisables dans la console texte :
     """
@@ -83,19 +85,26 @@ public class AffichageLabyrinthe {
 //    private static int nombreLignes;
 //    
 //    private static int nombreColonnes;
-
-    private static final int NOMBRE_LIGNES = 5;
     
-    private static final int NOMBRE_COLONNES = 5;
-	private static Labyrinthe labyrinthe = new Labyrinthe(NOMBRE_LIGNES,
-														  NOMBRE_COLONNES);
+    private static final int HAUTEUR_MINIMALE_LABYRINTHE = 0;
+    
+    private static final int LONGUEUR_MINIMALE_LABYRINTHE = 0;
+
+    private static final int HAUTEUR_MAXIMALE_LABYRINTHE = 10;
+    
+    private static final int LONGUEUR_MAXIMALE_LABYRINTHE = 10;
+
+    private static int hauteurLabyrinthe;
+    
+    private static int longueurLabyrinthe;
+    
+	private static Labyrinthe labyrinthe;
 	
 	public static Labyrinthe getLabyrinthe() {
 		return labyrinthe;
 	}
 
-	private static Sommet[] listeSommets = labyrinthe.getGraphe()
-										   .getListeSommets();
+	private static Sommet[] listeSommets;
 	
 	/**
 	 * Lancement de l'affichage du labyrinthe généré en fonction de
@@ -116,23 +125,71 @@ public class AffichageLabyrinthe {
 //		ParcoursProfondeur.algorithmeParcours();
 		System.out.println(LANCEMENT_JEU);
 		
-		int ligneCourante;
+		int ligneCourante,
+		    longueurTemporaire,
+		    hauteurTemporaire;
 		
-		boolean menuPrincipalPasse;
+		boolean menuPrincipalPasse,
+		        saisieLongueurLabyrintheTermine,
+		        saisieHauteurLabyrintheTermine;
+		
+		String saisieMenuPrincipal;
+		
+		Scanner analyseurSaisie;
 		
 		menuPrincipalPasse = false;
+		saisieLongueurLabyrintheTermine = false;
+		saisieHauteurLabyrintheTermine = false;
 		
-		/*
+		analyseurSaisie = new Scanner(System.in);
+		
         do {
 			System.out.println("MENU PRINCIPAL :\n"
 			                 + "n -> nouveau labyrinthe\n"
 			                 + "o -> ouvrir un labyrinthe sauvegardé");
 			                 
-			//
+			saisieMenuPrincipal = analyseurSaisie.nextLine();
+			
+			switch (saisieMenuPrincipal) {
+			case "n":
+                System.out.println("NOUVEAU LABYRINTHE :");
+
+                while (!saisieLongueurLabyrintheTermine) {
+					if (saisirLongueurLabyrinthe(analyseurSaisie)) {
+						saisieLongueurLabyrintheTermine = true;
+                    } else {
+						System.out.println("Erreur : longueur invalide.");
+					}
+				}
+				
+				while (!saisieHauteurLabyrintheTermine) {
+                    if (saisirHauteurLabyrinthe(analyseurSaisie)) {
+                        saisieHauteurLabyrintheTermine = true;
+                    } else {
+                        System.out.println("Erreur : hauteur invalide.");
+                    }
+                }
+                
+                labyrinthe = new Labyrinthe(hauteurLabyrinthe,
+                                            longueurLabyrinthe);
+                
+                listeSommets = labyrinthe.getGraphe()
+						   .getListeSommets();
+                
+                menuPrincipalPasse = true;
+			    break;
+			    
+			case "o":
+                // TODO : ouvrir laby !!!
+			    break;
+			    
+			default:
+                System.out.println("Erreur : commande inexistante !");
+			    break;
+			}
 		} while (!menuPrincipalPasse);
-		*/
 		
-		do {
+        do {
 			ligneCourante = 0;
 			bordureHauteEtBasse();
 			
@@ -187,6 +244,42 @@ public class AffichageLabyrinthe {
 		ParcoursProfondeur.algorithmeParcours();
 		
 	}
+	
+	private static boolean saisirLongueurLabyrinthe(Scanner analyseurEntree) {
+		boolean longueurValide;
+		
+		longueurValide = true;
+		
+		System.out.print("Longueur du labyrinthe ? ");
+		
+		if (analyseurEntree.hasNextInt()) {
+			longueurLabyrinthe = analyseurEntree.nextInt();
+		} else {
+			longueurValide = false;
+		}
+		
+		return longueurValide
+		       && longueurLabyrinthe > LONGUEUR_MINIMALE_LABYRINTHE
+               && longueurLabyrinthe <= LONGUEUR_MAXIMALE_LABYRINTHE;
+	}
+	
+	private static boolean saisirHauteurLabyrinthe(Scanner analyseurEntree) {
+        boolean hauteurValide;
+        
+        hauteurValide = true;
+        
+        System.out.print("Hauteur du labyrinthe ? ");
+        
+        if (analyseurEntree.hasNextInt()) {
+            hauteurLabyrinthe = analyseurEntree.nextInt();
+        } else {
+            hauteurValide = false;
+        }
+        
+        return hauteurValide
+               && hauteurLabyrinthe > HAUTEUR_MINIMALE_LABYRINTHE
+               && hauteurLabyrinthe <= HAUTEUR_MAXIMALE_LABYRINTHE;
+    }
 	
 	/**
 	 * TODO javadoc samuel

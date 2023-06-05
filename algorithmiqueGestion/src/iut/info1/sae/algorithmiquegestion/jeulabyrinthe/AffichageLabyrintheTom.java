@@ -89,28 +89,28 @@ public class AffichageLabyrintheTom {
     }
     
     
-    public static void main(String[] args) {
-		System.out.println(LANCEMENT_JEU);
-	
-		int ligneCourante;
-		do {
-			// TODO Affichage des bordures de la case à l taille de celle du labyrinthe dans l'autre algo
-			for (int index; index < labyrinthe.getPositionActuelle().getLiaisons().size(); index++)
-			if (labyrinthe.getPositionActuelle().getLiaisons()[index]) {
-				bordureHorzontale();
-			} else {
-				bordureHorzontaleVide();
-			}
-			 
-			System.out.println(DEMANDE_COMMANDE);
-			if (!labyrinthe.demandeDeplacement()) {
-				System.out.print(ERREUR_SAISIE);
-			}
-			System.out.println();
-			
-		} while (labyrinthe.getPositionActuelle() != labyrinthe.getSortie());
-		System.out.println(PARTIE_GAGNEE);
-	}
+//    public static void main(String[] args) {
+//		System.out.println(LANCEMENT_JEU);
+//	
+//		int ligneCourante;
+//		do {
+//			// TODO Affichage des bordures de la case à l taille de celle du labyrinthe dans l'autre algo
+//			for (int index; index < labyrinthe.getPositionActuelle().getLiaisons().size(); index++)
+//			if (labyrinthe.getPositionActuelle().getLiaisons()[index]) {
+//				bordureHorzontale();
+//			} else {
+//				bordureHorzontaleVide();
+//			}
+//			 
+//			System.out.println(DEMANDE_COMMANDE);
+//			if (!labyrinthe.demandeDeplacement()) {
+//				System.out.print(ERREUR_SAISIE);
+//			}
+//			System.out.println();
+//			
+//		} while (labyrinthe.getPositionActuelle() != labyrinthe.getSortie());
+//		System.out.println(PARTIE_GAGNEE);
+//	}
 	
 	/**
 	 * TODO javadoc samuel
@@ -156,11 +156,11 @@ public class AffichageLabyrintheTom {
 	 * @param rangLigne
 	 * @return Si l'affichage est possible
 	 */
-	private static boolean affichageMursVertical(int i, int rangLigne) {
+	/*private static boolean affichageMursVertical(int i, int rangLigne) {
 		return listeSommets[i + rangLigne]
 			   .MUR_BORDURE_VIDEExiste(listeSommets[i + rangLigne
 			                               - labyrinthe.getNombreDeColonne()]);
-	}
+	}*/
 	
 	/**
 	 * TODO : javadoc samuel
@@ -201,7 +201,7 @@ public class AffichageLabyrintheTom {
 	 * TODO : javadoc Samuel
 	 * @param i
 	 */
-	private static void affichageMursHorizontaux(int i) {
+	/*private static void affichageMursHorizontaux(int i) {
 		if (i < labyrinthe.getGraphe().getNombreSommets() - 1
 			&& listeSommets[i].getCoordonneeY()
 			   == listeSommets[i + 1].getCoordonneeY()
@@ -214,7 +214,7 @@ public class AffichageLabyrintheTom {
 			}
 		}
 		
-	}
+	}*/
 //	private static void labyEntier() {
 //	int ligneCourante;
 //	
