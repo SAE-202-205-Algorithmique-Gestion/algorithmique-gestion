@@ -1,7 +1,7 @@
 /*
  * TODO : javadoc
  */
-package iut.info1.sae.algorithmiquegestion.composants;
+package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
 
 import iut.info1.sae.algorithmiquegestion.composants.Graphe;
 

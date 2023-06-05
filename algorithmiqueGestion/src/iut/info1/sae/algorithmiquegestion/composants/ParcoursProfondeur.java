@@ -1,8 +1,6 @@
 package iut.info1.sae.algorithmiquegestion.composants;
 
-//import iut.info1.sae.algorithmiquegestion.composants.Graphe;
-//import iut.info1.sae.algorithmiquegestion.composants.Sommet;
-import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.jeulabyrinthe.AffichageLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.piles.Pile;
 import java.util.ArrayList;
 import java.util.Random;

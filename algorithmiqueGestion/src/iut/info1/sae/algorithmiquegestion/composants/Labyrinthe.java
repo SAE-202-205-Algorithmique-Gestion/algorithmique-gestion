@@ -1,27 +1,39 @@
-/*i
- * TODO : javadoc
+/*
+ * Labyrinthe.java                                                   5 juin 2023
+ * IUT de Rodez, pas de copyright, ni de "copyleft".
  */
-package iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe;
+package iut.info1.sae.algorithmiquegestion.composants;
 
 import java.util.Scanner;
 
-import iut.info1.sae.algorithmiquegestion.composants.Graphe;
-import iut.info1.sae.algorithmiquegestion.composants.Sommet;
+import iut.info1.sae.algorithmiquegestion.parametres.ParametresLabyrinthe;
+import iut.info1.sae.algorithmiquegestion.sauvegardes.SauvegardeLabyrinthe;
 
 /**
- * classe labyrinthe
- * @author Samuel
+ * Modélisation d'un labyrinthe utilisable sur console texte
+ * à partir des classes Graphe et Sommet.
  * 
+ * @author Jonathan GUIL
+ * @author Loïc FAUGIERES
+ * @author Simon GUIRAUD
+ * @author Samuel LACAM
+ * @author Tom DOUAUD
  */
 public class Labyrinthe {
 	
-	private static final char HAUT = 'z';
+	private static final char HAUT = 'h';
 	
-	private static final char BAS = 's';
+	private static final char BAS = 'b';
 	
 	private static final char DROITE = 'd';
 	
-	private static final char GAUCHE = 'q';
+	private static final char GAUCHE = 'g';
+	
+	/**
+	 * Touche permettant de déclancher le processus de 
+	 * sauvegarde du labyrinthe.
+	 */
+	private static final char SAUVER = 's';
 	
 	private static final char SOMMET_ACTUEL_SYMBOLE = 'X';
 	
@@ -43,18 +55,24 @@ public class Labyrinthe {
 	
 	private int indiceSommetActuelle;
 	
-	private Graphe graphe;
+	private ChainesAscendantes graphe;
 	
-	public Labyrinthe(int nombreDeLigne, int nombreDeColonne) {
+	/**
+	 * Labyrinthe avec son nombre de lignes et de colonnes.
+	 *
+	 * @param nombreDeLignes Le nombre de lignes (Y) du labyrinthe.
+	 * @param nombreDeColonnes Le nombre de colonnes (X) du labyrinthe.
+	 */
+	public Labyrinthe(int nombreDeLignes, int nombreDeColonnes) {
 
 		super();
 		
-		this.nombreDeLigne = nombreDeLigne;
+		this.nombreDeLigne = nombreDeLignes;
 		
-		this.nombreDeColonne = nombreDeColonne;
+		this.nombreDeColonne = nombreDeColonnes;
 		
 		/* C'est normal que le nombre de colonnes et de lignes soit inversées dans l'appel*/
-		this.graphe = new Graphe(nombreDeColonne, nombreDeLigne);
+		this.graphe = new ChainesAscendantes(nombreDeColonnes, nombreDeLignes);
 		this.entreeDeplacement = new Scanner(System.in);
 		this.definirEntree();
 		this.definirSortie();
@@ -162,7 +180,6 @@ public class Labyrinthe {
 	
 	public boolean demandeDeplacement() {
 		boolean conditionArret = false;
-		// TODO : Loïc trouve un meilleur nom ci-dessous
 		boolean saisieCorrecte = true;
 		
 		int indiceSaisieDeplacement;
@@ -180,29 +197,38 @@ public class Labyrinthe {
 //				System.out.println(saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)
 //						+ " " + indiceSaisieDeplacement);
 			switch (saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)) {
-			case 'z':
+			case HAUT:
 				if (!verificationDeplacement(-this.nombreDeColonne)) {
 					conditionArret = true;					
 				}
 				break;
 				
-			case 's':
+			case BAS:
 				if (!verificationDeplacement(this.nombreDeColonne)) {
 					conditionArret = true;					
 				}
 				break;
 				
-			case 'd':
+			case DROITE:
 				if (!verificationDeplacement(1)) {
 					conditionArret = true;					
 				}
 				break;
 				
-			case 'q':
+			case GAUCHE:
 				if (!verificationDeplacement(-1)) {
 					conditionArret = true;					
 				}
 				break;
+				
+			case SAUVER:
+			    ParametresLabyrinthe parametres;
+			    SauvegardeLabyrinthe sauvegarde;
+			    
+			    parametres = new ParametresLabyrinthe("NOM_BOUCHON", this);
+			    sauvegarde = new SauvegardeLabyrinthe(parametres);
+			    sauvegarde.sauvegarderParametres();
+			    break;
 
 			default:
 				saisieCorrecte = false;

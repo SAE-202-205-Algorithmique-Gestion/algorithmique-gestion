@@ -2,11 +2,12 @@
  * AffichageLabyrinthe.java											 2 juin 2023
  * IUT de Rodez, pas de copyright ni de "copyleft".
  */
-package iut.info1.sae.algorithmiquegestion.composants;
+package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
 
 import java.util.List;
 
-import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
 /**
  * Affichage sur console texte d'un jeu de labyrinthe représenté

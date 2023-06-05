@@ -15,6 +15,9 @@ import com.google.gson.JsonParser;
 
 import iut.info1.sae.algorithmiquegestion.parametres.ParametresLabyrinthe;
 
+/**
+ * TODO: javadoc
+ */
 public class SauvegardeLabyrinthe {
 	private final String CHEMIN_JSON_LABYRINTHES 
 		= "src/iut/info1/sae/algorithmiquegestion/donnees/labyrinthes.json";

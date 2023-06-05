@@ -4,7 +4,7 @@
  */
 package iut.info1.sae.algorithmiquegestion.parametres;
 
-import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 
 /**
  * Classe de paramétrage du labyrinthe par l'utilisateur.

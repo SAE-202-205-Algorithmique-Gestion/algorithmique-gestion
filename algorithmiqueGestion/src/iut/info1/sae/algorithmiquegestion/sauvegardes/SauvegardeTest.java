@@ -4,8 +4,8 @@
  */
 package iut.info1.sae.algorithmiquegestion.sauvegardes;
 
+import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.parametres.ParametresLabyrinthe;
-import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
 
 import java.io.FileWriter;
 import java.io.File;

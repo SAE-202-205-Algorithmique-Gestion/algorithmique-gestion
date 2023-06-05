@@ -9,7 +9,7 @@ import java.util.Random;
 
 
 /**
- * Modélisation du graphe sans circuit et n'ayant qu'une seule chaîne.
+ * Modélisation d'un graphe sans circuit et n'ayant qu'une seule chaîne.
  * Utilisation de la classe Sommet dans la création du graphe.
  * 
  * @author Jonathan GUIL
@@ -39,16 +39,6 @@ public class Graphe {
      */
 	private int nombreLignesLabyrinthe;
 	
-	/** Liste des marques des sommets déjà existantes */
-	private int[] marquesExistante;
-	
-	/**
-	 * Valeur maximale des valeurs des marques.
-	 * <p>
-	 * Permet d'affecter une marque non existante à un sommet.</p>
-	 */
-    private int valeurMarqueCourante;
-	
 	/**
 	 * Création d'un graphe à partir de son nombre de colonnes et de lignes.
 	 * @param nombreColonnesLabyrinthe un entier du nombre de Colonnes du Labyrinthe
@@ -57,20 +47,16 @@ public class Graphe {
 	public Graphe(int nombreColonnesLabyrinthe, int nombreLignesLabyrinthe) {
 		super();
 		
-		// TODO: remplacer par JSON
 		this.nombreColonnesLabyrinthe = nombreColonnesLabyrinthe;
 		this.nombreLignesLabyrinthe = nombreLignesLabyrinthe;
-		this.marquesExistante = new int[this.nombreColonnesLabyrinthe
-		                                * this.nombreLignesLabyrinthe]; 
+
 		
 		this.listeSommets = new Sommet[this.nombreColonnesLabyrinthe
 		                               * this.nombreLignesLabyrinthe];
 		for (int i = 0; i < getNombreSommets(); i++) {
-			this.listeSommets[i] = determinationCoordonnees(i);
+			this.listeSommets[i] = creerSommet(i);
 		}
 		
-		this.valeurMarqueCourante = 0;
-		this.creationDuGraphe();
 	}
 	
 	/** @return Nombre de sommets de this. */
@@ -94,11 +80,13 @@ public class Graphe {
 	}
 
 	/**
-	 * Création d'un sommet rattaché à this.
-	 * 
+	 * Création d'un sommet rattaché à this en fonction de son indice
+	 * dans la liste des sommets.
+	 *
+	 * @param indiceCourantListeSommet Indice 
 	 * @return L'instance du sommet créé.
 	 */
-	public Sommet determinationCoordonnees(int indiceCourantListeSommet) {
+	public Sommet creerSommet(int indiceCourantListeSommet) {
 	   int coordonneeX,
 		   coordonneeY,
 		   indiceCaseCourante;
@@ -120,8 +108,8 @@ public class Graphe {
 	 * Vérifie si deux sommets sont adjacents à l'aide de 
 	 * leurs coordonnées.
 	 * 
-	 * @param sommet1 Instance du premier sommet.
-	 * @param sommet2 Instance du second sommet.
+	 * @param indiceSommet1 Indice du premier sommet dans la liste des sommets.
+	 * @param indiceSommet2 Instance du second sommet dans la liste des sommets.
 	 * @return Si les deux sommets sont adjacents.
 	 */
 	public boolean estAdjacent(int indiceSommet1, int indiceSommet2) {
@@ -144,73 +132,7 @@ public class Graphe {
 				        || sommet1.getCoordonneeX() == sommet2.getCoordonneeX() - 1));
 	}
 	
-	/**
-	 * Vérifie si la marque des sommets en paramètres est différente.
-	 * 
-	 * @param sommet1 1ère instance d'un sommet à comparer.
-	 * @param sommet2 2nde instance d'un sommet à comparer.
-	 * @return Si les 2 sommets ont des marques différentes.
-	 */
-	public boolean marqueDifferente(Sommet sommet1, Sommet sommet2) {
-	    return sommet1.getMarque() != sommet2.getMarque();
-	}
-	
-	/**
-	 * Définit une marque pour le ou les sommets.
-	 * 
-	 * @param sommet1 1ère instance d'un sommet à modifier.
-	 * @param sommet2 2nde instance d'un sommet à modifier.
-	 */
-    public boolean definitUneMarque(Sommet sommet1, Sommet sommet2) {
-	    boolean resultat = true;
-    	
-    	/* Dans le cas ou les marques des 2 sommets en question
-    	 * ne sont pas initialisées. */
-    	if (sommet1.getMarque() < 0 && sommet2.getMarque() < 0) {
-    		sommet1.setMarque(valeurMarqueCourante);
-    		sommet2.setMarque(valeurMarqueCourante);
-    		valeurMarqueCourante++;
-    		
-    	} else if (marqueDifferente(sommet1, sommet2)) {
-    		if (sommet1.getMarque() < 0) {
-    			sommet1.setMarque(sommet2.getMarque());
-    			
-    		} else if (sommet2.getMarque() < 0) {
-    			sommet2.setMarque(sommet1.getMarque());
-    			
-    			/* Si les deux sommets ont déjà  des marques (autre que -1), 
-    			 * les sommets de même chaîne que sommet2 prend la marque du sommet1 
-    			 */	
-    		} else {
-    			ArrayList<Sommet> sommetMarqueSommet2 = sommetsDeMemeMarque(sommet2.getMarque());
-    			for (int i = 0; i < sommetMarqueSommet2.size(); i++) {
-    				sommetMarqueSommet2.get(i).setMarque(sommet1.getMarque());
-    			}
-    		}
-    	} else {
-    		resultat = false;
-    	}    	
-    	return resultat;
-	}
-	
-	/**
-	 * Renvoie la liste des sommets portant une certaine marque.
-	 * 
-	 * @param marque La marque que les sommets doivent posséder.
-	 * @return La liste des sommets possédant la marque.
-	 */
-	public ArrayList<Sommet> sommetsDeMemeMarque(int marque) {
-		int tailleTableau = 0;
-		int rang = 0;
-		
-		ArrayList<Sommet> laListeSommetsMarque = new ArrayList<>();
-		for (Sommet sommetATester : getListeSommets() ) {
-			if (sommetATester.getMarque() == marque) {
-				laListeSommetsMarque.add(sommetATester);
-			}
-		}
-		return laListeSommetsMarque;
-	}
+
 	
 	/**
 	 * Choix d'un sommet aléatoire et d'un sommet aléatoire adjacent à celui-ci.
@@ -235,18 +157,20 @@ public class Graphe {
 	}
 
 	/**
-	 * Permet de déterminer les sommets adjacent 
-	 * @param sommet du graphe
+	 * Permet de déterminer les sommets adjacents à un sommet dont l'indice dans
+	 * la liste des sommets de this est en paramètre.
+	 *
+	 * @param indiceSommet L'indice du sommet dans la liste des sommets du graphe.
 	 * @return la liste des sommet adjacents mis en paramètre
 	 */
-	public Sommet[] tousLesSommetsAdjacentsDuSommet(int sommet) { //TODO méthode à améliorer
+	public Sommet[] tousLesSommetsAdjacentsDuSommet(int indiceSommet) {
 		int tailleTableau = 0;
 
 		int[] listeSommetAdjacentPossible = {
-			sommet + this.getNombreColonnesLabyrinthe(),
-			sommet - this.getNombreColonnesLabyrinthe(),
-			sommet + 1, 
-			sommet - 1 
+			indiceSommet + this.getNombreColonnesLabyrinthe(),
+			indiceSommet - this.getNombreColonnesLabyrinthe(),
+			indiceSommet + 1, 
+			indiceSommet - 1 
 		};	
 		
 		/* 
@@ -256,7 +180,7 @@ public class Graphe {
 		*/
 		
 		for (int i = 0; i < listeSommetAdjacentPossible.length; i++) {
-			if (estAdjacent(sommet, listeSommetAdjacentPossible[i])) {
+			if (estAdjacent(indiceSommet, listeSommetAdjacentPossible[i])) {
 				tailleTableau++;
 			}	
 		}
@@ -265,14 +189,12 @@ public class Graphe {
 		int position = 0;
 		
 		for (int i = 0; i < listeSommetAdjacentPossible.length; i++) {
-			if (estAdjacent(sommet, listeSommetAdjacentPossible[i])) {
+			if (estAdjacent(indiceSommet, listeSommetAdjacentPossible[i])) {
 				listeSommetAdjacent[position] = getListeSommets()[listeSommetAdjacentPossible[i]];
 				position++;
 			}
 		}
-		
 		return listeSommetAdjacent;
-		
 	}
 	
 	/**
@@ -285,23 +207,6 @@ public class Graphe {
 		return sommet >= 0 && sommet < this.getNombreSommets();
 	}
 	
-	/**
-	 * Algorithme faisant les appels nécessaires pour créer les graphes
-	 */
-	public void creationDuGraphe() {
-		int nombreDeLiaison = 1;
-		
-		while (nombreDeLiaison < getNombreSommets()) {
-			Sommet[] sommetsChoisi = new Sommet[2];
-			
-			sommetsChoisi = this.sommetsAleatoires();
-				
-			if (definitUneMarque(sommetsChoisi[0], sommetsChoisi[1])) {
-				
-				sommetsChoisi[0].creerLiaison(sommetsChoisi[1]);
-				nombreDeLiaison++;
-			}
-		}	
-	}
+	
 	
 }

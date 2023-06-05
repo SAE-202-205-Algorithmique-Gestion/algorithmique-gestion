@@ -1,9 +1,10 @@
 /*
  * TODO : javadoc
  */
-package iut.info1.sae.algorithmiquegestion.composants;
+package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
 
-import iut.info1.sae.algorithmiquegestion.jeuxlabyrinthe.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
 /**
  * TODO : javadoc
