@@ -4,3 +4,7 @@ bin/
 # Ignorer toutes les metadata et classpath
 .metadata
 .classpath
+
+# Ignorer les .jar de gson
+gson-2.10.1.jar
+gson-2.10.1-javadoc.jar
