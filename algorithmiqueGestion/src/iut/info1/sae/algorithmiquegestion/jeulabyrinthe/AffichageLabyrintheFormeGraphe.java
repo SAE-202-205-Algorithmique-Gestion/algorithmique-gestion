@@ -23,16 +23,16 @@ public class AffichageLabyrintheFormeGraphe {
 	public final static String VIDE_HORIZONTAL = "\t";
 	
 	public final static String LIAISON_VERTICALE = "|    ";
-//	public final static String VIDE_VERTICAL = "   \u0000   ";
+	
 	public final static String VIDE_VERTICAL = "     ";
 	
 	public final static String CASE = "#";
 	
 	public final static String COMMANDES =
 	"""
-	- Z : déplacement vers le haut
-	- S : déplacement vers le bas
-	- Q : déplacement vers la gauche
+	- H : déplacement vers le haut
+	- B : déplacement vers le bas
+	- G : déplacement vers la gauche
 	- D : déplacement vers la droite
 	""";
 	
@@ -80,14 +80,6 @@ public class AffichageLabyrintheFormeGraphe {
 	    System.out.println(LANCEMENT_JEU);
 		
 		Labyrinthe labyrinthe = new Labyrinthe(nombreLignes, nombreColonnes);
-		
-//		for (int indexSommet = 0; indexSommet < testSam.getGraphe().getNombreSommets(); indexSommet++) {
-//			System.out.println("Sommet : " + testSam.getGraphe().getListeSommets()[indexSommet]);
-//			for (int i = 0; i < testSam.getGraphe().getListeSommets()[indexSommet].getLiaisons().size(); i++) {
-//				System.out.println("Sommet lie : " + testSam.getGraphe().getListeSommets()[indexSommet].getLiaisons().get(i));
-//			}
-//			
-//		}
 		
 		int ligne;
 		do {

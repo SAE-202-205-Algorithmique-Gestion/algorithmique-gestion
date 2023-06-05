@@ -1,4 +1,4 @@
-package iut.info1.sae.algorithmiquegestion.composants;
+spackage iut.info1.sae.algorithmiquegestion.composants;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,8 +15,6 @@ public class ConstructionBacktracking extends Graphe{
 	public ConstructionBacktracking(int nombreColonnesLabyrinthe, int nombreLignesLabyrinthe) {
 		super(nombreColonnesLabyrinthe, nombreLignesLabyrinthe);
 		
-		
-		// TODO Auto-generated constructor stub
 		creationDuGraphe();
 	}
 	
@@ -26,15 +24,15 @@ public class ConstructionBacktracking extends Graphe{
      * @param listeSommets La liste des sommets à laquelle prendre un sommet.
      * @return Un sommet aléatoire dans la liste de sommets en paramètre.
      */
-    public static Sommet sommetAdjacentAleatoire(ArrayList<Sommet> listeSommets) {
+    public static Sommet sommetAdjacentAleatoire(ArrayList<Sommet> sommetsAdjacents) {
 		/**
 		 * entiers aléatoires correspondant à un indice dans la liste des sommets
 		 */
 		int indiceSommetAleatoire;
 		
-		indiceSommetAleatoire = new Random().nextInt(listeSommets.size());
+		indiceSommetAleatoire = new Random().nextInt(sommetsAdjacents.size());
 		
-		Sommet sommetAleatiore = listeSommets.get(indiceSommetAleatoire);
+		Sommet sommetAleatiore = sommetsAdjacents.get(indiceSommetAleatoire);
 		return sommetAleatiore;
     }
 
@@ -43,41 +41,55 @@ public class ConstructionBacktracking extends Graphe{
 	 * des marques nécessaires entre les sommets.
 	 */
 	public void creationDuGraphe() {
-		Pile listeSommetsParcourus = new Pile();
+		Pile pileSommetsParcourus = new Pile();
         Sommet sommetCourant;
         Sommet sommetAEmpiler;
-        ArrayList<Sommet> listeSommetsAEmpiler = new ArrayList<>();
-        Sommet[] listeSommets = this.getListeSommets();
+        Sommet[] PileSommetsAEmpiler;
+        Sommet[] listeSommets = getListeSommets();
+        ArrayList<Sommet> sommetsAdjacents = new ArrayList<>();
         
-        int indiceSommetDeDepart = new Random().nextInt(listeSommets.length);
+        int indiceSommetCourant = new Random().nextInt(listeSommets.length);
+        listeSommets[indiceSommetCourant].setParcouru(true);
+        pileSommetsParcourus.empiler(listeSommets[indiceSommetCourant]);
         
-        sommetAdjacentAleatoire(listeSommetsAEmpiler);
-        
-        listeSommetsParcourus.empiler(sommetDeDepart);
         do {
-            sommetCourant = (Sommet)listeSommetsParcourus.sommet();
-            listeSommetsAEmpiler = listeSommetsLiesNonParcourus(sommetCourant);
-            
-            if (listeSommetsAEmpiler.size() == 0) {
-                listeSommetsParcourus.depiler();
+			sommetCourant = (Sommet) pileSommetsParcourus.sommet();
+            sommetsAdjacents = sommetsAdjacentsNonParcourus(indiceSommetCourant);
+        
+            if (sommetsAdjacents.size() == 0) {
+                pileSommetsParcourus.depiler();
+                
             } else {
-				sommetAEmpiler = sommetAdjacentAleatoire(listeSommetsAEmpiler);
-				listeSommetsParcourus.empiler(sommetAEmpiler);
+				sommetAEmpiler = sommetAdjacentAleatoire(sommetsAdjacents);
+				pileSommetsParcourus.empiler(sommetAEmpiler);
                 sommetAEmpiler.setParcouru(true);
 			}  
            
-        } while (sommetCourant != labyrinthe.getSortie());
-        listeSommetsParcourus.empiler(labyrinthe.getSortie());
+        } while (pileSommetsParcourus.isVide); //tant que la pile n'est pas vide je crois
+        pileSommetsParcourus.empiler(labyrinthe.getSortie());
        
         /*for (int i = 0; i < parcours.getContenu().length; i++) {
     	    System.out.println(parcours.getContenu()[i]);
         }*/
         
         System.out.println("\n");
-        while (!listeSommetsParcourus.isVide()) {
-			System.out.println(listeSommetsParcourus.sommet());
-			listeSommetsParcourus.depiler();
+        while (!pileSommetsParcourus.isVide()) {
+			System.out.println(pileSommetsParcourus.sommet());
+			pileSommetsParcourus.depiler();
 		}
 		
+	}
+	
+	public ArrayList<Sommet> sommetsAdjacentsNonParcourus (int indiceSommet) {
+		Sommet[] sommetsAdjacents;
+		ArrayList<Sommet> adjacentsNonParcourus = new ArrayList<>();
+		
+		sommetsAdjacents = tousLesSommetsAdjacentsDuSommet(indiceSommet);
+		
+		for (int indiceAdjacents = 0; indiceAdjacents < sommetsAdjacents.length; indiceAdjacents++ ) {
+			if (!sommetsAdjacents[indiceAdjacents].isParcouru()) {
+				adjacentsNonParcourus.add(sommetsAdjacents[indiceAdjacents]);
+			}
+		}
 	}
 }

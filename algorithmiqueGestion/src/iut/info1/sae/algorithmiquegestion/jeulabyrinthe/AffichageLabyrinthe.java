@@ -1,5 +1,5 @@
 /*
- * AffichageLabyrinthe.java											 2 juin 2023
+ * AffichageLabyrinthe.java											 6 juin 2023
  * IUT de Rodez, pas de copyright ni de "copyleft".
  */
 package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
