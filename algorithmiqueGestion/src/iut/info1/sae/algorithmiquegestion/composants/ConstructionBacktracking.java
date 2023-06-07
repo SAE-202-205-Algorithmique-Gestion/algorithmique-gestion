@@ -1,5 +1,6 @@
 /*
- * TODO
+ * ConstructionBacktracking.java								     1 juin 2023
+ * IUT de Rodez, pas de copyright ni de "copyleft".
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
@@ -7,8 +8,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import iut.info1.sae.algorithmiquegestion.piles.Pile;
+
 /**
- * TODO
+ * Construction par algorithme de backtracking d'un labyrinthe.
  * 
  * @author Jonathan GUIL
  * @author Loïc FAUGIERES
@@ -16,12 +18,14 @@ import iut.info1.sae.algorithmiquegestion.piles.Pile;
  * @author Samuel LACAM
  * @author Tom DOUAUD
  */
-public class ConstructionBacktracking extends Graphe{
+public class ConstructionBacktracking extends Graphe {
 
 	/**
-	 * TODO
-	 * @param nombreColonnesLabyrinthe
-	 * @param nombreLignesLabyrinthe
+	 * Construction par backtracking avec un nombre de colonnes et de lignes
+	 * pour créer le labyrinthe.
+	 * 
+	 * @param nombreColonnesLabyrinthe Nombre de colonnes du graphe parent.
+	 * @param nombreLignesLabyrinthe Nombre de lignes du graphe parent.
 	 */
 	public ConstructionBacktracking(int nombreColonnesLabyrinthe, int nombreLignesLabyrinthe) {
 		super(nombreColonnesLabyrinthe, nombreLignesLabyrinthe);
@@ -58,7 +62,6 @@ public class ConstructionBacktracking extends Graphe{
         Sommet sommetCourant;
         Sommet sommetAEmpiler;
         
-        Sommet[] PileSommetsAEmpiler;
         Sommet[] listeSommets = getListeSommets();
         
         ArrayList<Sommet> sommetsAdjacents = new ArrayList<>();
@@ -89,15 +92,16 @@ public class ConstructionBacktracking extends Graphe{
                 sommetCourant.creerLiaison(sommetAEmpiler);
 			}  
            
-        } while (!pileSommetsParcourus.isVide()); //tant que la pile n'est pas vide
+        //tant que la pile n'est pas vide
+        } while (!pileSommetsParcourus.isVide()); 
 		
 	}
 	
 	/**
-	 * TODO
-	 * 
-	 * @param indiceSommet
-	 * @return
+	 * Détermination des sommets adjacents au sommet en paramètre 
+	 * qui n'ont pas été parcourus.
+	 * @param indiceSommet L'indice du sommet dont on cherche les adjacents
+	 * @return la liste des sommets adjacent qui n'ont pas été parcourus.
 	 */
 	public ArrayList<Sommet> sommetsAdjacentsNonParcourus (int indiceSommet) {
 		Sommet[] sommetsAdjacents;

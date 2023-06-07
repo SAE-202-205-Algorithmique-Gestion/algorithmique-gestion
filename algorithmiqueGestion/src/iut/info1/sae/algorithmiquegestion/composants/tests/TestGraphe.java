@@ -60,7 +60,7 @@ class TestGraphe {
 	
 	
 	/**
-     * Méthode de test qui recupère les coordonnées  X et Y
+     * Méthode de test qui récupère les coordonnées  X et Y
      * de différents sommets
      */
 	@Test

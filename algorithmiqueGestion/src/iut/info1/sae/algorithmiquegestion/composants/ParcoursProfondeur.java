@@ -28,10 +28,17 @@ public class ParcoursProfondeur {
      * allant de l'entrée à la sortie.
      */
     public static void algorithmeParcours() {
+		
         Pile parcours = new Pile();
         Sommet sommetCourant;
         Sommet sommetAEmpiler;
         ArrayList<Sommet> listeSommetsAEmpiler = new ArrayList<>();
+        int longueurParcours = 0;
+        Pile pileSommetsAEmpiler = new Pile();
+        
+        for (Sommet sommet : labyrinthe.getGraphe().getListeSommets()) {
+			sommet.setParcouru(false);
+		}
         
         
         parcours.empiler(labyrinthe.getEntree());
@@ -50,16 +57,21 @@ public class ParcoursProfondeur {
            
         } while (sommetCourant != labyrinthe.getSortie());
         parcours.empiler(labyrinthe.getSortie());
-       
-        /*for (int i = 0; i < parcours.getContenu().length; i++) {
-    	    System.out.println(parcours.getContenu()[i]);
-        }*/
         
         System.out.println("\n");
         while (!parcours.isVide()) {
 			System.out.println(parcours.sommet());
-			parcours.depiler();
+			pileSommetsAEmpiler.empiler(parcours.depiler());
+			longueurParcours++;
 		}
+		while (!pileSommetsAEmpiler.isVide()) {
+            System.out.println(parcours.sommet());
+            pileSommetsAEmpiler.depiler();
+        }
+		// (longueurParcours - 1) sert à ne pas compter l'entrée dans le parcours
+		System.out.println("\nLe parcours optinal de ce labyrinthe passe par " 
+		                   + (longueurParcours - 1) 
+		                   + " cases.");
     }
     
     /**

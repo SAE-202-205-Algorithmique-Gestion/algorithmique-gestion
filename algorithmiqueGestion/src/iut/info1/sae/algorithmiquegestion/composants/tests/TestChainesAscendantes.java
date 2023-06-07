@@ -43,9 +43,13 @@ class TestChainesAscendantes {
 		}
 	}
 	
+	/**
+	 * Méthode de test de
+	 * {@link iut.info1.sae.algorithmiquegestion.composants.ChainesAscendantes#marqueDifferente()}.
+	 */
 	@Test
 	void testMarqueDifferente() {
-		//les marques on étai réinitialisé par le BeforeEach elle vaut -1 pour tout les sommets
+		//les marques ont été réinitialisées par le BeforeEach elles vallent -1 pour tous les sommets
 		assertFalse(grapheTeste.marqueDifferente(
 				grapheTeste.getListeSommets()[0], grapheTeste.getListeSommets()[1]));
 		
@@ -54,7 +58,11 @@ class TestChainesAscendantes {
 		assertTrue(grapheTeste.marqueDifferente(
 				grapheTeste.getListeSommets()[5], grapheTeste.getListeSommets()[6]));
 	}
-	
+
+	/**
+	 * Méthode de test de
+	 * {@link iut.info1.sae.algorithmiquegestion.composants.ChainesAscendantes#sommetsDeMemeMarque()}.
+	 */
 	@Test
 	void testSommetsDeMemeMarque() {
 		System.out.println("Test de sommetsDeMemeMarque : ");
@@ -98,7 +106,11 @@ class TestChainesAscendantes {
 		
 		assertArrayEquals(sommetRetourneMethode2, sommetsAttendus2);
 	}
-	
+
+	/**
+	 * Méthode de test de
+	 * {@link iut.info1.sae.algorithmiquegestion.composants.ChainesAscendantes#definitUneMarque()}.
+	 */
 	@Test
 	void testDefinitUneMarque() {
 	    System.out.println("Test d'affectation de marque : ");

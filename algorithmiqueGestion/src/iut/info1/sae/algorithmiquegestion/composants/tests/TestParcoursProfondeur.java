@@ -1,3 +1,7 @@
+/*
+ * TestParcoursProfondeur.java										 5 juin 2023
+ * IUT de Rodez, pas de copyright ni de "copyleft".
+ */
 package iut.info1.sae.algorithmiquegestion.composants.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,6 +14,15 @@ import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 
+/**
+ * Tests unitaires avec JUnit de la classe ParcoursProfondeur.
+ * 
+ * @author Jonathan GUIL
+ * @author Loïc FAUGIERES
+ * @author Simon GUIRAUD
+ * @author Samuel LACAM
+ * @author Tom DOUAUD
+ */
 class TestParcoursProfondeur {
 
 	Labyrinthe labyrinthe = new Labyrinthe(5, 5);
@@ -19,6 +32,10 @@ class TestParcoursProfondeur {
 		Labyrinthe labyrinthe = new Labyrinthe(5, 5);
 	}
 	
+	/**
+	 * Méthode de test de
+	 * {@link iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur#sommetLieAleatoire()}.
+	 */
 	@Test
 	void testSommetLieAleatoire() {
 		Sommet sommet1 = new Sommet(1, 1);
@@ -37,6 +54,10 @@ class TestParcoursProfondeur {
 		
 	}
 	
+	/**
+	 * Méthode de test de
+	 * {@link iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur#listeSommetsLiesNonParcourus()}.
+	 */
 	@Test
 	void testListeSommetsLiesNonParcourus(){
 		Sommet sommetLie = new Sommet(1, 1);
@@ -66,6 +87,15 @@ class TestParcoursProfondeur {
 		
 		assertArrayEquals(sommetAttendue2, sommetRetourne2);
 
+		
+	}
+	
+	/**
+     * Méthode de test de
+     * {@link iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur#listeSommetsLiesNonParcourus()}.
+     */
+    @Test
+    void testAlgorithmeParcours(){
 		
 	}
 
