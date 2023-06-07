@@ -49,8 +49,11 @@ public class AffichageLabyrinthe {
 	""";
 	
 	public final static String COMMANDES_MENU_PRINCIPAL =
-	"________ COMMANDES - MENU PRINCIPAL ________"
-	+ "\n\n- N : création d'un nouveau labyrinthe"
+	"""
+    Entrez le type de construction du labyrinthe : 
+    - 1 : Construction par chaines ascendentes
+    - 2 : Construction par descente en profondeur
+    """
     //+ "\n- O : ouverture d'un labyrinthe sauvegardé"
     + "\n____________________________________________"
     + DEMANDE_COMMANDE;
@@ -102,6 +105,8 @@ public class AffichageLabyrinthe {
     private static int hauteurLabyrinthe;
     
     private static int longueurLabyrinthe;
+    
+    private static int typeLabyrinthe;
     
 	private static Labyrinthe labyrinthe;
 	
@@ -176,6 +181,7 @@ public class AffichageLabyrinthe {
 		
 		boolean saisieLongueurLabyrintheTermine = false;
 		boolean saisieHauteurLabyrintheTermine = false;
+		boolean saisieTypeLabyrintheTermine = false;
 		
 		boolean resultatValide = false;
 				
@@ -200,10 +206,16 @@ public class AffichageLabyrinthe {
                 = saisirHauteurLabyrinthe(analyseurSaisie);
             } while (!saisieHauteurLabyrintheTermine);
             
+            do {
+                saisieTypeLabyrintheTermine
+                = saisirTypeConstructionLabyrinthe(analyseurSaisie);
+            } while (!saisieTypeLabyrintheTermine);
+            
             System.out.println("\n");
             
             labyrinthe = new Labyrinthe(hauteurLabyrinthe,
-                                        longueurLabyrinthe);
+                                        longueurLabyrinthe,
+                                        typeLabyrinthe);
             
             listeSommets = labyrinthe.getGraphe().getListeSommets();
             
@@ -293,6 +305,44 @@ public class AffichageLabyrinthe {
 			System.out.println(HAUTEUR_INVALIDE);
         }
         return hauteurValide;
+    }
+    
+    /**
+     * Vérification de la validité de la hauteur saisie.
+     *
+     * @return true si la hauteur saisie est correcte.
+     */
+    private static boolean saisirTypeConstructionLabyrinthe(Scanner analyseurEntree) {
+        
+        final String ENTRER_TYPE
+        = """
+          Entrez la type de construction du labyrinthe : 
+           - 1 : Construction par chaines ascendentes
+           - 2 : Construction par descente en profondeureeeee
+          """;
+        
+        final String TYPE_INVALIDE = "\nErreur : type invalide.";
+        
+        boolean entierEntre = true;
+        boolean typeValide = true;
+        
+        System.out.print(ENTRER_TYPE);
+        
+        if (analyseurEntree.hasNextInt()) {
+            typeLabyrinthe = analyseurEntree.nextInt();
+        } else {
+            entierEntre = false;
+        }
+        analyseurEntree.nextLine();
+        
+        typeValide = entierEntre
+                        && typeLabyrinthe > HAUTEUR_MINIMALE_LABYRINTHE
+                        && typeLabyrinthe <= HAUTEUR_MAXIMALE_LABYRINTHE;
+        
+        if (!typeValide) {
+            System.out.println(TYPE_INVALIDE);
+        }
+        return typeValide;
     }
 	
 	/**

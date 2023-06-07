@@ -57,7 +57,8 @@ public class Labyrinthe {
 	
 	private int nombreCasesParcourues;
 	
-	private ConstructionBacktracking graphe;
+	private Graphe graphe;
+	
 	
 	/**
 	 * Labyrinthe avec son nombre de lignes et de colonnes.
@@ -65,9 +66,16 @@ public class Labyrinthe {
 	 * @param nombreDeLignes Le nombre de lignes (Y) du labyrinthe.
 	 * @param nombreDeColonnes Le nombre de colonnes (X) du labyrinthe.
 	 */
-	public Labyrinthe(int nombreDeLignes, int nombreDeColonnes, String typeConstruction) {
+	public Labyrinthe(int nombreDeLignes, int nombreDeColonnes, int typeConstruction) {
 		super();
-		if (!typeConstruction.equals("ConstructionBacktracking")) {
+		if (typeConstruction == 1) {
+			this.graphe = new ChainesAscendantes(nombreDeColonnes, nombreDeLignes);
+			
+		} else if (typeConstruction == 2) {
+			this.graphe
+			 = new ConstructionBacktracking(nombreDeColonnes, nombreDeLignes);
+			
+		} else {
 			throw new IllegalArgumentException("Vous avez donné un type de"
 										+ " construction de labyrinthe invalide");
 		}
@@ -77,7 +85,6 @@ public class Labyrinthe {
 		this.nombreDeColonne = nombreDeColonnes;
 		
 		/* Le nombre de colonnes et de lignes sont inversés dans l'appel, c'est normal */
-		this.graphe = new ConstructionBacktracking(nombreDeColonnes, nombreDeLignes);
 		this.entreeDeplacement = new Scanner(System.in);
 		this.definirEntree();
 		this.definirSortie();

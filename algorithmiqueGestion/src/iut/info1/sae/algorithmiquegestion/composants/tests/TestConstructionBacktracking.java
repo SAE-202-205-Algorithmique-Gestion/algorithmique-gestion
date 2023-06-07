@@ -45,11 +45,25 @@ class TestConstructionBacktracking {
 	
 	/**
      * Méthode de test de
-     * {@link iut.info1.sae.algorithmiquegestion.composants.ConstructionBacktracking#sommetsDeMemeMarque()}.
+     * {@link iut.info1.sae.algorithmiquegestion.composants.ConstructionBacktracking#testSommetsAdjacentsNonParcourus()}.
      */
     @Test
-    void testSommetsDeMemeMarque() {
+    void testSommetsAdjacentsNonParcourus() {
+		Sommet sommetChoisi = grapheTeste.getListeSommets()[7];
 		
+		Sommet[] sommetsAdjacents = {grapheTeste.getListeSommets()[6],
+                                        grapheTeste.getListeSommets()[8], 
+                                        grapheTeste.getListeSommets()[2], 
+                                        grapheTeste.getListeSommets()[12]};
+		
+		Sommet[] sommetsNonAdjacents = {grapheTeste.getListeSommets()[5],
+		                                grapheTeste.getListeSommets()[9], 
+		                                grapheTeste.getListeSommets()[1], 
+		                                grapheTeste.getListeSommets()[3], 
+		                                grapheTeste.getListeSommets()[11], 
+		                                grapheTeste.getListeSommets()[13]};
+		                                
+        
 	}
 
 }

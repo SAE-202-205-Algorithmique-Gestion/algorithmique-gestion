@@ -25,11 +25,11 @@ import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
  */
 class TestParcoursProfondeur {
 
-	Labyrinthe labyrinthe = new Labyrinthe(5, 5);
+	Labyrinthe labyrinthe = new Labyrinthe(5, 5, 1);
 	
 	@BeforeEach
 	void initaliserLabyrinthe(){
-		Labyrinthe labyrinthe = new Labyrinthe(5, 5);
+		Labyrinthe labyrinthe = new Labyrinthe(5, 5, 1);
 	}
 	
 	/**
