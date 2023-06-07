@@ -21,12 +21,16 @@ import iut.info1.sae.algorithmiquegestion.sauvegardes.SauvegardeLabyrinthe;
  */
 public class Labyrinthe {
 	
+	/** Touche permettant d'aller en haut. */
 	private static final char HAUT = 'h';
 	
+	/** Touche permettant d'aller en bas. */
 	private static final char BAS = 'b';
 	
+	/** Touche permettant d'aller à droite.*/
 	private static final char DROITE = 'd';
 	
+	/** Touche permettant d'aller à gauche. */
 	private static final char GAUCHE = 'g';
 	
 	/**
@@ -35,28 +39,41 @@ public class Labyrinthe {
 	 */
 	private static final char SAUVER = 's';
 	
+	/** Symbole correspondant à la position du joueur. */
 	private static final char SOMMET_ACTUEL_SYMBOLE = 'X';
 	
+	/** Symbole correspondant à la position du l'entrée. */
 	private static final char ENTREE_SYMBOLE = 'E';
 	
+	/** Symbole correspondant à la position de la sortie. */
 	private static final char SORTIE_SYMBOLE = 'S';
 	
+	
+	/** Entrée récupérant les commandes du joueur. */
 	private Scanner entreeDeplacement;
 	
+	/** Sommet où se situe le joueur (marqué par X). */
 	private Sommet positionActuelle;
 	
+	/** Sommet où se situe l'entrée du labyrinthe (marqué par E). */
 	private Sommet entree;
 
+	/** Sommet où se situe la sortie du labyrinthe (marqué par S). */
 	private Sommet sortie;
 	
+	/** Nombre de colonnes du labyrinthe. */
 	private int nombreDeColonne;
 
+	/** Nombre de lignes du labyrinthe. */
 	private int nombreDeLigne;
 	
-	private int indiceSommetActuelle;
+	/** Indice du sommet où se situe le joueur. */
+	private int indiceSommetActuel;
 	
+	/** Nombre de cases parcourues par le joueur. */
 	private int nombreCasesParcourues;
 	
+	/** Graphe servant à créer le labyrinthe. */
 	private Graphe graphe;
 	
 	
@@ -105,7 +122,7 @@ public class Labyrinthe {
 	
 	/** @return L'indice du sommet sur lequel est placé le joueur. */
 	public int getIndiceSommetActuelle() {
-		return indiceSommetActuelle;
+		return indiceSommetActuel;
 	}
 	
 	/** @return Le nombre de cases que le joueur à parcouru. */
@@ -160,7 +177,7 @@ public class Labyrinthe {
     
     /** @param indiceSommetActuelle L'indice du sommet à set. */
     public void setIndiceSommetActuelle(int indiceSommetActuelle) {
-        this.indiceSommetActuelle = indiceSommetActuelle;
+        this.indiceSommetActuel = indiceSommetActuelle;
     }
     
 	/** @param nombreCasesParcourues Le nombre de cases que le joueur à parcouru. */
@@ -182,7 +199,7 @@ public class Labyrinthe {
 		for (int i = 0; i < graphe.getListeSommets().length && !entreeTrouvee; i++) {
 			if (graphe.getListeSommets()[i].getLiaisons().size() == 1) {
 				this.setEntree(graphe.getListeSommets()[i]);
-				this.indiceSommetActuelle = i;
+				this.indiceSommetActuel = i;
 				entreeTrouvee = true;
 			}
 		}
@@ -205,18 +222,18 @@ public class Labyrinthe {
 	/**
 	 * Vérification du déplacement que le joueur essaie d'effectuer.
 	 *
-	 * @param indiceSommetDeplacement Indice du sommet sur lequel le joueur
-	 *                                s'est déplacé.
+	 * @param indiceSommetDeplacement Indice du sommet 
+	 * sur lequel le joueur s'est déplacé.
 	 */
 	public boolean verificationDeplacement(int indiceSommetDeplacement) {
 		
-		if (graphe.sommetExiste(indiceSommetActuelle + indiceSommetDeplacement)
-			&& graphe.getListeSommets()[indiceSommetActuelle]
+		if (graphe.sommetExiste(indiceSommetActuel + indiceSommetDeplacement)
+			&& graphe.getListeSommets()[indiceSommetActuel]
 				.liaisonExiste
-				(graphe.getListeSommets()[indiceSommetActuelle +
+				(graphe.getListeSommets()[indiceSommetActuel +
 				                          indiceSommetDeplacement])) {
-			this.setIndiceSommetActuelle(indiceSommetActuelle + indiceSommetDeplacement);
-			this.setPositionActuelle(graphe.getListeSommets()[indiceSommetActuelle]);
+			this.setIndiceSommetActuelle(indiceSommetActuel + indiceSommetDeplacement);
+			this.setPositionActuelle(graphe.getListeSommets()[indiceSommetActuel]);
 			this.setNombreCasesParcourues(this.getNombreCasesParcourues() + 1);
 			return true;
 		}

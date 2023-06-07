@@ -52,8 +52,8 @@ public class ConstructionBacktracking extends Graphe {
     }
 
 	/**
-	 * Création d'un graphe avec des sommets choisis aléatoirement et définition
-	 * des marques nécessaires entre les sommets.
+	 * Création d'un graphe avec des sommets choisis aléatoirement
+	 * et définition des marques nécessaires entre les sommets.
 	 */
 	public void creationDuGraphe() {
 		
@@ -92,7 +92,6 @@ public class ConstructionBacktracking extends Graphe {
                 sommetCourant.creerLiaison(sommetAEmpiler);
 			}  
            
-        //tant que la pile n'est pas vide
         } while (!pileSommetsParcourus.isVide()); 
 		
 	}

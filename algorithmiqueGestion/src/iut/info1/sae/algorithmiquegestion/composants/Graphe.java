@@ -4,9 +4,6 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 
 /**
  * Modélisation d'un graphe sans circuit et n'ayant qu'une seule chaîne.
@@ -133,37 +130,12 @@ public class Graphe {
 	}
 	
 
-	
-	/**
-	 * Choix d'un sommet aléatoire et d'un sommet aléatoire adjacent à celui-ci.
-	 * 
-	 * @return Couple de sommets adjacents choisis aléatoirement.
-	 */
-	public Sommet[] sommetsAleatoires() {
-		/**
-		 * entiers aléatoires correspondant à un indice dans la liste des sommets
-		 */
-		int sommet,
-			sommetAdjacent;
-		
-		sommet = new Random().nextInt(this.getNombreSommets());
-			
-		Sommet[] listeDesSommetsAdjacents = this.tousLesSommetsAdjacentsDuSommet(sommet);
-		sommetAdjacent = new Random().nextInt(listeDesSommetsAdjacents.length);
-		
-		Sommet[] sommetsAleatiores = {
-				this.getListeSommets()[sommet],
-				listeDesSommetsAdjacents[sommetAdjacent]
-		};
-		
-		return sommetsAleatiores;
-	}
 
 	/**
 	 * Permet de déterminer les sommets adjacents à un sommet dont l'indice dans
 	 * la liste des sommets de this est en paramètre.
 	 *
-	 * @param indiceSommet L'indice du sommet dans la liste des sommets du graphe.
+	 * @param indiceSommet L'indice du sommet dans la liste des sommets de this.
 	 * @return la liste des sommet adjacents mis en paramètre
 	 */
 	public Sommet[] tousLesSommetsAdjacentsDuSommet(int indiceSommet) {
@@ -176,11 +148,6 @@ public class Graphe {
 			indiceSommet - 1 
 		};	
 		
-		/* 
-		 * Attention dans le cas où par exemple 4 est à la fin 
-		 * d'une  ligne , 5 ne doit pas être un sommet adjacent.
-		 * Normalement y'a pas de problème avec la méthode estAdjacent
-		*/
 		
 		for (int i = 0; i < listeSommetAdjacentPossible.length; i++) {
 			if (estAdjacent(indiceSommet, listeSommetAdjacentPossible[i])) {
@@ -202,7 +169,7 @@ public class Graphe {
 	}
 	
 	/**
-	 * Permet de vérifier l'existance d'un sommet dans le graphe
+	 * Permet de vérifier l'existance d'un sommet dans this
 	 * à partir de ses coordonnées.
 	 * @param sommet
 	 * @return si le sommet fais bien partie du graphe ou pas

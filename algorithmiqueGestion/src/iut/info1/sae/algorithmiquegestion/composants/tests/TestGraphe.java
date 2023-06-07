@@ -7,8 +7,6 @@ package iut.info1.sae.algorithmiquegestion.composants.tests;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -43,20 +41,7 @@ class TestGraphe {
 		}
 	}
 	
-	@AfterAll
-	void testCreationDuGraphe() {
-		System.out.println("Test de la création du graphe : ");
-		
-		Graphe graphe2 = new Graphe(2, 2);
-		
-		for (int indexSommet = 0; indexSommet < graphe2.getNombreSommets(); indexSommet++) {
-			System.out.println("Sommet : " + graphe2.getListeSommets()[indexSommet]);
-			for (int i = 0; i < graphe2.getListeSommets()[indexSommet].getLiaisons().size(); i++) {
-				System.out.println("Sommet lie : " + graphe2.getListeSommets()[indexSommet].getLiaisons().get(i));
-			}
-			
-		}
-	}
+	
 	
 	
 	/**
@@ -194,25 +179,7 @@ class TestGraphe {
 
 	}
 	
-	@Test
-	void testSommetAleatoires() {
-		System.out.println("Test de renvoie tableau contenant un sommet aléatoire " 
-				+ "ainsi qu'un de ses sommets adjacent : ");
-//		for (int i = 0; i < grapheTeste.sommetsAleatoires().length; i++) {
-		Sommet[] lesSommets= new Sommet[2];
-		lesSommets = grapheTeste.sommetsAleatoires();
-		
-		System.out.println("Sommet choisi au hasard : X = "
-				+ lesSommets[0].getCoordonneeX()
-				+ " ; Y = "
-				+ lesSommets[0].getCoordonneeY()
-				+ "\nl'un de ses sommet adjacent : X = "
-				+ lesSommets[1].getCoordonneeX()
-				+ " ; Y = "
-				+ lesSommets[1].getCoordonneeY());
-			
-//		}
-	}
+	
 	
 }
 

@@ -29,7 +29,7 @@ class TestParcoursProfondeur {
 	
 	@BeforeEach
 	void initaliserLabyrinthe(){
-		Labyrinthe labyrinthe = new Labyrinthe(5, 5, 1);
+		labyrinthe = new Labyrinthe(5, 5, 1);
 	}
 	
 	/**

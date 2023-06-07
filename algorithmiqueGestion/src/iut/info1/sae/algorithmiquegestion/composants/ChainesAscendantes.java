@@ -19,8 +19,6 @@ import java.util.Random;
  */
 public class ChainesAscendantes extends Graphe {
 
-	/** Liste des marques des sommets déjà existantes. */
-	private int[] marquesExistante;
 	
 	/**
 	 * Valeur maximale des valeurs des marques.
@@ -39,8 +37,6 @@ public class ChainesAscendantes extends Graphe {
 	public ChainesAscendantes(int nombreColonnesLabyrinthe, int nombreLignesLabyrinthe) {
 		super(nombreColonnesLabyrinthe, nombreLignesLabyrinthe);
 		
-		this.marquesExistante = new int[super.getNombreColonnesLabyrinthe()
-		                                * super.getNombreLignesLabyrinthe()]; 
 		
 		this.valeurMarqueCourante = 0;
 		
@@ -67,8 +63,6 @@ public class ChainesAscendantes extends Graphe {
     public boolean definitUneMarque(Sommet sommet1, Sommet sommet2) {
 	    boolean resultat = true;
     	
-    	/* Dans le cas ou les marques des 2 sommets en question
-    	 * ne sont pas initialisées. */
     	if (sommet1.getMarque() < 0 && sommet2.getMarque() < 0) {
     		sommet1.setMarque(valeurMarqueCourante);
     		sommet2.setMarque(valeurMarqueCourante);
@@ -81,10 +75,6 @@ public class ChainesAscendantes extends Graphe {
     		} else if (sommet2.getMarque() < 0) {
     			sommet2.setMarque(sommet1.getMarque());
     			
-    		/*
-    		 * Si les deux sommets ont déjà des marques (autre que -1), les
-    		 * sommets de même chaîne que sommet2 prennent la marque du sommet1. 
-    		 */	
     		} else {
     			ArrayList<Sommet> sommetMarqueSommet2
     			= sommetsDeMemeMarque(sommet2.getMarque());
@@ -106,8 +96,6 @@ public class ChainesAscendantes extends Graphe {
 	 * @return La liste des sommets possédant la marque.
 	 */
 	public ArrayList<Sommet> sommetsDeMemeMarque(int marque) {
-		int tailleTableau = 0;
-		int rang = 0;
 		
 		ArrayList<Sommet> laListeSommetsMarque = new ArrayList<>();
 		for (Sommet sommetATester : getListeSommets() ) {
@@ -118,11 +106,14 @@ public class ChainesAscendantes extends Graphe {
 		return laListeSommetsMarque;
 	}
 	
-	/** @return Une liste de sommets aléatoirement choisis parmi le liste des sommets
-	            et la liste des sommets adjacents. */
+	/** 
+	 * @return Une liste de sommets aléatoirement choisis parmi
+	 * le liste des sommets et la liste des sommets adjacents.
+	 */
 	public Sommet[] sommetsAleatoires() {
 		/**
-		 * Entiers aléatoires correspondant à un indice dans la liste des sommets
+		 * Entiers aléatoires correspondant à un indice
+		 * dans la liste des sommets
 		 */
 		int sommet,
 			sommetAdjacent;

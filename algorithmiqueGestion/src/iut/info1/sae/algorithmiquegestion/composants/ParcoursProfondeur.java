@@ -21,7 +21,7 @@ import java.util.Random;
  */
 public class ParcoursProfondeur {
 	
-	static Labyrinthe labyrinthe = AffichageLabyrinthe.getLabyrinthe();
+	static Labyrinthe labyrinthe = MenuLabyrinthe.getLabyrinthe();
     
     /**
      * Parcours du labyrinthe afin de determiner le chemin direct
@@ -34,7 +34,6 @@ public class ParcoursProfondeur {
         Sommet sommetAEmpiler;
         ArrayList<Sommet> listeSommetsAEmpiler = new ArrayList<>();
         int longueurParcours = 0;
-        Pile pileSommetsAEmpiler = new Pile();
         
         for (Sommet sommet : labyrinthe.getGraphe().getListeSommets()) {
 			sommet.setParcouru(false);

@@ -5,10 +5,8 @@
 package iut.info1.sae.algorithmiquegestion.composants.tests;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -55,24 +53,24 @@ class TestConstructionBacktracking {
         /* Sommet adjacent du sommet sommetChoisit[0]*/                     
 		Sommet[] sommetsAdjacents1 = {grapheTeste.getListeSommets()[12],
 									  grapheTeste.getListeSommets()[2],
-									  grapheTeste.getListeSommets()[8],
 									  grapheTeste.getListeSommets()[6]};
 		
 	    /* Sommet adjacent du sommet sommetChoisit[1]*/
-		Sommet[] sommetsAdjacents2 = {grapheTeste.getListeSommets()[5],
-									  grapheTeste.getListeSommets()[1]};
+		Sommet[] sommetsAdjacents2 = {grapheTeste.getListeSommets()[1]};
 		
         /* Sommet adjacent du sommet sommetChoisit[2]*/
 		Sommet[] sommetsAdjacents3 = {grapheTeste.getListeSommets()[17],
-									  grapheTeste.getListeSommets()[23],
-									  grapheTeste.getListeSommets()[21]};
+									  grapheTeste.getListeSommets()[23]};
 		
-		/* Sommet[] sommetsNonAdjacents = {grapheTeste.getListeSommets()[5],
-		                                grapheTeste.getListeSommets()[9], 
-		                                grapheTeste.getListeSommets()[1], 
-		                                grapheTeste.getListeSommets()[3], 
-		                                grapheTeste.getListeSommets()[11], 
-		                                grapheTeste.getListeSommets()[13]}; */      
+		Sommet[] sommetsDejaParcourus = {grapheTeste.getListeSommets()[5],
+		                                grapheTeste.getListeSommets()[8], 
+		                                grapheTeste.getListeSommets()[21]}; 
+		
+		for (int sommetsParcourus = 0;
+			 sommetsParcourus < sommetsDejaParcourus.length; 
+			 sommetsParcourus++) {
+			sommetsDejaParcourus[sommetsParcourus].setParcouru(true);
+		}
 		                                
 		Sommet[] listeDeLaMethode1 = grapheTeste.sommetsAdjacentsNonParcourus(sommetChoisit[0])
 				.toArray(new Sommet[grapheTeste.sommetsAdjacentsNonParcourus(sommetChoisit[0]).size()]);
@@ -93,12 +91,12 @@ class TestConstructionBacktracking {
     }
     
     /**
-     *
+     * Méthode de test de
+     * {@link iut.info1.sae.algorithmiquegestion.composants.ConstructionBacktracking#testSommetAdjacentAleatoire()}.
      */
-     void testSommetAdjacentAleatoire() {
+    void testSommetAdjacentAleatoire() {
 		 
 		 ArrayList<Sommet> listeSommetsAdjacents = new ArrayList<>();
-		 //int[] listeSommetsAdjacents = {2, 6, 8, 12};
 		 
 		 // 0 --> 1 ou 5
 		 // 7 --> 2, 6, 8 ou 12
@@ -112,4 +110,25 @@ class TestConstructionBacktracking {
 	     System.out.println(grapheTeste.sommetAdjacentAleatoire(listeSommetsAdjacents));
 		 
 	 }
+     
+    /**
+     * Créé un graphe à partir de l'algorithme de backtracking puis
+     * affiche ses liaisons dans la console texte afin de 
+     * vérifier sa validité
+     */
+     @AfterAll
+ 	void testCreationDuGraphe() {
+ 		System.out.println("Test de la creation du graphe : ");
+ 		
+ 		ConstructionBacktracking graphe2 = new ConstructionBacktracking(2, 2);
+ 		
+ 		for (int indexSommet = 0; indexSommet < graphe2.getNombreSommets(); indexSommet++) {
+ 			System.out.println("Sommet : " + graphe2.getListeSommets()[indexSommet]);
+ 			for (int i = 0; i < graphe2.getListeSommets()[indexSommet].getLiaisons().size(); i++) {
+ 				System.out.println("Sommet lie : " + graphe2.getListeSommets()[indexSommet].getLiaisons().get(i));
+ 			}
+ 		System.out.print("\n");
+ 			
+ 		}
+ 	}
 }

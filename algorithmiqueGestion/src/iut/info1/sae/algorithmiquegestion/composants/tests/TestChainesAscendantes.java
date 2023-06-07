@@ -8,7 +8,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -113,7 +112,6 @@ class TestChainesAscendantes {
 	 */
 	@Test
 	void testDefinitUneMarque() {
-	    System.out.println("Test d'affectation de marque : ");
 	    
 	    /* Test du 'if' */
 	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[0],
@@ -149,7 +147,7 @@ class TestChainesAscendantes {
 	    assertEquals(grapheTeste.getListeSommets()[19].getMarque(), 9);
 	    
 	    
-	    /* Test du cas où les deux sommets on la meme marque déjà définie */
+	    /* Test du cas où les deux sommets on la même marque déjà définie */
 	    grapheTeste.getListeSommets()[15].setMarque(7);
 	    grapheTeste.getListeSommets()[16].setMarque(7);
 	    grapheTeste.definitUneMarque(grapheTeste.getListeSommets()[15],
@@ -157,6 +155,44 @@ class TestChainesAscendantes {
 	    
 	    assertEquals(grapheTeste.getListeSommets()[15].getMarque(), 7);
 	    assertEquals(grapheTeste.getListeSommets()[16].getMarque(), 7);
+	}
+	
+	@Test
+	void testSommetAleatoires() {
+		System.out.println("Test de renvoie tableau contenant un sommet aléatoire " 
+				+ "ainsi qu'un de ses sommets adjacent : ");
+		Sommet[] lesSommets= new Sommet[2];
+		lesSommets = grapheTeste.sommetsAleatoires();
+		
+		System.out.println("Sommet choisi au hasard : X = "
+				+ lesSommets[0].getCoordonneeX()
+				+ " ; Y = "
+				+ lesSommets[0].getCoordonneeY()
+				+ "\nl'un de ses sommet adjacent : X = "
+				+ lesSommets[1].getCoordonneeX()
+				+ " ; Y = "
+				+ lesSommets[1].getCoordonneeY());
+	}
+	
+	/**
+     * Créé un graphe à partir de l'algorithme de création de 
+     * chaînes puis affiche ses liaisons dans la console texte 
+     * afin de vérifier sa validité
+     */
+	@AfterAll
+	void testCreationDuGraphe() {
+		System.out.println("Test de la creation du graphe : ");
+		
+		ChainesAscendantes graphe2 = new ChainesAscendantes(2, 2);
+		
+		for (int indexSommet = 0; indexSommet < graphe2.getNombreSommets(); indexSommet++) {
+			System.out.println("Sommet : " + graphe2.getListeSommets()[indexSommet]);
+			for (int i = 0; i < graphe2.getListeSommets()[indexSommet].getLiaisons().size(); i++) {
+				System.out.println("Sommet lie : " + graphe2.getListeSommets()[indexSommet].getLiaisons().get(i));
+			}
+		System.out.print("\n");
+			
+		}
 	}
 
 }
