@@ -4,8 +4,6 @@
  */
 package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
 
-import java.util.Scanner;
-
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
@@ -48,15 +46,6 @@ public class AffichageLabyrinthe {
 	- D : déplacement vers la droite
 	""";
 	
-	public final static String COMMANDES_MENU_PRINCIPAL =
-	"- 1 : Construction d'un labyrinthe"
-// + "\n- 2 : ouverture d'un labyrinthe sauvegardé"
-    + "\n____________________________________________"
-    + DEMANDE_COMMANDE;
-    
-    public final static String BIENVENUE
-    = "Bienvenue sur ce jeu de Labyrinthe !\n";
-	
 	public final static String CONSIGNES_JEU =
 	"______________________ COMMANDES - JEU ______________________\n" +
     """
@@ -76,7 +65,7 @@ public class AffichageLabyrinthe {
 												+ " partie est terminée !";
 	
 	private final static String PARCOURS_FIN = "\nVoici le parcours "
-											   + "de résolution : ";
+													   + "de résolution : ";
 
     private final static String ERREUR_SAISIE =
     """
@@ -90,27 +79,10 @@ public class AffichageLabyrinthe {
 //    
 //    private static int nombreColonnes;
     
-    private static final int HAUTEUR_MINIMALE_LABYRINTHE = 2;
-    
-    private static final int LONGUEUR_MINIMALE_LABYRINTHE = 2;
-
-    private static final int HAUTEUR_MAXIMALE_LABYRINTHE = 10;
-    
-    private static final int LONGUEUR_MAXIMALE_LABYRINTHE = 10;
-
-    private static int hauteurLabyrinthe;
-    
-    private static int longueurLabyrinthe;
-    
-    private static int typeLabyrinthe;
-    
-	private static Labyrinthe labyrinthe;
+	private static Labyrinthe labyrinthe = MenuLabytinthe.getLabyrinthe();
 	
-	public static Labyrinthe getLabyrinthe() {
-		return labyrinthe;
-	}
-
-	private static Sommet[] listeSommets;
+	private static Sommet[] listeSommets =
+				MenuLabytinthe.getLabyrinthe().getGraphe().getListeSommets();
 	
 	/**
 	 * Lancement de l'affichage du labyrinthe généré en fonction de
@@ -118,7 +90,6 @@ public class AffichageLabyrinthe {
 	 * 
 	 * @param args inutilisé
 	 */
-	public static void main(String[] args) {
 		
 //		for (int indexSommet = 0; indexSommet < testSam.getGraphe().getNombreSommets(); indexSommet++) {
 //			System.out.println("Sommet : " + testSam.getGraphe().getListeSommets()[indexSommet]);
@@ -129,20 +100,14 @@ public class AffichageLabyrinthe {
 //		}
 //		ParcoursProfondeur.algorithmeParcours();
 		
-		boolean menuPrincipalPasse;
+	public static void lancement() {
+	    
+	    System.out.println(CONSIGNES_JEU);
 		
-		System.out.println(BIENVENUE);
-		
-        do {
-        	menuPrincipalPasse = demandeParametresLabyrinthe();
-		} while (!menuPrincipalPasse);
-        
-        System.out.println(CONSIGNES_JEU);
-		
-        do {
-        	gestionDeplacementsLabyrinthe();
+	    do {
+	    	AffichageLabyrinthe.gestionDeplacementsLabyrinthe();
 		} while (labyrinthe.getPositionActuelle() != labyrinthe.getSortie());
-        
+	    
 		System.out.println(PARTIE_GAGNEE);
 		System.out.print(PARCOURS_FIN);
 		ParcoursProfondeur.algorithmeParcours();
@@ -153,199 +118,11 @@ public class AffichageLabyrinthe {
 	}
 	
 	/**
-	 * Affichage console texte demandant en boucle les informations du
-	 * labyrinthe souhaité par l'utilisateur (hauteur, longueur) jusqu'à
-	 * avoir des données valides.
-	 * 
-	 * @return true si les paramètres sont valides.
-	 */
-	private static boolean demandeParametresLabyrinthe() {
-
-		final String CHOIX_NOUVEAU_LABYRINTHE = "1";
-		
-		final String CHOIX_OUVRIR_SAUVEGARDE = "2";
-		
-		final String NOUVEAU_LABYRINTHE = "\n>> NOUVEAU LABYRINTHE";
-		
-		final String COMMANDE_INEXISTANTE = "\nErreur : commande inexistante !\n";
-		
-		Scanner analyseurSaisie;		
-		
-		String saisieMenuPrincipal;
-		
-		boolean saisieLongueurLabyrintheTermine = false;
-		boolean saisieHauteurLabyrintheTermine = false;
-		boolean saisieTypeLabyrintheTermine = false;
-		
-		boolean resultatValide = false;
-				
-		System.out.println(COMMANDES_MENU_PRINCIPAL);
-		
-		analyseurSaisie = new Scanner(System.in);
-        
-		saisieMenuPrincipal = analyseurSaisie.next();
-		
-//		c'est pour gérer les erreurs de saisie dans le cas où 
-//		le saisie contient plus de 1 caractère. Ne fonctionne pas correctement	
-//		if (saisieMenuPrincipal.length() != 1) {
-//			analyseurSaisie.close();
-//			System.out.println(COMMANDE_INEXISTANTE);
-//			return resultatValide;
-//		}
-
-		analyseurSaisie.nextLine();
-		
-		switch (saisieMenuPrincipal) {
-		case CHOIX_NOUVEAU_LABYRINTHE:
-            System.out.println(NOUVEAU_LABYRINTHE);
-
-            do {	
-				saisieLongueurLabyrintheTermine
-				= saisirLongueurLabyrinthe(analyseurSaisie);
-			} while (!saisieLongueurLabyrintheTermine);
-			
-			do {
-                saisieHauteurLabyrintheTermine
-                = saisirHauteurLabyrinthe(analyseurSaisie);
-            } while (!saisieHauteurLabyrintheTermine);
-            
-            do {
-                saisieTypeLabyrintheTermine
-                = saisirTypeConstructionLabyrinthe(analyseurSaisie);
-            } while (!saisieTypeLabyrintheTermine);
-            
-            System.out.println("\n");
-            
-            labyrinthe = new Labyrinthe(hauteurLabyrinthe,
-                                        longueurLabyrinthe,
-                                        typeLabyrinthe);
-            
-            listeSommets = labyrinthe.getGraphe().getListeSommets();
-            
-            resultatValide = true;
-		    break;
-		    
-//		case CHOIX_OUVRIR_SAUVEGARDE:
-//            // TODO : Ouvrir le labyrinthe sauvegardé
-//		    break;
-		    
-		default:
-            System.out.println(COMMANDE_INEXISTANTE);
-		    break;
-		}
-		
-		return resultatValide;
-	}
-	
-	/**
-     * Vérification de la validité de la longueur saisie.
-     *
-     * @return true si la longueur saisie est correcte.
-     */
-	private static boolean saisirLongueurLabyrinthe(Scanner analyseurEntree) {
-		
-		final String ENTRER_LONGUEUR
-		= "\nEntrez la longueur (horizontale) du labyrinthe : ";
-		
-		final String LONGUEUR_INVALIDE = "\nErreur : longueur invalide.";
-		
-		boolean entierEntre = true;
-		boolean longueurValide = true;
-		
-		System.out.print(ENTRER_LONGUEUR);
-		
-		if (analyseurEntree.hasNextInt()) {
-			longueurLabyrinthe = analyseurEntree.nextInt();
-		} else {
-			entierEntre = false;
-		}
-		analyseurEntree.nextLine();
-		
-		System.out.println();
-		
-		longueurValide = entierEntre
-			       		 && longueurLabyrinthe > LONGUEUR_MINIMALE_LABYRINTHE
-			       		 && longueurLabyrinthe <= LONGUEUR_MAXIMALE_LABYRINTHE;
-		
-		if (!longueurValide) {
-			System.out.println(LONGUEUR_INVALIDE);
-		}
-		return longueurValide;
-	}
-	
-	/**
-	 * Vérification de la validité de la hauteur saisie.
-	 *
-	 * @return true si la hauteur saisie est correcte.
-	 */
-	private static boolean saisirHauteurLabyrinthe(Scanner analyseurEntree) {
-        
-		final String ENTRER_HAUTEUR
-		= "Entrez la hauteur (verticale) du labyrinthe : ";
-		
-		final String HAUTEUR_INVALIDE = "\nErreur : hauteur invalide.";
-		
-		boolean entierEntre = true;
-		boolean hauteurValide = true;
-        
-        System.out.print(ENTRER_HAUTEUR);
-        
-        if (analyseurEntree.hasNextInt()) {
-            hauteurLabyrinthe = analyseurEntree.nextInt();
-        } else {
-        	entierEntre = false;
-        }
-        analyseurEntree.nextLine();
-        
-        hauteurValide = entierEntre
-                		&& hauteurLabyrinthe > HAUTEUR_MINIMALE_LABYRINTHE
-                		&& hauteurLabyrinthe <= HAUTEUR_MAXIMALE_LABYRINTHE;
-        
-        if (!hauteurValide) {
-			System.out.println(HAUTEUR_INVALIDE);
-        }
-        return hauteurValide;
-    }
-    
-    /**
-     * Vérification de la validité de la hauteur saisie.
-     *
-     * @return true si la hauteur saisie est correcte.
-     */
-    private static boolean saisirTypeConstructionLabyrinthe(Scanner analyseurEntree) {
-        
-        final String ENTRER_TYPE
-        = """
-          Entrez la type de construction du labyrinthe : 
-           - 1 : Construction par chaines ascendentes
-           - 2 : Construction par descente en profondeur
-          """;
-        
-        final String TYPE_INVALIDE = "\nErreur : type invalide.";
-        
-        boolean typeValide = true;
-        
-        System.out.print(ENTRER_TYPE);
-        
-        if (analyseurEntree.hasNextInt()) {
-            typeLabyrinthe = analyseurEntree.nextInt();
-        } else {
-            typeValide = false;
-        }
-        analyseurEntree.nextLine();
-        
-        if (!typeValide) {
-            System.out.println(TYPE_INVALIDE);
-        }
-        return typeValide;
-    }
-	
-	/**
 	 * Affichage du labyrinthe à chaque coup joué, gestion des déplacements
 	 * du joueur dans celui-ci et arrêt lorsque la position du joueur
 	 * est sur la case de sortie.
 	 */
-	private static void gestionDeplacementsLabyrinthe() {
+	 private static void gestionDeplacementsLabyrinthe() {
 		
 		int ligneCourante = 0;
 		
