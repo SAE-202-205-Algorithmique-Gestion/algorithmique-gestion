@@ -55,6 +55,8 @@ public class Labyrinthe {
 	
 	private int indiceSommetActuelle;
 	
+	private int nombreCasesParcourues;
+	
 	private ConstructionBacktracking graphe;
 	
 	/**
@@ -63,8 +65,12 @@ public class Labyrinthe {
 	 * @param nombreDeLignes Le nombre de lignes (Y) du labyrinthe.
 	 * @param nombreDeColonnes Le nombre de colonnes (X) du labyrinthe.
 	 */
-	public Labyrinthe(int nombreDeLignes, int nombreDeColonnes) {
+	public Labyrinthe(int nombreDeLignes, int nombreDeColonnes, String typeConstruction) {
 		super();
+		if (!typeConstruction.equals("ConstructionBacktracking")) {
+			throw new IllegalArgumentException("Vous avez donné un type de"
+										+ " construction de labyrinthe invalide");
+		}
 		
 		this.nombreDeLigne = nombreDeLignes;
 		
@@ -91,6 +97,11 @@ public class Labyrinthe {
 	/** @return L'indice du sommet sur lequel est placé le joueur. */
 	public int getIndiceSommetActuelle() {
 		return indiceSommetActuelle;
+	}
+	
+	/** @return Le nombre de cases que le joueur à parcouru. */
+	public int getNombreCasesParcourues() {
+		return nombreCasesParcourues;
 	}
 	
 	/** @return Le sommet sur lequel est placé le joueur. */
@@ -143,6 +154,11 @@ public class Labyrinthe {
         this.indiceSommetActuelle = indiceSommetActuelle;
     }
     
+	/** @param nombreCasesParcourues Le nombre de cases que le joueur à parcouru. */
+	public void setNombreCasesParcourues(int nombreCasesParcourues) {
+		this.nombreCasesParcourues = nombreCasesParcourues;
+	}
+    
     /** @param positionActuelle Le sommet correspondant à la position actuelle. */
     public void setPositionActuelle(Sommet positionActuelle) {
         this.positionActuelle = positionActuelle;
@@ -177,22 +193,6 @@ public class Labyrinthe {
 		}
 	}
 	
-//	public boolean gestionErreurSaisie(char entreeScanner) {
-//		for (int indiceChaine = 0; indiceChaine < entreeScanner.length(); indiceChaine++) {
-//				if (entreeScanner.toLowerCase().charAt(indiceChaine) != 'z'
-//					&& entreeScanner.toLowerCase().charAt(indiceChaine) != 's'
-//					&& entreeScanner.toLowerCase().charAt(indiceChaine) != 'd'
-//					&& entreeScanner.toLowerCase().charAt(indiceChaine) != 'q'
-//					&& entreeScanner.toLowerCase().charAt(indiceChaine) != ' ') {
-//					
-//					System.out.println(MESSAGE_ERREUR_SAISIE + " eeedd");
-//					return false;
-//			}
-//		}
-//		return true;
-//		
-//	}
-	
 	/**
 	 * Vérification du déplacement que le joueur essaie d'effectuer.
 	 *
@@ -208,6 +208,7 @@ public class Labyrinthe {
 				                          indiceSommetDeplacement])) {
 			this.setIndiceSommetActuelle(indiceSommetActuelle + indiceSommetDeplacement);
 			this.setPositionActuelle(graphe.getListeSommets()[indiceSommetActuelle]);
+			this.setNombreCasesParcourues(this.getNombreCasesParcourues() + 1);
 			return true;
 		}
 		return false;
@@ -233,8 +234,6 @@ public class Labyrinthe {
 			 && saisieCorrecte;
 			 indiceSaisieDeplacement++) {
 			
-//				System.out.println(saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)
-//						+ " " + indiceSaisieDeplacement);
 			switch (saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)) {
 			case HAUT:
 				if (!verificationDeplacement(-this.nombreDeColonne)) {

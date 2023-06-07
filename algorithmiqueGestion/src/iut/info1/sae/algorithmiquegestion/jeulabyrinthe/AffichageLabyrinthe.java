@@ -145,6 +145,10 @@ public class AffichageLabyrinthe {
 		System.out.println(PARTIE_GAGNEE);
 		System.out.print(PARCOURS_FIN);
 		ParcoursProfondeur.algorithmeParcours();
+		
+		System.out.print("Vous avez parcouru ce labyrinthe avec "
+				 	     + labyrinthe.getNombreCasesParcourues()
+				         + " cases.");
 	}
 	
 	/**
@@ -156,9 +160,11 @@ public class AffichageLabyrinthe {
 	 */
 	private static boolean demandeParametresLabyrinthe() {
 
-		final String CHOIX_NOUVEAU_LABYRINTHE = "n";
+		final char CHOIX_NOUVEAU_LABYRINTHE_CHAINE_ASCENDANTE = '1';
 		
-		final String CHOIX_OUVRIR_SAUVEGARDE = "o";
+		final char CHOIX_NOUVEAU_LABYRINTHE_BACK_TRACKING = '2';
+		
+		final char CHOIX_OUVRIR_SAUVEGARDE = '3';
 		
 		final String NOUVEAU_LABYRINTHE = "\n>> NOUVEAU LABYRINTHE";
 		
@@ -166,7 +172,7 @@ public class AffichageLabyrinthe {
 		
 		Scanner analyseurSaisie;		
 		
-		String saisieMenuPrincipal;
+		char saisieMenuPrincipal;
 		
 		boolean saisieLongueurLabyrintheTermine = false;
 		boolean saisieHauteurLabyrintheTermine = false;
@@ -177,11 +183,11 @@ public class AffichageLabyrinthe {
 		
 		analyseurSaisie = new Scanner(System.in);
         
-		saisieMenuPrincipal = analyseurSaisie.next();
+		saisieMenuPrincipal = analyseurSaisie.next().charAt(0);
 		analyseurSaisie.nextLine();
 		
-		switch (saisieMenuPrincipal.toLowerCase()) {
-		case CHOIX_NOUVEAU_LABYRINTHE:
+		switch (saisieMenuPrincipal) {
+		case CHOIX_NOUVEAU_LABYRINTHE_CHAINE_ASCENDANTE:
             System.out.println(NOUVEAU_LABYRINTHE);
 
             do {	
@@ -208,6 +214,9 @@ public class AffichageLabyrinthe {
             // TODO : Ouvrir le labyrinthe sauvegardé
 		    break;
 		    
+		case CHOIX_NOUVEAU_LABYRINTHE_BACK_TRACKING:
+			
+		    break;
 		default:
             System.out.println(COMMANDE_INEXISTANTE);
 		    break;
@@ -339,7 +348,6 @@ public class AffichageLabyrinthe {
 		if (!labyrinthe.demandeDeplacement()) {
 			System.out.print(ERREUR_SAISIE);
 		}
-		System.out.println();
 	}
 	
 	/**
