@@ -107,8 +107,6 @@ public class ConstructionBacktracking extends Graphe {
 		Sommet[] sommetsAdjacents;
 		ArrayList<Sommet> adjacentsNonParcourus = new ArrayList<>();
 		
-		//sommet.getListeSommets()[indiceSommet];
-		
 		sommetsAdjacents = tousLesSommetsAdjacentsDuSommet(indiceSommet);
 		
 		for (int indiceAdjacents = 0; indiceAdjacents < sommetsAdjacents.length; indiceAdjacents++ ) {

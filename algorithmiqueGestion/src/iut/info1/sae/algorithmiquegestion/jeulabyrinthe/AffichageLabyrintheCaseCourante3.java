@@ -65,7 +65,7 @@ public class AffichageLabyrintheCaseCourante3 {
     private static final int NOMBRE_COLONNES = 10;
 
 	private static Labyrinthe labyrinthe = new Labyrinthe(NOMBRE_LIGNES,
-														  NOMBRE_COLONNES);
+														  NOMBRE_COLONNES, 1);
 	
 	private static Sommet[] listeSommets = labyrinthe.getGraphe()
 										   .getListeSommets();

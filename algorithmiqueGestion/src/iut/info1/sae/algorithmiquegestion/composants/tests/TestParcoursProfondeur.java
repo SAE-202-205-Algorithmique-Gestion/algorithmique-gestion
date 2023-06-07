@@ -96,7 +96,7 @@ class TestParcoursProfondeur {
      */
     @Test
     void testAlgorithmeParcours(){
-		
+		if (labyrinthe.getGraphe().instance)
 	}
 
 }

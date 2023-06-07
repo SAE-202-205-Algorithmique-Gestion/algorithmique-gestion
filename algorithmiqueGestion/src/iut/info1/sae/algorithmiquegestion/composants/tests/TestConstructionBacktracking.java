@@ -15,6 +15,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import iut.info1.sae.algorithmiquegestion.composants.*;
+import java.util.ArrayList;
 
 /**
  * Tests unitaires avec JUnit de la classe ConstructionBacktracking.
@@ -49,21 +50,44 @@ class TestConstructionBacktracking {
      */
     @Test
     void testSommetsAdjacentsNonParcourus() {
-		Sommet sommetChoisi = grapheTeste.getListeSommets()[7];
+		int[] sommetChoisit = {7, 0, 22};
 		
-		Sommet[] sommetsAdjacents = {grapheTeste.getListeSommets()[6],
-                                        grapheTeste.getListeSommets()[8], 
-                                        grapheTeste.getListeSommets()[2], 
-                                        grapheTeste.getListeSommets()[12]};
+		ArrayList<Integer> sommetsAdjacents1 = new ArrayList<>(4);
 		
-		Sommet[] sommetsNonAdjacents = {grapheTeste.getListeSommets()[5],
+		ArrayList<Integer> sommetsAdjacents2 = new ArrayList<>(2);
+		
+		ArrayList<Integer> sommetsAdjacents3 = new ArrayList<>(3);
+
+                                        
+	    sommetsAdjacents1.add(12);
+	    sommetsAdjacents1.add(2);
+	    sommetsAdjacents1.add(8);
+	    sommetsAdjacents1.add(6);
+	    
+	    sommetsAdjacents2.add(5);
+        sommetsAdjacents2.add(1);
+        
+        sommetsAdjacents3.add(17);
+        sommetsAdjacents3.add(23);
+        sommetsAdjacents3.add(21);
+
+		
+		/* Sommet[] sommetsNonAdjacents = {grapheTeste.getListeSommets()[5],
 		                                grapheTeste.getListeSommets()[9], 
 		                                grapheTeste.getListeSommets()[1], 
 		                                grapheTeste.getListeSommets()[3], 
 		                                grapheTeste.getListeSommets()[11], 
-		                                grapheTeste.getListeSommets()[13]};
-		                                
+		                                grapheTeste.getListeSommets()[13]}; */                           
         
-	}
-
+        assertArrayEquals(grapheTeste.sommetsAdjacentsNonParcourus(
+						  sommetChoisit[0]), sommetsAdjacents1);
+    
+        assertArrayEquals(grapheTeste.sommetsAdjacentsNonParcourus(
+                          sommetChoisit[1]), sommetsAdjacents2);
+    
+        assertArrayEquals(grapheTeste.sommetsAdjacentsNonParcourus(
+                          sommetChoisit[2]), sommetsAdjacents3);
+    
+    }
+    
 }

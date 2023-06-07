@@ -79,7 +79,7 @@ public class AffichageLabyrintheFormeGraphe {
 
 	    System.out.println(LANCEMENT_JEU);
 		
-		Labyrinthe labyrinthe = new Labyrinthe(nombreLignes, nombreColonnes);
+		Labyrinthe labyrinthe = new Labyrinthe(nombreLignes, nombreColonnes, 1);
 		
 		int ligne;
 		do {

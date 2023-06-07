@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ParcoursMainDroite {
 	
 	/** Labyrinthe de longueur et largeur 5 utilisé pour ce parcours. */
-	private Labyrinthe labyrinthe = new Labyrinthe(5, 5);
+	private Labyrinthe labyrinthe = new Labyrinthe(5, 5, 1);
 	
 	/** Liste des sommets liés au sommet de départ. */
 	private ArrayList<Sommet> listeSommetsLiesDepart

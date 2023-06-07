@@ -181,7 +181,7 @@ public class AffichageCaseCouranteNonFonctionnel {
             System.out.println("\n");
             
             labyrinthe = new Labyrinthe(hauteurLabyrinthe,
-                                        longueurLabyrinthe);
+                                        longueurLabyrinthe, 1);
             
             listeSommets = labyrinthe.getGraphe().getListeSommets();
             

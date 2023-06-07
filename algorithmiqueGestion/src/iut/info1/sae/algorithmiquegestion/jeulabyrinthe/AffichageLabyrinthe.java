@@ -49,12 +49,8 @@ public class AffichageLabyrinthe {
 	""";
 	
 	public final static String COMMANDES_MENU_PRINCIPAL =
-	"""
-    Entrez le type de construction du labyrinthe : 
-    - 1 : Construction par chaines ascendentes
-    - 2 : Construction par descente en profondeur
-    """
-    //+ "\n- O : ouverture d'un labyrinthe sauvegardé"
+	"- 1 : Construction d'un labyrinthe"
+// + "\n- 2 : ouverture d'un labyrinthe sauvegardé"
     + "\n____________________________________________"
     + DEMANDE_COMMANDE;
     
@@ -165,11 +161,9 @@ public class AffichageLabyrinthe {
 	 */
 	private static boolean demandeParametresLabyrinthe() {
 
-		final char CHOIX_NOUVEAU_LABYRINTHE_CHAINE_ASCENDANTE = '1';
+		final String CHOIX_NOUVEAU_LABYRINTHE = "1";
 		
-		final char CHOIX_NOUVEAU_LABYRINTHE_BACK_TRACKING = '2';
-		
-		final char CHOIX_OUVRIR_SAUVEGARDE = '3';
+		final String CHOIX_OUVRIR_SAUVEGARDE = "2";
 		
 		final String NOUVEAU_LABYRINTHE = "\n>> NOUVEAU LABYRINTHE";
 		
@@ -177,7 +171,7 @@ public class AffichageLabyrinthe {
 		
 		Scanner analyseurSaisie;		
 		
-		char saisieMenuPrincipal;
+		String saisieMenuPrincipal;
 		
 		boolean saisieLongueurLabyrintheTermine = false;
 		boolean saisieHauteurLabyrintheTermine = false;
@@ -189,11 +183,20 @@ public class AffichageLabyrinthe {
 		
 		analyseurSaisie = new Scanner(System.in);
         
-		saisieMenuPrincipal = analyseurSaisie.next().charAt(0);
+		saisieMenuPrincipal = analyseurSaisie.next();
+		
+//		c'est pour gérer les erreurs de saisie dans le cas où 
+//		le saisie contient plus de 1 caractère. Ne fonctionne pas correctement	
+//		if (saisieMenuPrincipal.length() != 1) {
+//			analyseurSaisie.close();
+//			System.out.println(COMMANDE_INEXISTANTE);
+//			return resultatValide;
+//		}
+
 		analyseurSaisie.nextLine();
 		
 		switch (saisieMenuPrincipal) {
-		case CHOIX_NOUVEAU_LABYRINTHE_CHAINE_ASCENDANTE:
+		case CHOIX_NOUVEAU_LABYRINTHE:
             System.out.println(NOUVEAU_LABYRINTHE);
 
             do {	
@@ -222,13 +225,10 @@ public class AffichageLabyrinthe {
             resultatValide = true;
 		    break;
 		    
-		case CHOIX_OUVRIR_SAUVEGARDE:
-            // TODO : Ouvrir le labyrinthe sauvegardé
-		    break;
+//		case CHOIX_OUVRIR_SAUVEGARDE:
+//            // TODO : Ouvrir le labyrinthe sauvegardé
+//		    break;
 		    
-		case CHOIX_NOUVEAU_LABYRINTHE_BACK_TRACKING:
-			
-		    break;
 		default:
             System.out.println(COMMANDE_INEXISTANTE);
 		    break;
@@ -318,7 +318,7 @@ public class AffichageLabyrinthe {
         = """
           Entrez la type de construction du labyrinthe : 
            - 1 : Construction par chaines ascendentes
-           - 2 : Construction par descente en profondeureeeee
+           - 2 : Construction par descente en profondeur
           """;
         
         final String TYPE_INVALIDE = "\nErreur : type invalide.";

@@ -61,13 +61,9 @@ public class ParcoursProfondeur {
         System.out.println("\n");
         while (!parcours.isVide()) {
 			System.out.println(parcours.sommet());
-			pileSommetsAEmpiler.empiler(parcours.depiler());
+			parcours.depiler();
 			longueurParcours++;
 		}
-		while (!pileSommetsAEmpiler.isVide()) {
-            System.out.println(parcours.sommet());
-            pileSommetsAEmpiler.depiler();
-        }
 		// (longueurParcours - 1) sert à ne pas compter l'entrée dans le parcours
 		System.out.println("\nLe parcours optinal de ce labyrinthe passe par " 
 		                   + (longueurParcours - 1) 
