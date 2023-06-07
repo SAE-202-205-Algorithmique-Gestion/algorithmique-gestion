@@ -4,8 +4,10 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
-import iut.info1.sae.algorithmiquegestion.jeulabyrinthe.AffichageLabyrinthe;
+import iut.info1.sae.algorithmiquegestion.jeulabyrinthe.MenuLabytinthe;
 import iut.info1.sae.algorithmiquegestion.piles.Pile;
+
+import java.awt.Menu;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,7 +23,7 @@ import java.util.Random;
  */
 public class ParcoursProfondeur {
 	
-	static Labyrinthe labyrinthe = AffichageLabyrinthe.getLabyrinthe();
+	static Labyrinthe labyrinthe = MenuLabytinthe.getLabyrinthe();
     
     /**
      * Parcours du labyrinthe afin de determiner le chemin direct
