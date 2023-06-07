@@ -52,42 +52,64 @@ class TestConstructionBacktracking {
     void testSommetsAdjacentsNonParcourus() {
 		int[] sommetChoisit = {7, 0, 22};
 		
-		ArrayList<Integer> sommetsAdjacents1 = new ArrayList<>(4);
+        /* Sommet adjacent du sommet sommetChoisit[0]*/                     
+		Sommet[] sommetsAdjacents1 = {grapheTeste.getListeSommets()[12],
+									  grapheTeste.getListeSommets()[2],
+									  grapheTeste.getListeSommets()[8],
+									  grapheTeste.getListeSommets()[6]};
 		
-		ArrayList<Integer> sommetsAdjacents2 = new ArrayList<>(2);
+	    /* Sommet adjacent du sommet sommetChoisit[1]*/
+		Sommet[] sommetsAdjacents2 = {grapheTeste.getListeSommets()[5],
+									  grapheTeste.getListeSommets()[1]};
 		
-		ArrayList<Integer> sommetsAdjacents3 = new ArrayList<>(3);
-
-                                        
-	    sommetsAdjacents1.add(12);
-	    sommetsAdjacents1.add(2);
-	    sommetsAdjacents1.add(8);
-	    sommetsAdjacents1.add(6);
-	    
-	    sommetsAdjacents2.add(5);
-        sommetsAdjacents2.add(1);
-        
-        sommetsAdjacents3.add(17);
-        sommetsAdjacents3.add(23);
-        sommetsAdjacents3.add(21);
-
+        /* Sommet adjacent du sommet sommetChoisit[2]*/
+		Sommet[] sommetsAdjacents3 = {grapheTeste.getListeSommets()[17],
+									  grapheTeste.getListeSommets()[23],
+									  grapheTeste.getListeSommets()[21]};
 		
 		/* Sommet[] sommetsNonAdjacents = {grapheTeste.getListeSommets()[5],
 		                                grapheTeste.getListeSommets()[9], 
 		                                grapheTeste.getListeSommets()[1], 
 		                                grapheTeste.getListeSommets()[3], 
 		                                grapheTeste.getListeSommets()[11], 
-		                                grapheTeste.getListeSommets()[13]}; */                           
+		                                grapheTeste.getListeSommets()[13]}; */      
+		                                
+		Sommet[] listeDeLaMethode1 = grapheTeste.sommetsAdjacentsNonParcourus(sommetChoisit[0])
+				.toArray(new Sommet[grapheTeste.sommetsAdjacentsNonParcourus(sommetChoisit[0]).size()]);
+				
+		Sommet[] listeDeLaMethode2 = grapheTeste.sommetsAdjacentsNonParcourus(sommetChoisit[1])
+				.toArray(new Sommet[grapheTeste.sommetsAdjacentsNonParcourus(sommetChoisit[1]).size()]);
+				
+		Sommet[] listeDeLaMethode3 = grapheTeste.sommetsAdjacentsNonParcourus(sommetChoisit[2])
+				.toArray(new Sommet[grapheTeste.sommetsAdjacentsNonParcourus(sommetChoisit[2]).size()]);
+				                     
         
-        assertArrayEquals(grapheTeste.sommetsAdjacentsNonParcourus(
-						  sommetChoisit[0]), sommetsAdjacents1);
+        assertArrayEquals(listeDeLaMethode1, sommetsAdjacents1);
     
-        assertArrayEquals(grapheTeste.sommetsAdjacentsNonParcourus(
-                          sommetChoisit[1]), sommetsAdjacents2);
+        assertArrayEquals(listeDeLaMethode2, sommetsAdjacents2);
     
-        assertArrayEquals(grapheTeste.sommetsAdjacentsNonParcourus(
-                          sommetChoisit[2]), sommetsAdjacents3);
+        assertArrayEquals(listeDeLaMethode3, sommetsAdjacents3);
     
     }
     
+    /**
+     *
+     */
+     void testSommetAdjacentAleatoire() {
+		 
+		 ArrayList<Sommet> listeSommetsAdjacents = new ArrayList<>();
+		 //int[] listeSommetsAdjacents = {2, 6, 8, 12};
+		 
+		 // 0 --> 1 ou 5
+		 // 7 --> 2, 6, 8 ou 12
+		 // 18 --> 13, 17, 19 ou 23
+		 
+		 listeSommetsAdjacents.add(grapheTeste.getListeSommets()[2]);
+		 listeSommetsAdjacents.add(grapheTeste.getListeSommets()[6]);
+		 listeSommetsAdjacents.add(grapheTeste.getListeSommets()[8]);
+		 listeSommetsAdjacents.add(grapheTeste.getListeSommets()[12]);
+		 
+	     System.out.println(grapheTeste.sommetAdjacentAleatoire(listeSommetsAdjacents));
+		 
+	 }
 }

@@ -90,9 +90,9 @@ public class AffichageLabyrinthe {
 //    
 //    private static int nombreColonnes;
     
-    private static final int HAUTEUR_MINIMALE_LABYRINTHE = 0;
+    private static final int HAUTEUR_MINIMALE_LABYRINTHE = 2;
     
-    private static final int LONGUEUR_MINIMALE_LABYRINTHE = 0;
+    private static final int LONGUEUR_MINIMALE_LABYRINTHE = 2;
 
     private static final int HAUTEUR_MAXIMALE_LABYRINTHE = 10;
     
@@ -323,7 +323,6 @@ public class AffichageLabyrinthe {
         
         final String TYPE_INVALIDE = "\nErreur : type invalide.";
         
-        boolean entierEntre = true;
         boolean typeValide = true;
         
         System.out.print(ENTRER_TYPE);
@@ -331,13 +330,9 @@ public class AffichageLabyrinthe {
         if (analyseurEntree.hasNextInt()) {
             typeLabyrinthe = analyseurEntree.nextInt();
         } else {
-            entierEntre = false;
+            typeValide = false;
         }
         analyseurEntree.nextLine();
-        
-        typeValide = entierEntre
-                        && typeLabyrinthe > HAUTEUR_MINIMALE_LABYRINTHE
-                        && typeLabyrinthe <= HAUTEUR_MAXIMALE_LABYRINTHE;
         
         if (!typeValide) {
             System.out.println(TYPE_INVALIDE);

@@ -39,7 +39,7 @@ public class ConstructionBacktracking extends Graphe {
      * @param listeSommets La liste des sommets à laquelle prendre un sommet.
      * @return Un sommet aléatoire dans la liste de sommets en paramètre.
      */
-    public static Sommet sommetAdjacentAleatoire(ArrayList<Sommet> sommetsAdjacents) {
+    public Sommet sommetAdjacentAleatoire(ArrayList<Sommet> sommetsAdjacents) {
 		/**
 		 * entiers aléatoires correspondant à un indice dans la liste des sommets
 		 */
