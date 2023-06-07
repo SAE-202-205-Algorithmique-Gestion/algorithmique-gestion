@@ -23,7 +23,7 @@ import java.util.Random;
  */
 public class ParcoursProfondeur {
 	
-	static Labyrinthe labyrinthe = MenuLabyrinthe.getLabyrinthe();
+	static Labyrinthe labyrinthe = MenuLabytinthe.getLabyrinthe();
  
     /**
      * Parcours du labyrinthe afin de determiner le chemin direct
