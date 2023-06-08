@@ -186,7 +186,7 @@ public class MenuLabyrinthe {
 		System.out.println();
 		
 		longueurValide = entierEntre
-			       		 && longueurLabyrinthe > LONGUEUR_MINIMALE_LABYRINTHE
+			       		 && longueurLabyrinthe >= LONGUEUR_MINIMALE_LABYRINTHE
 			       		 && longueurLabyrinthe <= LONGUEUR_MAXIMALE_LABYRINTHE;
 		
 		if (!longueurValide) {
@@ -221,7 +221,7 @@ public class MenuLabyrinthe {
         analyseurEntree.nextLine();
         
         hauteurValide = entierEntre
-                		&& hauteurLabyrinthe > HAUTEUR_MINIMALE_LABYRINTHE
+                		&& hauteurLabyrinthe >= HAUTEUR_MINIMALE_LABYRINTHE
                 		&& hauteurLabyrinthe <= HAUTEUR_MAXIMALE_LABYRINTHE;
         
         if (!hauteurValide) {
