@@ -16,7 +16,7 @@ public class ParametresLabyrinthe {
 	
 	private String nomLabyrinthe;
 	
-	private Sommet[] listeSommetsLabyrinthe;
+	/*private Sommet[] listeSommetsLabyrinthe;*/
 	
 	private Labyrinthe labyrintheASauvegarder;
 	

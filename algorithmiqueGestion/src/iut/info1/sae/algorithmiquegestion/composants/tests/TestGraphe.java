@@ -53,16 +53,6 @@ class TestGraphe {
 		System.out.println("Test récupération coordonnées"
 		            + " pour un labyrinthe/graphe 5*5 :");
 		
-		// la boucle ne fonctionne pas car pour les this.sommetsGraphe[5] et supérieur,
-		// leur coordonnée x ne sera pas 6, 7, 8 etc.. car c'est un labyrinthe/graphe 5*5
-		// TODO on en fait quoi
-//		for (int x = 0; 
-//			 x < this.sommetsGraphe.length; 
-//			 x++) {
-//			
-//			//assertEquals(this.sommetsGraphe[x].getCoordonneeX(), x);
-//			
-//		}
 		assertEquals(grapheTeste.getListeSommets()[5].getCoordonneeX(), 0);
 		assertEquals(grapheTeste.getListeSommets()[5].getCoordonneeY(), 1);
 		

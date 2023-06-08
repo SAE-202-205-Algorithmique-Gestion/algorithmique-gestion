@@ -4,7 +4,7 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
-import iut.info1.sae.algorithmiquegestion.jeulabyrinthe.MenuLabyrinthe;
+import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.piles.Pile;
 
 import java.util.ArrayList;

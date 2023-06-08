@@ -2,8 +2,9 @@
  * AffichageLabyrinthe.java											 6 juin 2023
  * IUT de Rodez, pas de copyright ni de "copyleft".
  */
-package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
+package iut.info1.sae.algorithmiquegestion.affichage;
 
+import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
@@ -75,32 +76,16 @@ public class AffichageLabyrinthe {
     Voici la liste des commandes utilisables dans la console texte :
     """
     + COMMANDES;
-
-//    private static int nombreLignes;
-//    
-//    private static int nombreColonnes;
     
 	private static Labyrinthe labyrinthe = MenuLabyrinthe.getLabyrinthe();
 	
 	private static Sommet[] listeSommets =
-				MenuLabyrinthe.getLabyrinthe().getGraphe().getListeSommets();
+		MenuLabyrinthe.getLabyrinthe().getGraphe().getListeSommets();
 	
 	/**
 	 * Lancement de l'affichage du labyrinthe généré en fonction de
 	 * la largeur NOMBRE_COLONNES et la longueur NOMBRE_LIGNES.
-	 * 
-	 * @param args inutilisé
 	 */
-		
-//		for (int indexSommet = 0; indexSommet < testSam.getGraphe().getNombreSommets(); indexSommet++) {
-//			System.out.println("Sommet : " + testSam.getGraphe().getListeSommets()[indexSommet]);
-//			for (int i = 0; i < testSam.getGraphe().getListeSommets()[indexSommet].getLiaisons().size(); i++) {
-//				System.out.println("Sommet lie : " + testSam.getGraphe().getListeSommets()[indexSommet].getLiaisons().get(i));
-//			}
-//			
-//		}
-//		ParcoursProfondeur.algorithmeParcours();
-		
 	public static void lancement() {
 	    
 	    System.out.println(CONSIGNES_JEU);

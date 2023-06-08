@@ -85,7 +85,7 @@ public class ChainesAscendantes extends Graphe {
     		}
     	} else {
     		resultat = false;
-    	}    	
+    	}
     	return resultat;
 	}
     
@@ -127,7 +127,6 @@ public class ChainesAscendantes extends Graphe {
 			this.getListeSommets()[sommet],
 		    listeDesSommetsAdjacents[sommetAdjacent]
 		};
-		
 		return sommetsAleatiores;
 	}
 	
@@ -148,6 +147,7 @@ public class ChainesAscendantes extends Graphe {
 				sommetsChoisi[0].creerLiaison(sommetsChoisi[1]);
 				nombreDeLiaison++;
 			}
+			
 		}	
 	}
 

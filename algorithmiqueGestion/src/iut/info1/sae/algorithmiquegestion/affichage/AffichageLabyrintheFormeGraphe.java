@@ -2,7 +2,7 @@
  * AffichageLabyrintheFormeGraphe.java								 30 mai 2023
  * IUT de Rodez, pas de copyright ni de "copyleft".
  */
-package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
+package iut.info1.sae.algorithmiquegestion.affichage;
 
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 

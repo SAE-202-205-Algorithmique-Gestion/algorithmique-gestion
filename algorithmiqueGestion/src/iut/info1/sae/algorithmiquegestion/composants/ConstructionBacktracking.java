@@ -61,7 +61,6 @@ public class ConstructionBacktracking extends Graphe {
 		
         Sommet sommetCourant;
         Sommet sommetAEmpiler;
-        
         Sommet[] listeSommets = getListeSommets();
         
         ArrayList<Sommet> sommetsAdjacents = new ArrayList<>();
@@ -91,8 +90,9 @@ public class ConstructionBacktracking extends Graphe {
                 sommetAEmpiler.setParcouru(true);
                 sommetCourant.creerLiaison(sommetAEmpiler);
 			}  
-           
+
         } while (!pileSommetsParcourus.isVide()); 
+
 		
 	}
 	

@@ -86,11 +86,9 @@ public class Labyrinthe {
 	public Labyrinthe(int nombreDeLignes, int nombreDeColonnes, int typeConstruction) {
 		super();
 		if (typeConstruction == 1) {
-			System.out.println("construction chaine ascendante");
 			this.graphe = new ChainesAscendantes(nombreDeColonnes, nombreDeLignes);
 			
 		} else if (typeConstruction == 2) {
-			System.out.println("construction back tracking");
 			this.graphe
 			 = new ConstructionBacktracking(nombreDeColonnes, nombreDeLignes);
 			

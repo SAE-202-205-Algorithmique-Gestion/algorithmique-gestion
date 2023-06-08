@@ -37,15 +37,13 @@ public class SauvegardeLabyrinthe {
 		
 		FileWriter ecritureSauvegarde;
 		
-		JsonArray objetSauvegarde,
-		          structureLabyrinthe;
+		JsonArray objetSauvegarde;
 		
 		JsonObject objetNouvelleSauvegarde;
 		
 		Scanner lectureFichierSauvegarde;
 		
-		String donneesCourantes,
-			   nouvellesDonnees;
+		String donneesCourantes;
 		
 		donneesCourantes = "";
 		

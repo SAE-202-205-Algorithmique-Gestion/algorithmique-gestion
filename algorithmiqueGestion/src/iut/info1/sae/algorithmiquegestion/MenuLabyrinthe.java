@@ -1,10 +1,25 @@
-package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
+/**
+ * MenuLabyrinthe.java                                               7 juin 2023
+ * IUT de Rodez, pas de copyright ni de "copyleft".
+ */
+package iut.info1.sae.algorithmiquegestion;
 
 import java.util.Scanner;
 
+import iut.info1.sae.algorithmiquegestion.affichage.AffichageLabyrinthe;
+import iut.info1.sae.algorithmiquegestion.affichage.AffichageCaseCourante;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
-import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
+/**
+ * Utilisation du jeu de labyrinthe faisant appel aux classes d'affichages,
+ * de création et de parcours de labyrinthe.
+ *
+ * @author Jonathan GUIL
+ * @author Loïc FAUGIERES
+ * @author Simon GUIRAUD
+ * @author Samuel LACAM
+ * @author Tom DOUAUD
+ */
 public class MenuLabyrinthe {
 	
 	private final static String DEMANDE_COMMANDE
@@ -19,8 +34,6 @@ public class MenuLabyrinthe {
 	public final static String BIENVENUE
     = "Bienvenue sur ce jeu de Labyrinthe !\n";
 	
-	
-	/**	Hauteur minimale du labyrinthe */
 	private static final int HAUTEUR_MINIMALE_LABYRINTHE = 2;
     
     private static final int LONGUEUR_MINIMALE_LABYRINTHE = 2;
@@ -33,16 +46,23 @@ public class MenuLabyrinthe {
     
     private static int longueurLabyrinthe;
 	
+    private static int typeLabyrinthe;
+    
+    private static int typeAffichage;
+	
 	private static Labyrinthe labyrinthe;
 	
-	private static Sommet[] listeSommets;
-	
-	private static int typeLabyrinthe;
-	
+	/** @return Attribut labyrinthe de this. */
 	public static Labyrinthe getLabyrinthe() {
 		return labyrinthe;
 	}
 	
+	/**
+	 * Affichage du message de bienvenue et appel de la méthode de demande
+	 * des paramètres de création et de parcours du labyrinthe.
+	 *
+	 * @param args non utilisé
+	 */
 	public static void main(String[] args) {
 		boolean menuPrincipalPasse;
 		
@@ -51,8 +71,6 @@ public class MenuLabyrinthe {
 	    do {
 	    	menuPrincipalPasse = demandeParametresLabyrinthe();
 		} while (!menuPrincipalPasse);
-	    
-	    
 	}
 	
 	/**
@@ -65,9 +83,7 @@ public class MenuLabyrinthe {
 	private static boolean demandeParametresLabyrinthe() {
 
 		final String CHOIX_NOUVEAU_LABYRINTHE = "1";
-		
-		final String CHOIX_OUVRIR_SAUVEGARDE = "2";
-		
+				
 		final String NOUVEAU_LABYRINTHE = "\n>> NOUVEAU LABYRINTHE";
 		
 		final String COMMANDE_INEXISTANTE = "\nErreur : commande inexistante !\n";
@@ -78,8 +94,9 @@ public class MenuLabyrinthe {
 		
 		boolean saisieLongueurLabyrintheTermine = false;
 		boolean saisieHauteurLabyrintheTermine = false;
+		
 		boolean saisieTypeLabyrintheTermine = false;
-		boolean labyrintheCree = false;
+		boolean saisieTypeAffichageTerminee = false;
 		
 		boolean resultatValide = false;
 				
@@ -88,15 +105,6 @@ public class MenuLabyrinthe {
 		analyseurSaisie = new Scanner(System.in);
         
 		saisieMenuPrincipal = analyseurSaisie.next();
-		
-//		c'est pour gérer les erreurs de saisie dans le cas où 
-//		le saisie contient plus de 1 caractère. Ne fonctionne pas correctement	
-//		if (saisieMenuPrincipal.length() != 1) {
-//			analyseurSaisie.close();
-//			System.out.println(COMMANDE_INEXISTANTE);
-//			return resultatValide;
-//		}
-
 		analyseurSaisie.nextLine();
 		
 		switch (saisieMenuPrincipal) {
@@ -118,39 +126,42 @@ public class MenuLabyrinthe {
                 = saisirTypeConstructionLabyrinthe(analyseurSaisie);
             } while (!saisieTypeLabyrintheTermine);
             
+            do {
+                saisieTypeAffichageTerminee
+                = saisirTypeAffichage(analyseurSaisie);
+            } while (!saisieTypeAffichageTerminee);
+            
             System.out.println("\n");
             
             try {
             	labyrinthe = new Labyrinthe(hauteurLabyrinthe,
-            			longueurLabyrinthe,
-            			typeLabyrinthe);
-            	labyrintheCree = true;
+            		                      	longueurLabyrinthe,
+            			                    typeLabyrinthe);
 			} catch (IllegalArgumentException e) {
 				System.out.println(COMMANDE_INEXISTANTE);
 			}
             
-            listeSommets = labyrinthe.getGraphe().getListeSommets();
-            
             resultatValide = true;
-            AffichageLabyrinthe.lancement();
+            
+            if (typeAffichage == 1) {
+                AffichageLabyrinthe.lancement();
+			} else {
+                AffichageCaseCourante.lancement();			
+			}
 		    break;
-		    
-//		case CHOIX_OUVRIR_SAUVEGARDE:
-//            // TODO : Ouvrir le labyrinthe sauvegardé
-//		    break;
 		    
 		default:
             System.out.println(COMMANDE_INEXISTANTE);
 		    break;
 		}
 		
-		
 		return resultatValide;
 	}
 	
-	/**
-     * Vérification de la validité de la longueur saisie.
+    /**
+     * Demande console texte de la longueur du labyrinthe à créer.
      *
+     * @param analyseurEntree un scanneur qui regarde l'entrée utilisateurs 
      * @return true si la longueur saisie est correcte.
      */
 	private static boolean saisirLongueurLabyrinthe(Scanner analyseurEntree) {
@@ -185,8 +196,9 @@ public class MenuLabyrinthe {
 	}
 	
 	/**
-	 * Vérification de la validité de la hauteur saisie.
-	 *
+     * Demande console texte de la hauteur du labyrinthe à créer.
+     *
+	 * @param analyseurEntree un scanneur qui regarde l'entrée utilisateurs 
 	 * @return true si la hauteur saisie est correcte.
 	 */
 	private static boolean saisirHauteurLabyrinthe(Scanner analyseurEntree) {
@@ -219,8 +231,9 @@ public class MenuLabyrinthe {
     }
     
     /**
-     * Vérification de la validité du type de construction saisi.
+     * Demande console texte du type de construction du labyrinthe.
      *
+     * @param analyseurEntree un scanneur qui regarde l'entrée utilisateurs 
      * @return true si le type saisi est correct.
      */
     private static boolean saisirTypeConstructionLabyrinthe(Scanner analyseurEntree) {
@@ -242,6 +255,43 @@ public class MenuLabyrinthe {
             typeLabyrinthe = analyseurEntree.nextInt();
             if (typeLabyrinthe != 1 && typeLabyrinthe != 2) {
             	typeValide = false;
+            }
+        } else {
+            typeValide = false;
+        }
+        analyseurEntree.nextLine();
+        
+        if (!typeValide) {
+            System.out.println(TYPE_INVALIDE);
+        }
+        return typeValide;
+    }
+    
+    /**
+     * Demande console texte du type d'affichage sur console du labyrinthe.
+     *
+     * @param analyseurEntree un scanneur qui regarde l'entrée utilisateurs 
+     * @return true si le type saisi est correct.
+     */
+    private static boolean saisirTypeAffichage(Scanner analyseurEntree) {
+        
+        final String ENTRER_TYPE
+        = """
+          \nEntrez le type d'affichage console texte du labyrinthe : 
+           - 1 : Affichage complet du labyrinthe
+           - 2 : Affichage de la case courante seulement
+          """;
+        
+        final String TYPE_INVALIDE = "\nErreur : type invalide.";
+        
+        boolean typeValide = true;
+        
+        System.out.print(ENTRER_TYPE);
+        
+        if (analyseurEntree.hasNextInt()) {
+            typeAffichage = analyseurEntree.nextInt();
+            if (typeAffichage != 1 && typeAffichage != 2) {
+                typeValide = false;
             }
         } else {
             typeValide = false;

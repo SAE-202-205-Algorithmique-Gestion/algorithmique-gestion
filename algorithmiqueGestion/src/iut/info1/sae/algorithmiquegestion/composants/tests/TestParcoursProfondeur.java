@@ -49,7 +49,6 @@ class TestParcoursProfondeur {
 		listeEnEntree.add(sommet4);
 		
 		System.out.println(ParcoursProfondeur.sommetLieAleatoire(listeEnEntree));
-		//ParcoursProfondeur.sommetLieAleatoire(listeEnEntree);
 				
 	}
 	
