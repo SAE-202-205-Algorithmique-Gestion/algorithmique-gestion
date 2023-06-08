@@ -4,6 +4,8 @@
  */
 package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
 
+import java.util.List;
+
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
@@ -18,7 +20,7 @@ import iut.info1.sae.algorithmiquegestion.composants.Sommet;
  * @author Samuel LACAM
  * @author Tom DOUAUD
  */
-public class AffichageLabyrintheCaseCourante2 {
+public class AffichageLabyrintheCaseCouranteAGarder {
 	
 	public final static String MUR_VERTICALE = "---";
 	public final static String MUR_HORIZONTALE = " | ";
@@ -76,8 +78,8 @@ public class AffichageLabyrintheCaseCourante2 {
     private final static String DEMANDE_COMMANDE
 	= "\n\nEntrez votre/vos commande(s) : ";
 
-    private static final int NOMBRE_LIGNES = 4;
-    private static final int NOMBRE_COLONNES = 4;
+    private static final int NOMBRE_LIGNES = 10;
+    private static final int NOMBRE_COLONNES = 10;
 
 	private static Labyrinthe labyrinthe = new Labyrinthe(NOMBRE_LIGNES,
 														  NOMBRE_COLONNES, 1);
@@ -105,72 +107,59 @@ public class AffichageLabyrintheCaseCourante2 {
 		System.out.println(LANCEMENT_JEU);
 		
 		int ligneCourante;
-		int indexSommet;
 		do {
 			labyEntier();
 			ligneCourante = 0;
-			bordureHauteEtBasse();
-			System.out.println();
+//			bordureHauteEtBasse();
 			
 //			System.out.print(BORDURE_GAUCHE + " ");
 
-			for (indexSommet = 0; indexSommet != labyrinthe.getIndiceSommetActuelle(); indexSommet++) {
-				if (listeSommets[indexSommet].getCoordonneeX() == labyrinthe.getNombreDeColonne() - 1) {
-					System.out.println("    |");
-				} else if (listeSommets[indexSommet].getCoordonneeX() == 0) {
-					System.out.print("|    ");
-				} else {
-					System.out.print("    ");
-				}
-				
-			}
-			affichageSommets(labyrinthe.getIndiceSommetActuelle());
+			int i = labyrinthe.getIndiceSommetActuelle();
 			
-			for (indexSommet = labyrinthe.getIndiceSommetActuelle() + 1;
-				 indexSommet < listeSommets.length; indexSommet++) {
+			if (listeSommets[i].getCoordonneeY() == 0
+//				|| listeSommets[i].getCoordonneeY() == labyrinthe.getNombreDeLigne() - 1
+				) {
 				
-				if (listeSommets[indexSommet].getCoordonneeX() == labyrinthe.getNombreDeColonne() - 1) {
-					System.out.println("    |");
-				} else if (listeSommets[indexSommet].getCoordonneeX() == 0) {
-					System.out.print("|    ");
-				} else {
-					System.out.print("    ");
-				}
+				bordureHauteEtBasse2(listeSommets[i]);
+				toutesLesLiaisons(listeSommets[i], 'N');
+				
+			} else {
 				
 			}
+			if (labyrinthe.getGraphe().sommetExiste(i - 1)
+				&& listeSommets[i].liaisonExiste(listeSommets[i-1])) {
 				
-//				if (listeSommets[i].getCoordonneeX() == 0
-//					&& listeSommets[i].getCoordonneeY() != 0) {
-//					// Bordure latérale droite
-//					System.out.print(" " + BORDURE_DROITE);
-//				}
-//				
-// 				if (listeSommets[i].getCoordonneeY() == ligneCourante + 1) {
-// 					System.out.print(BORDURE_GAUCHE);
-//					
-//					ligneCourante++;
-//					
-//					for (int rangLigne = 0; rangLigne < labyrinthe.getNombreDeColonne(); rangLigne++) {
-//						if (affichageMursVertical(i, rangLigne)) {
-//							System.out.print(LIAISON);
-//						} else {
-//							System.out.print(MUR_VERTICALE);
-//						}
-//						
-//						if (rangLigne < labyrinthe.getNombreDeColonne() - 1) {
-//							System.out.print(COIN_DE_MUR);
-//						}
-//					}
-//					System.out.print(BORDURE_DROITE + BORDURE_GAUCHE + " "); 
-//				}
-// 				affichageSommets(i);
-// 				affichageMursHorizontaux(i);
-//			}
+				System.out.print("  ");
+			} else {
+				System.out.print("| ");
+			}
+			affichageSommets(i);
+			
+			if (listeSommets[i].getCoordonneeY() == ligneCourante + 1) {
+				System.out.print(BORDURE_GAUCHE);
+				
+				ligneCourante++;
+				
+				for (int rangLigne = 0; rangLigne < labyrinthe.getNombreDeColonne(); rangLigne++) {
+					if (affichageMursVertical(i, rangLigne)) {
+						System.out.print(LIAISON);
+					} else {
+						System.out.print(MUR_VERTICALE);
+					}
+					
+					if (rangLigne < labyrinthe.getNombreDeColonne() - 1) {
+						System.out.print(COIN_DE_MUR);
+					}
+				}
+				System.out.print(BORDURE_DROITE + BORDURE_GAUCHE + " "); 
+			}
+			affichageMursHorizontaux(i);
+		
 			
 			// Dernière bordure latérale droite
 //			System.out.println(" " + BORDURE_DROITE);
 			
-			bordureHauteEtBasse();
+//			bordureHauteEtBasse();
 
 			System.out.println(DEMANDE_COMMANDE);
 			if (!labyrinthe.demandeDeplacement()) {
@@ -181,6 +170,40 @@ public class AffichageLabyrintheCaseCourante2 {
 		} while (labyrinthe.getPositionActuelle() != labyrinthe.getSortie());
 		System.out.println(PARTIE_GAGNEE);
 	}
+	
+	public static void toutesLesLiaisons(Sommet sommet, char nePasRegarderLiaison) {
+		
+		
+	}
+
+	public static boolean liaison(int indiceSommet, int indiceSommetALie) {
+		return (labyrinthe.getGraphe().sommetExiste(indiceSommetALie)
+			&& listeSommets[indiceSommet].liaisonExiste(listeSommets[indiceSommetALie]));
+	}
+	
+	public static void bordureHauteEtBasse2(Sommet positionActuelle) {
+		if (positionActuelle.getCoordonneeX() == 0) {
+			System.out.println("+----");
+			
+		} else if (positionActuelle.getCoordonneeX()
+				   == labyrinthe.getNombreDeColonne() - 1) {
+			System.out.println("----+");
+			
+		} else {
+			System.out.println("-----");
+		}
+	}
+	
+	
+	
+	/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+	/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+	/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+	/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+	/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+	
+	
+	
 	
 	/**
 	 * TODO javadoc samuel
@@ -244,58 +267,52 @@ public class AffichageLabyrintheCaseCourante2 {
 				System.out.print(MUR_HORIZONTALE);
 			}
 		}
-		
 	}
-
-
-		/*//////////////////////////////////////////////////////////////////////////////////////////////////*/
-		/*//////////////////////////////////////////////////////////////////////////////////////////////////*/
-		/*//////////////////////////////////////////////////////////////////////////////////////////////////*/
-		/*//////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-private static void labyEntier() {
-	int ligneCourante;
 	
-		ligneCourante = 0;
-		bordureHauteEtBasse();
+	private static void labyEntier() {
+		int ligneCourante;
 		
-		System.out.print(BORDURE_GAUCHE + " ");
+			ligneCourante = 0;
+			bordureHauteEtBasse();
+			
+			System.out.print(BORDURE_GAUCHE + " ");
 
-		for (int i = 0; i < listeSommets.length; i++) {
-			
-			if (listeSommets[i].getCoordonneeX() == 0
-				&& listeSommets[i].getCoordonneeY() != 0) {
-				// Bordure latérale droite
-				System.out.print(" " + BORDURE_DROITE);
-			}
-			
-				if (listeSommets[i].getCoordonneeY() == ligneCourante + 1) {
-					System.out.print(BORDURE_GAUCHE);
+			for (int i = 0; i < listeSommets.length; i++) {
 				
-				ligneCourante++;
-				
-				for (int rangLigne = 0; rangLigne < labyrinthe.getNombreDeColonne(); rangLigne++) {
-					if (affichageMursVertical(i, rangLigne)) {
-						System.out.print(LIAISON);
-					} else {
-						System.out.print(MUR_VERTICALE);
-					}
-					
-					if (rangLigne < labyrinthe.getNombreDeColonne() - 1) {
-						System.out.print(COIN_DE_MUR);
-					}
+				if (listeSommets[i].getCoordonneeX() == 0
+					&& listeSommets[i].getCoordonneeY() != 0) {
+					// Bordure latérale droite
+					System.out.print(" " + BORDURE_DROITE);
 				}
-				System.out.print(BORDURE_DROITE + BORDURE_GAUCHE + " "); 
+				
+ 				if (listeSommets[i].getCoordonneeY() == ligneCourante + 1) {
+ 					System.out.print(BORDURE_GAUCHE);
+					
+					ligneCourante++;
+					
+					for (int rangLigne = 0; rangLigne < labyrinthe.getNombreDeColonne(); rangLigne++) {
+						if (affichageMursVertical(i, rangLigne)) {
+							System.out.print(LIAISON);
+						} else {
+							System.out.print(MUR_VERTICALE);
+						}
+						
+						if (rangLigne < labyrinthe.getNombreDeColonne() - 1) {
+							System.out.print(COIN_DE_MUR);
+						}
+					}
+					System.out.print(BORDURE_DROITE + BORDURE_GAUCHE + " "); 
+				}
+ 				affichageSommets(i);
+ 				affichageMursHorizontaux(i);
 			}
-				affichageSommets(i);
-				affichageMursHorizontaux(i);
-		}
-		
-		// Dernière bordure latérale droite
-		System.out.println(" " + BORDURE_DROITE);
-		
-		bordureHauteEtBasse();
-		System.out.println();
-		
+			
+			// Dernière bordure latérale droite
+			System.out.println(" " + BORDURE_DROITE);
+			
+			bordureHauteEtBasse();
+			System.out.println();
+			
 	}
+	
 }

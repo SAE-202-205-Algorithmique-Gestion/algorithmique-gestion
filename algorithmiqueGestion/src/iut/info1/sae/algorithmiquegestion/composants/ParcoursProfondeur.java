@@ -7,7 +7,6 @@ package iut.info1.sae.algorithmiquegestion.composants;
 import iut.info1.sae.algorithmiquegestion.jeulabyrinthe.MenuLabytinthe;
 import iut.info1.sae.algorithmiquegestion.piles.Pile;
 
-import java.awt.Menu;
 import java.util.ArrayList;
 import java.util.Random;
 
