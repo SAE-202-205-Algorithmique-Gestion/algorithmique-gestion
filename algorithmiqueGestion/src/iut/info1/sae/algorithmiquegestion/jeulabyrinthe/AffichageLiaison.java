@@ -3,6 +3,7 @@
  */
 package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
 
+import iut.info1.sae.algorithmiquegestion.composants.ChainesAscendantes;
 import iut.info1.sae.algorithmiquegestion.composants.Graphe;
 
 /**
@@ -25,7 +26,7 @@ public class AffichageLiaison {
 	public static void main(String[] args) {
 		int ligne = 0;
 		
-		Graphe testSam = new Graphe(5, 5);
+		Graphe testSam = new ChainesAscendantes(5, 5);
 		for (int indexSommet = 0; indexSommet < testSam.getNombreSommets(); indexSommet++) {
 			System.out.println("Sommet : " + testSam.getListeSommets()[indexSommet]);
 			for (int i = 0; i < testSam.getListeSommets()[indexSommet].getLiaisons().size(); i++) {
@@ -60,7 +61,8 @@ public class AffichageLiaison {
 			System.out.print(testSam.getListeSommets()[i].getCoordonneeX()
 					+ "," + testSam.getListeSommets()[i].getCoordonneeY());
 			
-			if (testSam.getListeSommets()[i].getCoordonneeY() == testSam.getListeSommets()[i + 1].getCoordonneeY()) {
+			if (i < testSam.getNombreSommets() - 1
+				&& testSam.getListeSommets()[i].getCoordonneeY() == testSam.getListeSommets()[i + 1].getCoordonneeY()) {
 				if (testSam.getListeSommets()[i].liaisonExiste(testSam.getListeSommets()[i + 1])) {
 					System.out.print(LIAISON_HORIZONTALE);
 				} else {
