@@ -50,8 +50,7 @@ class TestParcoursProfondeur {
 		
 		System.out.println(ParcoursProfondeur.sommetLieAleatoire(listeEnEntree));
 		//ParcoursProfondeur.sommetLieAleatoire(listeEnEntree);
-		
-		
+				
 	}
 	
 	/**
@@ -90,13 +89,5 @@ class TestParcoursProfondeur {
 		
 	}
 	
-	/**
-     * Méthode de test de
-     * {@link iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur#listeSommetsLiesNonParcourus()}.
-     */
-    @Test
-    void testAlgorithmeParcours(){
-		
-	}
 
 }

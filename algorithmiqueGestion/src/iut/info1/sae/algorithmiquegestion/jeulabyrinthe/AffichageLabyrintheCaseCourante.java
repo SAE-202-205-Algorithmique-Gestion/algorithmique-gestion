@@ -1,8 +1,24 @@
+/*
+ * AffichageLabyrintheCaseCourante.java						     	 7 juin 2023
+ * IUT de Rodez, pas de copyright ni de "copyleft".
+ */
 package iut.info1.sae.algorithmiquegestion.jeulabyrinthe;
 
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
+/*
+ * Affichage sur console texte d'un jeu de labyrinthe représenté
+ * sous forme "humaine" avec un point de départ (l'entrée) E, un point
+ * de sortie S et une position courante X.
+ * L'utilisateur voit seulement la case courante sur laquelle il se trouve.
+ * 
+ * @author Jonathan GUIL
+ * @author Loïc FAUGIERES
+ * @author Simon GUIRAUD
+ * @author Samuel LACAM
+ * @author Tom DOUAUD
+ */
 public class AffichageLabyrintheCaseCourante {
 	
 	public final static String MUR_VERTICAL = "---";
@@ -75,7 +91,7 @@ public class AffichageLabyrintheCaseCourante {
 	
 	private static Sommet positionActuelle = labyrinthe.getPositionActuelle();
 	
-	private static int indicePositionActuelle = labyrinthe.getIndiceSommetActuelle();
+	private static int indicePositionActuelle = labyrinthe.getIndiceSommetActuel();
 	
 	private static int nombreColonnes = labyrinthe.getNombreDeColonne();
 	
@@ -90,68 +106,31 @@ public class AffichageLabyrintheCaseCourante {
 			ligneCourante = 0;
 			System.out.println();
 			
-//			for (int i = 0; i < listeSommets.length; i++) {
-//				
-//				if (listeSommets[i].getCoordonneeY() == ligneCourante + 1) {
-//					ligneCourante++;
-//					
-//						if (listeSommets[i + rangLigne] == labyrinthe.getPositionActuelle()
-//							|| listeSommets[i + rangLigne - labyrinthe.getNombreDeColonne()] == labyrinthe.getPositionActuelle()) {
-//							if (!affichageMursVertical(i, rangLigne)) {
-//								System.out.println(MUR_VERTICAL2);
-//							}
-//						
-////						} else {
-////							System.out.print(LIAISON);
-//						}
-//						
-//				}
-//				affichageSommets2(i);
-//				
-//				if (i + 1 < labyrinthe.getGraphe().getNombreSommets()
-//					&& listeSommets[i + 1] == labyrinthe.getPositionActuelle()
-//					|| listeSommets[i] == labyrinthe.getPositionActuelle()) {
-//					affichageMursHorizontaux2(i);
-////				} else {
-////					System.out.print("   ");
-//				}
-//			}
-//			for (int i = 0; i < listeSommets.length; i++) {
-//				if (i == labyrinthe.getIndiceSommetActuelle()) {
-					if (!affichageMursVertical2(labyrinthe.getIndiceSommetActuelle(),
-											   labyrinthe.getIndiceSommetActuelle() - nombreColonnes)) {
-						
-						System.out.print(MUR_VERTICAL2);
-					}
-					System.out.println();
-					
-					if (!affichageMursHorizontaux2(labyrinthe.getIndiceSommetActuelle(), labyrinthe.getIndiceSommetActuelle() - 1)) {
-						System.out.print(MUR_HORIZONTAL2);
-					} else {
-						System.out.print(LIAISON2);
-					}
-					
-					affichageSommets2(labyrinthe.getIndiceSommetActuelle());
-					
-					if (!affichageMursHorizontaux2(labyrinthe.getIndiceSommetActuelle(), labyrinthe.getIndiceSommetActuelle() + 1)) {
-						System.out.print(MUR_HORIZONTAL2);
-					}
-					System.out.println();
-					
-					if (!affichageMursVertical2(labyrinthe.getIndiceSommetActuelle(),
-							   labyrinthe.getIndiceSommetActuelle() + nombreColonnes)) {
-		
-						System.out.print(MUR_VERTICAL2);
-					}
-//				}
-//			}
+			if (!affichageMursVertical2(labyrinthe.getIndiceSommetActuel(),
+									   labyrinthe.getIndiceSommetActuel() - nombreColonnes)) {
 				
+				System.out.print(MUR_VERTICAL2);
+			}
+			System.out.println();
 			
+			if (!affichageMursHorizontaux2(labyrinthe.getIndiceSommetActuel(), labyrinthe.getIndiceSommetActuel() - 1)) {
+				System.out.print(MUR_HORIZONTAL2);
+			} else {
+				System.out.print(LIAISON2);
+			}
 			
+			affichageSommets2(labyrinthe.getIndiceSommetActuel());
 			
-		
+			if (!affichageMursHorizontaux2(labyrinthe.getIndiceSommetActuel(), labyrinthe.getIndiceSommetActuel() + 1)) {
+				System.out.print(MUR_HORIZONTAL2);
+			}
+			System.out.println();
 			
-			
+			if (!affichageMursVertical2(labyrinthe.getIndiceSommetActuel(),
+					   labyrinthe.getIndiceSommetActuel() + nombreColonnes)) {
+
+				System.out.print(MUR_VERTICAL2);
+			}
 			
 			System.out.println(DEMANDE_COMMANDE);
 			if (!labyrinthe.demandeDeplacement()) {
@@ -164,8 +143,8 @@ public class AffichageLabyrintheCaseCourante {
 	}
 	
 	/**
-	 * TODO javadoc samuel
-	 * @param i
+	 * Méthode d'a'
+	 * @param positionActuelle l'entier de la position actuelle
 	 */
 	private static void affichageSommets2(int positionActuelle) {
 		/* Entrée */
@@ -173,8 +152,8 @@ public class AffichageLabyrintheCaseCourante {
 			System.out.print(" " + labyrinthe.getEntreeSymbole() + " ");
 			
 		/* Position actuelle */
-		} else if (labyrinthe.getIndiceSommetActuelle() == positionActuelle) {
-			System.out.print(" " + labyrinthe.getSommetActuelleSymbole() + " ");
+		} else if (labyrinthe.getIndiceSommetActuel() == positionActuelle) {
+			System.out.print(" " + labyrinthe.getSommetActuelSymbole() + " ");
 		}
 	}
 	
@@ -191,17 +170,7 @@ public class AffichageLabyrintheCaseCourante {
 	private static boolean affichageMursVertical2(int indicePositionActuelle, int indiceSommetAdjacent) {
 		return labyrinthe.getGraphe().sommetExiste(indiceSommetAdjacent)
 			   && listeSommets[indicePositionActuelle].liaisonExiste(listeSommets[indiceSommetAdjacent]);
-				
-//				listeSommets[i + rangLigne]
-//			   .liaisonExiste(listeSommets[i + rangLigne
-//			                               - labyrinthe.getNombreDeColonne()]);
 	}
-	
-		/*//////////////////////////////////////////////////////////////////////////////////////////////////*/
-		/*//////////////////////////////////////////////////////////////////////////////////////////////////*/
-		/*//////////////////////////////////////////////////////////////////////////////////////////////////*/
-		/*//////////////////////////////////////////////////////////////////////////////////////////////////*/
-
 	
 	/**
 	 * TODO javadoc samuel
@@ -242,7 +211,7 @@ public class AffichageLabyrintheCaseCourante {
 		/* Position actuelle */
 		} else if (labyrinthe.getPositionActuelle() != labyrinthe.getEntree()
 				   && labyrinthe.getPositionActuelle() == listeSommets[i]) {
-			System.out.print(labyrinthe.getSommetActuelleSymbole());
+			System.out.print(labyrinthe.getSommetActuelSymbole());
 		
 		/* les autres sommets */
 		} else {
@@ -268,6 +237,10 @@ public class AffichageLabyrintheCaseCourante {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 */
 	private static void labyEntier() {
 	int ligneCourante;
 	
@@ -312,5 +285,5 @@ public class AffichageLabyrintheCaseCourante {
 		bordureHauteEtBasse();
 		System.out.println();
 		
-		}
+    }
 }

@@ -12,6 +12,7 @@ import iut.info1.sae.algorithmiquegestion.composants.Sommet;
  * Affichage sur console texte d'un jeu de labyrinthe représenté
  * sous forme "humaine" avec un point de départ (l'entrée) E, un point
  * de sortie S et une position courante X.
+ * L'utilisateur voit l'entièreté du labyrinthe dans lequel il se trouve.
  * 
  * @author Jonathan GUIL
  * @author Loïc FAUGIERES
@@ -79,10 +80,10 @@ public class AffichageLabyrinthe {
 //    
 //    private static int nombreColonnes;
     
-	private static Labyrinthe labyrinthe = MenuLabytinthe.getLabyrinthe();
+	private static Labyrinthe labyrinthe = MenuLabyrinthe.getLabyrinthe();
 	
 	private static Sommet[] listeSommets =
-				MenuLabytinthe.getLabyrinthe().getGraphe().getListeSommets();
+				MenuLabyrinthe.getLabyrinthe().getGraphe().getListeSommets();
 	
 	/**
 	 * Lancement de l'affichage du labyrinthe généré en fonction de
@@ -214,7 +215,7 @@ public class AffichageLabyrinthe {
 		} else if (labyrinthe.getPositionActuelle() != labyrinthe.getEntree()
 				   && labyrinthe.getPositionActuelle()
 				      == listeSommets[indiceSommet]) {
-			System.out.print(labyrinthe.getSommetActuelleSymbole());
+			System.out.print(labyrinthe.getSommetActuelSymbole());
 		
 		/* Les autres sommets */
 		} else {

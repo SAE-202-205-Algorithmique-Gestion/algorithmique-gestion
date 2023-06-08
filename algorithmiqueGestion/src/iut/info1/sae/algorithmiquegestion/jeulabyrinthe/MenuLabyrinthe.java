@@ -5,7 +5,7 @@ import java.util.Scanner;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 
-public class MenuLabytinthe {
+public class MenuLabyrinthe {
 	
 	private final static String DEMANDE_COMMANDE
     = "\n\nEntrez votre/vos commande(s) : ";
@@ -20,7 +20,7 @@ public class MenuLabytinthe {
     = "Bienvenue sur ce jeu de Labyrinthe !\n";
 	
 	
-	
+	/**	Hauteur minimale du labyrinthe */
 	private static final int HAUTEUR_MINIMALE_LABYRINTHE = 2;
     
     private static final int LONGUEUR_MINIMALE_LABYRINTHE = 2;
@@ -79,6 +79,7 @@ public class MenuLabytinthe {
 		boolean saisieLongueurLabyrintheTermine = false;
 		boolean saisieHauteurLabyrintheTermine = false;
 		boolean saisieTypeLabyrintheTermine = false;
+		boolean labyrintheCree = false;
 		
 		boolean resultatValide = false;
 				
@@ -123,8 +124,9 @@ public class MenuLabytinthe {
             	labyrinthe = new Labyrinthe(hauteurLabyrinthe,
             			longueurLabyrinthe,
             			typeLabyrinthe);
-			} catch (Exception e) {
-				// TODO: handle exception
+            	labyrintheCree = true;
+			} catch (IllegalArgumentException e) {
+				System.out.println(COMMANDE_INEXISTANTE);
 			}
             
             listeSommets = labyrinthe.getGraphe().getListeSommets();
@@ -217,16 +219,16 @@ public class MenuLabytinthe {
     }
     
     /**
-     * Vérification de la validité de la hauteur saisie.
+     * Vérification de la validité du type de construction saisi.
      *
-     * @return true si la hauteur saisie est correcte.
+     * @return true si le type saisi est correct.
      */
     private static boolean saisirTypeConstructionLabyrinthe(Scanner analyseurEntree) {
         
         final String ENTRER_TYPE
         = """
-          Entrez la type de construction du labyrinthe : 
-           - 1 : Construction par chaines ascendentes
+          \nEntrez la type de construction du labyrinthe : 
+           - 1 : Construction par chaînes ascendantes
            - 2 : Construction par descente en profondeur
           """;
         
@@ -238,6 +240,9 @@ public class MenuLabytinthe {
         
         if (analyseurEntree.hasNextInt()) {
             typeLabyrinthe = analyseurEntree.nextInt();
+            if (typeLabyrinthe != 1 && typeLabyrinthe != 2) {
+            	typeValide = false;
+            }
         } else {
             typeValide = false;
         }

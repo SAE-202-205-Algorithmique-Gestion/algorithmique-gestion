@@ -116,7 +116,7 @@ public class AffichageLabyrintheFormeGraphe {
 				/* Position actuelle */
 				} else if (labyrinthe.getPositionActuelle() != labyrinthe.getEntree()
 						   && labyrinthe.getPositionActuelle() == labyrinthe.getGraphe().getListeSommets()[i]) {
-					System.out.print(labyrinthe.getSommetActuelleSymbole());
+					System.out.print(labyrinthe.getSommetActuelSymbole());
 				
 				/* les autres sommets */
 				} else {

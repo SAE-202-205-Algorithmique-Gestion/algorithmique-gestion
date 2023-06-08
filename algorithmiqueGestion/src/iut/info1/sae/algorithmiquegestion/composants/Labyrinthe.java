@@ -121,7 +121,7 @@ public class Labyrinthe {
 	}
 	
 	/** @return L'indice du sommet sur lequel est placé le joueur. */
-	public int getIndiceSommetActuelle() {
+	public int getIndiceSommetActuel() {
 		return indiceSommetActuel;
 	}
 	
@@ -151,7 +151,7 @@ public class Labyrinthe {
 	}
 	
 	/** @return Le symbole du sommet actuel de this. */
-	public char getSommetActuelleSymbole() {
+	public char getSommetActuelSymbole() {
 		return SOMMET_ACTUEL_SYMBOLE;
 	}
 	
@@ -176,7 +176,7 @@ public class Labyrinthe {
     }
     
     /** @param indiceSommetActuelle L'indice du sommet à set. */
-    public void setIndiceSommetActuelle(int indiceSommetActuelle) {
+    public void setIndiceSommetActuel(int indiceSommetActuelle) {
         this.indiceSommetActuel = indiceSommetActuelle;
     }
     
@@ -232,7 +232,7 @@ public class Labyrinthe {
 				.liaisonExiste
 				(graphe.getListeSommets()[indiceSommetActuel +
 				                          indiceSommetDeplacement])) {
-			this.setIndiceSommetActuelle(indiceSommetActuel + indiceSommetDeplacement);
+			this.setIndiceSommetActuel(indiceSommetActuel + indiceSommetDeplacement);
 			this.setPositionActuelle(graphe.getListeSommets()[indiceSommetActuel]);
 			this.setNombreCasesParcourues(this.getNombreCasesParcourues() + 1);
 			return true;
