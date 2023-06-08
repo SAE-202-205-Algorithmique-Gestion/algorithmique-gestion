@@ -25,50 +25,48 @@ import com.google.gson.JsonParseException;
 import java.util.Scanner;
 
 /**
- * Classe de gestion de la sauvegarde des paramètres 
- * sélectionnés par l'utilisateur.
+ * Classe de gestion de la sauvegarde des paramètres sélectionnés par
+ * l'utilisateur.
  * 
  * @author Jonathan GUIL
  */
 public class SauvegardeParametres {
-	
-	private final String CHEMIN_JSON_PARAMETRES 
-		= "src/iut/info1/sae/algorithmiquegestion/donnees/configurations_"
-		+ "labyrinthes.json";
-	
-	//private String cheminSauvegardeParametres;
-	
-	//private ParametresLabyrinthe parametresLabyrinthe;
-	
-	public SauvegardeParametres(String cheminSauvegardeParametres, 
-								ParametresLabyrinthe parametresLabyrinthe) {
-		
-		super();
-		
-		//this.cheminSauvegardeParametres = cheminSauvegardeParametres;
-		//this.parametresLabyrinthe = parametresLabyrinthe;
-		
-	}
-	
-	public void sauvegarderParametres() {
-		File lectureSauvegarde;
-		
-		//FileWriter ecritureSauvegarde;
-		
-		Scanner donneesCourantes;
-		
-		//String nouvellesDonnees;
-		
-		try {
-			lectureSauvegarde = new File(this.CHEMIN_JSON_PARAMETRES);
-			donneesCourantes = new Scanner(lectureSauvegarde);
-			
-			System.out.println(donneesCourantes.next());
-			
-			donneesCourantes.close();
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
-	}
+
+    private final String CHEMIN_JSON_PARAMETRES = "src/iut/info1/sae/algorithmiquegestion/donnees/configurations_"
+            + "labyrinthes.json";
+
+    // private String cheminSauvegardeParametres;
+
+    // private ParametresLabyrinthe parametresLabyrinthe;
+
+    public SauvegardeParametres(String cheminSauvegardeParametres, ParametresLabyrinthe parametresLabyrinthe) {
+
+        super();
+
+        // this.cheminSauvegardeParametres = cheminSauvegardeParametres;
+        // this.parametresLabyrinthe = parametresLabyrinthe;
+
+    }
+
+    public void sauvegarderParametres() {
+        File lectureSauvegarde;
+
+        // FileWriter ecritureSauvegarde;
+
+        Scanner donneesCourantes;
+
+        // String nouvellesDonnees;
+
+        try {
+            lectureSauvegarde = new File(this.CHEMIN_JSON_PARAMETRES);
+            donneesCourantes = new Scanner(lectureSauvegarde);
+
+            System.out.println(donneesCourantes.next());
+
+            donneesCourantes.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }
