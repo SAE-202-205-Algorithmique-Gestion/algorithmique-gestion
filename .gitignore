@@ -10,6 +10,3 @@ bin/
 # Librairies gson
 gson-2.10.1.jar
 gson-2.10.1-javadoc.jar
-
-# Ignorer le dossier contenant un exemple des fichiers ignorés par gitignore
-exempleFichiersGitignore*
