@@ -1,10 +1,15 @@
-# Ignorer le dossier bin avec les .class
+# Dossier bin avec les .class
 bin/
 
-# Ignorer toutes les metadata et classpath
+# Fichiers de configuration spécifiques à Eclipse
 .metadata
 .classpath
+.project
+.settings/
 
-# Ignorer les .jar de gson
+# Librairies gson
 gson-2.10.1.jar
 gson-2.10.1-javadoc.jar
+
+# Ignorer le dossier contenant un exemple des fichiers ignorés par gitignore
+exempleFichiersGitignore
