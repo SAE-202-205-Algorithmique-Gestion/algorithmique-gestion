@@ -4,7 +4,6 @@
  */
 package iut.info1.sae.algorithmiquegestion.affichage;
 
-import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
