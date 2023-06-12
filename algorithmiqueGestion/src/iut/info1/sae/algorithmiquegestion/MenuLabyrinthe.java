@@ -150,7 +150,7 @@ public class MenuLabyrinthe {
             } while (!saisieTypeAffichageTerminee);
 
             System.out.println("\n");
-
+            
             try {
                 labyrinthe = new Labyrinthe(hauteurLabyrinthe,
                                             longueurLabyrinthe,
@@ -162,9 +162,9 @@ public class MenuLabyrinthe {
             resultatValide = true;
 
             if (typeAffichage == 1) {
-                AffichageLabyrinthe.lancement();
+                AffichageLabyrinthe.lancement(labyrinthe);
             } else {
-                AffichageCaseCourante.lancement();
+                AffichageCaseCourante.lancement(labyrinthe);
             }
             break;
 

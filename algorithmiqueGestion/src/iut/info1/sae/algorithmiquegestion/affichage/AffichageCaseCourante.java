@@ -69,8 +69,13 @@ public class AffichageCaseCourante {
     /**
      * Lancement de l'affichage du labyrinthe généré en fonction de la largeur
      * NOMBRE_COLONNES et la longueur NOMBRE_LIGNES.
+     * 
+     * @param labyrintheCourant Le labyrinthe actuel créé au menu principal.
      */
-    public static void lancement() {
+    public static void lancement(Labyrinthe labyrintheCourant) {
+        
+        labyrinthe = labyrintheCourant;
+        listeSommets = labyrinthe.getGraphe().getListeSommets();
 
         System.out.println(CONSIGNES_JEU);
 
