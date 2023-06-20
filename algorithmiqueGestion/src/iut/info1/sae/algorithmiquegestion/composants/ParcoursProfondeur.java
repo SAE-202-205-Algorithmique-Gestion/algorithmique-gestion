@@ -22,14 +22,15 @@ import java.util.Random;
  */
 public class ParcoursProfondeur {
 
-    static Labyrinthe labyrinthe = MenuLabyrinthe.getLabyrinthe();
+    private static Labyrinthe labyrinthe;
 
     /**
      * Parcours du labyrinthe afin de determiner le chemin direct allant de l'entrée
      * à la sortie.
      */
-    public static void algorithmeParcours() {
+    public static int algorithmeParcours() {
 
+    	labyrinthe = MenuLabyrinthe.getLabyrinthe();
         Pile parcours = new Pile();
         Sommet sommetCourant;
         Sommet sommetAEmpiler;
@@ -64,7 +65,7 @@ public class ParcoursProfondeur {
             longueurParcours++;
         }
         // (longueurParcours - 1) sert à ne pas compter l'entrée dans le parcours
-        System.out.println("\nLe parcours optimal de ce labyrinthe passe par " + (longueurParcours - 1) + " cases.");
+        return longueurParcours -1;
     }
 
     /**

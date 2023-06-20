@@ -59,7 +59,7 @@ public class AffichageLabyrinthe {
 
     private final static String PARTIE_GAGNEE = "\nBravo !\nVous avez gagné, la" + " partie est terminée !";
 
-    private final static String PARCOURS_FIN = "\nVoici le parcours " + "de résolution : ";
+    private final static String PARCOURS_FIN = "\nVoici le parcours de résolution : ";
 
     private final static String ERREUR_SAISIE = """
             \nVous avez entré une commande invalide ou un déplacement impossible !
@@ -67,16 +67,20 @@ public class AffichageLabyrinthe {
             Voici la liste des commandes utilisables dans la console texte :
             """ + COMMANDES;
 
-    private static Labyrinthe labyrinthe = MenuLabyrinthe.getLabyrinthe();
+    private static Labyrinthe labyrinthe;
 
-    private static Sommet[] listeSommets = MenuLabyrinthe.getLabyrinthe().getGraphe().getListeSommets();
+    private static Sommet[] listeSommets;
 
     /**
      * Lancement de l'affichage du labyrinthe généré en fonction de la largeur
      * NOMBRE_COLONNES et la longueur NOMBRE_LIGNES.
      */
     public static void lancement() {
-
+    	
+    	labyrinthe = MenuLabyrinthe.getLabyrinthe();
+    	listeSommets = MenuLabyrinthe.getLabyrinthe().getGraphe().getListeSommets();
+    	System.out.println("AffichageLabyrinthe : nb colonne" + labyrinthe.getNombreDeColonne()
+    					   + "AffichageLabyrinthe : nb ligne" + labyrinthe.getNombreDeLigne());
         System.out.println(CONSIGNES_JEU);
 
         do {
@@ -85,9 +89,11 @@ public class AffichageLabyrinthe {
 
         System.out.println(PARTIE_GAGNEE);
         System.out.print(PARCOURS_FIN);
-        ParcoursProfondeur.algorithmeParcours();
-
-        System.out.print("Vous avez parcouru ce labyrinthe avec " + labyrinthe.getNombreCasesParcourues() + " cases.");
+        System.out.println("\nLe parcours optimal de ce labyrinthe passe par "
+        				   + ParcoursProfondeur.algorithmeParcours() + " cases.");
+        
+        System.out.print("Vous avez parcouru ce labyrinthe en "
+        				 + labyrinthe.getNombreCasesParcourues() + " cases.");
     }
 
     /**

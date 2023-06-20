@@ -49,6 +49,9 @@ public class MenuLabyrinthe {
     private static int typeAffichage;
 
     private static Labyrinthe labyrinthe;
+    
+    public static final String RED = "\u001B[31m";
+    public static final String RESET = "\u001B[0m";
 
     /** @return Attribut labyrinthe de this. */
     public static Labyrinthe getLabyrinthe() {
@@ -62,6 +65,8 @@ public class MenuLabyrinthe {
      * @param args non utilisé
      */
     public static void main(String[] args) {
+    	
+    	System.out.println(RED + "tetegeg" + RESET);
         final String QUITTER_PROGRAMME =
         """
         \n\nVoulez-vous quitter ce programme ?
@@ -158,6 +163,9 @@ public class MenuLabyrinthe {
             } catch (IllegalArgumentException e) {
                 System.out.println(COMMANDE_INEXISTANTE);
             }
+            
+            System.out.println("nb lignes et colonne et co sortie " + labyrinthe.getNombreDeColonne() + " "
+            		 		   + labyrinthe.getNombreDeLigne() + " " + labyrinthe.getSortie());
 
             resultatValide = true;
 
