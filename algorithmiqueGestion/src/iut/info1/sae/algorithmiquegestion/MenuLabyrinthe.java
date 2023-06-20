@@ -155,7 +155,7 @@ public class MenuLabyrinthe {
             } while (!saisieTypeAffichageTerminee);
 
             System.out.println("\n");
-
+            
             try {
                 labyrinthe = new Labyrinthe(hauteurLabyrinthe,
                                             longueurLabyrinthe,

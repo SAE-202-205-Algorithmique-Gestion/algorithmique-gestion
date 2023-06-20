@@ -74,6 +74,8 @@ public class AffichageLabyrinthe {
     /**
      * Lancement de l'affichage du labyrinthe généré en fonction de la largeur
      * NOMBRE_COLONNES et la longueur NOMBRE_LIGNES.
+     * 
+     * @param labyrintheCourant Le labyrinthe actuel créé au menu principal.
      */
     public static void lancement() {
     	

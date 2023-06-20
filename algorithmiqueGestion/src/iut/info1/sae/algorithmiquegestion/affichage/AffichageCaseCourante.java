@@ -60,17 +60,22 @@ public class AffichageCaseCourante {
             Voici la liste des commandes utilisables dans la console texte :
             """ + COMMANDES;
 
-    private static Labyrinthe labyrinthe = MenuLabyrinthe.getLabyrinthe();
+    private static Labyrinthe labyrinthe;
 
-    private static Sommet[] listeSommets = MenuLabyrinthe.getLabyrinthe().getGraphe().getListeSommets();
+    private static Sommet[] listeSommets;
 
     private static int nombreColonnes = MenuLabyrinthe.getLabyrinthe().getNombreDeColonne();
 
     /**
      * Lancement de l'affichage du labyrinthe généré en fonction de la largeur
      * NOMBRE_COLONNES et la longueur NOMBRE_LIGNES.
+     * 
+     * @param labyrintheCourant Le labyrinthe actuel créé au menu principal.
      */
     public static void lancement() {
+        
+        labyrinthe = MenuLabyrinthe.getLabyrinthe();
+        listeSommets = MenuLabyrinthe.getLabyrinthe().getGraphe().getListeSommets();;
 
         System.out.println(CONSIGNES_JEU);
 
