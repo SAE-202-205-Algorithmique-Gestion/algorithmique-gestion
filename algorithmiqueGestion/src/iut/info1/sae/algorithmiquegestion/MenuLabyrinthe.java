@@ -50,9 +50,6 @@ public class MenuLabyrinthe {
 
     private static Labyrinthe labyrinthe;
     
-    public static final String RED = "\u001B[31m";
-    public static final String RESET = "\u001B[0m";
-
     /** @return Attribut labyrinthe de this. */
     public static Labyrinthe getLabyrinthe() {
         return labyrinthe;
@@ -65,8 +62,6 @@ public class MenuLabyrinthe {
      * @param args non utilisé
      */
     public static void main(String[] args) {
-    	
-    	System.out.println(RED + "tetegeg" + RESET);
         final String QUITTER_PROGRAMME =
         """
         \n\nVoulez-vous quitter ce programme ?

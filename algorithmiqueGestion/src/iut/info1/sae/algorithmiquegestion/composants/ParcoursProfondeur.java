@@ -23,7 +23,15 @@ import java.util.Random;
 public class ParcoursProfondeur {
 
     private static Labyrinthe labyrinthe;
-
+    
+    private static Pile parcours;
+    
+    private static ArrayList<Sommet> parcoursListe = new ArrayList<>();
+    
+    public static ArrayList<Sommet> getParcoursListe() {
+    	return parcoursListe;
+    }
+    
     /**
      * Parcours du labyrinthe afin de determiner le chemin direct allant de l'entrée
      * à la sortie.
@@ -31,7 +39,7 @@ public class ParcoursProfondeur {
     public static int algorithmeParcours() {
 
     	labyrinthe = MenuLabyrinthe.getLabyrinthe();
-        Pile parcours = new Pile();
+        parcours = new Pile();
         Sommet sommetCourant;
         Sommet sommetAEmpiler;
         ArrayList<Sommet> listeSommetsAEmpiler = new ArrayList<>();
@@ -61,9 +69,15 @@ public class ParcoursProfondeur {
         System.out.println("\n");
         while (!parcours.isVide()) {
             System.out.println(parcours.sommet());
+            parcoursListe.add((Sommet) parcours.sommet());
             parcours.depiler();
             longueurParcours++;
         }
+        
+        /* Suppression de l'entrée et de la sortie */
+        parcoursListe.remove(0);
+        parcoursListe.remove(parcoursListe.size() -1);
+        
         // (longueurParcours - 1) sert à ne pas compter l'entrée dans le parcours
         return longueurParcours -1;
     }

@@ -40,9 +40,9 @@ public class AffichageLabyrinthe {
     private final static String DEMANDE_COMMANDE = "\n\nEntrez votre/vos commande(s) : ";
 
     public final static String COMMANDES = """
-            - H : déplacement vers le haut
-            - B : déplacement vers le bas
-            - G : déplacement vers la gauche
+            - Z : déplacement vers le haut
+            - S : déplacement vers le bas
+            - Q : déplacement vers la gauche
             - D : déplacement vers la droite
             """;
 
@@ -96,6 +96,8 @@ public class AffichageLabyrinthe {
         
         System.out.print("Vous avez parcouru ce labyrinthe en "
         				 + labyrinthe.getNombreCasesParcourues() + " cases.");
+        
+        AffichageResolution.affichageParcoursSolution();
     }
 
     /**

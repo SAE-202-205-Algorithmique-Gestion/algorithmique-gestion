@@ -22,21 +22,21 @@ import iut.info1.sae.algorithmiquegestion.sauvegardes.SauvegardeLabyrinthe;
 public class Labyrinthe {
 
     /** Touche permettant d'aller en haut. */
-    private static final char HAUT = 'h';
+    private static final char HAUT = 'z';
 
     /** Touche permettant d'aller en bas. */
-    private static final char BAS = 'b';
+    private static final char BAS = 's';
 
     /** Touche permettant d'aller à droite. */
     private static final char DROITE = 'd';
 
     /** Touche permettant d'aller à gauche. */
-    private static final char GAUCHE = 'g';
+    private static final char GAUCHE = 'q';
 
     /**
      * Touche permettant de déclencher le processus de sauvegarde du labyrinthe.
      */
-    private static final char SAUVER = 's';
+    private static final char SAUVER = 'h';
 
     /** Symbole correspondant à la position du joueur. */
     private static final char SOMMET_ACTUEL_SYMBOLE = 'X';
