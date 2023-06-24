@@ -5,6 +5,7 @@
 package iut.info1.sae.algorithmiquegestion.affichage;
 
 import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.JeuxLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
@@ -87,7 +88,7 @@ public class AffichageLabyrinthe {
 
         do {
             AffichageLabyrinthe.gestionDeplacementsLabyrinthe();
-        } while (labyrinthe.getPositionActuelle() != labyrinthe.getSortie());
+        } while (!labyrinthe.getPositionActuelle().equals(labyrinthe.getSortie()));
 
         System.out.println(PARTIE_GAGNEE);
         System.out.print(PARCOURS_FIN);
@@ -136,7 +137,7 @@ public class AffichageLabyrinthe {
                 System.out.print(BORDURE_DROITE + BORDURE_GAUCHE + " ");
             }
 
-            affichageSommets(i);
+            affichageSommets(listeSommets[i]);
             affichageMurHorizontal(i);
         }
 
@@ -147,7 +148,7 @@ public class AffichageLabyrinthe {
 
         System.out.println(DEMANDE_COMMANDE);
 
-        if (!labyrinthe.demandeDeplacement()) {
+        if (!JeuxLabyrinthe.demandeDeplacement()) {
             System.out.print(ERREUR_SAISIE);
         }
     }
@@ -180,24 +181,43 @@ public class AffichageLabyrinthe {
      *
      * @param indiceSommet Indice du sommet courant.
      */
-    private static void affichageSommets(int indiceSommet) {
-        /* Entrée */
-        if (labyrinthe.getEntree() == listeSommets[indiceSommet]) {
-            System.out.print(labyrinthe.getEntreeSymbole());
-
-            /* Sortie */
-        } else if (labyrinthe.getSortie() == listeSommets[indiceSommet]) {
-            System.out.print(labyrinthe.getSortieSymbole());
-
-            /* Position actuelle */
-        } else if (labyrinthe.getPositionActuelle() != labyrinthe.getEntree()
-                && labyrinthe.getPositionActuelle() == listeSommets[indiceSommet]) {
-            System.out.print(labyrinthe.getSommetActuelSymbole());
-
-            /* Les autres sommets */
-        } else {
-            System.out.print(CASE);
-        }
+//    private static void affichageSommets(int indiceSommet) {
+//        /* Entrée */
+//        if (labyrinthe.getEntree() == listeSommets[indiceSommet]) {
+//            System.out.print(JeuxLabyrinthe.getEntreeSymbole());
+//
+//            /* Sortie */
+//        } else if (labyrinthe.getSortie() == listeSommets[indiceSommet]) {
+//            System.out.print(JeuxLabyrinthe.getSortieSymbole());
+//
+//            /* Position actuelle */
+//        } else if (labyrinthe.getPositionActuelle() != labyrinthe.getEntree()
+//                && labyrinthe.getPositionActuelle() == listeSommets[indiceSommet]) {
+//            System.out.print(JeuxLabyrinthe.getSommetActuelSymbole());
+//
+//            /* Les autres sommets */
+//        } else {
+//            System.out.print(CASE);
+//        }
+//    }
+    private static void affichageSommets(Sommet sommetCourant) {
+    	/* Entrée */
+    	if (labyrinthe.getEntree().equals(sommetCourant)) {
+    		System.out.print(JeuxLabyrinthe.getEntreeSymbole());
+    		
+    		/* Sortie */
+    	} else if (labyrinthe.getSortie().equals(sommetCourant)) {
+    		System.out.print(JeuxLabyrinthe.getSortieSymbole());
+    		
+    		/* Position actuelle */
+    	} else if (labyrinthe.getPositionActuelle() != labyrinthe.getEntree()
+    			&& labyrinthe.getPositionActuelle().equals(sommetCourant)) {
+    		System.out.print(JeuxLabyrinthe.getSommetActuelSymbole());
+    		
+    		/* Les autres sommets */
+    	} else {
+    		System.out.print(CASE);
+    	}
     }
 
     /**

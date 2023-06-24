@@ -63,7 +63,7 @@ public class ParcoursProfondeur {
                 sommetAEmpiler.setParcouru(true);
             }
 
-        } while (sommetCourant != labyrinthe.getSortie());
+        } while (!sommetCourant.equals(labyrinthe.getSortie()));
         parcours.empiler(labyrinthe.getSortie());
 
         System.out.println("\n");
@@ -105,13 +105,13 @@ public class ParcoursProfondeur {
      * @return Les sommets adjacents au sommet en paramètre qui ne sont parcourus.
      */
     public static ArrayList<Sommet> listeSommetsLiesNonParcourus(Sommet sommet) {
-
-        ArrayList<Sommet> liaisonsCourantes = sommet.getLiaisons();
+    	Sommet[] listeSommet = labyrinthe.getGraphe().getListeSommets();
+        ArrayList<Integer> liaisonsCourantes = sommet.getLiaisons();
         ArrayList<Sommet> liaisonsNonParcourues = new ArrayList<>();
 
         for (int indiceLiaisons = 0; indiceLiaisons < liaisonsCourantes.size(); indiceLiaisons++) {
-            if (!liaisonsCourantes.get(indiceLiaisons).isParcouru()) {
-                liaisonsNonParcourues.add(liaisonsCourantes.get(indiceLiaisons));
+            if (!listeSommet[liaisonsCourantes.get(indiceLiaisons)].isParcouru()) {
+                liaisonsNonParcourues.add(listeSommet[liaisonsCourantes.get(indiceLiaisons)]);
             }
 
         }

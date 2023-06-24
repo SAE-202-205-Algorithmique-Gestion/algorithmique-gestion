@@ -4,6 +4,7 @@
  */
 package iut.info1.sae.algorithmiquegestion.affichage;
 
+import iut.info1.sae.algorithmiquegestion.composants.JeuxLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 
 /**
@@ -98,16 +99,16 @@ public class AffichageLabyrintheFormeGraphe {
                  * Affichage des sommets : Entrée
                  */
                 if (labyrinthe.getEntree() == labyrinthe.getGraphe().getListeSommets()[i]) {
-                    System.out.print(labyrinthe.getEntreeSymbole());
+                    System.out.print(JeuxLabyrinthe.getEntreeSymbole());
 
                     /* Sortie */
                 } else if (labyrinthe.getSortie() == labyrinthe.getGraphe().getListeSommets()[i]) {
-                    System.out.print(labyrinthe.getSortieSymbole());
+                    System.out.print(JeuxLabyrinthe.getSortieSymbole());
 
                     /* Position actuelle */
                 } else if (labyrinthe.getPositionActuelle() != labyrinthe.getEntree()
                         && labyrinthe.getPositionActuelle() == labyrinthe.getGraphe().getListeSommets()[i]) {
-                    System.out.print(labyrinthe.getSommetActuelSymbole());
+                    System.out.print(JeuxLabyrinthe.getSommetActuelSymbole());
 
                     /* les autres sommets */
                 } else {
@@ -129,7 +130,7 @@ public class AffichageLabyrintheFormeGraphe {
             }
 
             System.out.println(DEMANDE_COMMANDE);
-            if (!labyrinthe.demandeDeplacement()) {
+            if (!JeuxLabyrinthe.demandeDeplacement()) {
                 System.out.print(ERREUR_SAISIE);
             }
             System.out.println();

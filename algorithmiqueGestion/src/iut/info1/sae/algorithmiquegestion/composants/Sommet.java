@@ -7,6 +7,8 @@ package iut.info1.sae.algorithmiquegestion.composants;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Modélisation d'un sommet d'un graphe.
  * 
@@ -17,26 +19,35 @@ import java.util.Objects;
  * @author Tom DOUAUD
  */
 public class Sommet {
+	
+	/** Indice du sommet */
+	@Expose
+	private int indiceSommet;
 
     /** Sommets voisins à this dans le graphe. */
-    private ArrayList<Sommet> liaisons;
+	@Expose
+    private ArrayList<Integer> liaisons;
 
     /** Valeur X (horizontale) des coordonnées de this dans le graphe. */
+    @Expose
     private int coordonneeX;
 
     /** Valeur Y (verticale) des coordonnées de this dans le graphe. */
+    @Expose
     private int coordonneeY;
 
     /**
      * Permet d'identifier la chaîne auquel le sommet appartient. Par défaut, la
      * marque est initialisée à -1.
      */
+    @Expose
     private int marque;
 
     /**
      * Permet de savoir si un sommet a déjà été parcoru lors d'une recherche de
      * solution. Par défaut, est initialisé à false.
      */
+    @Expose
     private boolean parcouru;
 
     /**
@@ -45,9 +56,11 @@ public class Sommet {
      * @param coordonneeX Entier correspondant à la coordonnée X de this.
      * @param coordonneeY Entier correspondant à la coordonnée Y de this.
      */
-    public Sommet(int coordonneeX, int coordonneeY) {
+    public Sommet(int coordonneeX, int coordonneeY, int indiceSommet) {
         super();
 
+        this.indiceSommet = indiceSommet;
+        
         this.coordonneeX = coordonneeX;
         this.coordonneeY = coordonneeY;
 
@@ -58,7 +71,7 @@ public class Sommet {
     }
 
     /** @return La liste des liaisons de this. */
-    public ArrayList<Sommet> getLiaisons() {
+    public ArrayList<Integer> getLiaisons() {
         return this.liaisons;
     }
 
@@ -110,7 +123,7 @@ public class Sommet {
      */
     public void creerLiaison(Sommet sommetALier) {
         if (!this.liaisonExiste(sommetALier)) {
-            this.liaisons.add(sommetALier);
+            this.liaisons.add(sommetALier.indiceSommet);
         }
         if (!sommetALier.liaisonExiste(this)) {
             sommetALier.creerLiaison(this);
@@ -128,8 +141,8 @@ public class Sommet {
     public boolean liaisonExiste(Sommet sommetATester) {
         boolean resultat = false;
 
-        for (Sommet sommetLie : this.getLiaisons()) {
-            if (sommetLie == sommetATester) {
+        for (int sommetLie : this.getLiaisons()) {
+            if (sommetLie == sommetATester.indiceSommet) {
                 resultat = true;
             }
         }
@@ -138,6 +151,8 @@ public class Sommet {
 
     /**
      * Vérifie si le sommet en paramètre a les mêmes coordonnées que this.
+     * Utile pour le jeu de test ou l'on a mis tout les indice du sommet à 0,
+     * donc la redéfinition de la méthode equals ne serais pas fonctionnel.
      * 
      * @param sommetATester Sommet dont il faut vérifier l'égalité des coordonnées
      *                      avec this.
@@ -167,7 +182,7 @@ public class Sommet {
         if (obj == null || getClass() != obj.getClass())
             return false;
 
-        return this.coordonneeX == autreSommet.coordonneeX && this.coordonneeY == autreSommet.coordonneeY;
+        return this.indiceSommet == autreSommet.indiceSommet;
     }
 
     /** non javadoc - @see java.util.Objects#hashCode() */

@@ -1,5 +1,6 @@
 package iut.info1.sae.algorithmiquegestion.affichage;
 
+import iut.info1.sae.algorithmiquegestion.composants.JeuxLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
@@ -127,12 +128,12 @@ public class AffichageResolution {
      */
     private static void affichageSommets(int indiceSommet) {
         /* Entrée */
-        if (labyrinthe.getEntree() == listeSommets[indiceSommet]) {
-            System.out.print(labyrinthe.getEntreeSymbole());
+        if (labyrinthe.getEntree().equals(listeSommets[indiceSommet])) {
+            System.out.print(JeuxLabyrinthe.getEntreeSymbole());
 
         /* Sortie */
-        } else if (labyrinthe.getSortie() == listeSommets[indiceSommet]) {
-            System.out.print(labyrinthe.getSortieSymbole());
+        } else if (labyrinthe.getSortie().equals(listeSommets[indiceSommet])) {
+            System.out.print(JeuxLabyrinthe.getSortieSymbole());
          
         /* Sommets de la résolution */
         } else if (isSommetDansParcours(listeSommets[indiceSommet])) {

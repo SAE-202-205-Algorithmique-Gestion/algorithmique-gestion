@@ -5,6 +5,7 @@
 package iut.info1.sae.algorithmiquegestion.affichage;
 
 import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.JeuxLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
@@ -64,7 +65,7 @@ public class AffichageCaseCourante {
 
     private static Sommet[] listeSommets;
 
-    private static int nombreColonnes = MenuLabyrinthe.getLabyrinthe().getNombreDeColonne();
+    private static int nombreColonnes;
 
     /**
      * Lancement de l'affichage du labyrinthe généré en fonction de la largeur
@@ -75,13 +76,14 @@ public class AffichageCaseCourante {
     public static void lancement() {
         
         labyrinthe = MenuLabyrinthe.getLabyrinthe();
-        listeSommets = MenuLabyrinthe.getLabyrinthe().getGraphe().getListeSommets();;
+        listeSommets = MenuLabyrinthe.getLabyrinthe().getGraphe().getListeSommets();
+        nombreColonnes = MenuLabyrinthe.getLabyrinthe().getNombreDeColonne();
 
         System.out.println(CONSIGNES_JEU);
 
         do {
             AffichageCaseCourante.gestionDeplacementsLabyrinthe();
-        } while (labyrinthe.getPositionActuelle() != labyrinthe.getSortie());
+        } while (!labyrinthe.getPositionActuelle().equals(labyrinthe.getSortie()));
 
         System.out.println(PARTIE_GAGNEE);
         System.out.print(PARCOURS_FIN);
@@ -140,7 +142,7 @@ public class AffichageCaseCourante {
         System.out.print(COIN);
 
         System.out.println(DEMANDE_COMMANDE);
-        if (!labyrinthe.demandeDeplacement()) {
+        if (!JeuxLabyrinthe.demandeDeplacement()) {
             System.out.print(ERREUR_SAISIE);
         }
 
@@ -155,12 +157,12 @@ public class AffichageCaseCourante {
      */
     private static void affichageSommets(int positionActuelle) {
         /* Entrée */
-        if (labyrinthe.getEntree() == listeSommets[positionActuelle]) {
-            System.out.print(" " + labyrinthe.getEntreeSymbole() + " ");
+        if (labyrinthe.getEntree().equals(listeSommets[positionActuelle])) {
+            System.out.print(" " + JeuxLabyrinthe.getEntreeSymbole() + " ");
 
             /* Position actuelle */
         } else if (labyrinthe.getIndiceSommetActuel() == positionActuelle) {
-            System.out.print(" " + labyrinthe.getSommetActuelSymbole() + " ");
+            System.out.print(" " + JeuxLabyrinthe.getSommetActuelSymbole() + " ");
         }
     }
 

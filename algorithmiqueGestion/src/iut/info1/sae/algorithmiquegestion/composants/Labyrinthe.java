@@ -4,10 +4,9 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
-import java.util.Scanner;
-
-import iut.info1.sae.algorithmiquegestion.parametres.ParametresLabyrinthe;
-import iut.info1.sae.algorithmiquegestion.sauvegardes.SauvegardeLabyrinthe;
+//import java.util.Scanner;
+import com.google.gson.annotations.Expose;
+//import iut.info1.sae.algorithmiquegestion.sauvegardes.ChargementEtCreationSauvegarde;
 
 /**
  * Modélisation d'un labyrinthe utilisable sur console texte à partir des
@@ -21,34 +20,43 @@ import iut.info1.sae.algorithmiquegestion.sauvegardes.SauvegardeLabyrinthe;
  */
 public class Labyrinthe {
 
-    /** Touche permettant d'aller en haut. */
-    private static final char HAUT = 'z';
-
-    /** Touche permettant d'aller en bas. */
-    private static final char BAS = 's';
-
-    /** Touche permettant d'aller à droite. */
-    private static final char DROITE = 'd';
-
-    /** Touche permettant d'aller à gauche. */
-    private static final char GAUCHE = 'q';
-
-    /**
-     * Touche permettant de déclencher le processus de sauvegarde du labyrinthe.
-     */
-    private static final char SAUVER = 'h';
-
-    /** Symbole correspondant à la position du joueur. */
-    private static final char SOMMET_ACTUEL_SYMBOLE = 'X';
-
-    /** Symbole correspondant à la position du l'entrée. */
-    private static final char ENTREE_SYMBOLE = 'E';
-
-    /** Symbole correspondant à la position de la sortie. */
-    private static final char SORTIE_SYMBOLE = 'S';
-
-    /** Entrée récupérant les commandes du joueur. */
-    private Scanner entreeDeplacement;
+//    /** Touche permettant d'aller en haut. */
+//	@Expose(serialize = false, deserialize = false)
+//    private static final char HAUT = 'z';
+//
+//    /** Touche permettant d'aller en bas. */
+//    @Expose(serialize = false, deserialize = false)
+//    private static final char BAS = 's';
+//
+//    /** Touche permettant d'aller à droite. */
+//    @Expose(serialize = false, deserialize = false)
+//    private static final char DROITE = 'd';
+//
+//    /** Touche permettant d'aller à gauche. */
+//    @Expose(serialize = false, deserialize = false)
+//    private static final char GAUCHE = 'q';
+//
+//    /**
+//     * Touche permettant de déclencher le processus de sauvegarde du labyrinthe.
+//     */
+//    @Expose(serialize = false, deserialize = false)
+//    private static final char SAUVER = 'h';
+//
+//    /** Symbole correspondant à la position du joueur. */
+//    @Expose(serialize = false, deserialize = false)
+//    private static final char SOMMET_ACTUEL_SYMBOLE = 'X';
+//
+//    /** Symbole correspondant à la position du l'entrée. */
+//    @Expose(serialize = false, deserialize = false)
+//    private static final char ENTREE_SYMBOLE = 'E';
+//
+//    /** Symbole correspondant à la position de la sortie. */
+//    @Expose(serialize = false, deserialize = false)
+//    private static final char SORTIE_SYMBOLE = 'S';
+//
+//    /** Entrée récupérant les commandes du joueur. */
+//    @Expose(serialize = false, deserialize = false)
+//    private static Scanner entreeDeplacement;
 
     /** Sommet où se situe le joueur (marqué par X). */
     private Sommet positionActuelle;
@@ -69,9 +77,11 @@ public class Labyrinthe {
     private int indiceSommetActuel;
 
     /** Nombre de cases parcourues par le joueur. */
+    @Expose
     private int nombreCasesParcourues;
 
     /** Graphe servant à créer le labyrinthe. */
+    @Expose
     private Graphe graphe;
 
     /**
@@ -93,13 +103,9 @@ public class Labyrinthe {
         }
 
         this.nombreDeLigne = nombreDeLignes;
-
         this.nombreDeColonne = nombreDeColonnes;
 
-        /*
-         * Le nombre de colonnes et de lignes sont inversés dans l'appel, c'est normal
-         */
-        this.entreeDeplacement = new Scanner(System.in);
+//        entreeDeplacement = new Scanner(System.in);
         this.definirEntree();
         this.definirSortie();
         this.positionActuelle = this.getEntree();
@@ -135,20 +141,20 @@ public class Labyrinthe {
         return graphe;
     }
 
-    /** @return Le symbole d'entrée de this. */
-    public char getEntreeSymbole() {
-        return ENTREE_SYMBOLE;
-    }
-
-    /** @return Le symbole de sortie de this. */
-    public char getSortieSymbole() {
-        return SORTIE_SYMBOLE;
-    }
-
-    /** @return Le symbole du sommet actuel de this. */
-    public char getSommetActuelSymbole() {
-        return SOMMET_ACTUEL_SYMBOLE;
-    }
+//    /** @return Le symbole d'entrée de this. */
+//    public char getEntreeSymbole() {
+//        return ENTREE_SYMBOLE;
+//    }
+//
+//    /** @return Le symbole de sortie de this. */
+//    public char getSortieSymbole() {
+//        return SORTIE_SYMBOLE;
+//    }
+//
+//    /** @return Le symbole du sommet actuel de this. */
+//    public char getSommetActuelSymbole() {
+//        return SOMMET_ACTUEL_SYMBOLE;
+//    }
 
     /** @return Le nombre de colonnes du labyrinthe. */
     public int getNombreDeColonne() {
@@ -214,82 +220,83 @@ public class Labyrinthe {
         }
     }
 
-    /**
-     * Vérification du déplacement que le joueur essaie d'effectuer.
-     *
-     * @param indiceSommetDeplacement Indice du sommet sur lequel le joueur s'est
-     *                                déplacé.
-     */
-    public boolean verificationDeplacement(int indiceSommetDeplacement) {
-
-        if (graphe.sommetExiste(indiceSommetActuel + indiceSommetDeplacement)
-                && graphe.getListeSommets()[indiceSommetActuel]
-                        .liaisonExiste(graphe.getListeSommets()[indiceSommetActuel + indiceSommetDeplacement])) {
-            this.setIndiceSommetActuel(indiceSommetActuel + indiceSommetDeplacement);
-            this.setPositionActuelle(graphe.getListeSommets()[indiceSommetActuel]);
-            this.setNombreCasesParcourues(this.getNombreCasesParcourues() + 1);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Gestion de la saisie sur console texte de l'utilisateur lorsqu'il se déplace
-     * sur le labyrinthe.
-     */
-    public boolean demandeDeplacement() {
-
-        boolean saisieCorrecte = true;
-
-        int indiceSaisieDeplacement;
-
-        String saisieDeplacement = this.entreeDeplacement.next() + this.entreeDeplacement.nextLine();
-
-        saisieDeplacement = saisieDeplacement.replaceAll(" ", "");
-
-        for (indiceSaisieDeplacement = 0; indiceSaisieDeplacement < saisieDeplacement.length()
-                && saisieCorrecte; indiceSaisieDeplacement++) {
-
-            switch (saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)) {
-            case HAUT:
-                if (!verificationDeplacement(-this.nombreDeColonne)) {
-                    saisieCorrecte = false;
-                }
-                break;
-
-            case BAS:
-                if (!verificationDeplacement(this.nombreDeColonne)) {
-                    saisieCorrecte = false;
-                }
-                break;
-
-            case DROITE:
-                if (!verificationDeplacement(1)) {
-                    saisieCorrecte = false;
-                }
-                break;
-
-            case GAUCHE:
-                if (!verificationDeplacement(-1)) {
-                    saisieCorrecte = false;
-                }
-                break;
-
-            case SAUVER:
-                ParametresLabyrinthe parametres;
-                SauvegardeLabyrinthe sauvegarde;
-
-                parametres = new ParametresLabyrinthe("NOM_BOUCHON", this);
-                sauvegarde = new SauvegardeLabyrinthe(parametres);
-                sauvegarde.sauvegarderParametres();
-                break;
-
-            default:
-                saisieCorrecte = false;
-                break;
-            }
-        }
-        return saisieCorrecte;
-    }
+//    /**
+//     * Vérification du déplacement que le joueur essaie d'effectuer.
+//     *
+//     * @param indiceSommetDeplacement Indice du sommet sur lequel le joueur s'est
+//     *                                déplacé.
+//     */
+//    public boolean verificationDeplacement(int indiceSommetDeplacement) {
+//
+//        if (graphe.sommetExiste(indiceSommetActuel + indiceSommetDeplacement)
+//                && graphe.getListeSommets()[indiceSommetActuel]
+//                        .liaisonExiste(graphe.getListeSommets()[indiceSommetActuel + indiceSommetDeplacement])) {
+//            this.setIndiceSommetActuel(indiceSommetActuel + indiceSommetDeplacement);
+//            this.setPositionActuelle(graphe.getListeSommets()[indiceSommetActuel]);
+//            this.setNombreCasesParcourues(this.getNombreCasesParcourues() + 1);
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    /**
+//     * Gestion de la saisie sur console texte de l'utilisateur lorsqu'il se déplace
+//     * sur le labyrinthe.
+//     */
+//    public boolean demandeDeplacement() {
+//
+//        boolean saisieCorrecte = true;
+//
+//        int indiceSaisieDeplacement;
+//
+//        String saisieDeplacement = entreeDeplacement.next() + entreeDeplacement.nextLine();
+//
+//        saisieDeplacement = saisieDeplacement.replaceAll(" ", "");
+//
+//        for (indiceSaisieDeplacement = 0; indiceSaisieDeplacement < saisieDeplacement.length()
+//                && saisieCorrecte; indiceSaisieDeplacement++) {
+//
+//            switch (saisieDeplacement.toLowerCase().charAt(indiceSaisieDeplacement)) {
+//            case HAUT:
+//                if (!verificationDeplacement(-this.nombreDeColonne)) {
+//                    saisieCorrecte = false;
+//                }
+//                break;
+//
+//            case BAS:
+//                if (!verificationDeplacement(this.nombreDeColonne)) {
+//                    saisieCorrecte = false;
+//                }
+//                break;
+//
+//            case DROITE:
+//                if (!verificationDeplacement(1)) {
+//                    saisieCorrecte = false;
+//                }
+//                break;
+//
+//            case GAUCHE:
+//                if (!verificationDeplacement(-1)) {
+//                    saisieCorrecte = false;
+//                }
+//                break;
+//
+//            case SAUVER:
+////                ParametresLabyrinthe parametres;
+////                SauvegardeLabyrinthe sauvegarde;
+////
+////                parametres = new ParametresLabyrinthe("NOM_BOUCHON", this);
+////                sauvegarde = new SauvegardeLabyrinthe(parametres);
+////                sauvegarde.sauvegarderParametres();
+//            	ChargementEtCreationSauvegarde.creerUneSauvegarde();
+//                break;
+//
+//            default:
+//                saisieCorrecte = false;
+//                break;
+//            }
+//        }
+//        return saisieCorrecte;
+//    }
 
 }

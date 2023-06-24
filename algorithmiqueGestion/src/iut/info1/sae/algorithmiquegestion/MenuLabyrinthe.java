@@ -9,6 +9,7 @@ import java.util.Scanner;
 import iut.info1.sae.algorithmiquegestion.affichage.AffichageLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.affichage.AffichageCaseCourante;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.sauvegardes.ChargementEtCreationSauvegarde;
 
 /**
  * Utilisation du jeu de labyrinthe faisant appel aux classes d'affichages, de
@@ -36,9 +37,9 @@ public class MenuLabyrinthe {
 
     private static final int LONGUEUR_MINIMALE_LABYRINTHE = 2;
 
-    private static final int HAUTEUR_MAXIMALE_LABYRINTHE = 10;
+    private static final int HAUTEUR_MAXIMALE_LABYRINTHE = 100;
 
-    private static final int LONGUEUR_MAXIMALE_LABYRINTHE = 10;
+    private static final int LONGUEUR_MAXIMALE_LABYRINTHE = 100;
 
     private static int hauteurLabyrinthe;
 
@@ -105,6 +106,7 @@ public class MenuLabyrinthe {
     private static boolean demandeParametresLabyrinthe() {
 
         final String CHOIX_NOUVEAU_LABYRINTHE = "1";
+        final String CHOIX_CHARGER_UNE_SAUVEGARDE = "2";
 
         final String NOUVEAU_LABYRINTHE = "\n>> NOUVEAU LABYRINTHE";
 
@@ -171,6 +173,21 @@ public class MenuLabyrinthe {
             }
             break;
 
+        case CHOIX_CHARGER_UNE_SAUVEGARDE:
+        	labyrinthe = ChargementEtCreationSauvegarde.chargerUneSauvegarde();
+        	
+        	do {
+                saisieTypeAffichageTerminee = saisirTypeAffichage(analyseurSaisie);
+            } while (!saisieTypeAffichageTerminee);
+        	
+        	resultatValide = true;
+        	
+        	if (typeAffichage == 1) {
+                AffichageLabyrinthe.lancement();
+            } else {
+                AffichageCaseCourante.lancement();
+            }
+        	break;
         default:
             System.out.println(COMMANDE_INEXISTANTE);
             break;
