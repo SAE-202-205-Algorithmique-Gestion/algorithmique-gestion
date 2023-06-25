@@ -7,8 +7,6 @@ package iut.info1.sae.algorithmiquegestion.composants;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import com.google.gson.annotations.Expose;
-
 /**
  * Modélisation d'un sommet d'un graphe.
  * 
@@ -21,33 +19,27 @@ import com.google.gson.annotations.Expose;
 public class Sommet {
 	
 	/** Indice du sommet */
-	@Expose
 	private int indiceSommet;
 
     /** Sommets voisins à this dans le graphe. */
-	@Expose
     private ArrayList<Integer> liaisons;
 
     /** Valeur X (horizontale) des coordonnées de this dans le graphe. */
-    @Expose
     private int coordonneeX;
 
     /** Valeur Y (verticale) des coordonnées de this dans le graphe. */
-    @Expose
     private int coordonneeY;
 
     /**
      * Permet d'identifier la chaîne auquel le sommet appartient. Par défaut, la
      * marque est initialisée à -1.
      */
-    @Expose
     private int marque;
 
     /**
      * Permet de savoir si un sommet a déjà été parcoru lors d'une recherche de
      * solution. Par défaut, est initialisé à false.
      */
-    @Expose
     private boolean parcouru;
 
     /**

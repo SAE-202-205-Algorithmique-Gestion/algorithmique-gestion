@@ -4,8 +4,6 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
-import com.google.gson.annotations.Expose;
-
 /**
  * Modélisation d'un graphe sans circuit et n'ayant qu'une seule chaîne.
  * Utilisation de la classe Sommet dans la création du graphe.
@@ -19,7 +17,6 @@ import com.google.gson.annotations.Expose;
 public class Graphe {
 
     /** Liste des sommets de this */
-	@Expose
     private Sommet[] listeSommets;
 
     /**
@@ -28,7 +25,6 @@ public class Graphe {
      * Cette donnée est choisie par l'utilisateur au lancement du jeu de labyrinthe.
      * </p>
      */
-    @Expose
     private int nombreColonnesLabyrinthe;
 
     /**
@@ -37,7 +33,6 @@ public class Graphe {
      * Cette donnée est choisie par l'utilisateur au lancement du jeu de labyrinthe.
      * </p>
      */
-    @Expose
     private int nombreLignesLabyrinthe;
 
     /**

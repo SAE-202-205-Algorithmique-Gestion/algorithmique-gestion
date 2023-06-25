@@ -99,7 +99,7 @@ public class Labyrinthe {
             this.graphe = new ConstructionBacktracking(nombreDeColonnes, nombreDeLignes);
 
         } else {
-            throw new IllegalArgumentException("Vous avez donné un type de" + " construction de labyrinthe invalide");
+            throw new IllegalArgumentException("Vous avez donné un type de construction de labyrinthe invalide");
         }
 
         this.nombreDeLigne = nombreDeLignes;

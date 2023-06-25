@@ -175,7 +175,10 @@ public class MenuLabyrinthe {
 
         case CHOIX_CHARGER_UNE_SAUVEGARDE:
         	labyrinthe = ChargementEtCreationSauvegarde.chargerUneSauvegarde();
-        	
+        	if (labyrinthe == null) {
+        		demandeParametresLabyrinthe();
+        	}
+				
         	do {
                 saisieTypeAffichageTerminee = saisirTypeAffichage(analyseurSaisie);
             } while (!saisieTypeAffichageTerminee);
