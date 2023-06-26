@@ -12,35 +12,35 @@ import java.io.IOException;
 import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 
-public class ChargementEtCreationSauvegarde {
-	
-	private final static String CHEMIN_REPERTOIRE = "sauvegarde\\";
+public class ChargementEtCreationSauvegardeAncienneVersion {
 
 	private static Labyrinthe labyrinthe;
 	
 	private static GsonBuilder gsonBuilder;
-	
-//	private static ArrayList<String> listeNomFichierSauvegarde;
 
 //	private static Gson gson;
 	
 	private static void initialisation() {
 		gsonBuilder = new GsonBuilder();
+//		gsonBuilder.registerTypeAdapter(Scanner.class, new ScannerTypeAdapter());
 	}
 	
-	public static void creerUneSauvegarde(String nomSauvegarde) {
-		String nomSauvegardeAvecExtension;
+	public static void creerUneSauvegarde() {
 		labyrinthe = MenuLabyrinthe.getLabyrinthe();
 		initialisation();
+//		Gson gson = new GsonBuilder()
+//                .setPrettyPrinting()
+//                .registerTypeAdapter(Scanner.class, new ScannerTypeAdapter())  // Utilisation de l'adaptateur de type personnalisé pour la classe Scanner
+//                .create();
 		
-        Gson gson = gsonBuilder.setPrettyPrinting().create();
+        Gson gson = gsonBuilder/*.excludeFieldsWithoutExposeAnnotation()*/
+        		/*.enableComplexMapKeySerialization()*/.setPrettyPrinting().create();
 		
         /* Affichage de la sauvegarde Json sur la console */
 //		String affichageSauvegarde = gson.toJson(labyrinthe);
 //		System.out.println(affichageSauvegarde);
-        
-        nomSauvegardeAvecExtension = ajoutExtensionNomSauvegarde(nomSauvegarde);
-		try (Writer writer = new FileWriter(CHEMIN_REPERTOIRE + nomSauvegardeAvecExtension)) {
+		
+		try (Writer writer = new FileWriter("labyrinthe.json")) {
 			gson.toJson(labyrinthe, writer);
 		} catch (IOException e) {
 			System.out.println("Erreur, la sauvegarde n'a pa pu se faire : " + e.getMessage());
@@ -48,14 +48,11 @@ public class ChargementEtCreationSauvegarde {
 		}
 	}
 	
-	public static Labyrinthe chargerUneSauvegarde(String nomSauvegarde) {
-		String nomSauvegardeAvecExtension;
+	public static Labyrinthe chargerUneSauvegarde() {
 		initialisation();
 	    // Créez une instance Gson
 		Gson gson = gsonBuilder.create();
-		
-		nomSauvegardeAvecExtension = ajoutExtensionNomSauvegarde(nomSauvegarde);
-        try (FileReader reader = new FileReader(CHEMIN_REPERTOIRE + nomSauvegardeAvecExtension/*nomSauvegarde*/)) {
+        try (FileReader reader = new FileReader("labyrinthe.json")) {
             // Désérialisez le contenu JSON en un objet Java
             labyrinthe = gson.fromJson(reader, Labyrinthe.class);
 
@@ -65,25 +62,5 @@ public class ChargementEtCreationSauvegarde {
         }
         
         return labyrinthe;
-	}
-	
-	public static String ajoutExtensionNomSauvegarde(String nomSauvegarde) {
-		final String JSON_EXTENSION = ".json";
-		String recuperationExtension = "";
-		
-		if (nomSauvegarde.length() < 5) {
-			nomSauvegarde += JSON_EXTENSION;
-		} else {
-			for (int i = nomSauvegarde.length() -5; i <= nomSauvegarde.length() -1; i++) {
-				recuperationExtension += nomSauvegarde.charAt(i);
-			}
-			
-			if (!recuperationExtension.equals(JSON_EXTENSION)) {
-				nomSauvegarde += JSON_EXTENSION;
-			}
-		}
-		
-		
-		return nomSauvegarde;
 	}
 }

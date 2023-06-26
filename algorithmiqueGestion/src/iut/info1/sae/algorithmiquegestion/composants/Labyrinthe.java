@@ -4,10 +4,6 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
-//import java.util.Scanner;
-import com.google.gson.annotations.Expose;
-//import iut.info1.sae.algorithmiquegestion.sauvegardes.ChargementEtCreationSauvegarde;
-
 /**
  * Modélisation d'un labyrinthe utilisable sur console texte à partir des
  * classes Graphe et Sommet.
@@ -77,11 +73,9 @@ public class Labyrinthe {
     private int indiceSommetActuel;
 
     /** Nombre de cases parcourues par le joueur. */
-    @Expose
     private int nombreCasesParcourues;
 
     /** Graphe servant à créer le labyrinthe. */
-    @Expose
     private Graphe graphe;
 
     /**

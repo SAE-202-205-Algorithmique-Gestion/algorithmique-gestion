@@ -45,6 +45,8 @@ public class AffichageLabyrinthe {
             - S : déplacement vers le bas
             - Q : déplacement vers la gauche
             - D : déplacement vers la droite
+            - H : Sauvegarde du labyrinthe
+                  sur la position actuelle
             """;
 
     public final static String CONSIGNES_JEU = "______________________ COMMANDES - JEU ______________________\n" + """
@@ -81,8 +83,8 @@ public class AffichageLabyrinthe {
     public static void lancement() {
     	labyrinthe = MenuLabyrinthe.getLabyrinthe();
     	listeSommets = labyrinthe.getGraphe().getListeSommets();
-    	System.out.println("AffichageLabyrinthe : nb colonne" + labyrinthe.getNombreDeColonne()
-    					   + "AffichageLabyrinthe : nb ligne" + labyrinthe.getNombreDeLigne());
+//    	System.out.println("AffichageLabyrinthe : nb colonne" + labyrinthe.getNombreDeColonne()
+//    					   + "AffichageLabyrinthe : nb ligne" + labyrinthe.getNombreDeLigne());
         System.out.println(CONSIGNES_JEU);
 
         do {

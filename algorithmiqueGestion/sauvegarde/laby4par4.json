@@ -1,0 +1,217 @@
+{
+  "positionActuelle": {
+    "indiceSommet": 6,
+    "liaisons": [
+      7,
+      2
+    ],
+    "coordonneeX": 2,
+    "coordonneeY": 1,
+    "marque": -1,
+    "parcouru": true
+  },
+  "entree": {
+    "indiceSommet": 3,
+    "liaisons": [
+      2
+    ],
+    "coordonneeX": 3,
+    "coordonneeY": 0,
+    "marque": -1,
+    "parcouru": true
+  },
+  "sortie": {
+    "indiceSommet": 15,
+    "liaisons": [
+      11
+    ],
+    "coordonneeX": 3,
+    "coordonneeY": 3,
+    "marque": -1,
+    "parcouru": true
+  },
+  "nombreDeColonne": 4,
+  "nombreDeLigne": 4,
+  "indiceSommetActuel": 6,
+  "nombreCasesParcourues": 2,
+  "graphe": {
+    "listeSommets": [
+      {
+        "indiceSommet": 0,
+        "liaisons": [
+          1,
+          4
+        ],
+        "coordonneeX": 0,
+        "coordonneeY": 0,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 1,
+        "liaisons": [
+          2,
+          0
+        ],
+        "coordonneeX": 1,
+        "coordonneeY": 0,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 2,
+        "liaisons": [
+          6,
+          3,
+          1
+        ],
+        "coordonneeX": 2,
+        "coordonneeY": 0,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 3,
+        "liaisons": [
+          2
+        ],
+        "coordonneeX": 3,
+        "coordonneeY": 0,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 4,
+        "liaisons": [
+          0,
+          8
+        ],
+        "coordonneeX": 0,
+        "coordonneeY": 1,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 5,
+        "liaisons": [
+          9
+        ],
+        "coordonneeX": 1,
+        "coordonneeY": 1,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 6,
+        "liaisons": [
+          7,
+          2
+        ],
+        "coordonneeX": 2,
+        "coordonneeY": 1,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 7,
+        "liaisons": [
+          11,
+          6
+        ],
+        "coordonneeX": 3,
+        "coordonneeY": 1,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 8,
+        "liaisons": [
+          4,
+          9,
+          12
+        ],
+        "coordonneeX": 0,
+        "coordonneeY": 2,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 9,
+        "liaisons": [
+          8,
+          5
+        ],
+        "coordonneeX": 1,
+        "coordonneeY": 2,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 10,
+        "liaisons": [
+          14,
+          11
+        ],
+        "coordonneeX": 2,
+        "coordonneeY": 2,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 11,
+        "liaisons": [
+          10,
+          7,
+          15
+        ],
+        "coordonneeX": 3,
+        "coordonneeY": 2,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 12,
+        "liaisons": [
+          8
+        ],
+        "coordonneeX": 0,
+        "coordonneeY": 3,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 13,
+        "liaisons": [
+          14
+        ],
+        "coordonneeX": 1,
+        "coordonneeY": 3,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 14,
+        "liaisons": [
+          13,
+          10
+        ],
+        "coordonneeX": 2,
+        "coordonneeY": 3,
+        "marque": -1,
+        "parcouru": true
+      },
+      {
+        "indiceSommet": 15,
+        "liaisons": [
+          11
+        ],
+        "coordonneeX": 3,
+        "coordonneeY": 3,
+        "marque": -1,
+        "parcouru": true
+      }
+    ],
+    "nombreColonnesLabyrinthe": 4,
+    "nombreLignesLabyrinthe": 4
+  }
+}

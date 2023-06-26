@@ -1,0 +1,317 @@
+{
+  "positionActuelle": {
+    "indiceSommet": 5,
+    "liaisons": [
+      0,
+      6
+    ],
+    "coordonneeX": 0,
+    "coordonneeY": 1,
+    "marque": 3,
+    "parcouru": false
+  },
+  "entree": {
+    "indiceSommet": 0,
+    "liaisons": [
+      5
+    ],
+    "coordonneeX": 0,
+    "coordonneeY": 0,
+    "marque": 3,
+    "parcouru": false
+  },
+  "sortie": {
+    "indiceSommet": 20,
+    "liaisons": [
+      21
+    ],
+    "coordonneeX": 0,
+    "coordonneeY": 4,
+    "marque": 3,
+    "parcouru": false
+  },
+  "nombreDeColonne": 5,
+  "nombreDeLigne": 5,
+  "indiceSommetActuel": 5,
+  "nombreCasesParcourues": 1,
+  "graphe": {
+    "valeurMarqueCourante": 6,
+    "listeSommets": [
+      {
+        "indiceSommet": 0,
+        "liaisons": [
+          5
+        ],
+        "coordonneeX": 0,
+        "coordonneeY": 0,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 1,
+        "liaisons": [
+          6,
+          2
+        ],
+        "coordonneeX": 1,
+        "coordonneeY": 0,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 2,
+        "liaisons": [
+          7,
+          1,
+          3
+        ],
+        "coordonneeX": 2,
+        "coordonneeY": 0,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 3,
+        "liaisons": [
+          2
+        ],
+        "coordonneeX": 3,
+        "coordonneeY": 0,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 4,
+        "liaisons": [
+          9
+        ],
+        "coordonneeX": 4,
+        "coordonneeY": 0,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 5,
+        "liaisons": [
+          0,
+          6
+        ],
+        "coordonneeX": 0,
+        "coordonneeY": 1,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 6,
+        "liaisons": [
+          11,
+          1,
+          5
+        ],
+        "coordonneeX": 1,
+        "coordonneeY": 1,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 7,
+        "liaisons": [
+          12,
+          2
+        ],
+        "coordonneeX": 2,
+        "coordonneeY": 1,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 8,
+        "liaisons": [
+          9
+        ],
+        "coordonneeX": 3,
+        "coordonneeY": 1,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 9,
+        "liaisons": [
+          4,
+          14,
+          8
+        ],
+        "coordonneeX": 4,
+        "coordonneeY": 1,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 10,
+        "liaisons": [
+          15
+        ],
+        "coordonneeX": 0,
+        "coordonneeY": 2,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 11,
+        "liaisons": [
+          6,
+          16
+        ],
+        "coordonneeX": 1,
+        "coordonneeY": 2,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 12,
+        "liaisons": [
+          7
+        ],
+        "coordonneeX": 2,
+        "coordonneeY": 2,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 13,
+        "liaisons": [
+          14,
+          18
+        ],
+        "coordonneeX": 3,
+        "coordonneeY": 2,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 14,
+        "liaisons": [
+          9,
+          13
+        ],
+        "coordonneeX": 4,
+        "coordonneeY": 2,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 15,
+        "liaisons": [
+          16,
+          10
+        ],
+        "coordonneeX": 0,
+        "coordonneeY": 3,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 16,
+        "liaisons": [
+          21,
+          17,
+          11,
+          15
+        ],
+        "coordonneeX": 1,
+        "coordonneeY": 3,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 17,
+        "liaisons": [
+          16
+        ],
+        "coordonneeX": 2,
+        "coordonneeY": 3,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 18,
+        "liaisons": [
+          13,
+          23
+        ],
+        "coordonneeX": 3,
+        "coordonneeY": 3,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 19,
+        "liaisons": [
+          24
+        ],
+        "coordonneeX": 4,
+        "coordonneeY": 3,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 20,
+        "liaisons": [
+          21
+        ],
+        "coordonneeX": 0,
+        "coordonneeY": 4,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 21,
+        "liaisons": [
+          16,
+          20,
+          22
+        ],
+        "coordonneeX": 1,
+        "coordonneeY": 4,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 22,
+        "liaisons": [
+          23,
+          21
+        ],
+        "coordonneeX": 2,
+        "coordonneeY": 4,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 23,
+        "liaisons": [
+          24,
+          22,
+          18
+        ],
+        "coordonneeX": 3,
+        "coordonneeY": 4,
+        "marque": 3,
+        "parcouru": false
+      },
+      {
+        "indiceSommet": 24,
+        "liaisons": [
+          23,
+          19
+        ],
+        "coordonneeX": 4,
+        "coordonneeY": 4,
+        "marque": 3,
+        "parcouru": false
+      }
+    ],
+    "nombreColonnesLabyrinthe": 5,
+    "nombreLignesLabyrinthe": 5
+  }
+}

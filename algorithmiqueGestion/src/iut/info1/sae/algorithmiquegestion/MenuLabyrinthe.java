@@ -10,6 +10,8 @@ import iut.info1.sae.algorithmiquegestion.affichage.AffichageLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.affichage.AffichageCaseCourante;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.sauvegardes.ChargementEtCreationSauvegarde;
+import iut.info1.sae.algorithmiquegestion.sauvegardes.LectureNomsFichier;
+import iut.info1.sae.algorithmiquegestion.sauvegardes.VerificationInitialisationAttributs;
 
 /**
  * Utilisation du jeu de labyrinthe faisant appel aux classes d'affichages, de
@@ -25,21 +27,21 @@ public class MenuLabyrinthe {
 
     private final static String DEMANDE_COMMANDE = "\n\nEntrez votre/vos commande(s) : ";
 
-    public final static String COMMANDES_MENU_PRINCIPAL
+    private final static String COMMANDES_MENU_PRINCIPAL
     = "Commandes disponibles :"
       + "\n- 1 : Construction d'un labyrinthe"
-      + "\n- 2 : Non implémenté : ouverture d'un labyrinthe sauvegardé"
+      + "\n- 2 : Ouverture d'un labyrinthe sauvegardé"
       + "\n____________________________________________" + DEMANDE_COMMANDE;
 
-    public final static String BIENVENUE = "Bienvenue sur ce jeu de Labyrinthe !";
+    private final static String BIENVENUE = "Bienvenue sur ce jeu de Labyrinthe !";
 
     private static final int HAUTEUR_MINIMALE_LABYRINTHE = 2;
 
     private static final int LONGUEUR_MINIMALE_LABYRINTHE = 2;
 
-    private static final int HAUTEUR_MAXIMALE_LABYRINTHE = 100;
+    private static final int HAUTEUR_MAXIMALE_LABYRINTHE = 1000;
 
-    private static final int LONGUEUR_MAXIMALE_LABYRINTHE = 100;
+    private static final int LONGUEUR_MAXIMALE_LABYRINTHE = 1000;
 
     private static int hauteurLabyrinthe;
 
@@ -115,6 +117,7 @@ public class MenuLabyrinthe {
         Scanner analyseurSaisie;
 
         String saisieMenuPrincipal;
+        String saisieSauvegarde;
 
         boolean saisieLongueurLabyrintheTermine = false;
         boolean saisieHauteurLabyrintheTermine = false;
@@ -123,6 +126,8 @@ public class MenuLabyrinthe {
         boolean saisieTypeAffichageTerminee = false;
 
         boolean resultatValide = false;
+        boolean saisieSauvegardeCorrecte;
+        boolean sauvegardeCorrompue;
 
         System.out.println(COMMANDES_MENU_PRINCIPAL);
 
@@ -161,8 +166,8 @@ public class MenuLabyrinthe {
                 System.out.println(COMMANDE_INEXISTANTE);
             }
             
-            System.out.println("nb lignes et colonne et co sortie " + labyrinthe.getNombreDeColonne() + " "
-            		 		   + labyrinthe.getNombreDeLigne() + " " + labyrinthe.getSortie());
+//            System.out.println("nb lignes et colonne et co sortie " + labyrinthe.getNombreDeColonne() + " "
+//            		 		   + labyrinthe.getNombreDeLigne() + " " + labyrinthe.getSortie());
 
             resultatValide = true;
 
@@ -174,10 +179,40 @@ public class MenuLabyrinthe {
             break;
 
         case CHOIX_CHARGER_UNE_SAUVEGARDE:
-        	labyrinthe = ChargementEtCreationSauvegarde.chargerUneSauvegarde();
-        	if (labyrinthe == null) {
+        	if (LectureNomsFichier.isListeFichiersVide()) {
+        		System.out.println("Il n'y pas de sauvegarde présente");
         		demandeParametresLabyrinthe();
         	}
+        	//else
+        	System.out.println("Voici la liste des sauvegarde :\n");
+        	LectureNomsFichier.listeNomsFichiers();
+	
+			do {
+				saisieSauvegardeCorrecte = true;
+				sauvegardeCorrompue = false;
+				System.out.println("\nEntrez le nom de la sauvegarde :");
+				saisieSauvegarde = analyseurSaisie.next()
+		     		+ analyseurSaisie.nextLine();
+		 	
+			 	if (!LectureNomsFichier.isNomFichierDejaExistant(saisieSauvegarde)) {
+			     	System.out.println("Le nom de la sauvegarde n'existe pas."
+			     			+ "\nVeuillez en choisir une qui figure dans cette liste : \n");
+			     	LectureNomsFichier.listeNomsFichiers();
+			     	saisieSauvegardeCorrecte = false;
+			    } else {
+				    labyrinthe = ChargementEtCreationSauvegarde.chargerUneSauvegarde(saisieSauvegarde);
+				 	if (labyrinthe == null
+			 			|| !VerificationInitialisationAttributs.areTousLesAttributsInitialisé(labyrinthe)) {
+				 		System.out.println("Le labyrinthe demandé à eu un problème de sauvegarde");
+				 		LectureNomsFichier.listeNomsFichiers();
+				 		sauvegardeCorrompue = true;
+				 		
+				 	}
+			    }
+			 	
+			} while (!saisieSauvegardeCorrecte || sauvegardeCorrompue);
+			
+        	//else
 				
         	do {
                 saisieTypeAffichageTerminee = saisirTypeAffichage(analyseurSaisie);

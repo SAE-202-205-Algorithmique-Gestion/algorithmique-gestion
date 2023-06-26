@@ -6,12 +6,14 @@ import com.google.gson.annotations.Expose;
 
 import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.sauvegardes.ChargementEtCreationSauvegarde;
+import iut.info1.sae.algorithmiquegestion.sauvegardes.LectureNomsFichier;
 
 public class JeuxLabyrinthe {
 
 	/** Référence du labyrinthe */
 	private static Labyrinthe labyrinthe;
 	
+	/** Référence des sommet du labyrinthe */
 	private static Sommet[] listeSommets;
 	
 	/** Touche permettant d'aller en haut. */
@@ -50,7 +52,9 @@ public class JeuxLabyrinthe {
 
     /** Entrée récupérant les commandes du joueur. */
     @Expose(serialize = false, deserialize = false)
-    private static Scanner entreeDeplacement = new Scanner(System.in);
+    private static Scanner entreeDeplacementEtSauvegarde = new Scanner(System.in);
+    
+    /** Nom
     
     /** @return Le symbole d'entrée de labyrinthe. */
     public static char getEntreeSymbole() {
@@ -98,10 +102,12 @@ public class JeuxLabyrinthe {
     public static boolean demandeDeplacement() {
     	initialisation();
         boolean saisieCorrecte = true;
-
+        boolean saisieSauvegardeCorrecte = false;
         int indiceSaisieDeplacement;
+        String saisieSauvegarde;
         
-        String saisieDeplacement = entreeDeplacement.next() + entreeDeplacement.nextLine();
+        String saisieDeplacement = entreeDeplacementEtSauvegarde.next()
+        		+ entreeDeplacementEtSauvegarde.nextLine();
 
         saisieDeplacement = saisieDeplacement.replaceAll(" ", "");
 
@@ -140,7 +146,27 @@ public class JeuxLabyrinthe {
 //                parametres = new ParametresLabyrinthe("NOM_BOUCHON", labyrinthe);
 //                sauvegarde = new SauvegardeLabyrinthe(parametres);
 //                sauvegarde.sauvegarderParametres();
-            	ChargementEtCreationSauvegarde.creerUneSauvegarde();
+            	
+            	System.out.println("Entré un nom de sauvegarde qui n'est pas déjà utilisé"
+            				+ "\nVoici la liste des sauvegarde :\n");
+            	LectureNomsFichier.listeNomsFichiers();
+            	
+            	do {
+            		System.out.println("\nEntrez le nom de la sauvegarde :");
+	            	saisieSauvegarde = entreeDeplacementEtSauvegarde.next()
+	                		+ entreeDeplacementEtSauvegarde.nextLine();
+	            	
+	            	if (LectureNomsFichier.isNomFichierDejaExistant(saisieSauvegarde)) {
+	                	System.out.println("Le Nom de la sauvegarde est déjà existante."
+	                			+ "\nVeuillez en choisir une qui ne figure pas dans cette liste : \n");
+	                	LectureNomsFichier.listeNomsFichiers();
+	                } else {
+	                	saisieSauvegardeCorrecte = true;
+	                }
+            	} while (!saisieSauvegardeCorrecte);
+            	
+//            	saisieSauvegarde = DeuxChargementEtCreationSauvegarde2.ajoutExtensionNomSauvegarde(saisieSauvegarde);
+            	ChargementEtCreationSauvegarde.creerUneSauvegarde(saisieSauvegarde);
                 break;
 
             default:
