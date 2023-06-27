@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="15.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iut.info1.sae.algorithmiquegestion.controleurs.ControleurMenuPrincipal">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue dans le jeu du labyrinthe">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Button mnemonicParsing="false" onAction="#creerLabyrinthe" prefHeight="31.0" prefWidth="208.0" text="Créer un nouveau labyrinthe">
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </Button>
+      <Button mnemonicParsing="false" onAction="#chargerLabyrinthe" prefHeight="31.0" prefWidth="208.0" text="Charger une sauvegarde" />
+      <Button mnemonicParsing="false" onAction="#afficherAide" prefWidth="208.0" text="Aide" />
+      <Button mnemonicParsing="false" onAction="#quitter" prefWidth="208.0" text="Quitter">
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </Button>
+   </children>
+   <padding>
+      <Insets top="30.0" />
+   </padding>
+</VBox>

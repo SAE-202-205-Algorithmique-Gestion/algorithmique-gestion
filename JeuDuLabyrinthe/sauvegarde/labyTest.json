@@ -32,7 +32,7 @@
   },
   "nombreDeColonne": 5,
   "nombreDeLigne": 5,
-  "indiceSommetActuel": 5,
+  "indiceSommetActuel": 21,
   "nombreCasesParcourues": 1,
   "graphe": {
     "valeurMarqueCourante": 6,
