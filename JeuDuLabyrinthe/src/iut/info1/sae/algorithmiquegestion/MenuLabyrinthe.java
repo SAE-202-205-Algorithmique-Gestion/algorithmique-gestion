@@ -185,7 +185,7 @@ public class MenuLabyrinthe {
         	}
         	//else
         	System.out.println("Voici la liste des sauvegarde :\n");
-        	LectureNomsFichier.listeNomsFichiers();
+        	LectureNomsFichier.listeNomsFichiersConsole();
 	
 			do {
 				saisieSauvegardeCorrecte = true;
@@ -197,14 +197,14 @@ public class MenuLabyrinthe {
 			 	if (!LectureNomsFichier.isNomFichierDejaExistant(saisieSauvegarde)) {
 			     	System.out.println("Le nom de la sauvegarde n'existe pas."
 			     			+ "\nVeuillez en choisir une qui figure dans cette liste : \n");
-			     	LectureNomsFichier.listeNomsFichiers();
+			     	LectureNomsFichier.listeNomsFichiersConsole();
 			     	saisieSauvegardeCorrecte = false;
 			    } else {
 				    labyrinthe = ChargementEtCreationSauvegarde.chargerUneSauvegarde(saisieSauvegarde);
 				 	if (labyrinthe == null
 			 			|| !VerificationInitialisationAttributs.areTousLesAttributsInitialisé(labyrinthe)) {
 				 		System.out.println("Le labyrinthe demandé à eu un problème de sauvegarde");
-				 		LectureNomsFichier.listeNomsFichiers();
+				 		LectureNomsFichier.listeNomsFichiersConsole();
 				 		sauvegardeCorrompue = true;
 				 		
 				 	}

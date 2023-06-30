@@ -68,6 +68,9 @@ public class Labyrinthe {
 
     /** Nombre de lignes du labyrinthe. */
     private int nombreDeLigne;
+    
+    /** tyoe de d'algorithme de construction choisi pour créer le labyrinthe */
+    private int typeConstruction;
 
     /** Indice du sommet où se situe le joueur. */
     private int indiceSommetActuel;
@@ -78,6 +81,7 @@ public class Labyrinthe {
     /** Graphe servant à créer le labyrinthe. */
     private Graphe graphe;
 
+
     /**
      * Labyrinthe avec son nombre de lignes et de colonnes.
      *
@@ -86,6 +90,7 @@ public class Labyrinthe {
      */
     public Labyrinthe(int nombreDeLignes, int nombreDeColonnes, int typeConstruction) {
         super();
+        this.typeConstruction = typeConstruction;
         if (typeConstruction == 1) {
             this.graphe = new ChainesAscendantes(nombreDeColonnes, nombreDeLignes);
 
@@ -158,6 +163,10 @@ public class Labyrinthe {
     /** @return Le nombre de lignes du labyrinthe. */
     public int getNombreDeLigne() {
         return this.nombreDeLigne;
+    }
+    
+    public int getTypeConstruction() {
+    	return this.typeConstruction;
     }
 
     /** @param entree Le sommet correspondant à l'entrée du labyrinthe. */

@@ -2,8 +2,6 @@ package iut.info1.sae.algorithmiquegestion.composants;
 
 import java.util.Scanner;
 
-import com.google.gson.annotations.Expose;
-
 import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.sauvegardes.ChargementEtCreationSauvegarde;
 import iut.info1.sae.algorithmiquegestion.sauvegardes.LectureNomsFichier;
@@ -17,41 +15,32 @@ public class JeuxLabyrinthe {
 	private static Sommet[] listeSommets;
 	
 	/** Touche permettant d'aller en haut. */
-	@Expose(serialize = false, deserialize = false)
     private static final char HAUT = 'z';
 
     /** Touche permettant d'aller en bas. */
-    @Expose(serialize = false, deserialize = false)
     private static final char BAS = 's';
 
     /** Touche permettant d'aller à droite. */
-    @Expose(serialize = false, deserialize = false)
     private static final char DROITE = 'd';
 
     /** Touche permettant d'aller à gauche. */
-    @Expose(serialize = false, deserialize = false)
     private static final char GAUCHE = 'q';
 
     /**
      * Touche permettant de déclencher le processus de sauvegarde du labyrinthe.
      */
-    @Expose(serialize = false, deserialize = false)
     private static final char SAUVER = 'h';
 
     /** Symbole correspondant à la position du joueur. */
-    @Expose(serialize = false, deserialize = false)
     private static final char SOMMET_ACTUEL_SYMBOLE = 'X';
 
     /** Symbole correspondant à la position du l'entrée. */
-    @Expose(serialize = false, deserialize = false)
     private static final char ENTREE_SYMBOLE = 'E';
 
     /** Symbole correspondant à la position de la sortie. */
-    @Expose(serialize = false, deserialize = false)
     private static final char SORTIE_SYMBOLE = 'S';
 
     /** Entrée récupérant les commandes du joueur. */
-    @Expose(serialize = false, deserialize = false)
     private static Scanner entreeDeplacementEtSauvegarde = new Scanner(System.in);
     
     /** Nom
@@ -149,7 +138,7 @@ public class JeuxLabyrinthe {
             	
             	System.out.println("Entré un nom de sauvegarde qui n'est pas déjà utilisé"
             				+ "\nVoici la liste des sauvegarde :\n");
-            	LectureNomsFichier.listeNomsFichiers();
+            	LectureNomsFichier.listeNomsFichiersConsole();
             	
             	do {
             		System.out.println("\nEntrez le nom de la sauvegarde :");
@@ -159,7 +148,7 @@ public class JeuxLabyrinthe {
 	            	if (LectureNomsFichier.isNomFichierDejaExistant(saisieSauvegarde)) {
 	                	System.out.println("Le Nom de la sauvegarde est déjà existante."
 	                			+ "\nVeuillez en choisir une qui ne figure pas dans cette liste : \n");
-	                	LectureNomsFichier.listeNomsFichiers();
+	                	LectureNomsFichier.listeNomsFichiersConsole();
 	                } else {
 	                	saisieSauvegardeCorrecte = true;
 	                }

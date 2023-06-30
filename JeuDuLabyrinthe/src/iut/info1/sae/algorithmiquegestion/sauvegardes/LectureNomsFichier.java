@@ -1,6 +1,7 @@
 package iut.info1.sae.algorithmiquegestion.sauvegardes;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class LectureNomsFichier {
 
@@ -36,11 +37,20 @@ public class LectureNomsFichier {
     	return false;
     }
     
-    public static void listeNomsFichiers() {
+    public static void listeNomsFichiersConsole() {
     	initialisation();
     	for (File fichier : fichiers) {
     		System.out.println("- " + fichier.getName());
     	}
+    }
+    
+    public static ArrayList<String> listeNomsFichier() {
+    	initialisation();
+    	ArrayList<String> nomsFichiers = new ArrayList<>();
+    	for (File fichier : fichiers) {
+    		nomsFichiers.add(fichier.getName());
+    	}
+    	return nomsFichiers;
     }
     
     public static boolean isListeFichiersVide() {

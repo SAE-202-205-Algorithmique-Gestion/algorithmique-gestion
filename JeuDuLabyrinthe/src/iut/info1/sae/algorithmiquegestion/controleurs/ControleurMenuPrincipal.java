@@ -11,21 +11,21 @@ public class ControleurMenuPrincipal {
 	""";
 	
 	@FXML
-	void creerLabyrinthe() {
+	private void creerLabyrinthe() {
 		ControleurNavigation.changerVue("CreationLabyrinthe.fxml");
 	}
 	@FXML
-	void chargerLabyrinthe() {
+	private void chargerLabyrinthe() {
 		ControleurNavigation.changerVue("ChargementSauvegarde.fxml");
 	}
 	
 	@FXML
-	void afficherAide() {
+	private void afficherAide() {
 		ControleurAlerte.aide(TEXTE_AIDE);
 	}
 	
 	@FXML
-	void quitter() {
+	private void quitter() {
 		Platform.exit();
 	}
 }
