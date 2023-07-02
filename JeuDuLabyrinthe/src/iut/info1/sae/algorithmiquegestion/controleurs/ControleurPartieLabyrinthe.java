@@ -1,44 +1,51 @@
 package iut.info1.sae.algorithmiquegestion.controleurs;
 
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 import iut.info1.sae.algorithmiquegestion.modeles.CreationEtChargementLabyrinthe;
+import iut.info1.sae.algorithmiquegestion.modeles.PartieLabyrinthe;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.text.Text;
 
 public class ControleurPartieLabyrinthe {
-	
-//	@FXML
-//	private Text colonnes;
-//
-//	@FXML
-//	private Text lignes;
-//	
-//	@FXML
-//	private Text construction;
 	
 	@FXML
 	private GridPane gridPane;
 	
 	private Labyrinthe labyrinthe;
+	
+	private Sommet[] listeSommets;
+	
+	private static Image caseCouranteSource = new Image(ControleurPartieLabyrinthe.class.getResource("/images/caseCourante.png").toString());
 
+	private static ImageView caseCourante = new ImageView(caseCouranteSource);
+	
+	public static ImageView getCaseCourante() {
+		return caseCourante;
+	}
+	
 	@FXML
 	private void initialize() {
 		labyrinthe = CreationEtChargementLabyrinthe.getLabyrinthe();
-//		colonnes.setText(colonnes.getText() + labyrinthe.getNombreDeColonne());
-//		lignes.setText(lignes.getText() + labyrinthe.getNombreDeLigne());
-//		construction.setText(construction.getText() + labyrinthe.getTypeConstruction());
+		listeSommets = labyrinthe.getGraphe().getListeSommets();
+		
+		GridPane.setColumnIndex(caseCourante, labyrinthe.getPositionActuelle().getCoordonneeX());
+		GridPane.setRowIndex(caseCourante, labyrinthe.getPositionActuelle().getCoordonneeY());
+		gridPane.getChildren().add(caseCourante);
+//		PartieLabyrinthe.initialiserGridPane(gridPane);
+		
 		affichageLabyrinthe();
+		affichageEntreeSortie();
+		PartieLabyrinthe.deplacement();
 	}
 	
 	@FXML
@@ -65,101 +72,116 @@ public class ControleurPartieLabyrinthe {
 		
 	}
 	
-	@FXML
+	
 	private void affichageLabyrinthe() {
 		ImageView murGauche;
 		ImageView murDroite;
 		ImageView murHaut;
 		ImageView murBas;
-		Image mur1Chemin;
-		mur1Chemin = new Image(getClass().getResource("/images/murnoir1.png").toString());
+		Image mur1Source;
+		mur1Source = new Image(getClass().getResource("/images/murnoir1.png").toString());
 		ObservableList<ColumnConstraints> columnConstraintsList
 			= gridPane.getColumnConstraints();
 		
-//		ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>(new Image("/images/murnoir1.png"));
-//
-//        // Ajouter les ImageView avec la même image
-//        for (int i = 0; i < 5; i++) {
-//            ImageView imageView = new ImageView();
-//            imageView.imageProperty().bind(imageProperty);
-//            Insets marginsMurBas = new Insets(45, 0, 0, 0);
-//    		imageView.setFitHeight(5);
-//    		imageView.setFitWidth(columnConstraintsList.get(0).getPrefWidth() /2);
-//    	    GridPane.setMargin(imageView, marginsMurBas);
-//    		GridPane.setRowIndex(imageView, 0);
-//    		GridPane.setColumnIndex(imageView, 0);
-//            gridPane.add(imageView, i, 0);
-//        }
 		//MurGauche
 		murGauche = new ImageView();
-		murGauche.setImage(mur1Chemin);
-//		murGauche.setFitHeight(columnConstraintsList.get(0).getPrefWidth() /2);
-//		murGauche.setFitWidth(5);
+		murGauche.setImage(mur1Source);
 		Insets marginsMurGauche = new Insets(0, 0, 0, 0);
-//		GridPane.setRowIndex(murGauche, 0);
-//		GridPane.setColumnIndex(murGauche, 0);
-//		this.gridPane.getChildren().add(murGauche);
 		
 		//MurHaut
 		murHaut = new ImageView();
-		murHaut.setImage(mur1Chemin);
-//		murHaut.setFitHeight(5);
-//		murHaut.setFitWidth(columnConstraintsList.get(0).getPrefWidth() /2);
+		murHaut.setImage(mur1Source);
 		Insets marginsMurHaut = new Insets(-45, 0, 0, 0);
-//	    GridPane.setMargin(murHaut, marginsMurHaut);
-//		GridPane.setRowIndex(murHaut, 0);
-//		GridPane.setColumnIndex(murHaut, 0);
-//		this.gridPane.getChildren().add(murHaut);
 		
 		//MurDroite
 		murDroite = new ImageView();
-		murDroite.setImage(mur1Chemin);
-//		murDroite.setFitHeight(columnConstraintsList.get(0).getPrefWidth() /2);
-//		murDroite.setFitWidth(5);
+		murDroite.setImage(mur1Source);
 		Insets marginsMurDroite = new Insets(0, 0, 0, 45);
-//	    GridPane.setMargin(murDroite, marginsMurDroite);
-//		GridPane.setRowIndex(murDroite, 0);
-//		GridPane.setColumnIndex(murDroite, 0);
-//		this.gridPane.getChildren().add(murDroite);
-		
+
 		//MurBas
 		murBas = new ImageView();
-		murBas.setImage(mur1Chemin);
+		murBas.setImage(mur1Source);
 		Insets marginsMurBas = new Insets(45, 0, 0, 0);
-//		murBas.setFitHeight(5);
-//		murBas.setFitWidth(columnConstraintsList.get(0).getPrefWidth() /2);
-//	    GridPane.setMargin(murBas, marginsMurBas);
-//		GridPane.setRowIndex(murBas, 0);
-//		GridPane.setColumnIndex(murBas, 0);
-//		this.gridPane.getChildren().add(murBas);
 
-//		gridPane.add(murBas, 0, 1);
-//		gridPane.add(murBas, 1, 0);
+		for (int iSommetCourant = 0;
+			iSommetCourant < labyrinthe.getGraphe().getNombreSommets();
+			iSommetCourant++) {
+			
+//			for (int iTableauSommetLie = 0;
+//				iTableauSommetLie
+//				< labyrinthe.getGraphe().getListeSommets()[iSommetCourant].getLiaisons().size();
+//				iTableauSommetLie++) {
+			
+				
+			//TODO afficher les Murs en fonction des liaisons des sommets
+			if (!labyrinthe.getGraphe().sommetExiste(iSommetCourant -1)
+				|| !listeSommets[iSommetCourant].liaisonExiste(listeSommets[iSommetCourant - 1])) {
+				
+				affichageImagesMurs(marginsMurGauche, columnConstraintsList.get(0).getPrefWidth() /2, 5 + 1, iSommetCourant);
+			}
+			
+			if (!labyrinthe.getGraphe().sommetExiste(iSommetCourant - labyrinthe.getNombreDeColonne())
+				|| !listeSommets[iSommetCourant].liaisonExiste(listeSommets[iSommetCourant - labyrinthe.getNombreDeColonne()])) {
+				
+			    affichageImagesMurs(marginsMurHaut, 5 + 1, columnConstraintsList.get(0).getPrefWidth() /2, iSommetCourant);
+				
+			}
+			
+			if (!labyrinthe.getGraphe().sommetExiste(iSommetCourant +1)
+				|| !listeSommets[iSommetCourant].liaisonExiste(listeSommets[iSommetCourant +1])) {
+					
+				affichageImagesMurs(marginsMurDroite, columnConstraintsList.get(0).getPrefWidth() /2, 5 + 1, iSommetCourant);
+			}
+			
+			if (!labyrinthe.getGraphe().sommetExiste(iSommetCourant + labyrinthe.getNombreDeColonne())
+				|| !listeSommets[iSommetCourant].liaisonExiste(listeSommets[iSommetCourant + labyrinthe.getNombreDeColonne()])) {
+				
+			    affichageImagesMurs(marginsMurBas, 5 + 1, columnConstraintsList.get(0).getPrefWidth() /2, iSommetCourant);
+			}
+		}
 		
-	    
-	    affichageImagesMurs(marginsMurGauche, columnConstraintsList.get(0).getPrefWidth() /2, 5 + 1);
-	    affichageImagesMurs(marginsMurHaut, 5 + 1, columnConstraintsList.get(0).getPrefWidth() /2);
-	    affichageImagesMurs(marginsMurDroite, columnConstraintsList.get(0).getPrefWidth() /2, 5 + 1);
-	    affichageImagesMurs(marginsMurBas, 5 + 1, columnConstraintsList.get(0).getPrefWidth() /2);
 //		gridPane.setGridLinesVisible(true);
 	}
-//	
 	
-	private void affichageImagesMurs(Insets marge, double hauteur, double largeur) {
+	private void affichageImagesMurs(Insets marge, double hauteur, double largeur, int indiceSommet) {
 		// Créer une propriété pour l'image commune
         ObjectProperty<Image> imageProperty
         	= new SimpleObjectProperty<>(new Image("/images/murnoir1.png"));
 
         // Ajouter les ImageView avec la même image
-        for (int indexLigne = 0; indexLigne < labyrinthe.getNombreDeLigne(); indexLigne++) {
-        	for (int indexColonne = 0; indexColonne < labyrinthe.getNombreDeColonne(); indexColonne++) {
-        		ImageView imageMurs = new ImageView();
-        		imageMurs.imageProperty().bind(imageProperty);
-        		imageMurs.setFitHeight(hauteur);
-        		imageMurs.setFitWidth(largeur);
-        		GridPane.setMargin(imageMurs, marge);
-        		gridPane.add(imageMurs, indexColonne, indexLigne);
-        	}
-        }
+        
+		ImageView imageMurs = new ImageView();
+		imageMurs.imageProperty().bind(imageProperty);
+		imageMurs.setFitHeight(hauteur);
+		imageMurs.setFitWidth(largeur);
+		GridPane.setMargin(imageMurs, marge);
+		gridPane.add(imageMurs,
+		listeSommets[indiceSommet].getCoordonneeX(),
+		listeSommets[indiceSommet].getCoordonneeY());
+        
+	}
+	
+	private void affichageEntreeSortie() {
+		Image entreeSource;
+		Image sortieSource;
+		ImageView entree;
+		ImageView sortie;
+		Insets entreeSortieMarge;
+		
+		entreeSource = new Image(getClass().getResource("/images/Entrée.png").toString());
+		sortieSource = new Image(getClass().getResource("/images/Sortie.png").toString());
+		entree = new ImageView(entreeSource);
+		sortie = new ImageView(sortieSource);
+		
+		entreeSortieMarge = new Insets(5);
+		GridPane.setMargin(entree, entreeSortieMarge);
+		GridPane.setMargin(sortie, entreeSortieMarge);
+		gridPane.add(sortie, labyrinthe.getSortie().getCoordonneeX(), labyrinthe.getSortie().getCoordonneeY());
+		gridPane.add(entree, labyrinthe.getEntree().getCoordonneeX(), labyrinthe.getEntree().getCoordonneeY());
+	}
+	
+	public static void gestionPartieGagnee() {
+		ControleurAlerte.alerte("Bien joué, vous avez gagné", "Partie Gagné", AlertType.INFORMATION);
+		ControleurNavigation.changerVue("MenuPrincipal.fxml");
 	}
 }
