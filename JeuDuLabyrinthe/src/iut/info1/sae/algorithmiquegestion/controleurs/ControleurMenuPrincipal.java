@@ -1,11 +1,12 @@
 package iut.info1.sae.algorithmiquegestion.controleurs;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.application.Platform;
 
 public class ControleurMenuPrincipal {
 
-	private static final String TEXTE_AIDE =
+	static final String TEXTE_AIDE =
 	"""
 	//explication du jeu//
 	""";
@@ -21,7 +22,7 @@ public class ControleurMenuPrincipal {
 	
 	@FXML
 	private void afficherAide() {
-		ControleurAlerte.aide(TEXTE_AIDE);
+		ControleurAlerte.autreAlerte(TEXTE_AIDE, "Explication du jeu", AlertType.INFORMATION);
 	}
 	
 	@FXML

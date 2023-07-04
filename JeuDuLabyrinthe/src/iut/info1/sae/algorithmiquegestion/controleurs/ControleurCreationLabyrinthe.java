@@ -23,27 +23,18 @@ public class ControleurCreationLabyrinthe {
 	
 	@FXML
 	private void suivant() {
-		gestionChampsSaisi();
-		ControleurNavigation.changerVue("PartieLabyrinthe.fxml");
-		
-	}
-	
-	private void gestionChampsSaisi() {
 		final String MESSAGE_ERREUR
-			= "Vous n'avez pas choisi de valeur dans au moins l'une des boîte de saisie";
+		= "Vous n'avez pas choisi de valeur dans au moins l'une des boîte de saisie";
 		final String TITRE_ERREUR = "Problème de saisie";
 		
-		int nombreLignes;
-		int nombreColonnes;
-		String typeConstruction;
-		int typeConstructionInt;
-		
-		if (choixNombreLignes.getValue() ==  null
-			|| choixNombreColonnes.getValue() ==  null
-			|| choixConstruction.getValue() == null) {
-			
-			ControleurAlerte.alerte(MESSAGE_ERREUR, TITRE_ERREUR, Alert.AlertType.ERROR);
+		if (!isBoitesSaisiesRemplis()) {
+			ControleurAlerte.autreAlerte(MESSAGE_ERREUR, TITRE_ERREUR, Alert.AlertType.ERROR);
 		} else {
+			int nombreLignes;
+			int nombreColonnes;
+			String typeConstruction;
+			int typeConstructionInt;
+			
 			nombreLignes = Integer.parseInt(choixNombreLignes.getValue());
 			nombreColonnes = Integer.parseInt(choixNombreColonnes.getValue());
 			typeConstruction = choixConstruction.getValue();
@@ -53,9 +44,16 @@ public class ControleurCreationLabyrinthe {
 			} else {
 				typeConstructionInt = 2;
 			}
-			
 			CreationEtChargementLabyrinthe.creationLabyrinthe(nombreLignes, nombreColonnes, typeConstructionInt);
+			ControleurNavigation.changerVue("PartieLabyrinthe.fxml");
 		}
+		
+	}
+	
+	private boolean isBoitesSaisiesRemplis() {
+		return choixNombreLignes.getValue() !=  null
+			&& choixNombreColonnes.getValue() !=  null
+			&& choixConstruction.getValue() != null;
 	}
 	
 	@FXML

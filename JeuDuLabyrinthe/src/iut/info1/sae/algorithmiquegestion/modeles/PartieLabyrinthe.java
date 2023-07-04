@@ -39,6 +39,10 @@ public class PartieLabyrinthe {
     /** Touche permettant d'aller à gauche. */
     private static final String GAUCHE = "Q";
     
+    public static Labyrinthe getLabyrinthe() {
+    	return labyrinthe;
+    }
+    
     public static Sommet getPositionActuelle() {
     	return labyrinthe.getPositionActuelle();
     }
@@ -61,24 +65,31 @@ public class PartieLabyrinthe {
 	
 	public static void deplacement() {
 		initialisation();
+		/* */
 //		StackPane myNode = new StackPane(gridPane); // Nœud sur lequel nous voulons écouter les événements
         scene.setOnKeyPressed(event -> {
-            // Code à exécuter lorsque la touche est enfoncée
-            System.out.println("Touche enfoncée : " + event.getCode());
-            demandeDeplacement(event.getCode().toString());
-    		positionActuelle = PartieLabyrinthe.getPositionActuelle();
-		
-			GridPane.setMargin(caseCourante, caseCouranteMarge);
-			GridPane.setColumnIndex(caseCourante, positionActuelle.getCoordonneeX());
-			GridPane.setRowIndex(caseCourante, positionActuelle.getCoordonneeY());
+        	/* Pour qu'on arrête la possibilité de bouger lorsque la partie est terminé
+        	 * Je pense que ce n'est pas la meilleur façon de faire */
+        	if (ControleurNavigation.getVueCourante().equals("PartieLabyrinthe.fxml")) {
+        		// Code à exécuter lorsque la touche est enfoncée
+	            System.out.println("Touche enfoncée : " + event.getCode());
+	            demandeDeplacement(event.getCode().toString());
+	    		positionActuelle = PartieLabyrinthe.getPositionActuelle();
 			
-            System.out.println("Case courante " + labyrinthe.getIndiceSommetActuel());
-            System.out.println("Ses coordonées " + labyrinthe.getPositionActuelle());
-            System.out.println("nombre de case parcouru " + labyrinthe.getNombreCasesParcourues());
+				GridPane.setMargin(caseCourante, caseCouranteMarge);
+				GridPane.setColumnIndex(caseCourante, positionActuelle.getCoordonneeX());
+				GridPane.setRowIndex(caseCourante, positionActuelle.getCoordonneeY());
+				
+	            System.out.println("Case courante " + labyrinthe.getIndiceSommetActuel());
+	            System.out.println("Ses coordonées " + labyrinthe.getPositionActuelle());
+	            System.out.println("nombre de case parcouru " + labyrinthe.getNombreCasesParcourues());
+	            
+	            if (isPartieGagnee()) {
+//	            	event.consume(); //ne fonctionne pas
+	            	ControleurPartieLabyrinthe.gestionPartieGagnee();
+	            }
+        	}
             
-            if (isPartieGagnee()) {
-            	ControleurPartieLabyrinthe.gestionPartieGagnee();
-            }
         });
 	}
 	
@@ -134,5 +145,4 @@ public class PartieLabyrinthe {
 //	public static void initialiserGridPane(GridPane leGridPane) {
 //		gridPane = leGridPane;
 //	}
-	
 }

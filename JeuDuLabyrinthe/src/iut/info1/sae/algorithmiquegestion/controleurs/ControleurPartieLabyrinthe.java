@@ -1,6 +1,9 @@
 package iut.info1.sae.algorithmiquegestion.controleurs;
 
+import java.util.ArrayList;
+
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 import iut.info1.sae.algorithmiquegestion.modeles.CreationEtChargementLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.modeles.PartieLabyrinthe;
@@ -9,7 +12,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +27,10 @@ public class ControleurPartieLabyrinthe {
 	
 	private Sommet[] listeSommets;
 	
+	private int nombreSommetMinimalAParcourir;
+	
+	private ArrayList<Sommet> sommetsDuParcours;
+	
 	private static Image caseCouranteSource = new Image(ControleurPartieLabyrinthe.class.getResource("/images/caseCourante.png").toString());
 
 	private static ImageView caseCourante = new ImageView(caseCouranteSource);
@@ -35,6 +41,8 @@ public class ControleurPartieLabyrinthe {
 	
 	@FXML
 	private void initialize() {
+//		nombreSommetMinimalAParcourir = ParcoursProfondeur.algorithmeParcours();
+//		sommetsDuParcours = ParcoursProfondeur.getParcoursListe();
 		labyrinthe = CreationEtChargementLabyrinthe.getLabyrinthe();
 		listeSommets = labyrinthe.getGraphe().getListeSommets();
 		
@@ -56,8 +64,8 @@ public class ControleurPartieLabyrinthe {
 		
 		final String TITRE_FENETRE = "Confirmation quitter partie";
 		
-		if (ControleurAlerte.alerte
-				(MESSAGE_ALERTE_ABANDONNER, TITRE_FENETRE, Alert.AlertType.CONFIRMATION)) {
+		if (ControleurAlerte.alerteConfirmation
+				(MESSAGE_ALERTE_ABANDONNER, TITRE_FENETRE)) {
 			ControleurNavigation.changerVue("MenuPrincipal.fxml");
 		}
 	}
@@ -69,7 +77,12 @@ public class ControleurPartieLabyrinthe {
 	
 	@FXML
 	private void afficherAide() {
-		
+		ControleurAlerte.autreAlerte(ControleurMenuPrincipal.TEXTE_AIDE, "Explication du jeu", AlertType.INFORMATION);
+	}
+	
+	@FXML
+	private void sauvegarder() {
+		ControleurNavigation.changerVue("SauvegarderLabyrinthe.fxml");
 	}
 	
 	
@@ -124,7 +137,6 @@ public class ControleurPartieLabyrinthe {
 				|| !listeSommets[iSommetCourant].liaisonExiste(listeSommets[iSommetCourant - labyrinthe.getNombreDeColonne()])) {
 				
 			    affichageImagesMurs(marginsMurHaut, 5 + 1, columnConstraintsList.get(0).getPrefWidth() /2, iSommetCourant);
-				
 			}
 			
 			if (!labyrinthe.getGraphe().sommetExiste(iSommetCourant +1)
@@ -181,7 +193,7 @@ public class ControleurPartieLabyrinthe {
 	}
 	
 	public static void gestionPartieGagnee() {
-		ControleurAlerte.alerte("Bien joué, vous avez gagné", "Partie Gagné", AlertType.INFORMATION);
+		ControleurAlerte.autreAlerte("Bien joué, vous avez gagné", "Partie Gagné", AlertType.INFORMATION);
 		ControleurNavigation.changerVue("MenuPrincipal.fxml");
 	}
 }

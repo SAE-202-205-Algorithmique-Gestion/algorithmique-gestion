@@ -9,8 +9,9 @@ import java.io.Writer;
 import java.io.IOException;
 //import java.util.Scanner;
 
-import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
+//import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
+import iut.info1.sae.algorithmiquegestion.modeles.PartieLabyrinthe;
 
 public class ChargementEtCreationSauvegarde {
 	
@@ -30,7 +31,8 @@ public class ChargementEtCreationSauvegarde {
 	
 	public static void creerUneSauvegarde(String nomSauvegarde) {
 		String nomSauvegardeAvecExtension;
-		labyrinthe = MenuLabyrinthe.getLabyrinthe();
+//		labyrinthe = MenuLabyrinthe.getLabyrinthe();
+		labyrinthe = PartieLabyrinthe.getLabyrinthe();
 		initialisation();
 		
         Gson gson = gsonBuilder.setPrettyPrinting().create();
@@ -55,7 +57,7 @@ public class ChargementEtCreationSauvegarde {
 		Gson gson = gsonBuilder.create();
 		
 		nomSauvegardeAvecExtension = ajoutExtensionNomSauvegarde(nomSauvegarde);
-        try (FileReader reader = new FileReader(CHEMIN_REPERTOIRE + nomSauvegardeAvecExtension/*nomSauvegarde*/)) {
+        try (FileReader reader = new FileReader(CHEMIN_REPERTOIRE + nomSauvegardeAvecExtension)) {
             // Désérialisez le contenu JSON en un objet Java
             labyrinthe = gson.fromJson(reader, Labyrinthe.class);
 

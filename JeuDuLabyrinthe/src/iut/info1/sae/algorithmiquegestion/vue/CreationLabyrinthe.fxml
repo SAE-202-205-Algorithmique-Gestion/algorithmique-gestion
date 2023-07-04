@@ -33,6 +33,9 @@
 		            <String fx:value="10" />
 		        </FXCollections>
 	    	</items>
+         <VBox.margin>
+            <Insets bottom="15.0" />
+         </VBox.margin>
       </ChoiceBox>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de colonnes" />
       <ChoiceBox fx:id="choixNombreColonnes" prefWidth="150.0">
@@ -49,6 +52,9 @@
 	              <String fx:value="10" />
 	          </FXCollections>
     	  </items>
+         <VBox.margin>
+            <Insets bottom="15.0" />
+         </VBox.margin>
       </ChoiceBox>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithme de création" />
       <ChoiceBox fx:id="choixConstruction" prefWidth="150.0">
@@ -58,9 +64,15 @@
 	              <String fx:value="Création par descente en profondeur" />
 	          </FXCollections>
     	  </items>
+         <VBox.margin>
+            <Insets bottom="15.0" />
+         </VBox.margin>
       </ChoiceBox>
-      <Button mnemonicParsing="false" onAction="#suivant" text="Suivant" />
-      <Button mnemonicParsing="false" onAction="#retour" text="Retour" />
+      <Button mnemonicParsing="false" onAction="#suivant" prefHeight="31.0" prefWidth="125.0" text="Suivant">
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin></Button>
+      <Button mnemonicParsing="false" onAction="#retour" prefHeight="31.0" prefWidth="125.0" text="Retour" />
    </children>
    <opaqueInsets>
       <Insets />

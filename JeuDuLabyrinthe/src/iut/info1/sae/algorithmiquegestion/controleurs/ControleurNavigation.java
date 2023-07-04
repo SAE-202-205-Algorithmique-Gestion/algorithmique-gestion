@@ -34,6 +34,8 @@ public class ControleurNavigation {
 	 */
 	private static Scene sceneCourante;
 	
+	
+	private static String vueCourante;
 	/**
 	 * (Re)définie directement l'objet de la scène
 	 * courante. Cette information est utile lors du 
@@ -68,6 +70,7 @@ public class ControleurNavigation {
 							RACINE_VUES + routeVueFXML));
 			
 			sceneCourante.setRoot(racine);
+			vueCourante = routeVueFXML;
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -80,6 +83,10 @@ public class ControleurNavigation {
 	 */
 	public static Scene getScene() {
 		return sceneCourante;
+	}
+	
+	public static String getVueCourante() {
+		return vueCourante;
 	}
 	
 }
