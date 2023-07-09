@@ -94,7 +94,7 @@ public class AffichageLabyrinthe {
         System.out.println(PARTIE_GAGNEE);
         System.out.print(PARCOURS_FIN);
         System.out.println("\nLe parcours optimal de ce labyrinthe passe par "
-        				   + ParcoursProfondeur.algorithmeParcours() + " cases.");
+        				   + ParcoursProfondeur.algorithmeParcours(labyrinthe.getEntree().getIndiceSommet()) + " cases.");
         
         System.out.print("Vous avez parcouru ce labyrinthe en "
         				 + labyrinthe.getNombreCasesParcourues() + " cases.");

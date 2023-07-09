@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iut.info1.sae.algorithmiquegestion.controleurs.ControleurChoixAffichage">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choix Affichage Labyrinthe">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </Text>
+      <Label text="choix de l'affichage">
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </Label>
+      <ChoiceBox fx:id="choixAffichage" prefHeight="31.0" prefWidth="125.0" >
+      	<items>
+	        <FXCollections fx:factory="observableArrayList">
+	            <String fx:value="Labyrinthe entier" />
+	            <String fx:value="Case courante uniquement (avec mouvement)" />
+	            <String fx:value="Case courante uniquement (sans mouvement)" />
+	        </FXCollections>
+    	</items>
+      </ChoiceBox>
+      <Button mnemonicParsing="false" onAction="#suivant" prefHeight="31.0" prefWidth="125.0" text="Suivant">
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+      </Button>
+      <Button mnemonicParsing="false" onAction="#retour" prefHeight="31.0" prefWidth="125.0" text="Retour">
+         <VBox.margin>
+            <Insets top="45.0" />
+         </VBox.margin>
+      </Button>
+   </children>
+</VBox>

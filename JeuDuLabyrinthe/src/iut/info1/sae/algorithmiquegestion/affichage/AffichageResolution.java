@@ -41,7 +41,7 @@ public class AffichageResolution {
 	public static void main(String[] args) {
 		labyrinthe = new Labyrinthe(5, 5, 1);
 		listeSommets = labyrinthe.getGraphe().getListeSommets();
-		ParcoursProfondeur.algorithmeParcours();
+		ParcoursProfondeur.algorithmeParcours(labyrinthe.getEntree().getIndiceSommet());
 		
 		affichageParcoursSolution();
 	}

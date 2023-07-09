@@ -4,7 +4,8 @@
  */
 package iut.info1.sae.algorithmiquegestion.composants;
 
-import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
+//import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
+import iut.info1.sae.algorithmiquegestion.modeles.CreationEtChargementLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.piles.Pile;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class ParcoursProfondeur {
 
     private static Labyrinthe labyrinthe;
     
+    private static Sommet[] listeSommets;
+    
     private static Pile parcours;
     
     private static ArrayList<Sommet> parcoursListe = new ArrayList<>();
@@ -33,12 +36,16 @@ public class ParcoursProfondeur {
     }
     
     /**
-     * Parcours du labyrinthe afin de determiner le chemin direct allant de l'entrée
-     * à la sortie.
+     * Parcours du labyrinthe afin de determiner le chemin direct 
+     * allant de l'indice du sommet en argument à la sortie.
+     * @param indice du sommet de début du parcours
+     * @return le nombre de de sommet minimum à parcourir
+     * pour allez jusqu'à la sortie.
      */
-    public static int algorithmeParcours() {
-
-    	labyrinthe = MenuLabyrinthe.getLabyrinthe();
+    public static int algorithmeParcours(int indiceDepartParcours) {
+//    	labyrinthe = MenuLabyrinthe.getLabyrinthe();
+    	labyrinthe = CreationEtChargementLabyrinthe.getLabyrinthe();
+    	listeSommets = labyrinthe.getGraphe().getListeSommets();
         parcours = new Pile();
         Sommet sommetCourant;
         Sommet sommetAEmpiler;
@@ -49,10 +56,10 @@ public class ParcoursProfondeur {
             sommet.setParcouru(false);
         }
 
-        parcours.empiler(labyrinthe.getEntree());
-        labyrinthe.getEntree().setParcouru(true);
-        do {
-            sommetCourant = (Sommet) parcours.sommet();
+        parcours.empiler(listeSommets[indiceDepartParcours]);
+        listeSommets[indiceDepartParcours].setParcouru(true);
+        sommetCourant = (Sommet) parcours.sommet();
+        while (!sommetCourant.equals(labyrinthe.getSortie())) {
             listeSommetsAEmpiler = listeSommetsLiesNonParcourus(sommetCourant);
 
             if (listeSommetsAEmpiler.size() == 0) {
@@ -62,8 +69,9 @@ public class ParcoursProfondeur {
                 parcours.empiler(sommetAEmpiler);
                 sommetAEmpiler.setParcouru(true);
             }
+            sommetCourant = (Sommet) parcours.sommet();
 
-        } while (!sommetCourant.equals(labyrinthe.getSortie()));
+        }
         parcours.empiler(labyrinthe.getSortie());
 
         System.out.println("\n");
@@ -74,11 +82,11 @@ public class ParcoursProfondeur {
             longueurParcours++;
         }
         
-        /* Suppression de l'entrée et de la sortie */
+        /* Suppression de l'indiceDepartParcours et de la sortie */
         parcoursListe.remove(0);
         parcoursListe.remove(parcoursListe.size() -1);
         
-        // (longueurParcours - 1) sert à ne pas compter l'entrée dans le parcours
+        // -1 pour ne pas compter l'indiceDepartParcours dans le parcours
         return longueurParcours -1;
     }
 

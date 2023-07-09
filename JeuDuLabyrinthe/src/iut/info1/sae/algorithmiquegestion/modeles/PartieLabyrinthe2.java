@@ -6,13 +6,15 @@ import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 import iut.info1.sae.algorithmiquegestion.controleurs.ControleurNavigation;
-import iut.info1.sae.algorithmiquegestion.controleurs.ControleurPartieLabyrinthe;
+//import iut.info1.sae.algorithmiquegestion.controleurs.ControleurPartieLabyrinthe;
+import iut.info1.sae.algorithmiquegestion.controleurs.ControleurPartieLabyrinthe2;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
-public class PartieLabyrinthe {
+public class PartieLabyrinthe2 {
 	
 //	private static GridPane gridPane;
 	
@@ -28,7 +30,7 @@ public class PartieLabyrinthe {
 	
 	private static Scene scene;
 	
-	private static ImageView caseCourante = ControleurPartieLabyrinthe.getCaseCourante();
+	private static ImageView caseCourante = ControleurPartieLabyrinthe2.getCaseCourante();
 	
 	private static Insets caseCouranteMarge = new Insets(5);
 	
@@ -71,35 +73,63 @@ public class PartieLabyrinthe {
 		return labyrinthe.getPositionActuelle().equals(labyrinthe.getSortie());
 	}
 	
-	public static void deplacement() {
+	public static void deplacementLabyEntier() {
 		initialisation();
 		
 		/* on pourrais le faire l'eventListener sur le gridPane au lieu de sur la scene */
 //		StackPane myNode = new StackPane(gridPane); // Nœud sur lequel nous voulons écouter les événements
         scene.setOnKeyPressed(event -> {
-        	
         	/* Pour qu'on arrête la possibilité de bouger lorsque la partie est terminé
         	 * Je pense que ce n'est pas la meilleur façon de faire */
         	if (ControleurNavigation.getVueCourante().equals("PartieLabyrinthe2.fxml")) {
-        		// Code à exécuter lorsque la touche est enfoncée
-	            System.out.println("Touche enfoncée : " + event.getCode());
-	            demandeDeplacement(event.getCode().toString());
-//	    		sommetActuelle = labyrinthe.getPositionActuelle();
-			
-				GridPane.setColumnIndex(caseCourante, labyrinthe.getPositionActuelle().getCoordonneeX());
-				GridPane.setRowIndex(caseCourante, labyrinthe.getPositionActuelle().getCoordonneeY());
-				
-	            System.out.println("Case courante " + labyrinthe.getIndiceSommetActuel());
-	            System.out.println("Ses coordonées " + labyrinthe.getPositionActuelle());
-	            System.out.println("nombre de case parcouru " + labyrinthe.getNombreCasesParcourues());
-	            
-	            if (isPartieGagnee()) {
+        		deplacement(event);
+        		if (isPartieGagnee()) {
 //	            	event.consume(); //ne fonctionne pas
-	            	ControleurPartieLabyrinthe.gestionPartieGagnee();
-	            }
+        			ControleurPartieLabyrinthe2.gestionPartieGagnee();
+        		}
         	}
-            
+        	
         });
+	}
+	
+	public static void deplacementCCAM() {
+		initialisation();
+		
+		/* on pourrais le faire l'eventListener sur le gridPane au lieu de sur la scene */
+//		StackPane myNode = new StackPane(gridPane); // Nœud sur lequel nous voulons écouter les événements
+		scene.setOnKeyPressed(event -> {
+			/* Pour qu'on arrête la possibilité de bouger lorsque la partie est terminé
+	    	 * Je pense que ce n'est pas la meilleur façon de faire */
+	    	if (ControleurNavigation.getVueCourante().equals("PartieLabyrinthe2.fxml")) {
+	    		ControleurPartieLabyrinthe2.enlevementMurCCAM();
+	    		deplacement(event);
+				ControleurPartieLabyrinthe2.affichageLabyrintheCCAM();
+				if (isPartieGagnee()) {
+//	            	event.consume(); //ne fonctionne pas
+					ControleurPartieLabyrinthe2.gestionPartieGagnee();
+				}
+			}
+			
+			
+		});
+	}
+	
+	private static void deplacement(KeyEvent event) {
+		/* Pour qu'on arrête la possibilité de bouger lorsque la partie est terminé
+    	 * Je pense que ce n'est pas la meilleur façon de faire */
+    	if (ControleurNavigation.getVueCourante().equals("PartieLabyrinthe2.fxml")) {
+    		// Code à exécuter lorsque la touche est enfoncée
+            System.out.println("Touche enfoncée : " + event.getCode());
+            demandeDeplacement(event.getCode().toString());
+//    		sommetActuelle = labyrinthe.getPositionActuelle();
+		
+			GridPane.setColumnIndex(caseCourante, labyrinthe.getPositionActuelle().getCoordonneeX());
+			GridPane.setRowIndex(caseCourante, labyrinthe.getPositionActuelle().getCoordonneeY());
+			
+            System.out.println("Case courante " + labyrinthe.getIndiceSommetActuel());
+            System.out.println("Ses coordonées " + labyrinthe.getPositionActuelle());
+            System.out.println("nombre de case parcouru " + labyrinthe.getNombreCasesParcourues());
+    	}
 	}
 	
 	/**
@@ -154,7 +184,23 @@ public class PartieLabyrinthe {
 //		gridPane = leGridPane;
 //	}
     
-    public static void rechercheSommetSuivant() {
+    public static void rechercheSommetSuivantLabyEntier() {
+    	rechercheSommetSuivant();
+    	if (isPartieGagnee()) {
+			ControleurPartieLabyrinthe2.gestionPartieGagnee();
+		}
+    }
+    
+    public static void rechercheSommetSuivantCCAM() {
+    	ControleurPartieLabyrinthe2.enlevementMurCCAM();
+    	rechercheSommetSuivant();
+    	ControleurPartieLabyrinthe2.affichageLabyrintheCCAM();
+    	if (isPartieGagnee()) {
+			ControleurPartieLabyrinthe2.gestionPartieGagnee();
+		}
+    }
+    
+    private static void rechercheSommetSuivant() {
 //    	if (!isPartieGagnee()) {
     		initialisation();
 //    	sommetActuelle = labyrinthe.getPositionActuelle();
@@ -172,10 +218,6 @@ public class PartieLabyrinthe {
     		GridPane.setRowIndex(caseCourante, labyrinthe.getPositionActuelle().getCoordonneeY());
     		
     		labyrinthe.setNombreCasesParcourues(labyrinthe.getNombreCasesParcourues() + 1);
-    		
-    		if (isPartieGagnee()) {
-    			ControleurPartieLabyrinthe.gestionPartieGagnee();
-    		}
 //    	}
     }
 }

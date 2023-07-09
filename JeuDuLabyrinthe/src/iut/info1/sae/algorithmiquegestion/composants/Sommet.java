@@ -61,6 +61,11 @@ public class Sommet {
 
         this.liaisons = new ArrayList<>();
     }
+    
+    /** @return l'indice de this. */
+    public int getIndiceSommet() {
+    	return this.indiceSommet;
+    }
 
     /** @return La liste des liaisons de this. */
     public ArrayList<Integer> getLiaisons() {

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iut.info1.sae.algorithmiquegestion.controleurs.ControleurPartieLabyrinthe2">
+   <children>
+      <ScrollPane prefHeight="400.0" prefWidth="600.0">
+         <content>
+            <BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="600.0">
+               <top>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Partie En Cours !" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets bottom="15.0" top="30.0" />
+                     </BorderPane.margin>
+                  </Text>
+               </top>
+               <left>
+                  <Pane prefHeight="305.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <Pane prefHeight="305.0" prefWidth="50.0" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </Pane>
+               </right>
+               <bottom>
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="600.0" spacing="15.0" AnchorPane.bottomAnchor="0.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#indice" prefHeight="37.0" prefWidth="125.0" text="Indice" />
+                        <Button mnemonicParsing="false" onAction="#abandonner" prefHeight="37.0" prefWidth="125.0" text="Abandonner" />
+                        <Button mnemonicParsing="false" onAction="#afficherAide" prefHeight="37.0" prefWidth="125.0" text="Aide" />
+                        <Button mnemonicParsing="false" onAction="#sauvegarder" prefHeight="37.0" prefWidth="125.0" text="Sauvegarder" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="15.0" right="15.0" />
+                     </padding>
+                     <BorderPane.margin>
+                        <Insets top="15.0" />
+                     </BorderPane.margin>
+                  </HBox>
+               </bottom>
+            </BorderPane>
+         </content>
+      </ScrollPane>
+   </children>
+</HBox>

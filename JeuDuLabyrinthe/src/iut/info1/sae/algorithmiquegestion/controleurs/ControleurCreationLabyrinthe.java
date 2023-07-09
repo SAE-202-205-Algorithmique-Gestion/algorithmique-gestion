@@ -45,7 +45,9 @@ public class ControleurCreationLabyrinthe {
 				typeConstructionInt = 2;
 			}
 			CreationEtChargementLabyrinthe.creationLabyrinthe(nombreLignes, nombreColonnes, typeConstructionInt);
-			ControleurNavigation.changerVue("PartieLabyrinthe.fxml");
+			
+			ControleurChoixAffichage.setVuePrecedente("CreationLabyrinthe.fxml");
+			ControleurNavigation.changerVue("ChoixAffichage.fxml");
 		}
 		
 	}

@@ -40,7 +40,8 @@ public class ControleurChargementSauvegarde {
 	private void gestionErreurChargement() {
 		if (selectedItem != null) {
         	if (CreationEtChargementLabyrinthe.chargementLabyrinthePossible(selectedItem)) {
-	        	ControleurNavigation.changerVue("PartieLabyrinthe.fxml");
+        		ControleurChoixAffichage.setVuePrecedente("ChargementSauvegarde.fxml");
+	        	ControleurNavigation.changerVue("ChoixAffichage.fxml");
 	        } else {
 	        	ControleurAlerte.autreAlerte("Impossible de charger la sauvegarde...", "Sauvegarde Corrompue", AlertType.ERROR);
 	        }

@@ -1,9 +1,6 @@
 package iut.info1.sae.algorithmiquegestion.controleurs;
 
-import java.util.ArrayList;
-
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
-import iut.info1.sae.algorithmiquegestion.composants.ParcoursProfondeur;
 import iut.info1.sae.algorithmiquegestion.composants.Sommet;
 import iut.info1.sae.algorithmiquegestion.modeles.CreationEtChargementLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.modeles.PartieLabyrinthe;
@@ -27,9 +24,9 @@ public class ControleurPartieLabyrinthe {
 	
 	private Sommet[] listeSommets;
 	
-	private int nombreSommetMinimalAParcourir;
-	
-	private ArrayList<Sommet> sommetsDuParcours;
+//	private int nombreSommetMinimalAParcourir;
+//	
+//	private ArrayList<Sommet> sommetsDuParcours;
 	
 	private static Image caseCouranteSource = new Image(ControleurPartieLabyrinthe.class.getResource("/images/caseCourante.png").toString());
 
@@ -41,11 +38,11 @@ public class ControleurPartieLabyrinthe {
 	
 	@FXML
 	private void initialize() {
-//		nombreSommetMinimalAParcourir = ParcoursProfondeur.algorithmeParcours();
-//		sommetsDuParcours = ParcoursProfondeur.getParcoursListe();
+		Insets caseCouranteMarge = new Insets(5);
 		labyrinthe = CreationEtChargementLabyrinthe.getLabyrinthe();
 		listeSommets = labyrinthe.getGraphe().getListeSommets();
 		
+		GridPane.setMargin(caseCourante, caseCouranteMarge);
 		GridPane.setColumnIndex(caseCourante, labyrinthe.getPositionActuelle().getCoordonneeX());
 		GridPane.setRowIndex(caseCourante, labyrinthe.getPositionActuelle().getCoordonneeY());
 		gridPane.getChildren().add(caseCourante);
@@ -72,7 +69,7 @@ public class ControleurPartieLabyrinthe {
 	
 	@FXML
 	private void indice() {
-		
+		PartieLabyrinthe.rechercheSommetSuivant();
 	}
 	
 	@FXML

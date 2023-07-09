@@ -1,13 +1,11 @@
 {
   "positionActuelle": {
-    "indiceSommet": 1,
+    "indiceSommet": 97,
     "liaisons": [
-      11,
-      2,
-      0
+      98
     ],
-    "coordonneeX": 1,
-    "coordonneeY": 0,
+    "coordonneeX": 7,
+    "coordonneeY": 9,
     "marque": -1,
     "parcouru": true
   },
@@ -33,7 +31,7 @@
   },
   "nombreDeColonne": 10,
   "nombreDeLigne": 10,
-  "indiceSommetActuel": 1,
+  "indiceSommetActuel": 97,
   "nombreCasesParcourues": 3,
   "graphe": {
     "listeSommets": [
