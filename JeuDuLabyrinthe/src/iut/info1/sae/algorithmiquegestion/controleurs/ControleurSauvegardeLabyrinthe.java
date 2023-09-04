@@ -23,7 +23,7 @@ public class ControleurSauvegardeLabyrinthe {
 	
 	@FXML
 	private void retour() {
-		ControleurNavigation.changerVue("PartieLabyrinthe.fxml");
+		ControleurNavigation.changerVue("PartieLabyrinthe2.fxml");
 	}
 	
 	@FXML

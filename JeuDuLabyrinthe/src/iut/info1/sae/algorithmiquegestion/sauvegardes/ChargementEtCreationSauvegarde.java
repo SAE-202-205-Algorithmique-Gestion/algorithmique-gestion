@@ -11,7 +11,7 @@ import java.io.IOException;
 
 //import iut.info1.sae.algorithmiquegestion.MenuLabyrinthe;
 import iut.info1.sae.algorithmiquegestion.composants.Labyrinthe;
-import iut.info1.sae.algorithmiquegestion.modeles.PartieLabyrinthe;
+import iut.info1.sae.algorithmiquegestion.modeles.PartieLabyrinthe2;
 
 public class ChargementEtCreationSauvegarde {
 	
@@ -32,7 +32,7 @@ public class ChargementEtCreationSauvegarde {
 	public static void creerUneSauvegarde(String nomSauvegarde) {
 		String nomSauvegardeAvecExtension;
 //		labyrinthe = MenuLabyrinthe.getLabyrinthe();
-		labyrinthe = PartieLabyrinthe.getLabyrinthe();
+		labyrinthe = PartieLabyrinthe2.getLabyrinthe();
 		initialisation();
 		
         Gson gson = gsonBuilder.setPrettyPrinting().create();
