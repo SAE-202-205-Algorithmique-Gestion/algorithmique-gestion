@@ -1,6 +1,6 @@
 # algorithmique-gestion
 
-Bienvenue dans ce projet de labyrinthe !
+Bienvenue dans ce projet de labyrinthe développé en java !
 
 ## Configuration du JDK
 
@@ -20,18 +20,6 @@ Ce projet utilise la bibliothèque Gson pour le traitement des données JSON. As
 Cela permettra de résoudre les dépendances de Gson et de vous assurer que le projet peut être compilé et exécuté correctement.
 
 Si vous utilisez un système de gestion de dépendances tel que Maven ou Gradle, vous pouvez également configurer Gson dans votre fichier de configuration respectif en ajoutant les dépendances appropriées.
-
-## Configuration du dictionnaire français
-
-Ce projet utilise un dictionnaire personnalisé français pour la vérification orthographique dans votre IDE. Pour configurer le dictionnaire français, suivez ces étapes :
-
-1. Copiez le fichier `dictionnaire_fr_utf8.txt` à la racine du projet.
-2. Ouvrez votre IDE et accédez aux préférences ou aux paramètres spécifiques à l'éditeur de texte.
-3. Recherchez les options de vérification orthographique ou de dictionnaire (General, Editors, Text editor, Spelling).
-4. Configurez le chemin du dictionnaire français en sélectionnant le fichier `dictionnaire_fr_utf8.txt` que vous avez copié à la racine du projet.
-5. Enregistrez les modifications.
-
-Une fois que vous avez configuré le dictionnaire français, votre IDE utilisera ce dictionnaire pour la vérification orthographique dans vos fichiers de code source français.
 
 ## Contribuer
 
